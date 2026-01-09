@@ -1,7 +1,7 @@
 {
   "nav": {
     "about": "About",
-    "speakers": "Speakers",
+    "schedule": "Schedule",
     "faq": "FAQ",
     "venue": "Venue",
     "register": "Register"
@@ -38,7 +38,13 @@
   },
   "schedule": {
     "title": "Schedule",
-    "viewDetails": "View details"
+    "subtitle": "Presenters from VIG group experts. We're collecting more topics - register as a speaker!",
+    "viewDetails": "View details",
+    "confirmed": "Confirmed",
+    "openSlot": "Open Slot",
+    "abstract": "ABSTRACT",
+    "register": "Have an interesting topic? Register as a speaker!",
+    "registerLink": "Register as a speaker"
   },
   "registration": {
     "title": "Registration",

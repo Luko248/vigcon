@@ -14,20 +14,23 @@ interface Props {
 const { locale } = Astro.props;
 const t = locale === "en" ? en : cz;
 
-const { conference, tracks } = scheduleData;
+const { conference, tracks, isScheduled } = scheduleData;
 const schedule = scheduleData.schedule as Talk[];
 const speakers = speakersData.speakers as Speaker[];
+
+const titleWords = t.schedule.title.split(" ");
+const firstWord = titleWords[0];
+const restTitle = titleWords.slice(1).join(" ");
 
 // Timeline configuration
 const TIMELINE_START = "08:30";
 const TIMELINE_END = "18:00";
 const SLOT_MINUTES = 15;
 
-// Parse time string to minutes from midnight
-function parseTime(time: string): number {
+const parseTime = (time: string): number => {
   const [hours, minutes] = time.split(":").map(Number);
   return hours * 60 + minutes;
-}
+};
 
 // Calculate time slots for the timeline
 const startMinutes = parseTime(TIMELINE_START);
@@ -35,36 +38,37 @@ const endMinutes = parseTime(TIMELINE_END);
 const totalMinutes = endMinutes - startMinutes;
 const totalSlots = Math.ceil(totalMinutes / SLOT_MINUTES);
 
-// Generate time labels
-const timeLabels: string[] = [];
-for (let i = 0; i <= totalSlots; i++) {
-  const mins = startMinutes + i * SLOT_MINUTES;
-  const hours = Math.floor(mins / 60);
-  const minutes = mins % 60;
-  timeLabels.push(
-    `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`
-  );
-}
+const generateTimeLabels = (): string[] => {
+  const labels: string[] = [];
+  for (let i = 0; i <= totalSlots; i++) {
+    const mins = startMinutes + i * SLOT_MINUTES;
+    const hours = Math.floor(mins / 60);
+    const minutes = mins % 60;
+    labels.push(
+      `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`
+    );
+  }
+  return labels;
+};
 
-// Helper to get speaker by ID
-function getSpeaker(speakerId?: string): Speaker | undefined {
+const timeLabels = generateTimeLabels();
+
+const getSpeaker = (speakerId?: string): Speaker | undefined => {
   if (!speakerId) return undefined;
   return speakers.find((s) => s.id === speakerId);
-}
+};
 
-// Calculate position and height for a talk
-function getTalkPosition(talk: Talk): { top: number; height: number } {
+const getTalkPosition = (talk: Talk): { top: number; height: number } => {
   const talkStart = parseTime(talk.startTime);
   const talkEnd = parseTime(talk.endTime);
   const top = ((talkStart - startMinutes) / totalMinutes) * 100;
   const height = ((talkEnd - talkStart) / totalMinutes) * 100;
   return { top, height };
-}
+};
 
-// Get talks for a specific track (excluding 'both' items)
-function getTrackTalks(trackId: string): Talk[] {
+const getTrackTalks = (trackId: string): Talk[] => {
   return schedule.filter((item) => item.track === trackId);
-}
+};
 
 // Get shared items (breaks and specials that span both tracks)
 const sharedItems = schedule.filter((item) => item.track === "both");
@@ -77,7 +81,7 @@ const regularTalks = schedule.filter(
 );
 
 // Calculate the pixel height for the timeline (for scrollable container)
-const PIXELS_PER_SLOT = 80; // Each 15-min slot is 80px
+const PIXELS_PER_SLOT = 80;
 const timelineHeight = totalSlots * PIXELS_PER_SLOT;
 ---
 
@@ -88,326 +92,481 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
 >
   <div class="section-container">
     <!-- Section Header -->
-    <div class="text-center mb-8">
+    <div class="text-center mb-12">
       <h2
         id="schedule-title"
         class="text-3xl sm:text-4xl font-bold mb-4 animate-on-scroll"
       >
-        {t.schedule.title}
+        <span class="text-(--color-text)">{firstWord}</span>{" "}
+        {restTitle && <span class="text-gradient">{restTitle}</span>}
       </h2>
-      <p
-        class="text-lg text-(--color-text-secondary) animate-on-scroll-delayed"
-      >
-        <time datetime={conference.date}>{conference.date}</time> |
-        <time datetime={`2026-05-29T${TIMELINE_START}`}>{TIMELINE_START}</time> -
-        <time datetime={`2026-05-29T${TIMELINE_END}`}>{TIMELINE_END}</time>
-      </p>
-    </div>
-
-    <!-- Desktop Timeline View -->
-    <div class="hidden lg:block">
-      <!-- Track Headers -->
-      <div
-        class="track-header-sticky grid grid-cols-[5rem_1fr_1fr] gap-4 mb-4 sticky top-(--header-height) z-40 bg-(--color-surface) py-4 transition-all duration-300"
-      >
-        <div class="flex items-center justify-center">
-          <span
-            class="text-sm font-semibold text-(--color-text-secondary) uppercase tracking-wider"
-          >
-            {locale === "en" ? "Time" : "Čas"}
-          </span>
-        </div>
-        {
-          tracks.map((track, index) => (
-            <div
-              class="track-header-card rounded-xl p-4 text-center animate-scale-up bg-(--color-bg) border border-(--color-border) transition-all duration-300 origin-top"
-              style={`animation-delay: ${index * 100}ms`}
-            >
-              <h3 class="font-bold text-(--color-text) transition-colors duration-300">
-                {track.name[locale]}
-              </h3>
-            </div>
-          ))
-        }
-      </div>
-
-      <!-- Timeline Container -->
-      <div
-        class="relative overflow-x-visible"
-        style={`height: ${timelineHeight}px`}
-      >
-        <!-- Current Time Indicator -->
-        <div
-          id="current-time-indicator"
-          class="current-time-indicator hidden"
-          style="z-index: 30;"
-        >
-        </div>
-
-        <!-- Time Grid -->
-        <div class="absolute inset-0 grid grid-cols-[5rem_1fr_1fr] gap-4">
-          <!-- Time Labels Column -->
-          <div class="relative">
-            {
-              timeLabels.map((time, index) => {
-                const isHour = time.endsWith(":00");
-                const top = (index / totalSlots) * 100;
-                return (
-                  <div
-                    class={`absolute left-0 right-0 flex items-center justify-end pr-3 ${isHour ? "font-semibold text-(--color-text)" : "text-xs text-(--color-text-secondary)"}`}
-                    style={`top: ${top}%; transform: translateY(-50%);`}
-                  >
-                    <time datetime={`2026-05-29T${time}`}>{time}</time>
-                  </div>
-                );
-              })
-            }
-          </div>
-
-          <!-- Track A Column -->
-          <div class="relative border-l border-(--color-border)">
-            {/* Grid lines */}
-            {
-              timeLabels.map((time, index) => {
-                const isHour = time.endsWith(":00");
-                const top = (index / totalSlots) * 100;
-                return (
-                  <div
-                    class={`absolute left-0 right-0 border-t ${isHour ? "border-(--color-border)" : "border-(--color-border)/30"}`}
-                    style={`top: ${top}%;`}
-                  />
-                );
-              })
-            }
-
-            {/* Shared items spanning both tracks */}
-            {
-              sharedItems.map((item) => {
-                const pos = getTalkPosition(item);
-                return (
-                  <div
-                    class="absolute left-0 right-0 px-2 py-1"
-                    style={`top: ${pos.top}%; height: ${pos.height}%;`}
-                  >
-                    <div
-                      class={`h-full flex items-center justify-center rounded-lg ${item.type === "break" ? "bg-(--color-primary)/5 border border-dashed border-(--color-primary)/20" : "glass"}`}
-                    >
-                      <div class="text-center px-4">
-                        <time datetime={`2026-05-29T${item.startTime}`}>
-                          {item.startTime}
-                        </time>{" "}
-                        -
-                        <time datetime={`2026-05-29T${item.endTime}`}>
-                          {item.endTime}
-                        </time>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })
-            }
-
-            {/* Track A talks */}
-            {
-              trackATalks.map((talk) => {
-                const pos = getTalkPosition(talk);
-                const speaker = getSpeaker(talk.speakerId);
-                return (
-                  <div
-                    class="absolute left-0 right-0 px-2 py-1"
-                    style={`top: ${pos.top}%; height: ${pos.height}%;`}
-                  >
-                    <button
-                      type="button"
-                      class="timeline-talk-card h-full w-full text-left"
-                      data-modal-trigger={talk.id}
-                      aria-label={`${t.schedule.viewDetails}: ${talk.title[locale]}`}
-                    >
-                      <div class="flex items-center gap-2 mb-1">
-                        <time datetime={`2026-05-29T${talk.startTime}`}>
-                          {talk.startTime}
-                        </time>
-                        {talk.language && (
-                          <span class="px-1.5 py-0.5 rounded text-[0.625rem] font-semibold bg-(--color-primary)/10 text-(--color-primary)">
-                            {talk.language}
-                          </span>
-                        )}
-                      </div>
-                      <h4 class="text-sm font-semibold text-(--color-text) line-clamp-2 mb-1">
-                        {talk.title[locale]}
-                      </h4>
-                      {speaker && (
-                        <div class="flex items-center gap-2">
-                          <div class="w-6 h-6 rounded-full bg-linear-to-br from-(--color-primary)/30 to-(--color-primary)/10 flex items-center justify-center overflow-hidden shrink-0">
-                            <img
-                              src={speaker.photo}
-                              alt=""
-                              width="24"
-                              height="24"
-                              class="w-full h-full object-cover"
-                              loading="lazy"
-                              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                            />
-                            <span class="hidden text-(--color-primary) font-bold text-[0.5rem] items-center justify-center w-full h-full">
-                              {speaker.name
-                                .split(" ")
-                                .map((n) => n[0])
-                                .join("")}
-                            </span>
-                          </div>
-                          <span class="text-xs text-(--color-text-secondary) truncate">
-                            {speaker.name}
-                          </span>
-                        </div>
-                      )}
-                    </button>
-                  </div>
-                );
-              })
-            }
-          </div>
-
-          <!-- Track B Column -->
-          <div class="relative border-l border-(--color-border)">
-            {/* Grid lines */}
-            {
-              timeLabels.map((time, index) => {
-                const isHour = time.endsWith(":00");
-                const top = (index / totalSlots) * 100;
-                return (
-                  <div
-                    class={`absolute left-0 right-0 border-t ${isHour ? "border-(--color-border)" : "border-(--color-border)/30"}`}
-                    style={`top: ${top}%;`}
-                  />
-                );
-              })
-            }
-
-            {/* Shared items spanning both tracks (visually continue) */}
-            {
-              sharedItems.map((item) => {
-                const pos = getTalkPosition(item);
-                return (
-                  <div
-                    class="absolute left-0 right-0 px-2 py-1"
-                    style={`top: ${pos.top}%; height: ${pos.height}%;`}
-                  >
-                    <div
-                      class={`h-full flex items-center justify-center rounded-lg ${item.type === "break" ? "bg-(--color-primary)/5 border border-dashed border-(--color-primary)/20" : "glass"}`}
-                    >
-                      <div class="text-center px-4">
-                        <time datetime={`2026-05-29T${item.startTime}`}>
-                          {item.startTime}
-                        </time>{" "}
-                        -
-                        <time datetime={`2026-05-29T${item.endTime}`}>
-                          {item.endTime}
-                        </time>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })
-            }
-
-            {/* Track B talks */}
-            {
-              trackBTalks.map((talk) => {
-                const pos = getTalkPosition(talk);
-                const speaker = getSpeaker(talk.speakerId);
-                return (
-                  <div
-                    class="absolute left-0 right-0 px-2 py-1"
-                    style={`top: ${pos.top}%; height: ${pos.height}%;`}
-                  >
-                    <button
-                      type="button"
-                      class="timeline-talk-card h-full w-full text-left"
-                      data-modal-trigger={talk.id}
-                      aria-label={`${t.schedule.viewDetails}: ${talk.title[locale]}`}
-                    >
-                      <div class="flex items-center gap-2 mb-1">
-                        <time datetime={`2026-05-29T${talk.startTime}`}>
-                          {talk.startTime}
-                        </time>
-                        {talk.language && (
-                          <span class="px-1.5 py-0.5 rounded text-[0.625rem] font-semibold bg-(--color-primary)/10 text-(--color-primary)">
-                            {talk.language}
-                          </span>
-                        )}
-                      </div>
-                      <h4 class="text-sm font-semibold text-(--color-text) line-clamp-2 mb-1">
-                        {talk.title[locale]}
-                      </h4>
-                      {speaker && (
-                        <div class="flex items-center gap-2">
-                          <div class="w-6 h-6 rounded-full bg-linear-to-br from-(--color-primary)/30 to-(--color-primary)/10 flex items-center justify-center overflow-hidden shrink-0">
-                            <img
-                              src={speaker.photo}
-                              alt=""
-                              width="24"
-                              height="24"
-                              class="w-full h-full object-cover"
-                              loading="lazy"
-                              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                            />
-                            <span class="hidden text-(--color-primary) font-bold text-[0.5rem] items-center justify-center w-full h-full">
-                              {speaker.name
-                                .split(" ")
-                                .map((n) => n[0])
-                                .join("")}
-                            </span>
-                          </div>
-                          <span class="text-xs text-(--color-text-secondary) truncate">
-                            {speaker.name}
-                          </span>
-                        </div>
-                      )}
-                    </button>
-                  </div>
-                );
-              })
-            }
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Mobile View (Card List) -->
-    <div class="lg:hidden space-y-3">
       {
-        schedule.map((talk, index) => (
-          <div>
-            {/* Show track label for non-shared items */}
-            {talk.track !== "both" && (
-              <div class="text-xs font-semibold text-(--color-primary) uppercase tracking-wider mb-2">
-                {talk.track === "track-a"
-                  ? tracks[0].name[locale]
-                  : tracks[1].name[locale]}
-              </div>
-            )}
-            <TalkCard
-              talk={talk}
-              speaker={getSpeaker(talk.speakerId)}
-              locale={locale}
-              delay={index * 30}
-            />
-          </div>
-        ))
+        isScheduled ? (
+          <p class="text-lg text-(--color-text-secondary) animate-on-scroll-delayed">
+            <time datetime={conference.date}>{conference.date}</time> |
+            <time datetime={`2026-05-29T${TIMELINE_START}`}>
+              {TIMELINE_START}
+            </time>{" "}
+            -<time datetime={`2026-05-29T${TIMELINE_END}`}>{TIMELINE_END}</time>
+          </p>
+        ) : (
+          <p class="text-lg text-(--color-text-secondary) max-w-2xl mx-auto animate-on-scroll-delayed">
+            {t.schedule.subtitle}
+          </p>
+        )
       }
     </div>
+
+    {isScheduled ? (
+      <>
+        <!-- Desktop Timeline View -->
+        <div class="hidden lg:block">
+          <!-- Track Headers -->
+          <div
+            class="track-header-sticky grid grid-cols-[5rem_1fr_1fr] gap-4 mb-4 sticky top-(--header-height) z-40 bg-(--color-surface) py-4 transition-all duration-300"
+          >
+            <div class="flex items-center justify-center">
+              <span
+                class="text-sm font-semibold text-(--color-text-secondary) uppercase tracking-wider"
+              >
+                {locale === "en" ? "Time" : "Čas"}
+              </span>
+            </div>
+            {
+              tracks.map((track, index) => (
+                <div
+                  class="track-header-card rounded-xl p-4 text-center animate-scale-up bg-(--color-bg) border border-(--color-border) transition-all duration-300 origin-top"
+                  style={`animation-delay: ${index * 100}ms`}
+                >
+                  <h3 class="font-bold text-(--color-text) transition-colors duration-300">
+                    {track.name[locale]}
+                  </h3>
+                </div>
+              ))
+            }
+          </div>
+
+          <!-- Timeline Container -->
+          <div
+            class="relative overflow-x-visible"
+            style={`height: ${timelineHeight}px`}
+          >
+            <!-- Current Time Indicator -->
+            <div
+              id="current-time-indicator"
+              class="current-time-indicator hidden"
+              style="z-index: 30;"
+            >
+            </div>
+
+            <!-- Time Grid -->
+            <div class="absolute inset-0 grid grid-cols-[5rem_1fr_1fr] gap-4">
+              <!-- Time Labels Column -->
+              <div class="relative">
+                {
+                  timeLabels.map((time, index) => {
+                    const isHour = time.endsWith(":00");
+                    const top = (index / totalSlots) * 100;
+                    return (
+                      <div
+                        class={`absolute left-0 right-0 flex items-center justify-end pr-3 ${isHour ? "font-semibold text-(--color-text)" : "text-xs text-(--color-text-secondary)"}`}
+                        style={`top: ${top}%; transform: translateY(-50%);`}
+                      >
+                        <time datetime={`2026-05-29T${time}`}>{time}</time>
+                      </div>
+                    );
+                  })
+                }
+              </div>
+
+              <!-- Track A Column -->
+              <div class="relative border-l border-(--color-border)">
+                {
+                  timeLabels.map((time, index) => {
+                    const isHour = time.endsWith(":00");
+                    const top = (index / totalSlots) * 100;
+                    return (
+                      <div
+                        class={`absolute left-0 right-0 border-t ${isHour ? "border-(--color-border)" : "border-(--color-border)/30"}`}
+                        style={`top: ${top}%;`}
+                      />
+                    );
+                  })
+                }
+                {
+                  sharedItems.map((item) => {
+                    const pos = getTalkPosition(item);
+                    return (
+                      <div
+                        class="absolute left-0 right-0 px-2 py-1"
+                        style={`top: ${pos.top}%; height: ${pos.height}%;`}
+                      >
+                        <div
+                          class={`h-full flex items-center justify-center rounded-lg ${item.type === "break" ? "bg-(--color-primary)/5 border border-dashed border-(--color-primary)/20" : "glass"}`}
+                        >
+                          <div class="text-center px-4">
+                            <time datetime={`2026-05-29T${item.startTime}`}>
+                              {item.startTime}
+                            </time>{" "}
+                            -
+                            <time datetime={`2026-05-29T${item.endTime}`}>
+                              {item.endTime}
+                            </time>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })
+                }
+                {
+                  trackATalks.map((talk) => {
+                    const pos = getTalkPosition(talk);
+                    const speaker = getSpeaker(talk.speakerId);
+                    return (
+                      <div
+                        class="absolute left-0 right-0 px-2 py-1"
+                        style={`top: ${pos.top}%; height: ${pos.height}%;`}
+                      >
+                        <button
+                          type="button"
+                          class="timeline-talk-card h-full w-full text-left"
+                          data-modal-trigger={talk.id}
+                          aria-label={`${t.schedule.viewDetails}: ${talk.title[locale]}`}
+                        >
+                          <div class="flex items-center gap-2 mb-1">
+                            <time datetime={`2026-05-29T${talk.startTime}`}>
+                              {talk.startTime}
+                            </time>
+                            {talk.language && (
+                              <span class="px-1.5 py-0.5 rounded text-[0.625rem] font-semibold bg-(--color-primary)/10 text-(--color-primary)">
+                                {talk.language}
+                              </span>
+                            )}
+                          </div>
+                          <h4 class="text-sm font-semibold text-(--color-text) line-clamp-2 mb-1">
+                            {talk.title[locale]}
+                          </h4>
+                          {speaker && (
+                            <div class="flex items-center gap-2">
+                              <div class="w-6 h-6 rounded-full bg-linear-to-br from-(--color-primary)/30 to-(--color-primary)/10 flex items-center justify-center overflow-hidden shrink-0">
+                                <img
+                                  src={speaker.photo}
+                                  alt=""
+                                  width="24"
+                                  height="24"
+                                  class="w-full h-full object-cover"
+                                  loading="lazy"
+                                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                />
+                                <span class="hidden text-(--color-primary) font-bold text-[0.5rem] items-center justify-center w-full h-full">
+                                  {speaker.name
+                                    .split(" ")
+                                    .map((n) => n[0])
+                                    .join("")}
+                                </span>
+                              </div>
+                              <span class="text-xs text-(--color-text-secondary) truncate">
+                                {speaker.name}
+                              </span>
+                            </div>
+                          )}
+                        </button>
+                      </div>
+                    );
+                  })
+                }
+              </div>
+
+              <!-- Track B Column -->
+              <div class="relative border-l border-(--color-border)">
+                {
+                  timeLabels.map((time, index) => {
+                    const isHour = time.endsWith(":00");
+                    const top = (index / totalSlots) * 100;
+                    return (
+                      <div
+                        class={`absolute left-0 right-0 border-t ${isHour ? "border-(--color-border)" : "border-(--color-border)/30"}`}
+                        style={`top: ${top}%;`}
+                      />
+                    );
+                  })
+                }
+                {
+                  sharedItems.map((item) => {
+                    const pos = getTalkPosition(item);
+                    return (
+                      <div
+                        class="absolute left-0 right-0 px-2 py-1"
+                        style={`top: ${pos.top}%; height: ${pos.height}%;`}
+                      >
+                        <div
+                          class={`h-full flex items-center justify-center rounded-lg ${item.type === "break" ? "bg-(--color-primary)/5 border border-dashed border-(--color-primary)/20" : "glass"}`}
+                        >
+                          <div class="text-center px-4">
+                            <time datetime={`2026-05-29T${item.startTime}`}>
+                              {item.startTime}
+                            </time>{" "}
+                            -
+                            <time datetime={`2026-05-29T${item.endTime}`}>
+                              {item.endTime}
+                            </time>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })
+                }
+                {
+                  trackBTalks.map((talk) => {
+                    const pos = getTalkPosition(talk);
+                    const speaker = getSpeaker(talk.speakerId);
+                    return (
+                      <div
+                        class="absolute left-0 right-0 px-2 py-1"
+                        style={`top: ${pos.top}%; height: ${pos.height}%;`}
+                      >
+                        <button
+                          type="button"
+                          class="timeline-talk-card h-full w-full text-left"
+                          data-modal-trigger={talk.id}
+                          aria-label={`${t.schedule.viewDetails}: ${talk.title[locale]}`}
+                        >
+                          <div class="flex items-center gap-2 mb-1">
+                            <time datetime={`2026-05-29T${talk.startTime}`}>
+                              {talk.startTime}
+                            </time>
+                            {talk.language && (
+                              <span class="px-1.5 py-0.5 rounded text-[0.625rem] font-semibold bg-(--color-primary)/10 text-(--color-primary)">
+                                {talk.language}
+                              </span>
+                            )}
+                          </div>
+                          <h4 class="text-sm font-semibold text-(--color-text) line-clamp-2 mb-1">
+                            {talk.title[locale]}
+                          </h4>
+                          {speaker && (
+                            <div class="flex items-center gap-2">
+                              <div class="w-6 h-6 rounded-full bg-linear-to-br from-(--color-primary)/30 to-(--color-primary)/10 flex items-center justify-center overflow-hidden shrink-0">
+                                <img
+                                  src={speaker.photo}
+                                  alt=""
+                                  width="24"
+                                  height="24"
+                                  class="w-full h-full object-cover"
+                                  loading="lazy"
+                                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                />
+                                <span class="hidden text-(--color-primary) font-bold text-[0.5rem] items-center justify-center w-full h-full">
+                                  {speaker.name
+                                    .split(" ")
+                                    .map((n) => n[0])
+                                    .join("")}
+                                </span>
+                              </div>
+                              <span class="text-xs text-(--color-text-secondary) truncate">
+                                {speaker.name}
+                              </span>
+                            </div>
+                          )}
+                        </button>
+                      </div>
+                    );
+                  })
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile View (Card List) -->
+        <div class="lg:hidden space-y-3">
+          {
+            schedule.map((talk, index) => (
+              <div>
+                {talk.track !== "both" && (
+                  <div class="text-xs font-semibold text-(--color-primary) uppercase tracking-wider mb-2">
+                    {talk.track === "track-a"
+                      ? tracks[0].name[locale]
+                      : tracks[1].name[locale]}
+                  </div>
+                )}
+                <TalkCard
+                  talk={talk}
+                  speaker={getSpeaker(talk.speakerId)}
+                  locale={locale}
+                  delay={index * 30}
+                />
+              </div>
+            ))
+          }
+        </div>
+      </>
+    ) : (
+      <>
+        <!-- Speakers Grid (Unscheduled View) -->
+        <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          {
+            speakers.map((speaker, index) => {
+              const speakerNames = speaker.name.split(" & ");
+              const hasTwoSpeakers = speakerNames.length === 2;
+              
+              return (
+                <button
+                  type="button"
+                  class="speaker-card glass rounded-2xl p-6 hover:border-(--color-primary)/50 transition-colors animate-scale-up group h-full flex flex-col text-left cursor-pointer"
+                  style={`animation-delay: ${index * 100}ms`}
+                  data-modal-trigger={`speaker-${speaker.id}`}
+                  aria-label={`${t.schedule.viewDetails}: ${speaker.topic[locale]}`}
+                >
+                  <!-- Session Title -->
+                  <h3 class="font-bold text-lg leading-tight mb-3 group-hover:text-(--color-primary) transition-colors">
+                    {speaker.topic[locale]}
+                  </h3>
+
+                  <!-- Hashtags -->
+                  {speaker.hashtags && speaker.hashtags.length > 0 && (
+                    <div class="flex flex-wrap gap-2 mb-4">
+                      {speaker.hashtags.map((tag: string) => (
+                        <span class="px-2 py-0.5 rounded-md bg-(--color-primary)/10 text-(--color-primary) text-[10px] font-medium">
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  <!-- Abstract Preview -->
+                  <div class="mb-4 grow">
+                    <p class="text-sm text-(--color-text-secondary) leading-relaxed line-clamp-3">
+                      <Fragment set:html={speaker.abstract[locale].split('\n')[0].replace(/^##\s+/, '').replace(/\*\*/g, '')} />
+                    </p>
+                  </div>
+
+                  <!-- Speakers -->
+                  <div class="pt-4 border-t border-(--color-border)/50 mt-auto">
+                    <div class="flex items-center gap-3">
+                      <!-- Speaker Photos -->
+                      <div class={`relative ${hasTwoSpeakers ? 'w-14' : 'w-10'} h-10 shrink-0`}>
+                        <div class="w-10 h-10 rounded-full bg-(--color-surface) border-2 border-(--color-bg) flex items-center justify-center text-(--color-text-secondary) font-bold text-xs overflow-hidden absolute left-0 top-0 z-10">
+                          {speaker.initials.charAt(0)}{speaker.initials.charAt(1) || ''}
+                        </div>
+                        {hasTwoSpeakers && (
+                          <div class="w-10 h-10 rounded-full bg-(--color-primary)/20 border-2 border-(--color-bg) flex items-center justify-center text-(--color-primary) font-bold text-xs overflow-hidden absolute left-4 top-0">
+                            {speakerNames[1].split(' ').map(n => n[0]).join('')}
+                          </div>
+                        )}
+                      </div>
+                      
+                      <!-- Speaker Info -->
+                      <div class="flex-1 min-w-0">
+                        <p class="font-medium text-sm truncate">{speaker.name}</p>
+                        <p class="text-xs text-(--color-text-secondary) truncate">
+                          {speaker.role ? speaker.role[locale] : speaker.company}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              );
+            })
+          }
+        </div>
+
+        <!-- Call to Action -->
+        <div class="text-center mt-12 animate-on-scroll">
+          <p class="text-(--color-text-secondary) mb-4">{t.schedule.register}</p>
+          <a href="#registration" class="text-(--color-primary) font-semibold hover:underline inline-flex items-center gap-1">
+            {t.schedule.registerLink}
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </>
+    )}
   </div>
 </section>
 
-<!-- Talk Modals -->
+<!-- Talk Modals (for scheduled view) -->
 {
-  regularTalks.map((talk) => (
+  isScheduled && regularTalks.map((talk) => (
     <TalkModal
       talk={talk}
       speaker={getSpeaker(talk.speakerId)}
       locale={locale}
     />
   ))
+}
+
+<!-- Speaker Modals (for unscheduled view) -->
+{
+  !isScheduled && speakers.map((speaker) => {
+    const speakerNames = speaker.name.split(" & ");
+    const hasTwoSpeakers = speakerNames.length === 2;
+    
+    return (
+      <dialog
+        id={`dialog-speaker-${speaker.id}`}
+        class="speaker-modal backdrop:bg-black/80 bg-transparent p-4 max-w-2xl w-full"
+      >
+        <div class="glass rounded-2xl p-6 relative">
+          <button
+            type="button"
+            class="absolute top-4 right-4 p-2 rounded-lg hover:bg-(--color-surface) transition-colors"
+            data-close-modal
+            aria-label={locale === "en" ? "Close" : "Zavřít"}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+            </svg>
+          </button>
+
+          <!-- Session Title -->
+          <h3 class="font-bold text-xl mb-3 pr-10">{speaker.topic[locale]}</h3>
+
+          <!-- Hashtags -->
+          {speaker.hashtags && speaker.hashtags.length > 0 && (
+            <div class="flex flex-wrap gap-2 mb-6">
+              {speaker.hashtags.map((tag: string) => (
+                <span class="px-2 py-0.5 rounded-md bg-(--color-primary)/10 text-(--color-primary) text-xs font-medium">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          )}
+
+          <!-- Full Abstract -->
+          <div class="mb-6">
+            <p class="text-xs uppercase tracking-wider text-(--color-text-secondary) font-bold mb-3">
+              {t.schedule.abstract}
+            </p>
+            <div class="prose prose-sm prose-invert max-w-none text-(--color-text-secondary) leading-relaxed speaker-abstract">
+              <Fragment set:html={speaker.abstract[locale].replace(/\n/g, '<br/>').replace(/^##\s+(.+)$/gm, '<strong class="block mt-4 mb-2 text-(--color-text)">$1</strong>').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')} />
+            </div>
+          </div>
+
+          <!-- Speakers (Column Layout) -->
+          <div class="pt-6 border-t border-(--color-border)/50">
+            <p class="text-xs uppercase tracking-wider text-(--color-text-secondary) font-bold mb-4">
+              {hasTwoSpeakers ? (locale === "en" ? "SPEAKERS" : "ŘEČNÍCI") : (locale === "en" ? "SPEAKER" : "ŘEČNÍK")}
+            </p>
+            <div class={`grid ${hasTwoSpeakers ? 'grid-cols-2' : 'grid-cols-1'} gap-4`}>
+              {speakerNames.map((name, idx) => (
+                <div class="flex items-center gap-3">
+                  <div class={`w-12 h-12 rounded-full ${idx === 0 ? 'bg-(--color-surface)' : 'bg-(--color-primary)/20'} border border-(--color-border) flex items-center justify-center ${idx === 0 ? 'text-(--color-text-secondary)' : 'text-(--color-primary)'} font-bold text-sm shrink-0`}>
+                    {name.trim().split(' ').map(n => n[0]).join('')}
+                  </div>
+                  <div>
+                    <p class="font-medium text-sm">{name.trim()}</p>
+                    <p class="text-xs text-(--color-text-secondary)">
+                      {speaker.role ? speaker.role[locale] : speaker.company}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </dialog>
+    );
+  })
 }
 
 <style>
@@ -428,9 +587,38 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
     border-color: var(--color-primary);
   }
 
+  .speaker-card {
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .speaker-card:hover {
+    scale: 1.02;
+    box-shadow: 0 0.5rem 1.5rem -0.25rem oklch(0 0 0 / 0.15);
+  }
+
+  .speaker-modal {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .speaker-modal::backdrop {
+    background: oklch(0 0 0 / 0.8);
+  }
+
+  .speaker-abstract strong {
+    color: var(--color-text);
+  }
+
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }

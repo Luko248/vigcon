@@ -5,19 +5,20 @@
     "endTime": "18:00",
     "timezone": "Europe/Prague"
   },
+  "isScheduled": false,
   "tracks": [
     {
       "id": "track-a",
       "name": {
-        "en": "Main Stage",
-        "cz": "Hlavní pódium"
+        "en": "AI Track",
+        "cz": "AI Track"
       }
     },
     {
       "id": "track-b",
       "name": {
-        "en": "Tech Deep Dive",
-        "cz": "Technické přednášky"
+        "en": "Tech DeepDive",
+        "cz": "Tech DeepDive"
       }
     }
   ],

@@ -1,7 +1,7 @@
 {
   "nav": {
     "about": "O konferenci",
-    "speakers": "Řečníci",
+    "schedule": "Program",
     "faq": "FAQ",
     "venue": "Místo",
     "register": "Registrace"
@@ -38,7 +38,13 @@
   },
   "schedule": {
     "title": "Program",
-    "viewDetails": "Zobrazit detaily"
+    "subtitle": "Přednášející z řad expertů skupiny VIG. Sbíráme další témata - registrujte se jako řečník!",
+    "viewDetails": "Zobrazit detaily",
+    "confirmed": "Potvrzeno",
+    "openSlot": "Volný slot",
+    "abstract": "ABSTRAKT",
+    "register": "Máte zajímavé téma? Registrujte se jako řečník!",
+    "registerLink": "Registrovat se jako řečník"
   },
   "registration": {
     "title": "Registrace",

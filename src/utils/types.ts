@@ -30,6 +30,7 @@ export interface Speaker {
     en: string;
     cz: string;
   };
+  hashtags?: string[];
   abstract: {
     en: string;
     cz: string;
