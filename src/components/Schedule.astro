@@ -447,11 +447,33 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                       <!-- Speaker Photos -->
                       <div class={`relative ${hasTwoSpeakers ? 'w-14' : 'w-10'} h-10 shrink-0`}>
                         <div class="w-10 h-10 rounded-full bg-(--color-surface) border-2 border-(--color-bg) flex items-center justify-center text-(--color-text-secondary) font-bold text-xs overflow-hidden absolute left-0 top-0 z-10">
-                          {speaker.initials.charAt(0)}{speaker.initials.charAt(1) || ''}
+                          {speaker.photos?.[0] || speaker.photo !== "/images/speakers/placeholder.svg" ? (
+                            <img 
+                              src={speaker.photos?.[0] || speaker.photo} 
+                              alt={speakerNames[0]} 
+                              width="40" 
+                              height="40" 
+                              loading="lazy" 
+                              class="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <span>{speaker.initials.charAt(0)}{speaker.initials.charAt(1) || ''}</span>
+                          )}
                         </div>
                         {hasTwoSpeakers && (
                           <div class="w-10 h-10 rounded-full bg-(--color-primary)/20 border-2 border-(--color-bg) flex items-center justify-center text-(--color-primary) font-bold text-xs overflow-hidden absolute left-4 top-0">
-                            {speakerNames[1].split(' ').map(n => n[0]).join('')}
+                            {speaker.photos?.[1] ? (
+                              <img 
+                                src={speaker.photos[1]} 
+                                alt={speakerNames[1]} 
+                                width="40" 
+                                height="40" 
+                                loading="lazy" 
+                                class="w-full h-full object-cover"
+                              />
+                            ) : (
+                              <span>{speakerNames[1].split(' ').map(n => n[0]).join('')}</span>
+                            )}
                           </div>
                         )}
                       </div>
@@ -550,8 +572,19 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
             <div class={`grid ${hasTwoSpeakers ? 'grid-cols-2' : 'grid-cols-1'} gap-4`}>
               {speakerNames.map((name, idx) => (
                 <div class="flex items-center gap-3">
-                  <div class={`w-12 h-12 rounded-full ${idx === 0 ? 'bg-(--color-surface)' : 'bg-(--color-primary)/20'} border border-(--color-border) flex items-center justify-center ${idx === 0 ? 'text-(--color-text-secondary)' : 'text-(--color-primary)'} font-bold text-sm shrink-0`}>
-                    {name.trim().split(' ').map(n => n[0]).join('')}
+                  <div class={`w-12 h-12 rounded-full ${idx === 0 ? 'bg-(--color-surface)' : 'bg-(--color-primary)/20'} border border-(--color-border) flex items-center justify-center ${idx === 0 ? 'text-(--color-text-secondary)' : 'text-(--color-primary)'} font-bold text-sm shrink-0 overflow-hidden`}>
+                    {speaker.photos?.[idx] ? (
+                      <img 
+                        src={speaker.photos[idx]} 
+                        alt={name.trim()} 
+                        width="48" 
+                        height="48" 
+                        loading="lazy" 
+                        class="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <span>{name.trim().split(' ').map(n => n[0]).join('')}</span>
+                    )}
                   </div>
                   <div>
                     <p class="font-medium text-sm">{name.trim()}</p>

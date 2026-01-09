@@ -30,7 +30,11 @@
       "id": "cech-martin",
       "name": "Martin Čech & Jiří Chorouš",
       "initials": "MČ",
-      "photo": "/images/speakers/placeholder.svg",
+      "photo": "/images/speakers/martin-cech.avif",
+      "photos": [
+        "/images/speakers/martin-cech.avif",
+        "/images/speakers/jiri.chorous.avif"
+      ],
       "company": "VIG",
       "country": "Czech Republic",
       "status": "confirmed",

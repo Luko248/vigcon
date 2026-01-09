@@ -24,6 +24,7 @@ export interface Speaker {
   name: string;
   initials: string;
   photo: string;
+  photos?: string[];
   company: string;
   status: "confirmed" | "open";
   topic: {
