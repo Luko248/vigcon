@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  site: "https://wigcon.cz",
+  site: "https://vigcon.eu",
   output: "static",
   build: {
     inlineStylesheets: "auto",
