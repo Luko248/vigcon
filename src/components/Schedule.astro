@@ -559,13 +559,13 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
             <p class="text-xs uppercase tracking-wider text-(--color-text-secondary) font-bold mb-3">
               {t.schedule.abstract}
             </p>
-            <div class="prose prose-sm prose-invert max-w-none text-(--color-text-secondary) leading-normal speaker-abstract">
+            <div class="prose prose-sm prose-invert max-w-none text-(--color-text-secondary) leading-snug speaker-abstract">
               <Fragment set:html={speaker.abstract[locale]
                 .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener" class="text-(--color-primary) hover:underline">$1</a>')
                 .replace(/\*\*([^*]+)\*\*/g, '<strong class="text-(--color-text)">$1</strong>')
-                .replace(/^## (.+)$/gm, '</p><h4 class="font-bold text-(--color-text) mt-3 mb-1">$1</h4><p>')
-                .replace(/^- (.+)$/gm, '<li class="flex items-start gap-2 pl-2 py-0.5"><span class="text-(--color-primary) mt-1">•</span><span>$1</span></li>')
-                .replace(/\n\n/g, '</p><p class="mt-2">')
+                .replace(/^## (.+)$/gm, '</p><h4 class="font-bold text-(--color-text) mt-2 mb-0.5">$1</h4><p>')
+                .replace(/^- (.+)$/gm, '<li class="flex items-center gap-2 pl-2"><span class="text-(--color-primary) text-xs">●</span><span>$1</span></li>')
+                .replace(/\n\n/g, '</p><p class="mt-1">')
                 .replace(/\n/g, '<br/>')
                 .replace(/^/, '<p>')
                 .replace(/$/, '</p>')
