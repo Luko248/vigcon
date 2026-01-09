@@ -32,6 +32,10 @@ export interface Speaker {
     cz: string;
   };
   hashtags?: string[];
+  shortDesc?: {
+    en: string;
+    cz: string;
+  };
   abstract: {
     en: string;
     cz: string;
