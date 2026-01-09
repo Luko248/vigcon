@@ -1,0 +1,113 @@
+{
+  "nav": {
+    "about": "O konferenci",
+    "speakers": "Řečníci",
+    "faq": "FAQ",
+    "venue": "Místo",
+    "register": "Registrace"
+  },
+  "cta": {
+    "addToCalendar": "Přidat do kalendáře",
+    "schedule": "Zobrazit program",
+    "register": "Registrovat",
+    "liveNow": "Živě nyní"
+  },
+  "hero": {
+    "title": "VIGCON2026",
+    "subtitle": "Interní technologická konference\nVienna Insurance Group",
+    "theme": "Téma: Nasazení AI v praxi",
+    "date": "29. května 2026",
+    "location": "AIS-Servis, Brno",
+    "attendees": "Max 50 účastníků"
+  },
+  "countdown": {
+    "days": "Dny",
+    "hours": "Hodiny",
+    "minutes": "Minuty",
+    "seconds": "Sekundy",
+    "until": "do konference"
+  },
+  "speakers": {
+    "title": "Řečníci",
+    "subtitle": "Přednášející z řad expertů skupiny VIG. Sbíráme další témata - registrujte se jako řečník!",
+    "confirmed": "Potvrzeno",
+    "openSlot": "Volný slot",
+    "abstract": "ABSTRAKT",
+    "register": "Máte zajímavé téma? Registrujte se jako řečník!",
+    "registerLink": "Registrovat se jako řečník"
+  },
+  "schedule": {
+    "title": "Program",
+    "viewDetails": "Zobrazit detaily"
+  },
+  "registration": {
+    "title": "Registrace",
+    "subtitle": "Zaregistrujte se jako účastník nebo přihlaste své téma jako řečník. Kapacita je omezena na 50 účastníků.",
+    "form": {
+      "fullName": "Jméno a příjmení",
+      "company": "Společnost",
+      "email": "Email",
+      "phone": "Telefon",
+      "participationType": "Typ účasti",
+      "types": {
+        "onsite": "Osobně (Onsite)",
+        "onsiteDesc": "Včetně networkingu",
+        "online": "Online",
+        "onlineDesc": "Pouze přednášky"
+      },
+      "role": "Registruji se jako",
+      "roles": {
+        "attendee": "Účastník",
+        "attendeeDesc": "Chci se učit",
+        "speaker": "Řečník",
+        "speakerDesc": "Chci sdílet"
+      },
+      "sessionDescription": "Popis přednášky (CFP)",
+      "sessionPlaceholder": "Prosím popište téma a abstrakt vaší přednášky...",
+      "submit": "Odeslat registraci",
+      "consent": "Odesláním souhlasíte se zpracováním vašich údajů pro účely organizace konference."
+    }
+  },
+  "modal": {
+    "close": "Zavřít",
+    "speakerBio": "Bio řečníka",
+    "talkAnnotation": "Popis přednášky"
+  },
+  "gallery": {
+    "title": "Galerie",
+    "subtitle": "Fotografie z minulých ročníků",
+    "images": {
+      "img_0050": "Networking účastníků během přestávky",
+      "img_0052": "Interaktivní workshop",
+      "img_0091": "Prezentace hlavního řečníka",
+      "img_3820": "Panelová diskuze s experty",
+      "img_7715": "Hlavní sál konference",
+      "img_7722": "Technická přednáška",
+      "img_7735": "Q&A sekce s řečníky",
+      "img_7740": "Večerní networkingová akce",
+      "img_7772": "Sdílení zkušeností mezi účastníky",
+      "img_7815": "Závěrečný ceremoniál a předávání cen"
+    }
+  },
+  "faq": {
+    "title": "Často kladené otázky",
+    "subtitle": "Vše, co potřebujete vědět o konferenci"
+  },
+  "partners": {
+    "title": "Naši partneři",
+    "subtitle": "Děkujeme našim partnerům, kteří umožňují konání VIG IT Conference"
+  },
+  "footer": {
+    "contact": "Kontakt",
+    "copyright": "© 2026 VIG IT Conference. Všechna práva vyhrazena.",
+    "organizedBy": "Pořádá Vienna Insurance Group"
+  },
+  "accessibility": {
+    "skipToContent": "Přeskočit na hlavní obsah",
+    "openMenu": "Otevřít menu",
+    "closeMenu": "Zavřít menu",
+    "switchToLight": "Přepnout na světlý režim",
+    "switchToDark": "Přepnout na tmavý režim",
+    "switchLanguage": "Změnit jazyk"
+  }
+}

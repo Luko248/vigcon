@@ -1,0 +1,117 @@
+---
+import type { Locale } from "@utils/types";
+import en from "@i18n/en.json";
+import cz from "@i18n/cz.json";
+import speakersData from "@data/speakers.json";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = locale === "en" ? en : cz;
+
+const speakers = speakersData.speakers;
+
+const titleWords = t.speakers.title.split(" ");
+const firstWord = titleWords[0];
+const restTitle = titleWords.slice(1).join(" ");
+---
+
+<section id="speakers" class="bg-(--color-bg)" aria-labelledby="speakers-title">
+  <div class="section-container">
+    <div class="text-center mb-12">
+      <h2
+        id="speakers-title"
+        class="text-3xl sm:text-4xl font-bold mb-4 animate-on-scroll"
+      >
+        <span class="text-(--color-text)">{firstWord}</span>{" "}
+        <span class="text-gradient">{restTitle}</span>
+      </h2>
+      <p
+        class="text-lg text-(--color-text-secondary) max-w-2xl mx-auto animate-on-scroll-delayed"
+      >
+        {t.speakers.subtitle}
+      </p>
+    </div>
+
+    <!-- Speakers Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      {
+        speakers.map((speaker, index) => (
+          <div
+            class="glass rounded-2xl p-6 hover:border-(--color-primary)/50 transition-colors animate-scale-up group h-full flex flex-col"
+            style={`animation-delay: ${index * 100}ms`}
+          >
+            <!-- Header -->
+            <div class="flex items-start justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-(--color-surface) border border-(--color-border) flex items-center justify-center text-(--color-text-secondary) font-bold shrink-0">
+                  {speaker.initials === "message" ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  ) : (
+                    speaker.initials
+                  )}
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg leading-tight">{speaker.name}</h3>
+                  <div class="flex flex-col gap-0.5">
+                    {speaker.role && (
+                      <p class="text-xs text-(--color-primary)">
+                        {speaker.role[locale]}
+                      </p>
+                    )}
+                    <p class="text-xs text-(--color-text-secondary)">
+                      {speaker.company}
+                      {speaker.country && <span class="mx-1">•</span>}
+                      {speaker.country && <span>{speaker.country}</span>}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              {speaker.status === "confirmed" ? (
+                <span class="px-2 py-1 rounded-md bg-teal-500/10 text-teal-400 text-[10px] font-medium border border-teal-500/20 uppercase tracking-wider shrink-0">
+                  {t.speakers.confirmed}
+                </span>
+              ) : (
+                <span class="px-2 py-1 rounded-md bg-(--color-surface) text-(--color-text-secondary) text-[10px] font-medium border border-(--color-border) uppercase tracking-wider opacity-60 shrink-0">
+                  {t.speakers.openSlot}
+                </span>
+              )}
+            </div>
+
+            <!-- Topic -->
+            <div class="mb-4 grow">
+              <p class="text-[10px] uppercase tracking-wider text-(--color-primary) font-bold mb-1">
+                {locale === "en" ? "TOPIC" : "TÉMA"}
+              </p>
+              <h4 class="font-semibold text-sm mb-2 group-hover:text-(--color-primary) transition-colors">
+                {speaker.topic[locale]}
+              </h4>
+            </div>
+
+            <!-- Abstract -->
+            <div class="pt-4 border-t border-(--color-border)/50 mt-auto">
+              <p class="text-[10px] uppercase tracking-wider text-(--color-text-secondary) font-bold mb-2">
+                {t.speakers.abstract}
+              </p>
+              <div class="text-xs text-(--color-text-secondary) leading-relaxed line-clamp-3 prose prose-sm prose-invert max-w-none">
+                <Fragment set:html={speaker.abstract[locale].split('\n')[0].replace(/^##\s+/, '').replace(/\*\*/g, '')} />
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Call to Action -->
+    <div class="text-center mt-12 animate-on-scroll">
+      <p class="text-(--color-text-secondary) mb-4">{t.speakers.register}</p>
+      <a href="#registration" class="text-(--color-primary) font-semibold hover:underline inline-flex items-center gap-1">
+        {t.speakers.registerLink}
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>

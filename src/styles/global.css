@@ -1,0 +1,520 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+/* Tailwind CSS 4 Theme Configuration */
+@theme {
+  /* Color Palette in OKLCH */
+  --color-primary: oklch(0.72 0.17 166);
+  --color-primary-dark: oklch(0.64 0.16 166);
+  --color-primary-light: oklch(0.8 0.15 166);
+
+  --color-primary-50: oklch(0.97 0.03 166);
+  --color-primary-100: oklch(0.95 0.06 166);
+  --color-primary-200: oklch(0.9 0.1 166);
+  --color-primary-300: oklch(0.85 0.13 166);
+  --color-primary-400: oklch(0.81 0.15 166);
+  --color-primary-500: oklch(0.78 0.17 166);
+  --color-primary-600: oklch(0.68 0.15 166);
+  --color-primary-700: oklch(0.55 0.12 166);
+  --color-primary-800: oklch(0.42 0.09 166);
+  --color-primary-900: oklch(0.28 0.06 166);
+
+  /* Typography */
+  --font-sans:
+    "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+
+  /* Spacing Extensions */
+  --spacing-18: 4.5rem;
+  --spacing-88: 22rem;
+  --spacing-128: 32rem;
+
+  /* Border Radius */
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+
+  /* Animations */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@layer base {
+  /* Theme-Aware Color Variables using light-dark() */
+  :root {
+    color-scheme: light dark;
+
+    /* Layout Variables */
+    --header-height: 4rem;
+
+    /* Scrollbar gutter to prevent layout shift when locking scroll */
+    scrollbar-gutter: stable;
+
+    /* Semantic Colors */
+    --color-bg: light-dark(oklch(1 0 0), oklch(0.15 0 0));
+    --color-surface: light-dark(oklch(0.97 0 0), oklch(0.2 0 0));
+    --color-text: light-dark(oklch(0.2 0 0), oklch(0.98 0 0));
+    --color-text-secondary: light-dark(oklch(0.5 0 0), oklch(0.65 0 0));
+    --color-border: light-dark(oklch(0.9 0 0), oklch(0.25 0 0));
+
+    /* Glass Morphism Colors */
+    --glass-bg: light-dark(oklch(1 0 0 / 0.1), oklch(0 0 0 / 0.1));
+    --glass-border: light-dark(oklch(1 0 0 / 0.2), oklch(1 0 0 / 0.1));
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    interpolate-size: allow-keywords;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Scroll Margin for Sections */
+  section[id] {
+    scroll-margin-top: var(--header-height);
+  }
+
+  /* Native Dialog Styling */
+  dialog {
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 0.0625rem solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    padding: 0;
+    max-width: min(90vw, 42rem);
+    max-height: 90vh;
+    overflow: auto;
+    /* Centering */
+    margin: auto;
+    position: fixed;
+    inset: 0;
+    width: fit-content;
+    height: fit-content;
+  }
+
+  dialog[open] {
+    animation: dialog-pop-in 0.3s var(--ease-out) forwards;
+  }
+
+  dialog::backdrop {
+    background: oklch(0 0 0 / 0.5);
+    backdrop-filter: blur(0.25rem);
+  }
+
+  dialog[open]::backdrop {
+    animation: dialog-backdrop-fade-in 0.3s var(--ease-out) forwards;
+  }
+
+  @keyframes dialog-pop-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(1rem);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes dialog-backdrop-fade-in {
+    from {
+      opacity: 0;
+      backdrop-filter: blur(0);
+    }
+    to {
+      opacity: 1;
+      backdrop-filter: blur(0.25rem);
+    }
+  }
+
+  /* Native Popover Styling */
+  [popover] {
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 0.0625rem solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 1rem;
+    box-shadow: 0 0.625rem 1.875rem -0.375rem oklch(0 0 0 / 0.3);
+  }
+
+  [popover]::backdrop {
+    background: oklch(0 0 0 / 0.2);
+  }
+}
+
+@layer components {
+  /* Glass Morphism Effect */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(0.75rem) saturate(150%);
+    border: 0.0625rem solid var(--glass-border);
+    box-shadow: 0 0.25rem 1.5rem -0.25rem oklch(0 0 0 / 0.1);
+  }
+
+  /* Button Styles */
+  .btn-primary {
+    background: var(--color-primary);
+    color: oklch(1 0 0);
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s var(--ease-out);
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .btn-primary:hover {
+    background: var(--color-primary-dark);
+    scale: 1.05;
+    box-shadow: 0 0.625rem 1.25rem -0.25rem
+      color-mix(in oklch, var(--color-primary) 50%, transparent);
+  }
+
+  .btn-primary:active {
+    scale: 0.95;
+  }
+
+  .btn-secondary {
+    background: var(--glass-bg);
+    backdrop-filter: blur(0.75rem);
+    color: var(--color-text);
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: 0.0625rem solid var(--glass-border);
+    transition: all 0.2s var(--ease-out);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .btn-secondary:hover {
+    background: light-dark(oklch(1 0 0 / 0.2), oklch(1 0 0 / 0.05));
+    scale: 1.05;
+  }
+
+  .btn-secondary:active {
+    scale: 0.95;
+  }
+
+  /* Section Container */
+  .section-container {
+    max-width: 80rem;
+    margin-inline: auto;
+    padding: 4rem 1rem;
+  }
+
+  @media (width >= 640px) {
+    .section-container {
+      padding: 4rem 1.5rem;
+    }
+  }
+
+  @media (width >= 1024px) {
+    .section-container {
+      padding: 6rem 2rem;
+    }
+  }
+
+  /* Hashtag Badge */
+  .hashtag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: color-mix(in oklch, var(--color-primary) 10%, transparent);
+    color: var(--color-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    border: 0.0625rem solid
+      color-mix(in oklch, var(--color-primary) 20%, transparent);
+  }
+
+  /* Talk Card */
+  .talk-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(0.75rem);
+    padding: 1.5rem;
+    border-radius: var(--radius-xl);
+    border: 0.0625rem solid var(--glass-border);
+    transition: all 0.2s var(--ease-out);
+    cursor: pointer;
+  }
+
+  .talk-card:hover {
+    scale: 1.02;
+    box-shadow: 0 1.25rem 2.5rem -0.625rem oklch(0 0 0 / 0.2);
+  }
+
+  .talk-card.is-break {
+    opacity: 0.6;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  /* Current Time Indicator */
+  .current-time-indicator {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 0.125rem;
+    background: oklch(0.55 0.22 29);
+    box-shadow: 0 0 0.5rem oklch(0.55 0.22 29 / 0.5);
+    z-index: 10;
+  }
+
+  .current-time-indicator::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0.75rem;
+    height: 0.75rem;
+    background: oklch(0.55 0.22 29);
+    border-radius: 50%;
+    box-shadow: 0 0 0.5rem oklch(0.55 0.22 29 / 0.8);
+  }
+
+  /* Skip Link */
+  .skip-link {
+    position: absolute;
+    top: -999rem;
+    left: 0;
+    padding: 1rem 1.5rem;
+    background: var(--color-primary);
+    color: oklch(1 0 0);
+    z-index: 9999;
+    border-radius: 0 0 0.5rem 0;
+  }
+
+  .skip-link:focus {
+    top: 0;
+    left: 0;
+  }
+
+  /* Screen Reader Only */
+  .sr-only {
+    position: absolute;
+    width: 0.0625rem;
+    height: 0.0625rem;
+    padding: 0;
+    margin: -0.0625rem;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}
+
+@layer utilities {
+  /* Scroll-Driven Animations */
+  @supports (animation-timeline: view()) {
+    .animate-on-scroll {
+      animation: fadeInUp linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 30%;
+    }
+
+    .animate-on-scroll-delayed {
+      animation: fadeInUp linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 40%;
+    }
+
+    .animate-slide-left {
+      animation: slideInLeft linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 40%;
+    }
+
+    .animate-slide-right {
+      animation: slideInRight linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 40%;
+    }
+
+    .animate-scale-up {
+      animation: scaleUp linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 30%;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      translate: 0 3rem;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      translate: -3rem 0;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      translate: 3rem 0;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  @keyframes scaleUp {
+    from {
+      opacity: 0;
+      scale: 0.8;
+    }
+    to {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
+  /* Parallax Effect */
+  .parallax-bg {
+    animation: parallax linear;
+    animation-timeline: scroll(root);
+    animation-range: 0 100vh;
+  }
+
+  @keyframes parallax {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(30%);
+    }
+  }
+
+  /* View Transitions */
+  @supports (view-transition-name: none) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation-duration: 0.4s;
+      animation-timing-function: var(--ease-in-out);
+    }
+
+    ::view-transition-old(root) {
+      animation-name: fade-out;
+      transform-origin: center;
+    }
+
+    ::view-transition-new(root) {
+      animation-name: fade-in;
+      transform-origin: center;
+    }
+
+    @keyframes fade-out {
+      to {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  /* Standard Animations */
+  .animate-fade-in-down {
+    animation: fadeInDown 0.6s var(--ease-out) both;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s var(--ease-out) both;
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Gradient Text (Primary) */
+  .text-gradient {
+    background-image: linear-gradient(
+      to right,
+      var(--color-primary-light) 0%,
+      var(--color-primary) 50%,
+      var(--color-primary-dark) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Smooth Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 0.3125rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary);
+}
+
+/* Focus Visible Styles */
+:focus-visible {
+  outline: 0.125rem solid var(--color-primary);
+  outline-offset: 0.125rem;
+  border-radius: 0.25rem;
+}

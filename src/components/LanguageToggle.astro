@@ -1,0 +1,45 @@
+---
+import type { Locale } from "@utils/types";
+import en from "@i18n/en.json";
+import cz from "@i18n/cz.json";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = locale === "en" ? en : cz;
+---
+
+<div
+  class="flex items-center gap-1 text-sm"
+  role="group"
+  aria-label={t.accessibility.switchLanguage}
+>
+  <a
+    href="/"
+    class:list={[
+      "px-2 py-1 rounded font-medium transition-all duration-200",
+      locale === "en"
+        ? "bg-(--color-primary) text-white shadow-sm"
+        : "text-(--color-text-secondary) hover:text-(--color-primary) hover:bg-(--color-primary)/5",
+    ]}
+    aria-current={locale === "en" ? "page" : undefined}
+    lang="en"
+  >
+    EN
+  </a>
+  <a
+    href="/cz"
+    class:list={[
+      "px-2 py-1 rounded font-medium transition-all duration-200",
+      locale === "cz"
+        ? "bg-(--color-primary) text-white shadow-sm"
+        : "text-(--color-text-secondary) hover:text-(--color-primary) hover:bg-(--color-primary)/5",
+    ]}
+    aria-current={locale === "cz" ? "page" : undefined}
+    lang="cs"
+  >
+    CZ
+  </a>
+</div>

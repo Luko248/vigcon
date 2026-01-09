@@ -1,0 +1,249 @@
+{
+  "about": {
+    "en": {
+      "title": "About the Conference",
+      "description": "VIGCON2026 is an internal technology conference focused on sharing knowledge and experiences in modern technologies and AI solution deployment.",
+      "cards": [
+        {
+          "title": "AI in Practice",
+          "description": "Real-world AI deployment cases in VIG enterprise environment.",
+          "icon": "chip"
+        },
+        {
+          "title": "For Specialists",
+          "description": "Technical conference designed for developers, architects, and IT specialists.",
+          "icon": "users"
+        },
+        {
+          "title": "Knowledge Sharing",
+          "description": "Sharing experiences and best practices across the entire VIG group.",
+          "icon": "bulb"
+        },
+        {
+          "title": "Networking",
+          "description": "Space to meet and connect with colleagues from across the group.",
+          "icon": "network"
+        }
+      ],
+      "organizer": {
+        "title": "Conference Organizer",
+        "name": "AIS-Servis, s.r.o.",
+        "sub": "Member of Vienna Insurance Group"
+      }
+    },
+    "cz": {
+      "title": "O konferenci",
+      "description": "VIGCON2026 je interní technologická konference zaměřená na sdílení znalostí a zkušeností v moderních technologiích a nasazení AI řešení.",
+      "cards": [
+        {
+          "title": "AI v praxi",
+          "description": "Reálné případy nasazení AI v podnikovém prostředí VIG.",
+          "icon": "chip"
+        },
+        {
+          "title": "Pro specialisty",
+          "description": "Technická konference určená pro vývojáře, architekty a IT specialisty.",
+          "icon": "users"
+        },
+        {
+          "title": "Sdílení znalostí",
+          "description": "Sdílení zkušeností a best practices napříč celou skupinou VIG.",
+          "icon": "bulb"
+        },
+        {
+          "title": "Networking",
+          "description": "Prostor pro setkávání a propojování s kolegy napříč skupinou.",
+          "icon": "network"
+        }
+      ],
+      "organizer": {
+        "title": "Organizátor konference",
+        "name": "AIS-Servis, s.r.o.",
+        "sub": "Člen Vienna Insurance Group"
+      }
+    }
+  },
+  "faq": {
+    "items": [
+      {
+        "id": "attend",
+        "type": "general",
+        "question": {
+          "en": "Who can attend VIGCON2026?",
+          "cz": "Kdo se může zúčastnit VIGCON2026?"
+        },
+        "answer": {
+          "en": "VIGCON2026 is an internal conference for IT specialists, developers, architects, and technology professionals from all Vienna Insurance Group member companies across all countries where VIG operates.",
+          "cz": "VIGCON2026 je interní konference pro IT specialisty, vývojáře, architekty a technologické profesionály ze všech členských společností Vienna Insurance Group ve všech zemích, kde VIG působí."
+        }
+      },
+      {
+        "id": "cost",
+        "type": "general",
+        "question": {
+          "en": "Is the conference free to attend?",
+          "cz": "Je účast na konferenci zdarma?"
+        },
+        "answer": {
+          "en": "Yes, the conference is free for all VIG group employees. Registration is required to secure your spot as capacity is limited to 50 attendees.",
+          "cz": "Ano, konference je pro všechny zaměstnance skupiny VIG zdarma. Registrace je nutná pro zajištění místa, kapacita je omezena na 50 účastníků."
+        }
+      },
+      {
+        "id": "online",
+        "type": "general",
+        "question": {
+          "en": "Can I attend online?",
+          "cz": "Mohu se zúčastnit online?"
+        },
+        "answer": {
+          "en": "Yes, you can choose to attend either in-person (onsite) or online. However, please note that the networking session (16:50 - 18:00) is available only for onsite attendees.",
+          "cz": "Ano, můžete si vybrat mezi osobní (onsite) a online účastí. Upozorňujeme však, že networking (16:50 - 18:00) je k dispozici pouze pro osobní účastníky."
+        }
+      },
+      {
+        "id": "language",
+        "type": "general",
+        "question": {
+          "en": "What language will the conference be held in?",
+          "cz": "V jakém jazyce bude konference probíhat?"
+        },
+        "answer": {
+          "en": "The conference will be conducted in English to accommodate participants from all VIG countries.",
+          "cz": "Konference bude probíhat v angličtině, aby vyhovovala účastníkům ze všech zemí VIG."
+        }
+      },
+      {
+        "id": "speaker",
+        "type": "participation",
+        "question": {
+          "en": "How can I become a speaker?",
+          "cz": "Jak se mohu stát řečníkem?"
+        },
+        "answer": {
+          "en": "During registration, select 'Speaker' as your role and provide your topic. We're particularly interested in topics related to AI deployment, automation, and modern development practices. Each talk is 60 minutes long.",
+          "cz": "Během registrace vyberte roli 'Řečník' a uveďte své téma. Zajímají nás zejména témata týkající se nasazení AI, automatizace a moderních vývojových postupů. Každá přednáška trvá 60 minut."
+        }
+      },
+      {
+        "id": "theme",
+        "type": "general",
+        "question": {
+          "en": "What is the main theme of VIGCON2026?",
+          "cz": "Jaké je hlavní téma VIGCON2026?"
+        },
+        "answer": {
+          "en": "The main theme is 'AI Deployment in Practice' - focusing on real-world implementation of AI solutions, automation tools, and how they can improve our development workflows across the VIG group.",
+          "cz": "Hlavním tématem je 'Nasazení AI v praxi' - zaměření na reálnou implementaci AI řešení, automatizačních nástrojů a jak mohou zlepšit naše vývojové pracovní postupy napříč skupinou VIG."
+        }
+      },
+      {
+        "id": "food",
+        "type": "venue",
+        "question": {
+          "en": "Will lunch be provided?",
+          "cz": "Bude zajištěn oběd?"
+        },
+        "answer": {
+          "en": "Yes, lunch is included for all onsite attendees during the lunch break (12:50 - 13:30). Coffee and refreshments will also be available during all breaks.",
+          "cz": "Ano, oběd je zahrnut pro všechny osobní účastníky během pauzy na oběd (12:50 - 13:30). Káva a občerstvení budou k dispozici během všech přestávek."
+        }
+      },
+      {
+        "id": "parking",
+        "type": "venue",
+        "question": {
+          "en": "Is there parking available at the venue?",
+          "cz": "Je v místě konání k dispozici parkování?"
+        },
+        "answer": {
+          "en": "Yes, parking is available at the AIS-Servis building. The venue is also accessible by public transport.",
+          "cz": "Ano, parkování je k dispozici u budovy AIS-Servis. Místo je také dostupné veřejnou dopravou."
+        }
+      },
+      {
+        "id": "recording",
+        "type": "general",
+        "question": {
+          "en": "Will the sessions be recorded?",
+          "cz": "Budou přednášky nahrávány?"
+        },
+        "answer": {
+          "en": "Selected sessions may be recorded and made available to VIG employees after the conference. Details will be shared with registered attendees.",
+          "cz": "Vybrané přednášky mohou být nahrávány a zpřístupněny zaměstnancům VIG po konferenci. Podrobnosti budou sdíleny s registrovanými účastníky."
+        }
+      },
+      {
+        "id": "contact",
+        "type": "general",
+        "question": {
+          "en": "Who should I contact for more information?",
+          "cz": "Koho mám kontaktovat pro více informací?"
+        },
+        "answer": {
+          "en": "For any questions about VIGCON2026, please contact Eliška Drábková at eliska.drabkova@ais-servis.cz.",
+          "cz": "S jakýmikoliv dotazy ohledně VIGCON2026 kontaktujte prosím Elišku Drábkovou na eliska.drabkova@ais-servis.cz."
+        }
+      }
+    ]
+  },
+  "transportDetails": {
+    "publicTransport": {
+      "en": {
+        "title": "Public Transport (Recommended)",
+        "steps": [
+          "From Brno Main Station (Brno hlavní nádraží)",
+          "Take tram/light rail to Moravské náměstí",
+          "Transfer to Tram 9 (direction Bystrc)",
+          "Exit at Halasovo náměstí",
+          "2-minute walk to venue"
+        ],
+        "duration": "~25 minutes",
+        "cost": "25 CZK"
+      },
+      "cz": {
+        "title": "Veřejná doprava (Doporučeno)",
+        "steps": [
+          "Z Brno hlavní nádraží",
+          "Električka na Moravské náměstí",
+          "Přestup na tramvaj 9 (směr Bystrc)",
+          "Výstup na zastávce Halasovo náměstí",
+          "2 minuty pěšky na místo konání"
+        ],
+        "duration": "~25 minut",
+        "cost": "25 Kč"
+      }
+    },
+    "rideshare": {
+      "en": {
+        "title": "Ride-sharing",
+        "options": [
+          "Bolt",
+          "Uber"
+        ],
+        "duration": "~15 minutes from city center",
+        "cost": "~150-200 CZK"
+      },
+      "cz": {
+        "title": "Sdílené jízdy",
+        "options": [
+          "Bolt",
+          "Uber"
+        ],
+        "duration": "~15 minut z centra",
+        "cost": "~150-200 Kč"
+      }
+    }
+  },
+  "venue": {
+    "name": "AIS Servis, s.r.o.",
+    "address": "Okružní 732/5, 638 00 Brno-sever-Lesná",
+    "city": "Brno",
+    "country": "Czech Republic",
+    "coordinates": {
+      "lat": 49.22207247214916,
+      "lng": 16.625904337765284
+    },
+    "mapEmbed": "https://maps.google.com/maps?q=49.22207247214916,16.625904337765284&z=15&output=embed"
+  }
+}

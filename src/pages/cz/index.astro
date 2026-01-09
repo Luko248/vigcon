@@ -1,0 +1,37 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Header from "@components/Header.astro";
+import Hero from "@components/Hero.astro";
+import About from "@components/About.astro";
+import Speakers from "@components/Speakers.astro";
+import Registration from "@components/Registration.astro";
+import FAQ from "@components/FAQ.astro";
+import Gallery from "@components/Gallery.astro";
+import Partners from "@components/Partners.astro";
+import Footer from "@components/Footer.astro";
+import Venue from "@components/Venue.astro";
+import Schedule from "@components/Schedule.astro";
+import type { Locale } from "@utils/types";
+
+const locale: Locale = "cz";
+---
+
+<Layout
+  title="VIGCON2026 | 29. května | Brno"
+  description="Připojte se k vývojářům z Vienna Insurance Group, kteří představí inovace v oblasti AI a nejmodernější technologie. 29. května 2026 v Brně."
+  locale={locale}
+>
+  <Header locale={locale} />
+  <main id="main-content">
+    <Hero locale={locale} />
+    <About locale={locale} />
+    <Venue locale={locale} />
+    <Speakers locale={locale} />
+    <Schedule locale={locale} />
+    <Registration locale={locale} />
+    <FAQ locale={locale} />
+    <Gallery locale={locale} />
+    <Partners locale={locale} />
+  </main>
+  <Footer locale={locale} />
+</Layout>

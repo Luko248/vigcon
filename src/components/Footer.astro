@@ -1,0 +1,174 @@
+---
+import type { Locale } from "@utils/types";
+import en from "@i18n/en.json";
+import cz from "@i18n/cz.json";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = locale === "en" ? en : cz;
+---
+
+<footer
+  class="bg-(--color-surface) border-t border-(--color-border)"
+  role="contentinfo"
+  aria-label={locale === "en" ? "Site footer" : "Patička webu"}
+>
+  <div class="section-container py-12!">
+    <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+      <!-- Logo & Info -->
+      <div class="animate-on-scroll">
+        <a
+          href="/"
+          class="inline-block mb-4"
+          aria-label="VIG IT Conference home"
+        >
+          <img
+            src="/images/logos/logo-white.svg"
+            alt="WIGCON Conference Logo"
+            width="120"
+            height="40"
+            class="h-10 w-auto brightness-0 dark:brightness-100"
+            loading="lazy"
+          />
+        </a>
+        <p class="text-(--color-text-secondary) text-sm">
+          {t.footer.organizedBy}
+        </p>
+      </div>
+
+      <!-- Contact -->
+      <div class="animate-on-scroll" style="animation-delay: 100ms">
+        <h3 class="text-lg font-semibold mb-4">{t.footer.contact}</h3>
+        <a
+          href="mailto:eliska.drabkova@ais-servis.cz"
+          class="text-(--color-text-secondary) hover:text-(--color-primary) transition-colors"
+          aria-label={locale === "en"
+            ? "Email us at eliska.drabkova@ais-servis.cz"
+            : "Napište nám na eliska.drabkova@ais-servis.cz"}
+        >
+          eliska.drabkova@ais-servis.cz
+        </a>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="animate-on-scroll" style="animation-delay: 200ms">
+        <h3 class="text-lg font-semibold mb-4">
+          {locale === "en" ? "Quick Links" : "Rychlé odkazy"}
+        </h3>
+        <nav aria-label={locale === "en" ? "Quick links" : "Rychlé odkazy"}>
+          <ul class="space-y-2" role="list">
+            <li>
+              <a
+                href="#schedule"
+                class="text-(--color-text-secondary) hover:text-(--color-primary) transition-colors inline-flex items-center gap-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+                  <line x1="16" x2="16" y1="2" y2="6"></line>
+                  <line x1="8" x2="8" y1="2" y2="6"></line>
+                  <line x1="3" x2="21" y1="10" y2="10"></line>
+                </svg>
+                {locale === "en" ? "Schedule" : "Program"}
+              </a>
+            </li>
+            <li>
+              <a
+                href="#speakers"
+                class="text-(--color-text-secondary) hover:text-(--color-primary) transition-colors inline-flex items-center gap-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                {locale === "en" ? "Speakers" : "Řečníci"}
+              </a>
+            </li>
+            <li>
+              <a
+                href="#registration"
+                class="text-(--color-text-secondary) hover:text-(--color-primary) transition-colors inline-flex items-center gap-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <line x1="19" x2="19" y1="8" y2="14"></line>
+                  <line x1="22" x2="16" y1="11" y2="11"></line>
+                </svg>
+                {locale === "en" ? "Register" : "Registrace"}
+              </a>
+            </li>
+            <li>
+              <a
+                href="#venue"
+                class="text-(--color-text-secondary) hover:text-(--color-primary) transition-colors inline-flex items-center gap-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
+                  ></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                {locale === "en" ? "Venue" : "Místo"}
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="mt-12 pt-8 border-t border-(--color-border) text-center">
+      <p class="text-sm text-(--color-text-secondary)">
+        {t.footer.copyright}
+      </p>
+    </div>
+  </div>
+</footer>

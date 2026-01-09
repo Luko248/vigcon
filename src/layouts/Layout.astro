@@ -1,0 +1,191 @@
+---
+import "@styles/global.css";
+import type { Locale } from "@utils/types";
+import { ClientRouter } from "astro:transitions";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  locale?: Locale;
+}
+
+const {
+  title,
+  description,
+  image = "/images/logos/logo-white.svg",
+  locale = "en",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const htmlLang = locale === "cz" ? "cs" : "en";
+
+const schemaOrg = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: "VIG IT Conference 2026",
+  startDate: "2026-05-29T09:00:00+02:00",
+  endDate: "2026-05-29T18:00:00+02:00",
+  eventStatus: "https://schema.org/EventScheduled",
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  location: {
+    "@type": "Place",
+    name: "VIG Conference Center",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Okružní 732/5",
+      addressLocality: "Brno",
+      postalCode: "638 00",
+      addressRegion: "South Moravian Region",
+      addressCountry: "CZ",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 49.2286,
+      longitude: 16.5731,
+    },
+  },
+  image: [`${Astro.site}${image}`],
+  description: description,
+  offers: {
+    "@type": "Offer",
+    url: canonicalURL.toString(),
+    price: "0",
+    priceCurrency: "CZK",
+    availability: "https://schema.org/InStock",
+    validFrom: "2026-01-01T00:00:00+02:00",
+  },
+  organizer: {
+    "@type": "Organization",
+    name: "Vienna Insurance Group",
+    url: "https://www.vig.com",
+  },
+  performer: {
+    "@type": "PerformingGroup",
+    name: "VIG IT Developers",
+  },
+};
+---
+
+<!doctype html>
+<html lang={htmlLang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=3, viewport-fit=cover"
+    />
+    <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Language" content={htmlLang} />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#00d699" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="VIG IT Developers" />
+    <meta name="publisher" content="Vienna Insurance Group" />
+
+    <!-- Schema.org markup -->
+    <meta itemprop="name" content={title} />
+    <meta itemprop="description" content={description} />
+    <meta itemprop="image" content={new URL(image, Astro.site)} />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="/favicons/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
+    <link rel="shortcut icon" href="/favicons/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicons/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="VIGCON 2026" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="VIG, conference, technology, AI, insurance, developers, Brno, Vienna Insurance Group, machine learning, DevOps, cloud"
+    />
+
+    <!-- Alternate Language Links -->
+    <link rel="alternate" hreflang="en" href="https://wigcon.cz/" />
+    <link rel="alternate" hreflang="cs" href="https://wigcon.cz/cz" />
+    <link rel="alternate" hreflang="x-default" href="https://wigcon.cz/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta property="og:locale" content={locale === "cz" ? "cs_CZ" : "en_US"} />
+    <meta
+      property="og:locale:alternate"
+      content={locale === "cz" ? "en_US" : "cs_CZ"}
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.site)} />
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Theme Script (prevent flash) -->
+    <script is:inline>
+      const theme = localStorage.getItem("theme");
+      if (
+        theme === "dark" ||
+        (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+        document.documentElement.style.colorScheme = "dark";
+      } else {
+        document.documentElement.classList.remove("dark");
+        document.documentElement.style.colorScheme = "light";
+      }
+    </script>
+    <script>
+      // Service Worker Registration
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then((registration) => {
+              console.log(
+                "ServiceWorker registration successful with scope: ",
+                registration.scope
+              );
+            })
+            .catch((err) => {
+              console.log("ServiceWorker registration failed: ", err);
+            });
+        });
+      }
+    </script>
+    <ClientRouter />
+  </head>
+  <body class="min-h-screen bg-(--color-bg) text-(--color-text)">
+    <slot />
+  </body>
+</html>
