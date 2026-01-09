@@ -1,0 +1,118 @@
+---
+import type { Locale } from "@utils/types";
+import en from "@i18n/en.json";
+import cz from "@i18n/cz.json";
+
+interface Props {
+  locale: Locale;
+  targetDate: string;
+}
+
+const { locale, targetDate } = Astro.props;
+const t = locale === "en" ? en : cz;
+---
+
+<div
+  id="countdown"
+  class="grid grid-cols-4 gap-3 sm:gap-6"
+  role="timer"
+  aria-live="off"
+  aria-label={t.countdown.until}
+  data-target={targetDate}
+>
+  <div
+    class="glass rounded-xl p-3 sm:p-4 text-center animate-scale-up"
+    style="animation-delay: 0ms"
+  >
+    <div
+      id="countdown-days"
+      class="text-2xl sm:text-4xl font-bold text-(--color-primary)"
+    >
+      --
+    </div>
+    <div class="text-xs sm:text-sm text-(--color-text-secondary) mt-1">
+      {t.countdown.days}
+    </div>
+  </div>
+  <div
+    class="glass rounded-xl p-3 sm:p-4 text-center animate-scale-up"
+    style="animation-delay: 100ms"
+  >
+    <div
+      id="countdown-hours"
+      class="text-2xl sm:text-4xl font-bold text-(--color-primary)"
+    >
+      --
+    </div>
+    <div class="text-xs sm:text-sm text-(--color-text-secondary) mt-1">
+      {t.countdown.hours}
+    </div>
+  </div>
+  <div
+    class="glass rounded-xl p-3 sm:p-4 text-center animate-scale-up"
+    style="animation-delay: 200ms"
+  >
+    <div
+      id="countdown-minutes"
+      class="text-2xl sm:text-4xl font-bold text-(--color-primary)"
+    >
+      --
+    </div>
+    <div class="text-xs sm:text-sm text-(--color-text-secondary) mt-1">
+      {t.countdown.minutes}
+    </div>
+  </div>
+  <div
+    class="glass rounded-xl p-3 sm:p-4 text-center animate-scale-up"
+    style="animation-delay: 300ms"
+  >
+    <div
+      id="countdown-seconds"
+      class="text-2xl sm:text-4xl font-bold text-(--color-primary)"
+    >
+      --
+    </div>
+    <div class="text-xs sm:text-sm text-(--color-text-secondary) mt-1">
+      {t.countdown.seconds}
+    </div>
+  </div>
+</div>
+
+<script>
+  import { getCountdown } from "@utils/time";
+
+  const countdownEl = document.getElementById("countdown");
+  const targetDate = countdownEl?.dataset.target;
+
+  const daysEl = document.getElementById("countdown-days");
+  const hoursEl = document.getElementById("countdown-hours");
+  const minutesEl = document.getElementById("countdown-minutes");
+  const secondsEl = document.getElementById("countdown-seconds");
+
+  function pad(num: number): string {
+    return String(num).padStart(2, "0");
+  }
+
+  function updateCountdown() {
+    if (!targetDate) return;
+
+    const countdown = getCountdown(targetDate);
+
+    if (!countdown) {
+      // Conference has started, hide countdown
+      countdownEl?.classList.add("hidden");
+      return;
+    }
+
+    if (daysEl) daysEl.textContent = pad(countdown.days);
+    if (hoursEl) hoursEl.textContent = pad(countdown.hours);
+    if (minutesEl) minutesEl.textContent = pad(countdown.minutes);
+    if (secondsEl) secondsEl.textContent = pad(countdown.seconds);
+  }
+
+  // Initial update
+  updateCountdown();
+
+  // Update every second
+  setInterval(updateCountdown, 1000);
+</script>

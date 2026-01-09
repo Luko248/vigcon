@@ -1,0 +1,131 @@
+---
+import type { Locale } from "@utils/types";
+import en from "@i18n/en.json";
+import cz from "@i18n/cz.json";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = locale === "en" ? en : cz;
+---
+
+<button
+  id="theme-toggle"
+  class="relative p-2 rounded-lg text-(--color-text-secondary) hover:text-(--color-text) hover:bg-(--glass-bg) transition-colors overflow-hidden w-9 h-9"
+  aria-label={t.accessibility.switchToDark}
+  type="button"
+>
+  <!-- Sun icon (shown in dark mode) -->
+  <svg
+    id="sun-icon"
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="absolute inset-0 m-auto transition-all duration-300 rotate-90 scale-0 opacity-0"
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="4"></circle>
+    <path d="M12 2v2"></path>
+    <path d="M12 20v2"></path>
+    <path d="m4.93 4.93 1.41 1.41"></path>
+    <path d="m17.66 17.66 1.41 1.41"></path>
+    <path d="M2 12h2"></path>
+    <path d="M20 12h2"></path>
+    <path d="m6.34 17.66-1.41 1.41"></path>
+    <path d="m19.07 4.93-1.41 1.41"></path>
+  </svg>
+
+  <!-- Moon icon (shown in light mode) -->
+  <svg
+    id="moon-icon"
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="absolute inset-0 m-auto transition-all duration-300 rotate-0 scale-100 opacity-100"
+    aria-hidden="true"
+  >
+    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+  </svg>
+</button>
+
+<script
+  is:inline
+  define:vars={{
+    lightLabel: t.accessibility.switchToLight,
+    darkLabel: t.accessibility.switchToDark,
+  }}
+>
+  const themeToggle = document.getElementById("theme-toggle");
+  const sunIcon = document.getElementById("sun-icon");
+  const moonIcon = document.getElementById("moon-icon");
+
+  function getTheme() {
+    const stored = localStorage.getItem("theme");
+    if (stored) return stored;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  }
+
+  function updateUI(theme) {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.style.colorScheme = "dark";
+      // Show sun (active in dark mode to switch to light)
+      sunIcon?.classList.remove("rotate-90", "scale-0", "opacity-0");
+      sunIcon?.classList.add("rotate-0", "scale-100", "opacity-100");
+
+      // Hide moon
+      moonIcon?.classList.remove("rotate-0", "scale-100", "opacity-100");
+      moonIcon?.classList.add("-rotate-90", "scale-0", "opacity-0");
+
+      themeToggle?.setAttribute("aria-label", lightLabel);
+    } else {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.style.colorScheme = "light";
+      // Hide sun
+      sunIcon?.classList.remove("rotate-0", "scale-100", "opacity-100");
+      sunIcon?.classList.add("rotate-90", "scale-0", "opacity-0");
+
+      // Show moon
+      moonIcon?.classList.remove("-rotate-90", "scale-0", "opacity-0");
+      moonIcon?.classList.add("rotate-0", "scale-100", "opacity-100");
+
+      themeToggle?.setAttribute("aria-label", darkLabel);
+    }
+  }
+
+  // Initialize
+  updateUI(getTheme());
+
+  // Toggle
+  themeToggle?.addEventListener("click", () => {
+    const current = getTheme();
+    const next = current === "dark" ? "light" : "dark";
+    localStorage.setItem("theme", next);
+    updateUI(next);
+  });
+
+  // Listen for system preference changes
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", (e) => {
+      if (!localStorage.getItem("theme")) {
+        updateUI(e.matches ? "dark" : "light");
+      }
+    });
+</script>

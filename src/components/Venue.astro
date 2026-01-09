@@ -1,0 +1,151 @@
+---
+import type { Locale, ContentData } from "@utils/types";
+import content from "@data/content.json";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const typedContent = content as unknown as ContentData;
+const venue = typedContent.venue;
+const transportDetails = typedContent.transportDetails;
+
+const title = locale === "en" ? "Venue & Transport" : "Místo konání a doprava";
+const titleWords = title.split(" ");
+const firstWord = titleWords[0];
+const restTitle = titleWords.slice(1).join(" ");
+---
+
+<section id="venue" aria-labelledby="venue-title">
+  <div class="section-container">
+    <div class="text-center mb-12">
+      <h2
+        id="venue-title"
+        class="text-3xl sm:text-4xl font-bold mb-4 animate-on-scroll"
+      >
+        <span class="text-(--color-text)">{firstWord}</span>{" "}
+        <span class="text-gradient">{restTitle}</span>
+      </h2>
+      <p
+        class="text-lg text-(--color-text-secondary) max-w-2xl mx-auto animate-on-scroll-delayed"
+      >
+        {locale === "en" 
+          ? "How to get to the conference venue" 
+          : "Jak se dostat na místo konání konference"}
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8 items-start">
+      <!-- Map -->
+      <div class="glass p-2 rounded-2xl animate-slide-left h-full">
+        <div class="rounded-xl overflow-hidden border border-(--color-border) h-[400px] lg:h-full relative map-container">
+          <iframe
+            src={venue.mapEmbed}
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title={locale === "en" ? "Venue location map" : "Mapa místa konání"}
+            class="w-full h-full transition-all duration-300"
+          ></iframe>
+        </div>
+      </div>
+
+      <!-- Details -->
+      <div class="space-y-6 animate-slide-right">
+        <!-- Venue Info -->
+        <div class="glass p-8 rounded-2xl">
+          <h3 class="text-xl font-bold mb-4 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-(--color-primary)/10 flex items-center justify-center text-(--color-primary)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            {venue.name}
+          </h3>
+          <p class="text-(--color-text-secondary) mb-2">{venue.address}</p>
+          <p class="text-(--color-text-secondary)">{venue.city}, {venue.country}</p>
+          
+          <div class="mt-6 flex gap-4">
+            <a 
+              href={`https://www.google.com/maps/dir/?api=1&destination=${venue.coordinates.lat},${venue.coordinates.lng}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary text-sm py-2 px-4"
+            >
+              Google Maps
+            </a>
+            <a 
+              href={`https://waze.com/ul?ll=${venue.coordinates.lat},${venue.coordinates.lng}&navigate=yes`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-secondary text-sm py-2 px-4"
+            >
+              Waze
+            </a>
+          </div>
+        </div>
+
+        <!-- Transport Info -->
+        {transportDetails && (
+          <div class="grid gap-4 sm:grid-cols-2">
+            <!-- Public Transport -->
+            <div class="glass p-6 rounded-2xl">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-lg bg-(--color-primary)/10 flex items-center justify-center text-(--color-primary) shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16"/><path d="M12 3v8"/><path d="m8 19-2 3"/><path d="m18 22-2-3"/><path d="M8 15h0"/><path d="M16 15h0"/><rect width="16" height="16" x="4" y="3" rx="2"/></svg>
+                </div>
+                <div>
+                  <h4 class="font-bold text-sm text-(--color-text)">{transportDetails.publicTransport[locale].title}</h4>
+                  <div class="flex items-center gap-2 text-xs opacity-70">
+                    <time datetime="PT25M">{transportDetails.publicTransport[locale].duration}</time>
+                    <span>•</span>
+                    <span>{transportDetails.publicTransport[locale].cost}</span>
+                  </div>
+                </div>
+              </div>
+              <ol class="space-y-3">
+                {transportDetails.publicTransport[locale].steps?.map((step: string, i: number) => (
+                  <li class="flex items-start gap-3 text-xs">
+                    <span class="shrink-0 w-5 h-5 rounded-full bg-(--color-primary) text-white flex items-center justify-center font-bold text-[10px] mt-0.5">{i + 1}</span>
+                    <span class="opacity-80 leading-relaxed">{step}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+
+            <!-- Rideshare -->
+            <div class="glass p-6 rounded-2xl">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-lg bg-(--color-primary)/10 flex items-center justify-center text-(--color-primary) shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8c-.1.2-.1.4-.1.6v4.7c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+                </div>
+                <div>
+                  <h4 class="font-bold text-sm text-(--color-text)">{transportDetails.rideshare[locale].title}</h4>
+                  <div class="flex items-center gap-2 text-xs opacity-70">
+                    <time datetime="PT15M">{transportDetails.rideshare[locale].duration}</time>
+                    <span>•</span>
+                    <span>{transportDetails.rideshare[locale].cost}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                {transportDetails.rideshare[locale].options?.map((option: string) => (
+                  <span class="px-3 py-1 rounded-md bg-(--color-surface) border border-(--color-border) text-xs font-medium">{option}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Map Dark Mode Styling */
+  :global(.dark) .map-container iframe {
+    filter: invert(1) hue-rotate(180deg) brightness(0.8) contrast(1.2);
+  }
+</style>

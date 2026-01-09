@@ -1,0 +1,604 @@
+---
+import type { Locale } from "@utils/types";
+import en from "@i18n/en.json";
+import cz from "@i18n/cz.json";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = locale === "en" ? en : cz;
+
+const titleWords = t.registration.title.split(" ");
+const firstWord = titleWords[0];
+const restTitle = titleWords.slice(1).join(" ");
+---
+
+<section
+  id="registration"
+  class="bg-(--color-surface)"
+  aria-labelledby="registration-title"
+>
+  <div class="section-container">
+    <div class="text-center mb-12">
+      <h2
+        id="registration-title"
+        class="text-3xl sm:text-4xl font-bold mb-4 animate-on-scroll"
+      >
+        <span class="text-(--color-text)">{firstWord}</span>{" "}
+        <span class="text-gradient">{restTitle}</span>
+      </h2>
+      <p
+        class="text-lg text-(--color-text-secondary) max-w-2xl mx-auto animate-on-scroll-delayed"
+      >
+        {t.registration.subtitle}
+      </p>
+    </div>
+
+    <div
+      id="registration-container"
+      class="max-w-2xl mx-auto glass rounded-3xl p-8 sm:p-10 animate-scale-up"
+    >
+      <form class="space-y-4" id="registration-form">
+        <input
+          type="hidden"
+          name="access_key"
+          value="YOUR_WEB3FORMS_ACCESS_KEY"
+        />
+        <input type="hidden" name="subject" value="VIGCON 2026 Registration" />
+        <input type="hidden" name="from_name" value="VIGCON 2026 Website" />
+        <div class="grid sm:grid-cols-2 gap-4">
+          <!-- Full Name -->
+          <div class="grid gap-2">
+            <label
+              for="name"
+              class="text-sm font-medium text-(--color-text-secondary)"
+            >
+              <span class="flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                  ></path><circle cx="12" cy="7" r="4"></circle></svg
+                >
+                {t.registration.form.fullName}
+                <span class="text-(--color-primary)">*</span>
+              </span>
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-(--color-primary) focus:ring-1 focus:ring-(--color-primary) outline-none transition-all placeholder:text-gray-600"
+              placeholder="John Smith"
+              required
+            />
+          </div>
+
+          <!-- Company -->
+          <div class="grid gap-2">
+            <label
+              for="company"
+              class="text-sm font-medium text-(--color-text-secondary)"
+            >
+              <span class="flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"
+                  ></path><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"
+                  ></path><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"
+                  ></path><path d="M10 6h4"></path><path d="M10 10h4"
+                  ></path><path d="M10 14h4"></path><path d="M10 18h4"
+                  ></path></svg
+                >
+                {t.registration.form.company}
+                <span class="text-(--color-primary)">*</span>
+              </span>
+            </label>
+            <input
+              type="text"
+              id="company"
+              name="company"
+              class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-(--color-primary) focus:ring-1 focus:ring-(--color-primary) outline-none transition-all placeholder:text-gray-600"
+              placeholder="VIG Czech Republic"
+              required
+            />
+          </div>
+
+          <!-- Email -->
+          <div class="grid gap-2">
+            <label
+              for="email"
+              class="text-sm font-medium text-(--color-text-secondary)"
+            >
+              <span class="flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><rect width="20" height="16" x="2" y="4" rx="2"></rect><path
+                    d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg
+                >
+                {t.registration.form.email}
+                <span class="text-(--color-primary)">*</span>
+              </span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-(--color-primary) focus:ring-1 focus:ring-(--color-primary) outline-none transition-all placeholder:text-gray-600"
+              placeholder="john.smith@company.com"
+              required
+            />
+          </div>
+
+          <!-- Phone -->
+          <div class="grid gap-2">
+            <label
+              for="phone"
+              class="text-sm font-medium text-(--color-text-secondary)"
+            >
+              <span class="flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  ></path></svg
+                >
+                {t.registration.form.phone}
+              </span>
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-(--color-primary) focus:ring-1 focus:ring-(--color-primary) outline-none transition-all placeholder:text-gray-600"
+              placeholder="+420 123 456 789"
+            />
+          </div>
+        </div>
+
+        <!-- Participation Type -->
+        <div class="grid gap-2">
+          <label class="text-sm font-medium text-(--color-text-secondary)">
+            {t.registration.form.participationType}
+            <span class="text-(--color-primary)">*</span>
+          </label>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <label class="cursor-pointer group">
+              <div
+                class="radio-card p-4 rounded-xl border border-(--color-border) bg-(--color-bg)/50 transition-all hover:bg-(--color-bg)/80 flex items-start gap-3 h-full"
+              >
+                <input
+                  type="radio"
+                  name="type"
+                  value="onsite"
+                  class="mt-1 w-5 h-5 accent-(--color-primary) cursor-pointer"
+                  checked
+                />
+                <div>
+                  <span class="block font-medium text-(--color-text)"
+                    >{t.registration.form.types.onsite}</span
+                  >
+                  <span class="block text-xs text-(--color-text-secondary)"
+                    >{t.registration.form.types.onsiteDesc}</span
+                  >
+                </div>
+              </div>
+            </label>
+
+            <label class="cursor-pointer group">
+              <div
+                class="radio-card p-4 rounded-xl border border-(--color-border) bg-(--color-bg)/50 transition-all hover:bg-(--color-bg)/80 flex items-start gap-3 h-full"
+              >
+                <input
+                  type="radio"
+                  name="type"
+                  value="online"
+                  class="mt-1 w-5 h-5 accent-(--color-primary) cursor-pointer"
+                />
+                <div>
+                  <span class="block font-medium text-(--color-text)"
+                    >{t.registration.form.types.online}</span
+                  >
+                  <span class="block text-xs text-(--color-text-secondary)"
+                    >{t.registration.form.types.onlineDesc}</span
+                  >
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Role -->
+        <div class="grid gap-2">
+          <label class="text-sm font-medium text-(--color-text-secondary)">
+            {t.registration.form.role}
+            <span class="text-(--color-primary)">*</span>
+          </label>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <label class="cursor-pointer group">
+              <div
+                class="radio-card p-4 rounded-xl border border-(--color-border) bg-(--color-bg)/50 transition-all hover:bg-(--color-bg)/80 flex items-start gap-3 h-full"
+              >
+                <input
+                  type="radio"
+                  name="role"
+                  value="attendee"
+                  class="mt-1 w-5 h-5 accent-(--color-primary) cursor-pointer"
+                  checked
+                />
+                <div>
+                  <span class="block font-medium text-(--color-text)"
+                    >{t.registration.form.roles.attendee}</span
+                  >
+                  <span class="block text-xs text-(--color-text-secondary)"
+                    >{t.registration.form.roles.attendeeDesc}</span
+                  >
+                </div>
+              </div>
+            </label>
+
+            <label class="cursor-pointer group">
+              <div
+                class="radio-card p-4 rounded-xl border border-(--color-border) bg-(--color-bg)/50 transition-all hover:bg-(--color-bg)/80 flex items-start gap-3 h-full"
+              >
+                <input
+                  type="radio"
+                  name="role"
+                  value="speaker"
+                  class="mt-1 w-5 h-5 accent-(--color-primary) cursor-pointer"
+                />
+                <div>
+                  <span class="block font-medium text-(--color-text)"
+                    >{t.registration.form.roles.speaker}</span
+                  >
+                  <span class="block text-xs text-(--color-text-secondary)"
+                    >{t.registration.form.roles.speakerDesc}</span
+                  >
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Speaker Session Description (Conditional) -->
+        <div id="speaker-fields" class="hidden">
+          <label
+            for="session-description"
+            class="text-sm font-medium text-(--color-text-secondary)"
+          >
+            <span class="flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path d="M2 12h20"></path><path
+                  d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"></path><path
+                  d="M4 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8"></path></svg
+              >
+              {t.registration.form.sessionDescription}
+              <span class="text-(--color-primary)">*</span>
+            </span>
+          </label>
+          <textarea
+            id="session-description"
+            name="session-description"
+            rows="4"
+            class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-(--color-primary) focus:ring-1 focus:ring-(--color-primary) outline-none transition-all placeholder:text-gray-600 resize-none"
+            placeholder={t.registration.form.sessionPlaceholder}></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full btn-primary py-4 text-lg font-bold shadow-lg shadow-(--color-primary)/20"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="mr-2"
+            ><line x1="22" x2="11" y1="2" y2="13"></line><polygon
+              points="22 2 15 22 11 13 2 9 22 2"></polygon></svg
+          >
+          {t.registration.form.submit}
+        </button>
+
+        <p class="text-xs text-center text-(--color-text-secondary) opacity-70">
+          {t.registration.form.consent}
+        </p>
+      </form>
+    </div>
+
+    <!-- Already Registered State -->
+    <div
+      id="already-registered"
+      class="hidden max-w-2xl mx-auto glass rounded-3xl p-12 text-center animate-scale-up"
+    >
+      <div
+        class="w-20 h-20 rounded-full bg-green-500/10 text-green-500 flex items-center justify-center mx-auto mb-6"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="40"
+          height="40"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline
+            points="22 4 12 14.01 9 11.01"></polyline></svg
+        >
+      </div>
+      <h3 class="text-2xl font-bold mb-4">
+        {
+          locale === "en"
+            ? "Registration Successful"
+            : "Registrace proběhla úspěšně"
+        }
+      </h3>
+      <p class="text-(--color-text-secondary) max-w-md mx-auto mb-8">
+        {
+          locale === "en"
+            ? "Thank you for registering. You have already submitted your registration."
+            : "Děkujeme za registraci. Vaši registraci jsme již přijali."
+        }
+      </p>
+      <button
+        id="reset-registration"
+        class="text-sm text-(--color-primary) hover:underline"
+      >
+        {
+          locale === "en"
+            ? "Register another person"
+            : "Registrovat další osobu"
+        }
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div
+    id="toast"
+    class="fixed bottom-8 right-8 z-50 transform translate-y-24 opacity-0 transition-all duration-300"
+  >
+    <div
+      class="glass px-6 py-4 rounded-xl border-l-4 border-green-500 flex items-center gap-4 shadow-xl"
+    >
+      <div class="text-green-500">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline
+            points="22 4 12 14.01 9 11.01"></polyline></svg
+        >
+      </div>
+      <div>
+        <h4 class="font-bold text-sm">
+          {locale === "en" ? "Success" : "Úspěch"}
+        </h4>
+        <p class="text-xs text-(--color-text-secondary)">
+          {
+            locale === "en"
+              ? "Email was successfully sent"
+              : "Email byl úspěšně odeslán"
+          }
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* Custom radio styling adjustments */
+    div:has(> input[type="radio"]:checked) {
+      border-color: var(--color-primary);
+      background-color: color-mix(
+        in oklch,
+        var(--color-primary) 10%,
+        transparent
+      );
+    }
+  </style>
+
+  <script>
+    // Elements
+    const form = document.getElementById(
+      "registration-form"
+    ) as HTMLFormElement;
+    const container = document.getElementById("registration-container");
+    const alreadyRegistered = document.getElementById("already-registered");
+    const resetButton = document.getElementById("reset-registration");
+    const toast = document.getElementById("toast");
+
+    const roleInputs = document.querySelectorAll('input[name="role"]');
+    const speakerFields = document.getElementById("speaker-fields");
+    const sessionTextarea = document.getElementById(
+      "session-description"
+    ) as HTMLTextAreaElement;
+
+    const onlineInput = document.querySelector(
+      'input[name="type"][value="online"]'
+    ) as HTMLInputElement;
+    const onsiteInput = document.querySelector(
+      'input[name="type"][value="onsite"]'
+    ) as HTMLInputElement;
+
+    // Check Local Storage on load
+    document.addEventListener("astro:page-load", () => {
+      const isRegistered = localStorage.getItem("vigcon_registered");
+      if (isRegistered === "true") {
+        container?.classList.add("hidden");
+        alreadyRegistered?.classList.remove("hidden");
+      }
+
+      // Initialize fields state based on current selection
+      updateSpeakerFields();
+    });
+
+    // Handle conditional speaker fields
+    function updateSpeakerFields() {
+      const selectedRole = document.querySelector(
+        'input[name="role"]:checked'
+      ) as HTMLInputElement;
+
+      const onlineCard = onlineInput.closest(".radio-card") as HTMLElement;
+      const onlineLabel = onlineInput.closest("label") as HTMLElement;
+
+      if (selectedRole && selectedRole.value === "speaker") {
+        speakerFields?.classList.remove("hidden");
+        speakerFields?.classList.add("grid", "gap-2");
+        sessionTextarea.required = true;
+
+        // Disable Online option
+        onlineInput.disabled = true;
+        if (onlineCard) {
+          onlineCard.classList.add("opacity-50", "cursor-not-allowed");
+          onlineCard.classList.remove("hover:bg-(--color-bg)/80");
+        }
+        if (onlineLabel) {
+          onlineLabel.classList.remove("cursor-pointer");
+          onlineLabel.classList.add("cursor-not-allowed");
+        }
+
+        // Force Onsite if Online was selected
+        if (onlineInput.checked) {
+          onsiteInput.checked = true;
+        }
+      } else {
+        speakerFields?.classList.add("hidden");
+        speakerFields?.classList.remove("grid", "gap-2");
+        sessionTextarea.required = false;
+
+        // Enable Online option
+        onlineInput.disabled = false;
+        if (onlineCard) {
+          onlineCard.classList.remove("opacity-50", "cursor-not-allowed");
+          onlineCard.classList.add("hover:bg-(--color-bg)/80");
+        }
+        if (onlineLabel) {
+          onlineLabel.classList.add("cursor-pointer");
+          onlineLabel.classList.remove("cursor-not-allowed");
+        }
+      }
+    }
+
+    roleInputs.forEach((input) => {
+      input.addEventListener("change", updateSpeakerFields);
+    });
+
+    // Show Toast
+    function showToast() {
+      toast?.classList.remove("translate-y-24", "opacity-0");
+      setTimeout(() => {
+        toast?.classList.add("translate-y-24", "opacity-0");
+      }, 5000);
+    }
+
+    // Handle form submission via Web3Forms
+    form?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const submitButton = form.querySelector(
+        'button[type="submit"]'
+      ) as HTMLButtonElement;
+      const originalText = submitButton.innerHTML;
+      submitButton.disabled = true;
+      submitButton.innerHTML = '<span class="animate-pulse">Sending...</span>';
+
+      const formData = new FormData(form);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: json,
+        });
+
+        const result = await response.json();
+
+        if (response.status === 200) {
+          localStorage.setItem("vigcon_registered", "true");
+          container?.classList.add("hidden");
+          alreadyRegistered?.classList.remove("hidden");
+          showToast();
+        } else {
+          console.error("Form submission error:", result.message);
+          submitButton.disabled = false;
+          submitButton.innerHTML = originalText;
+          alert(result.message || "Something went wrong. Please try again.");
+        }
+      } catch (error) {
+        console.error("Form submission error:", error);
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalText;
+        alert("Network error. Please check your connection and try again.");
+      }
+    });
+
+    // Reset registration (for testing or multiple registrations)
+    resetButton?.addEventListener("click", () => {
+      localStorage.removeItem("vigcon_registered");
+      container?.classList.remove("hidden");
+      alreadyRegistered?.classList.add("hidden");
+      form?.reset();
+      updateSpeakerFields();
+    });
+  </script>
+</section>

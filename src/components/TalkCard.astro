@@ -1,0 +1,115 @@
+---
+import type { Locale, Talk, Speaker } from '@utils/types';
+import en from '@i18n/en.json';
+import cz from '@i18n/cz.json';
+
+interface Props {
+  talk: Talk;
+  speaker?: Speaker;
+  locale: Locale;
+  delay?: number;
+}
+
+const { talk, speaker, locale, delay = 0 } = Astro.props;
+const t = locale === 'en' ? en : cz;
+
+const isBreak = talk.type === 'break';
+const isSpecial = talk.type === 'special';
+---
+
+<article
+  class:list={[
+    'talk-card',
+    { 'is-break': isBreak },
+    { 'cursor-pointer': !isBreak },
+    'animate-on-scroll'
+  ]}
+  style={`animation-delay: ${delay}ms`}
+  role="article"
+  aria-labelledby={`talk-title-${talk.id}`}
+  data-talk-id={talk.id}
+>
+  {!isBreak ? (
+    <button
+      type="button"
+      class="w-full text-left"
+      aria-label={`${t.schedule.viewDetails}: ${talk.title[locale]}`}
+      data-modal-trigger={talk.id}
+    >
+      <!-- Header: Time & Language -->
+      <header class="flex items-center justify-between mb-3">
+        <time
+          datetime={`2026-05-29T${talk.startTime}`}
+          class="text-sm font-medium text-(--color-text-secondary)"
+        >
+          {talk.startTime} - {talk.endTime}
+        </time>
+        {talk.language && (
+          <span
+            class="px-2 py-0.5 rounded text-xs font-semibold bg-(--color-primary)/10 text-(--color-primary)"
+            aria-label={`${locale === "en" ? "Language" : "Jazyk"}: ${talk.language}`}
+          >
+            {talk.language}
+          </span>
+        )}
+      </header>
+
+      <!-- Title -->
+      <h3
+        id={`talk-title-${talk.id}`}
+        class="text-lg font-bold mb-3 text-(--color-text)"
+      >
+        {talk.title[locale]}
+      </h3>
+
+      <!-- Speaker Info -->
+      {speaker && (
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-linear-to-br from-(--color-primary)/30 to-(--color-primary)/10 flex items-center justify-center overflow-hidden">
+            <img
+              src={speaker.photo}
+              alt={`${speaker.name}${speaker.role ? `, ${speaker.role[locale]}` : ""}`}
+              width="40"
+              height="40"
+              class="w-full h-full object-cover"
+              loading="lazy"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <span class="hidden text-(--color-primary) font-bold text-sm items-center justify-center w-full h-full">
+              {speaker.initials}
+            </span>
+          </div>
+          <div>
+            <p class="font-medium text-(--color-text) text-sm">{speaker.name}</p>
+            <p class="text-xs text-(--color-text-secondary)">{speaker.role ? speaker.role[locale] : speaker.company}</p>
+          </div>
+        </div>
+      )}
+
+      <!-- Hashtags -->
+      {talk.hashtags && talk.hashtags.length > 0 && (
+        <footer class="flex flex-wrap gap-2" aria-label="Topics">
+          {talk.hashtags.map((tag) => (
+            <span class="hashtag text-xs">#{tag}</span>
+          ))}
+        </footer>
+      )}
+    </button>
+  ) : (
+    <!-- Break/Special item (no button) -->
+    <div class="text-center py-2">
+      <time
+        datetime={`2026-05-29T${talk.startTime}`}
+        class="text-sm text-(--color-text-secondary) block mb-1"
+      >
+        {talk.startTime} - {talk.endTime}
+      </time>
+      <h3
+        id={`talk-title-${talk.id}`}
+        class={`font-semibold ${isSpecial ? 'text-(--color-primary)' : 'text-(--color-text-secondary)'}`}
+      >
+        {talk.title[locale]}
+      </h3>
+    </div>
+  )}
+</article>

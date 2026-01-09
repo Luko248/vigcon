@@ -1,0 +1,122 @@
+---
+import type { Locale, ContentData } from "@utils/types";
+import content from "@data/content.json";
+import en from "@i18n/en.json";
+import cz from "@i18n/cz.json";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = locale === "en" ? en : cz;
+const typedContent = content as unknown as ContentData;
+const faqItems = typedContent.faq.items;
+
+const titleWords = t.faq.title.split(" ");
+const firstWord = titleWords[0];
+const restTitle = titleWords.slice(1).join(" ");
+---
+
+<section id="faq" aria-labelledby="faq-title">
+  <div class="section-container">
+    <div class="max-w-3xl mx-auto">
+      <!-- Section Title -->
+      <div class="text-center mb-12">
+        <h2
+          id="faq-title"
+          class="text-3xl sm:text-4xl font-bold mb-4 animate-on-scroll"
+        >
+          <span class="text-(--color-text)">{firstWord}</span>{" "}
+          <span class="text-gradient">{restTitle}</span>
+        </h2>
+        <p
+          class="text-lg text-(--color-text-secondary) animate-on-scroll-delayed"
+        >
+          {t.faq.subtitle}
+        </p>
+      </div>
+
+      <!-- FAQ Items -->
+      <div class="space-y-4">
+        {
+          faqItems.map((item, index) => (
+            <details
+              class="group glass rounded-2xl overflow-hidden animate-on-scroll"
+              style={`animation-delay: ${index * 100}ms`}
+              name="faq-accordion"
+            >
+              <summary class="flex items-center justify-between p-6 cursor-pointer list-none select-none text-lg font-semibold text-(--color-text) hover:text-(--color-primary) transition-colors">
+                <div class="flex items-center gap-4">
+                  <span>{item.question[locale]}</span>
+                </div>
+
+                <div class="relative w-6 h-6 flex items-center justify-center shrink-0">
+                  <span class="absolute w-full h-0.5 bg-current transition-transform duration-300 group-open:rotate-180" />
+                  <span class="absolute w-full h-0.5 bg-current rotate-90 transition-transform duration-300 group-open:rotate-180" />
+                </div>
+              </summary>
+
+              <div class="content px-6 pb-6 text-(--color-text-secondary) leading-relaxed">
+                <p>{item.answer[locale]}</p>
+              </div>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Define custom properties for animation */
+  details {
+    interpolate-size: allow-keywords;
+    overflow: clip; /* Modern replacement for hidden */
+  }
+
+  details::details-content {
+    opacity: 0;
+    block-size: 0;
+    overflow: hidden;
+    transition:
+      block-size 0.3s ease-out,
+      opacity 0.3s ease-out,
+      content-visibility 0.3s allow-discrete;
+  }
+
+  details[open]::details-content {
+    opacity: 1;
+    block-size: auto;
+  }
+
+  /* Remove default triangle */
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* Map Dark Mode Styling */
+  :global(.dark) .map-container iframe {
+    filter: invert(1) hue-rotate(180deg) brightness(0.8) contrast(1.2);
+  }
+</style>
+
+<script>
+  // Exclusive accordion behavior
+  // This polyfills the 'name' attribute behavior for older browsers or ensures it works consistently
+  const details = document.querySelectorAll("details[name='faq-accordion']");
+
+  details.forEach((targetDetail) => {
+    targetDetail.addEventListener("toggle", () => {
+      const detail = targetDetail as HTMLDetailsElement;
+      if (detail.open) {
+        details.forEach((d) => {
+          const otherDetail = d as HTMLDetailsElement;
+          if (otherDetail !== detail && otherDetail.open) {
+            otherDetail.open = false;
+          }
+        });
+      }
+    });
+  });
+</script>

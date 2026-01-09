@@ -1,0 +1,113 @@
+{
+  "nav": {
+    "about": "About",
+    "speakers": "Speakers",
+    "faq": "FAQ",
+    "venue": "Venue",
+    "register": "Register"
+  },
+  "cta": {
+    "addToCalendar": "Add to Calendar",
+    "schedule": "View Agenda",
+    "register": "Register Now",
+    "liveNow": "Live Now"
+  },
+  "hero": {
+    "title": "VIGCON2026",
+    "subtitle": "Internal Technology Conference\nVienna Insurance Group",
+    "theme": "Theme: AI Deployment in Practice",
+    "date": "May 29, 2026",
+    "location": "AIS-Servis, Brno",
+    "attendees": "Max 50 attendees"
+  },
+  "countdown": {
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds",
+    "until": "until conference"
+  },
+  "speakers": {
+    "title": "Speakers",
+    "subtitle": "Presenters from VIG group experts. We're collecting more topics - register as a speaker!",
+    "confirmed": "Confirmed",
+    "openSlot": "Open Slot",
+    "abstract": "ABSTRACT",
+    "register": "Have an interesting topic? Register as a speaker!",
+    "registerLink": "Register as a speaker"
+  },
+  "schedule": {
+    "title": "Schedule",
+    "viewDetails": "View details"
+  },
+  "registration": {
+    "title": "Registration",
+    "subtitle": "Register as an attendee or submit your topic as a speaker. Capacity is limited to 50 participants.",
+    "form": {
+      "fullName": "Full Name",
+      "company": "Company",
+      "email": "Email",
+      "phone": "Phone",
+      "participationType": "Participation Type",
+      "types": {
+        "onsite": "In-person (Onsite)",
+        "onsiteDesc": "Including networking",
+        "online": "Online",
+        "onlineDesc": "Talks only"
+      },
+      "role": "I'm registering as",
+      "roles": {
+        "attendee": "Attendee",
+        "attendeeDesc": "I want to learn",
+        "speaker": "Speaker",
+        "speakerDesc": "I want to share"
+      },
+      "sessionDescription": "Session Description (CFP)",
+      "sessionPlaceholder": "Please describe your session topic and abstract...",
+      "submit": "Submit Registration",
+      "consent": "By submitting, you agree to the processing of your data for conference organization purposes."
+    }
+  },
+  "modal": {
+    "close": "Close",
+    "speakerBio": "Speaker Bio",
+    "talkAnnotation": "Talk Description"
+  },
+  "gallery": {
+    "title": "Gallery",
+    "subtitle": "Photos from Previous Years",
+    "images": {
+      "img_0050": "Conference attendees networking during break",
+      "img_0052": "Interactive workshop session",
+      "img_0091": "Keynote speaker presentation",
+      "img_3820": "Panel discussion with industry experts",
+      "img_7715": "Conference venue main hall",
+      "img_7722": "Technical deep dive session",
+      "img_7735": "Q&A session with speakers",
+      "img_7740": "Evening networking event",
+      "img_7772": "Attendees sharing insights",
+      "img_7815": "Closing ceremony and awards"
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know about the conference"
+  },
+  "partners": {
+    "title": "Our Partners",
+    "subtitle": "Thank you to our partners who make VIG IT Conference possible"
+  },
+  "footer": {
+    "contact": "Contact",
+    "copyright": "© 2026 VIG IT Conference. All rights reserved.",
+    "organizedBy": "Organized by Vienna Insurance Group"
+  },
+  "accessibility": {
+    "skipToContent": "Skip to main content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode",
+    "switchLanguage": "Switch language"
+  }
+}

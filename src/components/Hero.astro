@@ -1,0 +1,495 @@
+---
+import type { Locale } from "@utils/types";
+import Countdown from "./Countdown.astro";
+import en from "@i18n/en.json";
+import cz from "@i18n/cz.json";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = locale === "en" ? en : cz;
+
+const conferenceDate = "2026-05-29T09:00:00+02:00";
+---
+
+<section
+  id="hero-section"
+  class="relative h-svh grid place-items-center overflow-hidden dark"
+  style="
+    color-scheme: dark;
+    --color-bg: oklch(0.15 0 0);
+    --color-surface: oklch(0.2 0 0);
+    --color-text: oklch(0.98 0 0);
+    --color-text-secondary: oklch(0.65 0 0);
+    --color-border: oklch(0.25 0 0);
+    --glass-bg: oklch(0 0 0 / 0.1);
+    --glass-border: oklch(1 0 0 / 0.1);
+    color: var(--color-text);
+  "
+  aria-labelledby="hero-title"
+>
+  <!-- Background Image with Parallax -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src="/images/bg/background-top.jpg"
+      alt=""
+      role="presentation"
+      class="w-full h-full object-cover parallax-bg"
+      loading="eager"
+    />
+    <div
+      class="absolute inset-0 bg-linear-to-b from-(--color-bg)/80 via-(--color-bg)/60 to-(--color-bg)"
+    >
+    </div>
+  </div>
+
+  <!-- Canvas Animation -->
+  <canvas
+    id="bg-canvas"
+    class="absolute inset-0 z-10 w-full h-full opacity-0 transition-opacity duration-[3000ms] will-change-[opacity]"
+    data-visible="false"></canvas>
+
+  <!-- Content -->
+  <div class="relative z-20 section-container text-center">
+    <div class="glass rounded-3xl p-8 sm:p-12 max-w-3xl mx-auto">
+      <!-- Logo/Badge -->
+      <div class="mb-6 animate-scale-up flex justify-center">
+        <div
+          class="glass px-4 py-2 rounded-full border border-(--color-primary)/20 flex items-center gap-2"
+        >
+          <div class="w-2 h-2 rounded-full bg-(--color-primary) animate-pulse">
+          </div>
+          <span class="text-xs sm:text-sm font-medium text-(--color-primary)">
+            <time datetime="2026-05-29">{t.hero.date}</time> • {t.hero.location}
+          </span>
+        </div>
+      </div>
+
+      <!-- Title / Logo -->
+      <h1 class="sr-only" id="hero-title">{t.hero.title}</h1>
+      <div class="flex justify-center mb-6 animate-fade-in-up">
+        <img
+          src="/images/logos/logo-white-clean.svg"
+          alt=""
+          role="presentation"
+          class="h-12 sm:h-16 lg:h-20 w-auto drop-shadow-[0_0_15px_rgba(var(--color-primary),0.5)]"
+        />
+      </div>
+
+      <!-- Subtitle -->
+      <div
+        class="flex flex-col items-center gap-1 mb-6 animate-fade-in-up"
+        style="animation-delay: 100ms"
+      >
+        <p class="text-lg sm:text-xl text-(--color-text-secondary)">
+          {t.hero.subtitle.split("\n")[0]}
+        </p>
+        <p class="text-xl sm:text-2xl font-bold text-(--color-text)">
+          {t.hero.subtitle.split("\n")[1]}
+        </p>
+      </div>
+
+      <!-- Theme Pill -->
+      <div class="mb-10 animate-fade-in-up" style="animation-delay: 200ms">
+        <span
+          class="px-4 py-2 rounded-lg bg-(--color-surface) border border-(--color-border) text-(--color-primary) font-mono text-sm sm:text-base"
+        >
+          {t.hero.theme}
+        </span>
+      </div>
+
+      <!-- Countdown -->
+      <div class="mb-8 animate-fade-in-up" style="animation-delay: 400ms">
+        <Countdown locale={locale} targetDate={conferenceDate} />
+      </div>
+
+      <!-- Info Bar -->
+      <div
+        class="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-sm sm:text-base text-(--color-text) mb-10 animate-fade-in-up"
+        style="animation-delay: 500ms"
+      >
+        <div class="flex items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="text-(--color-primary)"
+            ><rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect><line
+              x1="16"
+              x2="16"
+              y1="2"
+              y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line
+              x1="3"
+              x2="21"
+              y1="10"
+              y2="10"></line></svg
+          >
+          <time datetime="2026-05-29">{t.hero.date}</time>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="text-(--color-primary)"
+            ><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
+            ></path><circle cx="12" cy="10" r="3"></circle></svg
+          >
+          <span>{t.hero.location}</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="text-(--color-primary)"
+            ><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle
+              cx="9"
+              cy="7"
+              r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path
+              d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg
+          >
+          <span>{t.hero.attendees}</span>
+        </div>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div
+        class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up"
+        style="animation-delay: 600ms"
+      >
+        <a
+          href="#registration"
+          class="btn-primary text-base sm:text-lg px-8 py-3 w-full sm:w-auto"
+        >
+          {t.cta.register}
+        </a>
+        <a
+          href="#speakers"
+          class="btn-secondary text-base sm:text-lg px-8 py-3 w-full sm:w-auto"
+        >
+          {t.cta.schedule}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initCanvasAnimation() {
+    const canvas = document.getElementById("bg-canvas") as HTMLCanvasElement;
+    if (!canvas) return;
+
+    let can_w = (canvas.width = window.innerWidth);
+    let can_h = (canvas.height = window.innerHeight * 0.9);
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    // Config
+    const ball_color = { r: 255, g: 255, b: 255 };
+    const R = 2;
+    let balls: any[] = [];
+    const alpha_f = 0.03;
+
+    // Line
+    const link_line_width = 0.8;
+    const dis_limit = 260;
+
+    const mouse_ball = {
+      x: 0,
+      y: 0,
+      vx: 0,
+      vy: 0,
+      r: 0,
+      type: "mouse",
+    };
+
+    // Random speed
+    function getRandomSpeed(pos: string) {
+      const min = -1,
+        max = 1;
+      switch (pos) {
+        case "top":
+          return [randomNumFrom(min, max), randomNumFrom(0.1, max)];
+        case "right":
+          return [randomNumFrom(min, -0.1), randomNumFrom(min, max)];
+        case "bottom":
+          return [randomNumFrom(min, max), randomNumFrom(min, -0.1)];
+        case "left":
+          return [randomNumFrom(0.1, max), randomNumFrom(min, max)];
+        default:
+          return [0, 0];
+      }
+    }
+
+    function randomArrayItem(arr: any[]) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function randomNumFrom(min: number, max: number) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function randomSidePos(length: number) {
+      return Math.ceil(Math.random() * length);
+    }
+
+    // Random Ball
+    function getRandomBall() {
+      const pos = randomArrayItem(["top", "right", "bottom", "left"]);
+      switch (pos) {
+        case "top":
+          return {
+            x: randomSidePos(can_w),
+            y: -R,
+            vx: getRandomSpeed("top")[0],
+            vy: getRandomSpeed("top")[1],
+            r: R,
+            alpha: 1,
+            phase: randomNumFrom(0, 10),
+          };
+        case "right":
+          return {
+            x: can_w + R,
+            y: randomSidePos(can_h),
+            vx: getRandomSpeed("right")[0],
+            vy: getRandomSpeed("right")[1],
+            r: R,
+            alpha: 1,
+            phase: randomNumFrom(0, 10),
+          };
+        case "bottom":
+          return {
+            x: randomSidePos(can_w),
+            y: can_h + R,
+            vx: getRandomSpeed("bottom")[0],
+            vy: getRandomSpeed("bottom")[1],
+            r: R,
+            alpha: 1,
+            phase: randomNumFrom(0, 10),
+          };
+        case "left":
+          return {
+            x: -R,
+            y: randomSidePos(can_h),
+            vx: getRandomSpeed("left")[0],
+            vy: getRandomSpeed("left")[1],
+            r: R,
+            alpha: 1,
+            phase: randomNumFrom(0, 10),
+          };
+        default:
+          return { x: 0, y: 0, vx: 0, vy: 0, r: 0, alpha: 0, phase: 0 };
+      }
+    }
+
+    // Draw Ball
+    function renderBalls() {
+      Array.prototype.forEach.call(balls, function (b) {
+        if (!b.hasOwnProperty("type")) {
+          ctx!.fillStyle =
+            "rgba(" +
+            ball_color.r +
+            "," +
+            ball_color.g +
+            "," +
+            ball_color.b +
+            "," +
+            b.alpha +
+            ")";
+
+          ctx!.beginPath();
+          ctx!.arc(b.x, b.y, R, 0, Math.PI * 2, true);
+          ctx!.closePath();
+          ctx!.fill();
+        }
+      });
+    }
+
+    // Update balls
+    function updateBalls() {
+      const new_balls: any[] = [];
+      Array.prototype.forEach.call(balls, function (b) {
+        b.x += b.vx;
+        b.y += b.vy;
+
+        if (b.x > -50 && b.x < can_w + 50 && b.y > -50 && b.y < can_h + 50) {
+          new_balls.push(b);
+        }
+
+        // alpha change
+        b.phase += alpha_f;
+        b.alpha = Math.abs(Math.cos(b.phase));
+      });
+
+      balls = new_balls.slice(0);
+    }
+
+    // Draw lines
+    function renderLines() {
+      let fraction, alpha;
+      for (let i = 0; i < balls.length; i++) {
+        for (let j = i + 1; j < balls.length; j++) {
+          fraction = getDisOf(balls[i], balls[j]) / dis_limit;
+
+          if (fraction < 1) {
+            alpha = (1 - fraction).toString();
+
+            // Use same color base for lines
+            ctx!.strokeStyle =
+              "rgba(" +
+              ball_color.r +
+              "," +
+              ball_color.g +
+              "," +
+              ball_color.b +
+              "," +
+              alpha +
+              ")";
+            ctx!.lineWidth = link_line_width;
+
+            ctx!.beginPath();
+            ctx!.moveTo(balls[i].x, balls[i].y);
+            ctx!.lineTo(balls[j].x, balls[j].y);
+            ctx!.stroke();
+            ctx!.closePath();
+          }
+        }
+      }
+    }
+
+    // calculate distance between two points
+    function getDisOf(b1: any, b2: any) {
+      const delta_x = Math.abs(b1.x - b2.x),
+        delta_y = Math.abs(b1.y - b2.y);
+
+      return Math.sqrt(delta_x * delta_x + delta_y * delta_y);
+    }
+
+    // add balls if there a little balls
+    function addBallIfy() {
+      if (balls.length < 20) {
+        balls.push(getRandomBall());
+      }
+    }
+
+    let animationId: number;
+    function render() {
+      ctx!.clearRect(0, 0, can_w, can_h);
+
+      renderBalls();
+      renderLines();
+      updateBalls();
+      addBallIfy();
+
+      animationId = window.requestAnimationFrame(render);
+    }
+
+    function initBalls(num: number) {
+      for (let i = 1; i <= num; i++) {
+        balls.push({
+          x: randomSidePos(can_w),
+          y: randomSidePos(can_h),
+          vx: getRandomSpeed("top")[0],
+          vy: getRandomSpeed("top")[1],
+          r: R,
+          alpha: 1,
+          phase: randomNumFrom(0, 10),
+        });
+      }
+    }
+
+    function initCanvas() {
+      canvas.setAttribute("width", window.innerWidth.toString());
+      canvas.setAttribute("height", (window.innerHeight * 0.9).toString());
+
+      can_w = parseInt(canvas.getAttribute("width") || "0");
+      can_h = parseInt(canvas.getAttribute("height") || "0");
+    }
+
+    window.addEventListener("resize", function () {
+      initCanvas();
+    });
+
+    function goMovie() {
+      initCanvas();
+      // Adjust ball count based on screen width
+      let numBalls = 20;
+      if (window.innerWidth >= 1281) {
+        numBalls = 50;
+      } else if (window.innerWidth >= 680) {
+        numBalls = 35;
+      }
+      initBalls(numBalls);
+      animationId = window.requestAnimationFrame(render);
+    }
+
+    // Mouse effect
+    // Lazy load: Start animation on first hover
+    let hasStarted = false;
+
+    // Use the section for hover detection to make it easier to trigger
+    const heroSection = document.getElementById("hero-section");
+
+    heroSection?.addEventListener("mouseenter", function () {
+      if (!hasStarted) {
+        hasStarted = true;
+        goMovie();
+        // Fade in
+        canvas.dataset.visible = "true";
+        canvas.classList.remove("opacity-0");
+        canvas.classList.add("opacity-100");
+      }
+      balls.push(mouse_ball);
+    });
+
+    heroSection?.addEventListener("mouseleave", function () {
+      let new_balls: any[] = [];
+      Array.prototype.forEach.call(balls, function (b) {
+        if (!b.hasOwnProperty("type")) {
+          new_balls.push(b);
+        }
+      });
+      balls = new_balls.slice(0);
+    });
+
+    canvas.addEventListener("mousemove", function (e) {
+      // Using getBoundingClientRect for robust positioning relative to canvas
+      const rect = canvas.getBoundingClientRect();
+      mouse_ball.x = e.clientX - rect.left;
+      mouse_ball.y = e.clientY - rect.top;
+    });
+
+    // Do NOT start immediately
+    // goMovie();
+    // Initialize canvas dimensions though, so it takes up space
+    initCanvas();
+
+    // Cleanup function
+    return () => {
+      if (animationId) window.cancelAnimationFrame(animationId);
+    };
+  }
+
+  document.addEventListener("astro:page-load", initCanvasAnimation);
+</script>

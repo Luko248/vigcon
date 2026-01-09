@@ -1,0 +1,80 @@
+{
+  "speakers": [
+    {
+      "id": "grek-filip",
+      "name": "Grék Filip",
+      "initials": "GF",
+      "photo": "/images/speakers/placeholder.svg",
+      "company": "VIG",
+      "country": "Czech Republic",
+      "status": "confirmed",
+      "role": {
+        "en": "Software Developer",
+        "cz": "Software Developer"
+      },
+      "topic": {
+        "en": "RPA (Robotic Process Automation)",
+        "cz": "RPA (Robotická automatizace procesů)"
+      },
+      "abstract": {
+        "en": "## Introduction to RPA\n- Definition, benefits, etc.\n\n## Technical aspects of RPA\n- Solution architecture\n- Integration with systems\n\n## RPA in KOOP and ČPP\n- Automated processes\n- Impacts\n- Practical example - specific process example, number of cases processed per year, time savings\n- Outlook and planned activities\n\n## Global trends and news\n- RPA market outlook (specifically in insurance if data available)\n- Extended intelligence (AI usage etc.), further integrations etc.\n\n## RPA and AI\n- Complementarity of RPA and AI\n- RPA in the context of AI agents",
+        "cz": "## Úvod do RPA\n- Definice, přínosy apod.\n\n## Technické aspekty RPA\n- Architektura řešení\n- Integrace se systémy\n\n## RPA v KOOP a ČPP\n- Automatizované procesy\n- Dopady\n- Příklad z praxe - konkrétní příklad procesu, počtu zpracovaných případů za rok, ušetření času\n- Výhled a plánované aktivity\n\n## Globální trendy a novinky\n- Výhled RPA trhu (pokud budou data, tak přímo v pojišťovnictví)\n- Rozšířená inteligence (užití AI apod.), další integrace apod.\n\n## RPA a AI\n- Komplementarita RPA a AI\n- RPA v kontextu AI agentů"
+      }
+    },
+    {
+      "id": "cech-martin",
+      "name": "Čech Martin & Chorouš Jiří",
+      "initials": "MČ",
+      "photo": "/images/speakers/placeholder.svg",
+      "company": "VIG",
+      "country": "Czech Republic",
+      "status": "confirmed",
+      "role": {
+        "en": "UX Designer, Design System",
+        "cz": "UX Designer, Design System"
+      },
+      "topic": {
+        "en": "AI prototyping using VIGo design system",
+        "cz": "AI prototyping za využití design systemu VIGo"
+      },
+      "abstract": {
+        "en": "## Benefits\n- Rapid prototypes with real components\n- Demonstration of complex business requirements\n- Reduction of manual work\n\n## Implementation\n- Online documentation ([vigo.vig.cz](http://vigo.vig.cz))\n- Guidelines for AI tools\n\n## Two tools\n**Windsurf:** Structured generation with React → basis for development\n**Make:** Creative variants for solution finding\n\n## Examples\nLife calculators (Windsurf) | Reports (Make)\n\n## Outlook\nFigma Connect → closed iteration between AI generation and Figma",
+        "cz": "## Přínosy\n- Rychlé prototypy s reálnými komponenty\n- Demonstrace složitých zadání businessu\n- Zkrácení manuální práce\n\n## Implementace\n- Online dokumentace ([vigo.vig.cz](http://vigo.vig.cz))\n- Guidelines pro AI nástroje\n\n## Dva nástroje\n**Windsurf:** Strukturované generování s React → základ pro vývoj\n**Make:** Kreativní varianty pro hledání řešení\n\n## Ukázky\nŽivotní kalkulačky (Windsurf) | Hlášenky (Make)\n\n## Výhled\nFigma Connect → uzavřená iterace mezi AI generováním a Figmou"
+      }
+    },
+    {
+      "id": "gundartsev-dmytro",
+      "name": "Gundartsev Dmytro & Kraus Pavel",
+      "initials": "DG",
+      "photo": "/images/speakers/placeholder.svg",
+      "company": "VIG",
+      "country": "Czech Republic",
+      "status": "confirmed",
+      "topic": {
+        "en": "VIG BPM Platform: getting flexible",
+        "cz": "VIG BPM Platform: getting flexible"
+      },
+      "abstract": {
+        "en": "Implementation experience (Neuron, Experta, EOP)\n\nChallenge to keep our platform apps universal\n- screenshots, why microFE, universality of search and display\n\nTransition from Camunda specific to platform agnostic\n- adapters\n\nZenBPM as reaction to operation complexity and pricing of Camunda 8\n- financial flexibility\n- special operations requirements (DC3- without business data), transparency, backup/restore\n- Zeebe shortcomings\n\n/content depends on OPS/DevOps part and ZenBPM approval at IK\n\n/OPS topic: Camunda Enterprise experience ? (transition from K8s to VMs, EntraID)",
+        "cz": "Implementation experience (Neuron, Experta, EOP)\n\nChallenge to keep our platform apps universal\n- screenshoty, proč microFE, univerzalita vyhledávání a zobrazování\n\nTransition from Camunda specific to platform agnostic\n- adaptéry\n\nZenBPM as reaction to operation complexity and pricing of Camunda 8\n- finanční flexibilita\n- speciální požadavky operations (DC3- without business data), transparency, backup/restore\n- nedostatky Zeebe\n\n/obsah přednášky závisí na OPS/DevOps části a na schválení neschválení ZenBPM na IK\n\n/OPS topic: Camunda Enterprise experience ? (transition from K8s to VMs, EntraID)"
+      }
+    },
+    {
+      "id": "vrany-michal",
+      "name": "Vraný Michal",
+      "initials": "MV",
+      "photo": "/images/speakers/placeholder.svg",
+      "company": "VIG",
+      "country": "Czech Republic",
+      "status": "confirmed",
+      "topic": {
+        "en": "AI Spec Driven Development",
+        "cz": "AI Spec Driven Development"
+      },
+      "abstract": {
+        "en": "- motivation of tech spec\n- guidelines\n- spec creation\n- backend implementation",
+        "cz": "- motivation of tech spec\n- guidelines\n- spec creation\n- backend implementation"
+      }
+    }
+  ]
+}

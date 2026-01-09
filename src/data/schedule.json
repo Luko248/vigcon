@@ -1,0 +1,167 @@
+{
+  "conference": {
+    "date": "2026-05-29",
+    "startTime": "09:00",
+    "endTime": "18:00",
+    "timezone": "Europe/Prague"
+  },
+  "tracks": [
+    {
+      "id": "track-a",
+      "name": {
+        "en": "Main Stage",
+        "cz": "Hlavní pódium"
+      }
+    },
+    {
+      "id": "track-b",
+      "name": {
+        "en": "Tech Deep Dive",
+        "cz": "Technické přednášky"
+      }
+    }
+  ],
+  "schedule": [
+    {
+      "id": "registration",
+      "startTime": "08:30",
+      "endTime": "09:00",
+      "track": "both",
+      "type": "special",
+      "title": {
+        "en": "Registration & Welcome Coffee",
+        "cz": "Registrace a uvítací káva"
+      }
+    },
+    {
+      "id": "opening",
+      "startTime": "09:00",
+      "endTime": "09:15",
+      "track": "both",
+      "type": "special",
+      "title": {
+        "en": "Opening Ceremony",
+        "cz": "Zahajovací ceremoniál"
+      }
+    },
+    {
+      "id": "talk-grek",
+      "startTime": "09:15",
+      "endTime": "10:00",
+      "track": "track-a",
+      "title": {
+        "en": "RPA (Robotic Process Automation)",
+        "cz": "RPA (Robotická automatizace procesů)"
+      },
+      "speakerId": "grek-filip",
+      "language": "CZ",
+      "hashtags": [
+        "RPA",
+        "Automation",
+        "Process"
+      ],
+      "annotation": {
+        "en": "Introduction to RPA, technical aspects, implementation in KOOP and ČPP, global trends and AI integration.",
+        "cz": "Úvod do RPA, technické aspekty, implementace v KOOP a ČPP, globální trendy a integrace s AI."
+      }
+    },
+    {
+      "id": "talk-cech",
+      "startTime": "09:15",
+      "endTime": "10:00",
+      "track": "track-b",
+      "title": {
+        "en": "AI prototyping using VIGo design system",
+        "cz": "AI prototyping za využití design systemu VIGo"
+      },
+      "speakerId": "cech-martin",
+      "language": "CZ",
+      "hashtags": [
+        "UX",
+        "DesignSystem",
+        "AI",
+        "Prototyping"
+      ],
+      "annotation": {
+        "en": "Benefits of rapid prototyping, implementation guidelines, tools (Windsurf, Make) and future outlook with Figma Connect.",
+        "cz": "Přínosy rychlého prototypování, guidelines pro implementaci, nástroje (Windsurf, Make) a výhled s Figma Connect."
+      }
+    },
+    {
+      "id": "break-1",
+      "startTime": "10:00",
+      "endTime": "10:30",
+      "track": "both",
+      "type": "break",
+      "title": {
+        "en": "Coffee Break & Networking",
+        "cz": "Přestávka na kávu a networking"
+      }
+    },
+    {
+      "id": "talk-gundartsev",
+      "startTime": "10:30",
+      "endTime": "11:15",
+      "track": "track-a",
+      "title": {
+        "en": "VIG BPM Platform: getting flexible",
+        "cz": "VIG BPM Platform: getting flexible"
+      },
+      "speakerId": "gundartsev-dmytro",
+      "language": "EN",
+      "hashtags": [
+        "BPM",
+        "Camunda",
+        "ZenBPM",
+        "Architecture"
+      ],
+      "annotation": {
+        "en": "Migration from Camunda to ZenBPM, challenges in keeping platform apps universal, and operational flexibility.",
+        "cz": "Migrace z Camundy na ZenBPM, výzvy v univerzalitě platformních aplikací a provozní flexibilita."
+      }
+    },
+    {
+      "id": "talk-vrany",
+      "startTime": "10:30",
+      "endTime": "11:15",
+      "track": "track-b",
+      "title": {
+        "en": "AI Spec Driven Development",
+        "cz": "AI Spec Driven Development"
+      },
+      "speakerId": "vrany-michal",
+      "language": "EN",
+      "hashtags": [
+        "AI",
+        "Development",
+        "Specs"
+      ],
+      "annotation": {
+        "en": "Motivation for tech specs, guidelines, spec creation and backend implementation driven by AI.",
+        "cz": "Motivace pro technické specifikace, guidelines, tvorba specifikací a backend implementace řízená AI."
+      }
+    },
+    {
+      "id": "lunch",
+      "startTime": "12:15",
+      "endTime": "13:30",
+      "track": "both",
+      "type": "break",
+      "title": {
+        "en": "Lunch Break",
+        "cz": "Obědová přestávka"
+      }
+    },
+    {
+      "id": "closing",
+      "startTime": "17:30",
+      "endTime": "18:00",
+      "track": "both",
+      "type": "special",
+      "title": {
+        "en": "Closing Ceremony & Networking",
+        "cz": "Závěrečný ceremoniál a networking"
+      }
+    }
+  ]
+}
