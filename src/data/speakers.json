@@ -3,8 +3,8 @@
     {
       "id": "grek-filip",
       "name": "Filip Grék",
-      "initials": "GF",
-      "photo": "/images/speakers/placeholder.svg",
+      "initials": "FG",
+      "photo": "/images/speakers/filip-grek.avif",
       "company": "VIG",
       "country": "Czech Republic",
       "status": "confirmed",
@@ -69,7 +69,11 @@
       "id": "gundartsev-dmytro",
       "name": "Dmytro Gundartsev & Pavel Kraus",
       "initials": "DG",
-      "photo": "/images/speakers/placeholder.svg",
+      "photo": "/images/speakers/dmytro.avif",
+      "photos": [
+        "/images/speakers/dmytro.avif",
+        "/images/speakers/pavel-kraus.avif"
+      ],
       "company": "VIG",
       "country": "Czech Republic",
       "status": "confirmed",
@@ -96,7 +100,7 @@
       "id": "vrany-michal",
       "name": "Michal Vraný",
       "initials": "MV",
-      "photo": "/images/speakers/placeholder.svg",
+      "photo": "/images/speakers/michal-vrany.avif",
       "company": "VIG",
       "country": "Czech Republic",
       "status": "confirmed",
