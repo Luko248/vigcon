@@ -11,6 +11,7 @@ import Footer from "@components/Footer.astro";
 import Venue from "@components/Venue.astro";
 import Schedule from "@components/Schedule.astro";
 import type { Locale } from "@utils/types";
+import TechTicker from "@/components/TechTicker.astro";
 
 const locale: Locale = "cz";
 ---
@@ -23,6 +24,7 @@ const locale: Locale = "cz";
   <Header locale={locale} />
   <main id="main-content">
     <Hero locale={locale} />
+    <TechTicker />
     <About locale={locale} />
     <Venue locale={locale} />
     <Schedule locale={locale} />

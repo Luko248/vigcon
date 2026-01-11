@@ -24,6 +24,7 @@
   --font-sans:
     "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 
   /* Spacing Extensions */
   --spacing-18: 4.5rem;

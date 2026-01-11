@@ -20,10 +20,10 @@ const restTitle = titleWords.slice(1).join(" ");
       <!-- Section Title -->
       <h2
         id="about-title"
-        class="text-3xl sm:text-4xl font-bold mb-6 animate-on-scroll"
+        class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-6 animate-on-scroll"
       >
         <span class="text-(--color-text)">{firstWord}</span>{" "}
-        <span class="text-gradient">{restTitle}</span>
+        <span class="text-gradient text-glow">{restTitle}</span>
       </h2>
 
       <!-- Description -->
@@ -132,10 +132,10 @@ const restTitle = titleWords.slice(1).join(" ");
 
       <!-- Organizer -->
       <div
-        class="mt-24 pt-8 border-t border-(--color-border)/30 animate-on-scroll"
+        class="mt-12 md:mt-24 pt-8 border-t border-(--color-border)/30 animate-on-scroll"
       >
         <p
-          class="text-sm text-(--color-text-secondary) uppercase tracking-wider mb-4"
+          class="text-sm font-mono text-(--color-text-secondary) uppercase tracking-wider mb-4"
         >
           {aboutContent.organizer?.title}
         </p>
