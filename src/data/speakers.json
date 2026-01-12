@@ -121,6 +121,37 @@
         "en": "- motivation of tech spec\n- guidelines\n- spec creation\n- backend implementation",
         "cz": "- motivation of tech spec\n- guidelines\n- spec creation\n- backend implementation"
       }
+    },
+    {
+      "id": "chylik-lukas",
+      "name": "Lukáš Chylík",
+      "initials": "LCH",
+      "photo": "/images/speakers/lukas-chylik.avif",
+      "company": "VIG",
+      "country": "Czech Republic",
+      "status": "confirmed",
+      "role": {
+        "en": "UX Designer, Design System",
+        "cz": "UX Designer, Design System"
+      },
+      "topic": {
+        "en": "Figma Variables → Your Repo in One Click",
+        "cz": "Figma Variables → Do vášho repozitára na jeden klik"
+      },
+      "hashtags": [
+        "Figma",
+        "DesignSystem",
+        "DesignTokens",
+        "OpenSource"
+      ],
+      "shortDesc": {
+        "en": "A free Figma plugin that exports Figma Variables directly to your repository in any format you choose.",
+        "cz": "Bezplatný Figma plugin, ktorý exportuje Figma Variables priamo do vášho repozitára vo formáte, ktorý si zvolíte."
+      },
+      "abstract": {
+        "en": "## What it does\n- Works with Figma Variables\n- Supports custom naming conventions\n- Integration with Figma Dev Mode\n- Push directly to GitHub (or other git solutions)\n- Ideal for design systems\n\n## Export formats\n- CSS Custom Properties\n- SCSS\n- CSS-in-JS\n- Any custom format\n\n## Availability\n- Free plugin on Figma Community\n- Open-source repo for custom modifications",
+        "cz": "## Čo vie\n- Pracuje s Figma Variables\n- Podporuje vlastné naming konvencie\n- Integrácia s Figma Dev Mode\n- Push priamo do GitHubu (alebo iného git riešenia)\n- Ideálne pre design systémy\n\n## Exportné formáty\n- CSS Custom Properties\n- SCSS\n- CSS-in-JS\n- Čokoľvek iné\n\n## Dostupnosť\n- Plugin je zadarmo na Figma Community\n- Open-source repo pre ľubovoľné úpravy"
+      }
     }
   ]
 }

@@ -143,6 +143,28 @@
       }
     },
     {
+      "id": "talk-chylik",
+      "startTime": "11:15",
+      "endTime": "12:00",
+      "track": "track-b",
+      "title": {
+        "en": "Figma Variables → Your Repo in One Click",
+        "cz": "Figma Variables → Do vášho repozitára na jeden klik"
+      },
+      "speakerId": "chylik-lukas",
+      "language": "CZ",
+      "hashtags": [
+        "Figma",
+        "DesignSystem",
+        "DesignTokens",
+        "OpenSource"
+      ],
+      "annotation": {
+        "en": "A free Figma plugin for exporting Figma Variables to your repository in CSS, SCSS, CSS-in-JS or custom formats.",
+        "cz": "Bezplatný Figma plugin na export Figma Variables do repozitára vo formáte CSS, SCSS, CSS-in-JS alebo vlastnom formáte."
+      }
+    },
+    {
       "id": "lunch",
       "startTime": "12:15",
       "endTime": "13:30",
