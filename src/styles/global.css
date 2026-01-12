@@ -47,7 +47,11 @@
     color-scheme: light dark;
 
     /* Layout Variables */
-    --header-height: 4rem;
+    --header-height: 3.5rem;
+
+    @media (width >= 640px) {
+      --header-height: 4rem;
+    }
 
     /* Scrollbar gutter to prevent layout shift when locking scroll */
     scrollbar-gutter: stable;

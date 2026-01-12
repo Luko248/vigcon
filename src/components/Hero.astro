@@ -53,13 +53,15 @@ const conferenceDate = "2026-05-29T09:00:00+02:00";
 
   <!-- Content -->
   <div class="relative z-20 section-container text-center">
-    <div class="glass rounded-3xl p-8 sm:p-12 max-w-3xl mx-auto">
+    <div
+      class="glass rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-12 max-w-3xl mx-auto"
+    >
       <!-- Logo/Badge -->
-      <div class="mb-6 animate-scale-up flex justify-center">
+      <div class="mb-4 sm:mb-6 animate-scale-up flex justify-center">
         <div
-          class="glass px-4 py-2 rounded-full border border-primary/20 flex items-center gap-2"
+          class="glass px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-primary/20 flex items-center gap-2"
         >
-          <span class="text-xs sm:text-sm font-medium text-primary">
+          <span class="text-[0.65rem] sm:text-sm font-medium text-primary">
             <time datetime="2026-05-29">{t.hero.date}</time> • {t.hero.location}
           </span>
         </div>
@@ -67,45 +69,55 @@ const conferenceDate = "2026-05-29T09:00:00+02:00";
 
       <!-- Title / Logo -->
       <h1 class="sr-only" id="hero-title">{t.hero.title}</h1>
-      <div class="flex justify-center mb-6 animate-fade-in-up">
+      <div class="flex justify-center mb-4 sm:mb-6 animate-fade-in-up">
         <img
           src="/images/logos/logo-white-clean.svg"
           alt=""
           role="presentation"
-          class="h-12 sm:h-16 lg:h-20 w-auto drop-shadow-[0_0_15px_rgba(var(--color-primary),0.5)]"
+          class="h-[clamp(2.5rem,8svh,5rem)] w-auto drop-shadow-[0_0_15px_rgba(var(--color-primary),0.5)]"
         />
       </div>
 
       <!-- Subtitle -->
       <div
-        class="flex flex-col items-center gap-1 mb-6 animate-fade-in-up"
+        class="flex flex-col items-center gap-0.5 sm:gap-1 mb-4 sm:mb-6 animate-fade-in-up"
         style="animation-delay: 100ms"
       >
-        <p class="text-lg sm:text-xl text-(--color-text-secondary)">
+        <p
+          class="text-[clamp(0.875rem,2svh,1.25rem)] text-(--color-text-secondary)"
+        >
           {t.hero.subtitle.split("\n")[0]}
         </p>
-        <p class="text-xl sm:text-2xl font-bold text-(--color-text)">
+        <p
+          class="text-[clamp(1rem,2.5svh,1.5rem)] font-bold text-(--color-text)"
+        >
           {t.hero.subtitle.split("\n")[1]}
         </p>
       </div>
 
       <!-- Theme Pill -->
-      <div class="mb-10 animate-fade-in-up" style="animation-delay: 200ms">
+      <div
+        class="mb-6 sm:mb-10 animate-fade-in-up"
+        style="animation-delay: 200ms"
+      >
         <span
-          class="px-4 py-2 rounded-lg bg-(--color-surface) border border-(--color-border) text-primary font-mono text-sm sm:text-base"
+          class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg bg-(--color-surface) border border-(--color-border) text-primary font-mono text-[clamp(0.7rem,1.8svh,1rem)]"
         >
           {t.hero.theme}
         </span>
       </div>
 
       <!-- Countdown -->
-      <div class="mb-8 animate-fade-in-up" style="animation-delay: 400ms">
+      <div
+        class="mb-5 sm:mb-8 animate-fade-in-up"
+        style="animation-delay: 400ms"
+      >
         <Countdown locale={locale} targetDate={conferenceDate} />
       </div>
 
       <!-- Info Bar -->
       <div
-        class="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-sm sm:text-base text-(--color-text) mb-10 animate-fade-in-up"
+        class="flex flex-wrap items-center justify-center gap-3 sm:gap-8 text-[clamp(0.75rem,1.8svh,1rem)] text-(--color-text) mb-6 sm:mb-10 animate-fade-in-up"
         style="animation-delay: 500ms"
       >
         <div class="flex items-center gap-2">
@@ -173,18 +185,18 @@ const conferenceDate = "2026-05-29T09:00:00+02:00";
 
       <!-- CTA Buttons -->
       <div
-        class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up"
+        class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center animate-fade-in-up"
         style="animation-delay: 600ms"
       >
         <a
           href="#registration"
-          class="btn-primary text-base sm:text-lg px-8 py-3 w-full sm:w-auto"
+          class="btn-primary text-[clamp(0.875rem,2svh,1.125rem)] px-6 py-2.5 sm:px-8 sm:py-3 w-full sm:w-auto"
         >
           {t.cta.register}
         </a>
         <a
           href="#speakers"
-          class="btn-secondary text-base sm:text-lg px-8 py-3 w-full sm:w-auto"
+          class="btn-secondary text-[clamp(0.875rem,2svh,1.125rem)] px-6 py-2.5 sm:px-8 sm:py-3 w-full sm:w-auto"
         >
           {t.cta.schedule}
         </a>
