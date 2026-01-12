@@ -66,7 +66,10 @@
         "attendee": "Attendee",
         "attendeeDesc": "I want to learn",
         "speaker": "Speaker",
-        "speakerDesc": "I want to share"
+        "speakerDesc": "I have a session"
+      },
+      "tooltips": {
+        "speakerOnsite": "Speakers must attend in-person (onsite)."
       },
       "sessionDescription": "Session Description (CFP)",
       "sessionPlaceholder": "Please describe your session topic and abstract...",

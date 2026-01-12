@@ -44,7 +44,7 @@ const restTitle = titleWords.slice(1).join(" ");
         <input
           type="hidden"
           name="access_key"
-          value="YOUR_WEB3FORMS_ACCESS_KEY"
+          value="7708308f-ff2a-4e33-aa1e-674885fa6a2a"
         />
         <input type="hidden" name="subject" value="VIGCON 2026 Registration" />
         <input type="hidden" name="from_name" value="VIGCON 2026 Website" />
@@ -243,10 +243,39 @@ const restTitle = titleWords.slice(1).join(" ");
 
         <!-- Role -->
         <div class="grid gap-2">
-          <label class="text-sm font-medium text-(--color-text-secondary)">
+          <div
+            class="text-sm font-medium text-(--color-text-secondary) flex items-center gap-2"
+          >
             {t.registration.form.role}
-            <span class="text-(--color-primary)">*</span>
-          </label>
+            <span class="text-primary">*</span>
+            <button
+              type="button"
+              popovertarget="role-tooltip"
+              class="text-(--color-text-secondary) hover:text-primary transition-colors cursor-help inline-flex items-center justify-center [anchor-name:--role-info]"
+              aria-label="Info"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"
+                ></path><path d="M12 8h.01"></path></svg
+              >
+            </button>
+            <div
+              id="role-tooltip"
+              popover="auto"
+              class="px-3 py-2 rounded-lg bg-(--color-surface) border border-(--color-border) text-xs text-(--color-text) shadow-xl [position-anchor:--role-info] [position-area:top_span-right] mb-2 opacity-0 transition-opacity duration-200 [&:popover-open]:opacity-100"
+            >
+              {t.registration.form.tooltips.speakerOnsite}
+            </div>
+          </div>
           <div class="grid sm:grid-cols-2 gap-4">
             <label class="cursor-pointer group">
               <div
@@ -310,9 +339,12 @@ const restTitle = titleWords.slice(1).join(" ");
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                ><path d="M2 12h20"></path><path
-                  d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"></path><path
-                  d="M4 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8"></path></svg
+                ><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"
+                ></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line
+                  x1="12"
+                  x2="12"
+                  y1="19"
+                  y2="22"></line></svg
               >
               {t.registration.form.sessionDescription}
               <span class="text-(--color-primary)">*</span>
