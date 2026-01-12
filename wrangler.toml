@@ -1,9 +1,0 @@
-name = "vigcon"
-compatibility_date = "2026-01-01"
-pages_build_output_dir = "dist"
-
-[build]
-command = "bun run build"
-
-[site]
-bucket = "dist"
