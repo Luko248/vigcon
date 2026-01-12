@@ -10,16 +10,16 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.0",
-    "@fancyapps/ui": "^5.0.0",
-    "astro": "^5.0.0",
-    "date-fns": "^4.0.0"
+    "@astrojs/check": "^0.9.4",
+    "@fancyapps/ui": "^5.0.36",
+    "astro": "^5.16.0",
+    "date-fns": "^4.1.0"
   },
   "devDependencies": {
-    "@tailwindcss/cli": "^4.1.18",
-    "@tailwindcss/typography": "^0.5.0",
-    "@tailwindcss/vite": "^4.1.18",
-    "tailwindcss": "^4.0.0",
-    "typescript": "^5.0.0"
+    "@tailwindcss/cli": "^4.1.8",
+    "@tailwindcss/typography": "^0.5.16",
+    "@tailwindcss/vite": "^4.1.8",
+    "tailwindcss": "^4.1.8",
+    "typescript": "^5.7.2"
   }
 }
