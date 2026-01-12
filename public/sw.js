@@ -8,6 +8,6 @@ self.addEventListener("activate", () => {
   self.clients.claim();
 });
 
-self.addEventListener("fetch", (e) => {
+self.addEventListener("fetch", () => {
   // No-op: pass through all requests to the network
 });

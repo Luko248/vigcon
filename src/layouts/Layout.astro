@@ -141,7 +141,11 @@ const schemaOrg = {
     <meta property="twitter:image" content={new URL(image, Astro.site)} />
 
     <!-- Schema.org Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(schemaOrg)}
+    />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
