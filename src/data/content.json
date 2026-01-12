@@ -27,7 +27,7 @@
       ],
       "organizer": {
         "title": "Conference Organizer",
-        "name": "AIS Servis, s.r.o.",
+        "name": "AIS Servis s.r.o.",
         "sub": "Member of Vienna Insurance Group"
       }
     },
@@ -58,7 +58,7 @@
       ],
       "organizer": {
         "title": "Organizátor konference",
-        "name": "AIS Servis, s.r.o.",
+        "name": "AIS Servis s.r.o.",
         "sub": "Člen Vienna Insurance Group"
       }
     }
@@ -236,7 +236,7 @@
     }
   },
   "venue": {
-    "name": "AIS Servis, s.r.o.",
+    "name": "AIS Servis s.r.o.",
     "address": "Okružní 732/5, 638 00 Brno-sever-Lesná",
     "city": "Brno",
     "country": "Czech Republic",
