@@ -114,6 +114,7 @@
     "closeMenu": "Close menu",
     "switchToLight": "Switch to light mode",
     "switchToDark": "Switch to dark mode",
-    "switchLanguage": "Switch language"
+    "switchLanguage": "Switch language",
+    "mainNavigation": "Main navigation"
   }
 }

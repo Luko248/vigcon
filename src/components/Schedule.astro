@@ -528,7 +528,7 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
         id={`dialog-speaker-${speaker.id}`}
         class="speaker-modal backdrop:bg-black/80 bg-transparent p-4 max-w-2xl w-full"
       >
-        <div class="glass rounded-2xl p-6 relative">
+        <div class="glass rounded-2xl p-6 relative speaker-modal-content">
           <button
             type="button"
             class="absolute top-4 right-4 p-2 rounded-lg hover:bg-(--color-surface) transition-colors"
@@ -585,9 +585,9 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
               {speakerNames.map((name, idx) => (
                 <div class="flex items-center gap-3">
                   <div class={`w-12 h-12 rounded-full ${idx === 0 ? 'bg-(--color-surface)' : 'bg-(--color-primary)/20'} border border-(--color-border) flex items-center justify-center ${idx === 0 ? 'text-(--color-text-secondary)' : 'text-(--color-primary)'} font-bold text-sm shrink-0 overflow-hidden`}>
-                    {speaker.photos?.[idx] ? (
+                    {speaker.photos?.[idx] || (idx === 0 && speaker.photo && speaker.photo !== "/images/speakers/placeholder.svg") ? (
                       <img 
-                        src={speaker.photos[idx]} 
+                        src={speaker.photos?.[idx] || speaker.photo} 
                         alt={name.trim()} 
                         width="48" 
                         height="48" 
@@ -643,11 +643,13 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
 
   .speaker-modal {
     max-height: 90vh;
-    overflow-y: auto;
+    overflow: hidden;
   }
 
-  .speaker-modal::backdrop {
-    background: oklch(0 0 0 / 0.8);
+  .speaker-modal-content {
+    max-height: calc(90vh - 2rem);
+    overflow-y: auto;
+    background: color-mix(in srgb, var(--glass-bg), black 20%);
   }
 
   .speaker-abstract strong {

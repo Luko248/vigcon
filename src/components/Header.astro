@@ -40,7 +40,7 @@ const navItems = [
 >
   <nav
     class="section-container py-4! flex items-center justify-between"
-    aria-label={locale === "en" ? "Main navigation" : "Hlavní navigace"}
+    aria-label={t.accessibility.mainNavigation}
   >
     <!-- Logo -->
     <a
@@ -125,24 +125,9 @@ const navItems = [
             aria-hidden="true"
             class="overflow-visible"
           >
-            <line
-              class="line-top transition-transform duration-300 origin-center"
-              x1="4"
-              x2="20"
-              y1="6"
-              y2="6"></line>
-            <line
-              class="line-middle transition-opacity duration-300"
-              x1="4"
-              x2="20"
-              y1="12"
-              y2="12"></line>
-            <line
-              class="line-bottom transition-transform duration-300 origin-center"
-              x1="4"
-              x2="20"
-              y1="18"
-              y2="18"></line>
+            <line class="line-top" x1="4" x2="20" y1="6" y2="6"></line>
+            <line class="line-middle" x1="4" x2="20" y1="12" y2="12"></line>
+            <line class="line-bottom" x1="4" x2="20" y1="18" y2="18"></line>
           </svg>
         </button>
       </div>
@@ -155,24 +140,26 @@ const navItems = [
     class="lg:hidden absolute top-full left-0 right-0 bg-(--color-surface)/95 backdrop-blur-xl border-t border-(--color-border) transition-all duration-300 origin-top opacity-0 invisible -translate-y-2 h-[calc(100svh-var(--header-height))] overflow-y-auto"
     role="menu"
   >
-    <ul
-      class="section-container py-8! flex flex-col gap-6 min-h-full"
-      role="list"
-    >
-      {
-        navItems.map((item) => (
-          <li role="none">
-            <a
-              href={item.href}
-              class="block py-2 text-xl font-medium text-(--color-text) hover:text-primary transition-colors"
-              role="menuitem"
-            >
-              {item.label}
-            </a>
-          </li>
-        ))
-      }
-      <li role="none" class="mt-auto pt-6 border-t border-(--color-border)">
+    <div class="section-container py-8! flex flex-col h-full">
+      <ul
+        class="flex-1 flex flex-col justify-center items-center gap-8 w-full"
+        role="list"
+      >
+        {
+          navItems.map((item) => (
+            <li role="none" class="w-full text-center">
+              <a
+                href={item.href}
+                class="block py-2 text-2xl font-medium text-(--color-text) hover:text-primary transition-colors"
+                role="menuitem"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="pt-6 border-t border-(--color-border) mt-auto">
         <button
           id="mobile-add-to-calendar-btn"
           class="btn-primary w-full text-base py-3"
@@ -197,13 +184,22 @@ const navItems = [
           </svg>
           {t.cta.addToCalendar}
         </button>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 </header>
 
 <style>
   /* Burger Menu Animation */
+  .line-top,
+  .line-middle,
+  .line-bottom {
+    transform-origin: center;
+    transform-box: fill-box;
+    transition-property: transform, opacity;
+    transition-duration: 300ms;
+  }
+
   #mobile-menu-btn[aria-expanded="true"] .line-top {
     transform: translateY(6px) rotate(45deg);
   }
