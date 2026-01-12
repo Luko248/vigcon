@@ -526,9 +526,9 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
     return (
       <dialog
         id={`dialog-speaker-${speaker.id}`}
-        class="speaker-modal backdrop:bg-black/80 bg-transparent p-4 max-w-2xl w-full"
+        class="speaker-modal dark:backdrop:bg-black/80 bg-transparent p-4 max-w-2xl w-full"
       >
-        <div class="glass rounded-2xl p-6 relative speaker-modal-content">
+        <div class="glass rounded-2xl p-6 relative speaker-modal-content dark:bg-black/70 bg-white/70">
           <button
             type="button"
             class="absolute top-4 right-4 p-2 rounded-lg hover:bg-(--color-surface) transition-colors"
@@ -647,9 +647,8 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
   }
 
   .speaker-modal-content {
-    max-height: calc(90vh - 2rem);
+    max-height: calc(90svb - 2rem);
     overflow-y: auto;
-    background: color-mix(in srgb, var(--glass-bg), black 20%);
   }
 
   .speaker-abstract strong {
