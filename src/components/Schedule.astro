@@ -202,7 +202,7 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                         style={`top: ${pos.top}%; height: ${pos.height}%;`}
                       >
                         <div
-                          class={`h-full flex items-center justify-center rounded-lg ${item.type === "break" ? "bg-(--color-primary)/5 border border-dashed border-(--color-primary)/20" : "glass"}`}
+                          class={`h-full flex items-center justify-center rounded-lg ${item.type === "break" ? "bg-primary/5 border border-dashed border-primary/20" : "glass"}`}
                         >
                           <div class="text-center px-4 font-mono text-sm">
                             <time datetime={`2026-05-29T${item.startTime}`}>
@@ -233,12 +233,12 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                           data-modal-trigger={talk.id}
                           aria-label={`${t.schedule.viewDetails}: ${talk.title[locale]}`}
                         >
-                          <div class="flex items-center gap-2 mb-1 font-sans text-xs text-(--color-primary)">
+                          <div class="flex items-center gap-2 mb-1 font-sans text-xs text-primary">
                             <time datetime={`2026-05-29T${talk.startTime}`}>
                               {talk.startTime}
                             </time>
                             {talk.language && (
-                              <span class="px-1.5 py-0.5 rounded text-[0.625rem] font-semibold bg-(--color-primary)/10 text-(--color-primary)">
+                              <span class="px-1.5 py-0.5 rounded text-[0.625rem] font-semibold bg-primary/10 text-primary">
                                 {talk.language}
                               </span>
                             )}
@@ -248,7 +248,7 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                           </h4>
                           {speaker && (
                             <div class="flex items-center gap-2">
-                              <div class="w-6 h-6 rounded-full bg-linear-to-br from-(--color-primary)/30 to-(--color-primary)/10 flex items-center justify-center overflow-hidden shrink-0">
+                              <div class="w-6 h-6 rounded-full bg-linear-to-br from-primary/30 to-primary/10 flex items-center justify-center overflow-hidden shrink-0">
                                 <img
                                   src={speaker.photo}
                                   alt=""
@@ -258,7 +258,7 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                                   loading="lazy"
                                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                                 />
-                                <span class="hidden text-(--color-primary) font-bold text-[0.5rem] items-center justify-center w-full h-full">
+                                <span class="hidden text-primary font-bold text-[0.5rem] items-center justify-center w-full h-full">
                                   {speaker.name
                                     .split(" ")
                                     .map((n) => n[0])
@@ -300,7 +300,7 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                         style={`top: ${pos.top}%; height: ${pos.height}%;`}
                       >
                         <div
-                          class={`h-full flex items-center justify-center rounded-lg ${item.type === "break" ? "bg-(--color-primary)/5 border border-dashed border-(--color-primary)/20" : "glass"}`}
+                          class={`h-full flex items-center justify-center rounded-lg ${item.type === "break" ? "bg-primary/5 border border-dashed border-primary/20" : "glass"}`}
                         >
                           <div class="text-center px-4 font-mono text-sm">
                             <time datetime={`2026-05-29T${item.startTime}`}>
@@ -331,12 +331,12 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                           data-modal-trigger={talk.id}
                           aria-label={`${t.schedule.viewDetails}: ${talk.title[locale]}`}
                         >
-                          <div class="flex items-center gap-2 mb-1 font-sans text-xs text-(--color-primary)">
+                          <div class="flex items-center gap-2 mb-1 font-sans text-xs text-primary">
                             <time datetime={`2026-05-29T${talk.startTime}`}>
                               {talk.startTime}
                             </time>
                             {talk.language && (
-                              <span class="px-1.5 py-0.5 rounded text-[0.625rem] font-semibold bg-(--color-primary)/10 text-(--color-primary)">
+                              <span class="px-1.5 py-0.5 rounded text-[0.625rem] font-semibold bg-primary/10 text-primary">
                                 {talk.language}
                               </span>
                             )}
@@ -346,7 +346,7 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                           </h4>
                           {speaker && (
                             <div class="flex items-center gap-2">
-                              <div class="w-6 h-6 rounded-full bg-linear-to-br from-(--color-primary)/30 to-(--color-primary)/10 flex items-center justify-center overflow-hidden shrink-0">
+                              <div class="w-6 h-6 rounded-full bg-linear-to-br from-primary/30 to-primary/10 flex items-center justify-center overflow-hidden shrink-0">
                                 <img
                                   src={speaker.photo}
                                   alt=""
@@ -356,7 +356,7 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                                   loading="lazy"
                                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                                 />
-                                <span class="hidden text-(--color-primary) font-bold text-[0.5rem] items-center justify-center w-full h-full">
+                                <span class="hidden text-primary font-bold text-[0.5rem] items-center justify-center w-full h-full">
                                   {speaker.name
                                     .split(" ")
                                     .map((n) => n[0])
@@ -384,7 +384,7 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
             schedule.map((talk, index) => (
               <div>
                 {talk.track !== "both" && (
-                  <div class="text-xs font-semibold text-(--color-primary) uppercase tracking-wider mb-2">
+                  <div class="text-xs font-semibold text-primary uppercase tracking-wider mb-2">
                     {talk.track === "track-a"
                       ? tracks[0].name[locale]
                       : tracks[1].name[locale]}
@@ -413,13 +413,13 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
               return (
                 <button
                   type="button"
-                  class="speaker-card glass rounded-2xl p-6 hover:border-(--color-primary)/50 transition-colors animate-scale-up group h-full flex flex-col text-left cursor-pointer"
+                  class="speaker-card glass rounded-2xl p-6 hover:border-primary/50 transition-colors animate-scale-up group h-full flex flex-col text-left cursor-pointer"
                   style={`animation-delay: ${index * 100}ms`}
                   data-modal-trigger={`speaker-${speaker.id}`}
                   aria-label={`${t.schedule.viewDetails}: ${speaker.topic[locale]}`}
                 >
                   <!-- Session Title -->
-                  <h3 class="font-bold text-lg leading-tight mb-3 group-hover:text-(--color-primary) transition-colors">
+                  <h3 class="font-bold text-lg leading-tight mb-3 group-hover:text-primary transition-colors">
                     {speaker.topic[locale]}
                   </h3>
 
@@ -427,7 +427,7 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                   {speaker.hashtags && speaker.hashtags.length > 0 && (
                     <div class="flex flex-wrap gap-2 mb-4">
                       {speaker.hashtags.map((tag: string) => (
-                        <span class="px-2 py-0.5 rounded-md bg-(--color-primary)/10 text-(--color-primary) text-[10px] font-medium font-mono">
+                        <span class="px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[10px] font-medium font-mono">
                           #{tag}
                         </span>
                       ))}
@@ -461,7 +461,7 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                           )}
                         </div>
                         {hasTwoSpeakers && (
-                          <div class="w-10 h-10 rounded-full bg-(--color-primary)/20 border-2 border-(--color-bg) flex items-center justify-center text-(--color-primary) font-bold text-xs overflow-hidden absolute left-4 top-0">
+                          <div class="w-10 h-10 rounded-full bg-primary/20 border-2 border-(--color-bg) flex items-center justify-center text-primary font-bold text-xs overflow-hidden absolute left-4 top-0">
                             {speaker.photos?.[1] ? (
                               <img 
                                 src={speaker.photos[1]} 
@@ -496,7 +496,7 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
         <!-- Call to Action -->
         <div class="text-center mt-12 animate-on-scroll">
           <p class="text-(--color-text-secondary) mb-4">{t.schedule.register}</p>
-          <a href="#registration" class="text-(--color-primary) font-semibold hover:underline inline-flex items-center gap-1">
+          <a href="#registration" class="text-primary font-semibold hover:underline inline-flex items-center gap-1">
             {t.schedule.registerLink}
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -547,7 +547,7 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
           {speaker.hashtags && speaker.hashtags.length > 0 && (
             <div class="flex flex-wrap gap-2 mb-6">
               {speaker.hashtags.map((tag: string) => (
-                <span class="px-2 py-0.5 rounded-md bg-(--color-primary)/10 text-(--color-primary) text-xs font-medium font-mono">
+                <span class="px-2 py-0.5 rounded-md bg-primary/10 text-primary text-xs font-medium font-mono">
                   #{tag}
                 </span>
               ))}
@@ -561,10 +561,10 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
             </p>
             <div class="prose prose-sm prose-invert max-w-none text-(--color-text-secondary) leading-snug speaker-abstract">
               <Fragment set:html={speaker.abstract[locale]
-                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener" class="text-(--color-primary) hover:underline">$1</a>')
+                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener" class="text-primary hover:underline">$1</a>')
                 .replace(/\*\*([^*]+)\*\*/g, '<strong class="text-(--color-text)">$1</strong>')
                 .replace(/^## (.+)$/gm, '</p><h4 class="font-bold text-(--color-text) mt-2 mb-0.5">$1</h4><p>')
-                .replace(/^- (.+)$/gm, '<li class="flex items-center gap-2 pl-2"><span class="text-(--color-primary) text-xs">●</span><span>$1</span></li>')
+                .replace(/^- (.+)$/gm, '<li class="flex items-center gap-2 pl-2"><span class="text-primary text-xs">●</span><span>$1</span></li>')
                 .replace(/\n\n/g, '</p><p class="mt-1">')
                 .replace(/\n/g, '<br/>')
                 .replace(/^/, '<p>')
@@ -584,7 +584,7 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
             <div class={`grid ${hasTwoSpeakers ? 'grid-cols-2' : 'grid-cols-1'} gap-4`}>
               {speakerNames.map((name, idx) => (
                 <div class="flex items-center gap-3">
-                  <div class={`w-12 h-12 rounded-full ${idx === 0 ? 'bg-(--color-surface)' : 'bg-(--color-primary)/20'} border border-(--color-border) flex items-center justify-center ${idx === 0 ? 'text-(--color-text-secondary)' : 'text-(--color-primary)'} font-bold text-sm shrink-0 overflow-hidden`}>
+                  <div class={`w-12 h-12 rounded-full ${idx === 0 ? 'bg-(--color-surface)' : 'bg-primary/20'} border border-(--color-border) flex items-center justify-center ${idx === 0 ? 'text-(--color-text-secondary)' : 'text-primary'} font-bold text-sm shrink-0 overflow-hidden`}>
                     {speaker.photos?.[idx] || (idx === 0 && speaker.photo && speaker.photo !== "/images/speakers/placeholder.svg") ? (
                       <img 
                         src={speaker.photos?.[idx] || speaker.photo} 
