@@ -123,10 +123,12 @@ const restTitle = titleWords.slice(1).join(" ");
                 </div>
                 <div>
                   <h4 class="font-bold text-sm text-(--color-text)">{transportDetails.rideshare[locale].title}</h4>
-                  <div class="flex items-center gap-2 text-xs opacity-70">
+                  <div class="grid grid-cols-[1fr_auto] gap-2 text-xs opacity-70">
                     <time datetime="PT15M">{transportDetails.rideshare[locale].duration}</time>
-                    <span>•</span>
-                    <span>{transportDetails.rideshare[locale].cost}</span>
+                    <div class="text-right whitespace-nowrap">
+                      <span>•</span>
+                      <span class="ml-1">{transportDetails.rideshare[locale].cost}</span>
+                    </div>
                   </div>
                 </div>
               </div>
