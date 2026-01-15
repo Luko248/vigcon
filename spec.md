@@ -7,7 +7,7 @@ This specification provides comprehensive instructions for an AI coding agent to
 **Conference Details:**
 
 - **Name**: VIG IT Conference (WIGCON)
-- **Date**: May 29, 2026
+- **Date**: May 28, 2026
 - **Location**: Okružní 732/5, 638 00 Brno-sever-Lesná, Czech Republic
 - **Focus**: AI innovations and cutting-edge technologies from Vienna Insurance Group developers
 - **Primary Color**: oklch(0.78 0.17 166) (#00D699 equivalent)
@@ -198,7 +198,7 @@ Complete conference schedule with 6+ talks across two tracks.
 ```json
 {
   "conference": {
-    "date": "2026-05-29",
+    "date": "2026-05-28",
     "startTime": "09:00",
     "endTime": "18:00",
     "timezone": "Europe/Prague"
@@ -859,7 +859,7 @@ export function getLocaleFromPath(pathname: string): Locale {
   "hero": {
     "title": "VIG IT Conference 2026",
     "subtitle": "Technology. Innovation. AI.",
-    "date": "May 29, 2026",
+    "date": "May 28, 2026",
     "location": "Brno, Czech Republic"
   },
   "countdown": {
@@ -915,7 +915,7 @@ export function getLocaleFromPath(pathname: string): Locale {
   "hero": {
     "title": "VIG IT Conference 2026",
     "subtitle": "Technologie. Inovace. AI.",
-    "date": "29. května 2026",
+    "date": "28. května 2026",
     "location": "Brno, Česká republika"
   },
   "countdown": {
@@ -1036,7 +1036,8 @@ Complete CSS with Tailwind CSS 4 configuration, OKLCH colors, glass morphism, sc
   --color-primary-900: oklch(0.28 0.06 166);
 
   /* Typography */
-  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+  --font-sans:
+    "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
 
   /* Spacing Extensions */
@@ -1164,9 +1165,8 @@ Complete CSS with Tailwind CSS 4 configuration, OKLCH colors, glass morphism, sc
   .btn-primary:hover {
     background: var(--color-primary-dark);
     scale: 1.05;
-    box-shadow: 0 0.625rem 1.25rem -0.25rem color-mix(in oklch, var(
-            --color-primary
-          ) 50%, transparent);
+    box-shadow: 0 0.625rem 1.25rem -0.25rem
+      color-mix(in oklch, var(--color-primary) 50%, transparent);
   }
 
   .btn-primary:active {
@@ -1222,7 +1222,8 @@ Complete CSS with Tailwind CSS 4 configuration, OKLCH colors, glass morphism, sc
     font-size: 0.875rem;
     font-weight: 500;
     border-radius: 9999px;
-    border: 0.0625rem solid color-mix(in oklch, var(--color-primary) 20%, transparent);
+    border: 0.0625rem solid
+      color-mix(in oklch, var(--color-primary) 20%, transparent);
   }
 
   /* Talk Card */
@@ -1412,8 +1413,8 @@ const schemaOrg = {
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "VIG IT Conference 2026",
-  "startDate": "2026-05-29T09:00:00+02:00",
-  "endDate": "2026-05-29T18:00:00+02:00",
+  "startDate": "2026-05-28T09:00:00+02:00",
+  "endDate": "2026-05-28T18:00:00+02:00",
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "location": {

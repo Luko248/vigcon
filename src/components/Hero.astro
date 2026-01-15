@@ -11,7 +11,7 @@ interface Props {
 const { locale } = Astro.props;
 const t = locale === "en" ? en : cz;
 
-const conferenceDate = "2026-05-29T09:00:00+02:00";
+const conferenceDate = "2026-05-28T09:00:00+02:00";
 ---
 
 <section
@@ -48,7 +48,7 @@ const conferenceDate = "2026-05-29T09:00:00+02:00";
   <!-- Canvas Animation -->
   <canvas
     id="bg-canvas"
-    class="absolute inset-0 z-10 w-full h-full opacity-0 transition-opacity duration-[3000ms] will-change-[opacity]"
+    class="absolute inset-0 z-10 w-full h-full opacity-0 transition-opacity duration-3000 will-change-[opacity]"
     data-visible="false"></canvas>
 
   <!-- Content -->
@@ -62,7 +62,7 @@ const conferenceDate = "2026-05-29T09:00:00+02:00";
           class="glass px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-primary/20 flex items-center gap-2"
         >
           <span class="text-[0.65rem] sm:text-sm font-medium text-primary">
-            <time datetime="2026-05-29">{t.hero.date}</time> • {t.hero.location}
+            <time datetime="2026-05-28">{t.hero.date}</time> • {t.hero.location}
           </span>
         </div>
       </div>
@@ -142,7 +142,7 @@ const conferenceDate = "2026-05-29T09:00:00+02:00";
               y1="10"
               y2="10"></line></svg
           >
-          <time datetime="2026-05-29">{t.hero.date}</time>
+          <time datetime="2026-05-28">{t.hero.date}</time>
         </div>
         <div class="flex items-center gap-2">
           <svg

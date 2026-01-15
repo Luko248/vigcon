@@ -25,7 +25,7 @@ const t = locale === 'en' ? en : cz;
       <div>
         <div class="flex items-center gap-3 mb-2">
           <time
-            datetime={`2026-05-29T${talk.startTime}`}
+            datetime={`2026-05-28T${talk.startTime}`}
             class="text-sm text-(--color-text-secondary)"
           >
             {talk.startTime} - {talk.endTime}
@@ -45,7 +45,7 @@ const t = locale === 'en' ? en : cz;
       </div>
       <button
         type="button"
-        class="flex-shrink-0 p-2 rounded-lg text-(--color-text-secondary) hover:text-(--color-text) hover:bg-(--glass-bg) transition-colors"
+        class="shrink-0 p-2 rounded-lg text-(--color-text-secondary) hover:text-(--color-text) hover:bg-(--glass-bg) transition-colors"
         aria-label={t.modal.close}
         data-close-modal
       >

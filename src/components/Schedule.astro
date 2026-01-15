@@ -104,10 +104,10 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
         isScheduled ? (
           <p class="text-lg text-(--color-text-secondary) animate-on-scroll-delayed font-mono">
             <time datetime={conference.date}>{conference.date}</time> |
-            <time datetime={`2026-05-29T${TIMELINE_START}`}>
+            <time datetime={`2026-05-28T${TIMELINE_START}`}>
               {TIMELINE_START}
             </time>{" "}
-            -<time datetime={`2026-05-29T${TIMELINE_END}`}>{TIMELINE_END}</time>
+            -<time datetime={`2026-05-28T${TIMELINE_END}`}>{TIMELINE_END}</time>
           </p>
         ) : (
           <p class="text-lg text-(--color-text-secondary) max-w-2xl mx-auto animate-on-scroll-delayed">
@@ -172,7 +172,7 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                         class={`absolute left-0 right-0 flex items-center justify-end pr-3 font-mono ${isHour ? "font-semibold text-(--color-text)" : "text-xs text-(--color-text-secondary)"}`}
                         style={`top: ${top}%; transform: translateY(-50%);`}
                       >
-                        <time datetime={`2026-05-29T${time}`}>{time}</time>
+                        <time datetime={`2026-05-28T${time}`}>{time}</time>
                       </div>
                     );
                   })
@@ -205,11 +205,11 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                           class={`h-full flex items-center justify-center rounded-lg ${item.type === "break" ? "bg-primary/5 border border-dashed border-primary/20" : "glass"}`}
                         >
                           <div class="text-center px-4 font-mono text-sm">
-                            <time datetime={`2026-05-29T${item.startTime}`}>
+                            <time datetime={`2026-05-28T${item.startTime}`}>
                               {item.startTime}
                             </time>{" "}
                             -
-                            <time datetime={`2026-05-29T${item.endTime}`}>
+                            <time datetime={`2026-05-28T${item.endTime}`}>
                               {item.endTime}
                             </time>
                           </div>
@@ -234,7 +234,7 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                           aria-label={`${t.schedule.viewDetails}: ${talk.title[locale]}`}
                         >
                           <div class="flex items-center gap-2 mb-1 font-sans text-xs text-primary">
-                            <time datetime={`2026-05-29T${talk.startTime}`}>
+                            <time datetime={`2026-05-28T${talk.startTime}`}>
                               {talk.startTime}
                             </time>
                             {talk.language && (
@@ -303,11 +303,11 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                           class={`h-full flex items-center justify-center rounded-lg ${item.type === "break" ? "bg-primary/5 border border-dashed border-primary/20" : "glass"}`}
                         >
                           <div class="text-center px-4 font-mono text-sm">
-                            <time datetime={`2026-05-29T${item.startTime}`}>
+                            <time datetime={`2026-05-28T${item.startTime}`}>
                               {item.startTime}
                             </time>{" "}
                             -
-                            <time datetime={`2026-05-29T${item.endTime}`}>
+                            <time datetime={`2026-05-28T${item.endTime}`}>
                               {item.endTime}
                             </time>
                           </div>
@@ -332,7 +332,7 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                           aria-label={`${t.schedule.viewDetails}: ${talk.title[locale]}`}
                         >
                           <div class="flex items-center gap-2 mb-1 font-sans text-xs text-primary">
-                            <time datetime={`2026-05-29T${talk.startTime}`}>
+                            <time datetime={`2026-05-28T${talk.startTime}`}>
                               {talk.startTime}
                             </time>
                             {talk.language && (
@@ -719,7 +719,7 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
   });
 
   // Current time indicator
-  const conferenceDate = "2026-05-29";
+  const conferenceDate = "2026-05-28";
   const TIMELINE_START = "08:30";
   const TIMELINE_END = "18:00";
 
