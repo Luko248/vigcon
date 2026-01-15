@@ -38,10 +38,10 @@ const restTitle = titleWords.slice(1).join(" ");
         {
           aboutContent.cards?.map((card: any, index: number) => (
             <div
-              class="glass rounded-2xl p-6 text-left hover:border-(--color-primary)/50 transition-colors animate-scale-up h-full flex flex-col"
+              class="glass rounded-2xl p-6 text-left hover:border-primary/50 transition-colors animate-scale-up h-full flex flex-col"
               style={`animation-delay: ${index * 100}ms`}
             >
-              <div class="w-12 h-12 rounded-xl bg-(--color-primary)/10 flex items-center justify-center text-(--color-primary) mb-4 shrink-0">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 shrink-0">
                 {card.icon === "chip" && (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -141,7 +141,7 @@ const restTitle = titleWords.slice(1).join(" ");
         </p>
         <div class="glass inline-flex items-center gap-4 px-6 py-3 rounded-xl">
           <div class="text-left">
-            <p class="font-bold text-(--color-primary)">
+            <p class="font-bold text-primary">
               {aboutContent.organizer?.name}
             </p>
             <p class="text-xs text-(--color-text-secondary)">

@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import type { Locale } from '@utils/types';
 import en from '@i18n/en.json';
 import cz from '@i18n/cz.json';
@@ -10,69 +11,41 @@ interface Props {
 const { locale } = Astro.props;
 const t = locale === 'en' ? en : cz;
 
-// Gallery images
-const galleryImages = [
-  {
-    src: '/images/gallery/IMG_0050.avif',
-    width: 1024,
-    height: 683,
-    alt: t.gallery.images.img_0050
-  },
-  {
-    src: '/images/gallery/IMG_0052.avif',
-    width: 1024,
-    height: 683,
-    alt: t.gallery.images.img_0052
-  },
-  {
-    src: '/images/gallery/IMG_0091.avif',
-    width: 1024,
-    height: 683,
-    alt: t.gallery.images.img_0091
-  },
-  {
-    src: '/images/gallery/IMG_3820.avif',
-    width: 1024,
-    height: 768,
-    alt: t.gallery.images.img_3820
-  },
-  {
-    src: '/images/gallery/IMG_7715.avif',
-    width: 1024,
-    height: 1365,
-    alt: t.gallery.images.img_7715
-  },
-  {
-    src: '/images/gallery/IMG_7722.avif',
-    width: 1024,
-    height: 768,
-    alt: t.gallery.images.img_7722
-  },
-  {
-    src: '/images/gallery/IMG_7735.avif',
-    width: 1024,
-    height: 768,
-    alt: t.gallery.images.img_7735
-  },
-  {
-    src: '/images/gallery/IMG_7772.avif',
-    width: 1024,
-    height: 768,
-    alt: t.gallery.images.img_7772
-  },
-  {
-    src: '/images/gallery/IMG_7815.avif',
-    width: 1024,
-    height: 768,
-    alt: t.gallery.images.img_7815
-  },
-  {
-    src: '/images/gallery/IMG_7740.avif',
-    width: 1024,
-    height: 1365,
-    alt: t.gallery.images.img_7740
-  }
+// Load images dynamically
+const galleryAssets = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/images/gallery/*.{jpeg,jpg,png,gif,avif}",
+  { eager: true }
+);
+
+const getGalleryImage = (filename: string) => {
+  const fullPath = `/src/assets/images/gallery/${filename}`;
+  return galleryAssets[fullPath]?.default;
+};
+
+// Gallery configuration (mapped to translations)
+const galleryConfig = [
+  { filename: 'IMG_0050.avif', alt: t.gallery.images.img_0050 },
+  { filename: 'IMG_0052.avif', alt: t.gallery.images.img_0052 },
+  { filename: 'IMG_0091.avif', alt: t.gallery.images.img_0091 },
+  { filename: 'IMG_3820.avif', alt: t.gallery.images.img_3820 },
+  { filename: 'IMG_7715.avif', alt: t.gallery.images.img_7715 },
+  { filename: 'IMG_7722.avif', alt: t.gallery.images.img_7722 },
+  { filename: 'IMG_7735.avif', alt: t.gallery.images.img_7735 },
+  { filename: 'IMG_7772.avif', alt: t.gallery.images.img_7772 },
+  { filename: 'IMG_7815.avif', alt: t.gallery.images.img_7815 },
+  { filename: 'IMG_7740.avif', alt: t.gallery.images.img_7740 }
 ];
+
+const galleryImages = galleryConfig.map(item => {
+  const image = getGalleryImage(item.filename);
+  if (!image) throw new Error(`Image not found: ${item.filename}`);
+  return {
+    ...item,
+    image,
+    // Keep aspect ratio for masonry layout calculation if needed
+    aspectRatio: `${image.width} / ${image.height}`
+  };
+});
 
 const titleWords = t.gallery.title.split(" ");
 const firstWord = titleWords[0];
@@ -105,15 +78,15 @@ const restTitle = titleWords.slice(1).join(" ");
       role="list"
       aria-label={t.gallery.title}
     >
-      {galleryImages.map((image, index) => (
+      {galleryImages.map((item, index) => (
         <a
-          href={image.src}
+          href={item.image.src}
           data-fancybox="gallery"
-          data-caption={image.alt}
+          data-caption={item.alt}
           class="group relative block w-full rounded-xl overflow-hidden animate-scale-up break-inside-avoid"
-          style={`animation-delay: ${index * 50}ms; aspect-ratio: ${image.width} / ${image.height}`}
+          style={`animation-delay: ${index * 50}ms; aspect-ratio: ${item.aspectRatio}`}
           role="listitem"
-          aria-label={image.alt}
+          aria-label={item.alt}
         >
           <!-- Placeholder for missing images -->
           <div class="absolute inset-0 bg-linear-to-br from-primary/20 to-primary/5 flex items-center justify-center opacity-0 transition-opacity duration-300 pointer-events-none group-hover:opacity-0">
@@ -125,15 +98,11 @@ const restTitle = titleWords.slice(1).join(" ");
           </div>
 
           <!-- Actual image -->
-          <img
-            src={image.src}
-            width={image.width}
-            height={image.height}
-            alt={image.alt}
+          <Image
+            src={item.image}
+            alt={item.alt}
             class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-110"
-            loading="lazy"
-            decoding="async"
-            style={`aspect-ratio: ${image.width} / ${image.height}`}
+            style={`aspect-ratio: ${item.aspectRatio}`}
           />
 
           <!-- Hover Overlay -->

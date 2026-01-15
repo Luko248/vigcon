@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import backgroundTop from "../assets/images/bg/background-top.jpg";
 import type { Locale } from "@utils/types";
 import Countdown from "./Countdown.astro";
 import en from "@i18n/en.json";
@@ -32,12 +34,12 @@ const conferenceDate = "2026-05-28T09:00:00+02:00";
 >
   <!-- Background Image with Parallax -->
   <div class="absolute inset-0 z-0">
-    <img
-      src="/images/bg/background-top.jpg"
+    <Image
+      src={backgroundTop}
       alt=""
-      role="presentation"
       class="w-full h-full object-cover parallax-bg"
       loading="eager"
+      fetchpriority="high"
     />
     <div
       class="absolute inset-0 bg-linear-to-b from-(--color-bg)/80 via-(--color-bg)/60 to-(--color-bg)"

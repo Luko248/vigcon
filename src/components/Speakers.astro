@@ -40,7 +40,7 @@ const restTitle = titleWords.slice(1).join(" ");
       {
         speakers.map((speaker, index) => (
           <div
-            class="glass rounded-2xl p-6 hover:border-(--color-primary)/50 transition-colors animate-scale-up group h-full flex flex-col"
+            class="glass rounded-2xl p-6 hover:border-primary/50 transition-colors animate-scale-up group h-full flex flex-col"
             style={`animation-delay: ${index * 100}ms`}
           >
             <!-- Header -->
@@ -57,7 +57,7 @@ const restTitle = titleWords.slice(1).join(" ");
                   <h3 class="font-bold text-lg leading-tight">{speaker.name}</h3>
                   <div class="flex flex-col gap-0.5">
                     {speaker.role && (
-                      <p class="text-xs text-(--color-primary)">
+                      <p class="text-xs text-primary">
                         {speaker.role[locale]}
                       </p>
                     )}
@@ -83,10 +83,10 @@ const restTitle = titleWords.slice(1).join(" ");
 
             <!-- Topic -->
             <div class="mb-4 grow">
-              <p class="text-[10px] uppercase tracking-wider text-(--color-primary) font-bold mb-1">
+              <p class="text-[10px] uppercase tracking-wider text-primary font-bold mb-1">
                 {locale === "en" ? "TOPIC" : "TÉMA"}
               </p>
-              <h4 class="font-semibold text-sm mb-2 group-hover:text-(--color-primary) transition-colors">
+              <h4 class="font-semibold text-sm mb-2 group-hover:text-primary transition-colors">
                 {speaker.topic[locale]}
               </h4>
             </div>
@@ -108,7 +108,7 @@ const restTitle = titleWords.slice(1).join(" ");
     <!-- Call to Action -->
     <div class="text-center mt-12 animate-on-scroll">
       <p class="text-(--color-text-secondary) mb-4">{t.speakers.register}</p>
-      <a href="#registration" class="text-(--color-primary) font-semibold hover:underline inline-flex items-center gap-1">
+      <a href="#registration" class="text-primary font-semibold hover:underline inline-flex items-center gap-1">
         {t.speakers.registerLink}
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </a>

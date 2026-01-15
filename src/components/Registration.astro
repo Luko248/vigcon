@@ -70,14 +70,14 @@ const restTitle = titleWords.slice(1).join(" ");
                   ></path><circle cx="12" cy="7" r="4"></circle></svg
                 >
                 {t.registration.form.fullName}
-                <span class="text-(--color-primary)">*</span>
+                <span class="text-primary">*</span>
               </span>
             </label>
             <input
               type="text"
               id="name"
               name="name"
-              class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-(--color-primary) focus:ring-1 focus:ring-(--color-primary) outline-none transition-all placeholder:text-gray-600"
+              class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-600"
               placeholder="John Smith"
               required
             />
@@ -108,14 +108,14 @@ const restTitle = titleWords.slice(1).join(" ");
                   ></path></svg
                 >
                 {t.registration.form.company}
-                <span class="text-(--color-primary)">*</span>
+                <span class="text-primary">*</span>
               </span>
             </label>
             <input
               type="text"
               id="company"
               name="company"
-              class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-(--color-primary) focus:ring-1 focus:ring-(--color-primary) outline-none transition-all placeholder:text-gray-600"
+              class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-600"
               placeholder="VIG Czech Republic"
               required
             />
@@ -142,14 +142,14 @@ const restTitle = titleWords.slice(1).join(" ");
                     d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg
                 >
                 {t.registration.form.email}
-                <span class="text-(--color-primary)">*</span>
+                <span class="text-primary">*</span>
               </span>
             </label>
             <input
               type="email"
               id="email"
               name="email"
-              class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-(--color-primary) focus:ring-1 focus:ring-(--color-primary) outline-none transition-all placeholder:text-gray-600"
+              class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-600"
               placeholder="john.smith@company.com"
               required
             />
@@ -183,7 +183,7 @@ const restTitle = titleWords.slice(1).join(" ");
               type="tel"
               id="phone"
               name="phone"
-              class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-(--color-primary) focus:ring-1 focus:ring-(--color-primary) outline-none transition-all placeholder:text-gray-600"
+              class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-600"
               placeholder="+420 123 456 789"
             />
           </div>
@@ -193,7 +193,7 @@ const restTitle = titleWords.slice(1).join(" ");
         <div class="grid gap-2">
           <label class="text-sm font-medium text-(--color-text-secondary)">
             {t.registration.form.participationType}
-            <span class="text-(--color-primary)">*</span>
+            <span class="text-primary">*</span>
           </label>
           <div class="grid sm:grid-cols-2 gap-4">
             <label class="cursor-pointer group">
@@ -204,7 +204,7 @@ const restTitle = titleWords.slice(1).join(" ");
                   type="radio"
                   name="type"
                   value="onsite"
-                  class="mt-1 w-5 h-5 accent-(--color-primary) cursor-pointer"
+                  class="mt-1 w-5 h-5 accent-primary cursor-pointer"
                   checked
                 />
                 <div>
@@ -226,7 +226,7 @@ const restTitle = titleWords.slice(1).join(" ");
                   type="radio"
                   name="type"
                   value="online"
-                  class="mt-1 w-5 h-5 accent-(--color-primary) cursor-pointer"
+                  class="mt-1 w-5 h-5 accent-primary cursor-pointer"
                 />
                 <div>
                   <span class="block font-medium text-(--color-text)"
@@ -347,20 +347,20 @@ const restTitle = titleWords.slice(1).join(" ");
                   y2="22"></line></svg
               >
               {t.registration.form.sessionDescription}
-              <span class="text-(--color-primary)">*</span>
+              <span class="text-primary">*</span>
             </span>
           </label>
           <textarea
             id="session-description"
             name="session-description"
             rows="4"
-            class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-(--color-primary) focus:ring-1 focus:ring-(--color-primary) outline-none transition-all placeholder:text-gray-600 resize-none"
+            class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-600 resize-none"
             placeholder={t.registration.form.sessionPlaceholder}></textarea>
         </div>
 
         <button
           type="submit"
-          class="w-full btn-primary py-4 text-lg font-bold shadow-lg shadow-(--color-primary)/20"
+          class="w-full btn-primary py-4 text-lg font-bold shadow-lg shadow-primary/20"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import type { Locale, Talk, Speaker } from "@utils/types";
 import TalkCard from "./TalkCard.astro";
 import TalkModal from "./TalkModal.astro";
@@ -6,6 +7,18 @@ import scheduleData from "@data/schedule.json";
 import speakersData from "@data/speakers.json";
 import en from "@i18n/en.json";
 import cz from "@i18n/cz.json";
+
+const speakerImages = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/images/speakers/*.{jpeg,jpg,png,gif,avif,svg}",
+  { eager: true }
+);
+
+const getSpeakerImage = (imagePath: string | undefined) => {
+  if (!imagePath) return undefined;
+  const imageName = imagePath.split("/").pop();
+  const fullPath = `/src/assets/images/speakers/${imageName}`;
+  return speakerImages[fullPath]?.default;
+};
 
 interface Props {
   locale: Locale;
@@ -222,6 +235,7 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                   trackATalks.map((talk) => {
                     const pos = getTalkPosition(talk);
                     const speaker = getSpeaker(talk.speakerId);
+                    const speakerImg = speaker ? getSpeakerImage(speaker.photo) : undefined;
                     return (
                       <div
                         class="absolute left-0 right-0 px-2 py-1"
@@ -249,21 +263,22 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                           {speaker && (
                             <div class="flex items-center gap-2">
                               <div class="w-6 h-6 rounded-full bg-linear-to-br from-primary/30 to-primary/10 flex items-center justify-center overflow-hidden shrink-0">
-                                <img
-                                  src={speaker.photo}
-                                  alt=""
-                                  width="24"
-                                  height="24"
-                                  class="w-full h-full object-cover"
-                                  loading="lazy"
-                                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                />
-                                <span class="hidden text-primary font-bold text-[0.5rem] items-center justify-center w-full h-full">
-                                  {speaker.name
-                                    .split(" ")
-                                    .map((n) => n[0])
-                                    .join("")}
-                                </span>
+                                {speakerImg ? (
+                                  <Image
+                                    src={speakerImg}
+                                    alt=""
+                                    width={24}
+                                    height={24}
+                                    class="w-full h-full object-cover"
+                                  />
+                                ) : (
+                                  <span class="flex text-primary font-bold text-[0.5rem] items-center justify-center w-full h-full">
+                                    {speaker.name
+                                      .split(" ")
+                                      .map((n) => n[0])
+                                      .join("")}
+                                  </span>
+                                )}
                               </div>
                               <span class="text-xs text-(--color-text-secondary) truncate">
                                 {speaker.name}
@@ -320,6 +335,7 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                   trackBTalks.map((talk) => {
                     const pos = getTalkPosition(talk);
                     const speaker = getSpeaker(talk.speakerId);
+                    const speakerImg = speaker ? getSpeakerImage(speaker.photo) : undefined;
                     return (
                       <div
                         class="absolute left-0 right-0 px-2 py-1"
@@ -347,21 +363,23 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                           {speaker && (
                             <div class="flex items-center gap-2">
                               <div class="w-6 h-6 rounded-full bg-linear-to-br from-primary/30 to-primary/10 flex items-center justify-center overflow-hidden shrink-0">
-                                <img
-                                  src={speaker.photo}
-                                  alt=""
-                                  width="24"
-                                  height="24"
-                                  class="w-full h-full object-cover"
-                                  loading="lazy"
-                                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                />
-                                <span class="hidden text-primary font-bold text-[0.5rem] items-center justify-center w-full h-full">
-                                  {speaker.name
-                                    .split(" ")
-                                    .map((n) => n[0])
-                                    .join("")}
-                                </span>
+                                {speakerImg ? (
+                                  <Image
+                                    src={speakerImg}
+                                    alt=""
+                                    width={24}
+                                    height={24}
+                                    class="w-full h-full object-cover"
+                                    loading="lazy"
+                                  />
+                                ) : (
+                                  <span class="flex text-primary font-bold text-[0.5rem] items-center justify-center w-full h-full">
+                                    {speaker.name
+                                      .split(" ")
+                                      .map((n) => n[0])
+                                      .join("")}
+                                  </span>
+                                )}
                               </div>
                               <span class="text-xs text-(--color-text-secondary) truncate">
                                 {speaker.name}
@@ -393,6 +411,7 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                 <TalkCard
                   talk={talk}
                   speaker={getSpeaker(talk.speakerId)}
+                  speakerImage={getSpeakerImage(getSpeaker(talk.speakerId)?.photo)}
                   locale={locale}
                   delay={index * 30}
                 />
@@ -409,6 +428,10 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
             speakers.map((speaker, index) => {
               const speakerNames = speaker.name.split(" & ");
               const hasTwoSpeakers = speakerNames.length === 2;
+              const photo1 = speaker.photos?.[0] || speaker.photo;
+              const photo2 = speaker.photos?.[1];
+              const img1 = getSpeakerImage(photo1);
+              const img2 = getSpeakerImage(photo2);
               
               return (
                 <button
@@ -447,13 +470,12 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                       <!-- Speaker Photos -->
                       <div class={`relative ${hasTwoSpeakers ? 'w-14' : 'w-10'} h-10 shrink-0`}>
                         <div class="w-10 h-10 rounded-full bg-(--color-surface) border-2 border-(--color-bg) flex items-center justify-center text-(--color-text-secondary) font-bold text-xs overflow-hidden absolute left-0 top-0 z-10">
-                          {speaker.photos?.[0] || speaker.photo !== "/images/speakers/placeholder.svg" ? (
-                            <img 
-                              src={speaker.photos?.[0] || speaker.photo} 
+                          {img1 ? (
+                            <Image 
+                              src={img1} 
                               alt={speakerNames[0]} 
-                              width="40" 
-                              height="40" 
-                              loading="lazy" 
+                              width={40} 
+                              height={40} 
                               class="w-full h-full object-cover"
                             />
                           ) : (
@@ -462,13 +484,12 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                         </div>
                         {hasTwoSpeakers && (
                           <div class="w-10 h-10 rounded-full bg-primary/20 border-2 border-(--color-bg) flex items-center justify-center text-primary font-bold text-xs overflow-hidden absolute left-4 top-0">
-                            {speaker.photos?.[1] ? (
-                              <img 
-                                src={speaker.photos[1]} 
+                            {img2 ? (
+                              <Image 
+                                src={img2} 
                                 alt={speakerNames[1]} 
-                                width="40" 
-                                height="40" 
-                                loading="lazy" 
+                                width={40} 
+                                height={40} 
                                 class="w-full h-full object-cover"
                               />
                             ) : (
@@ -480,7 +501,7 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                       
                       <!-- Speaker Info -->
                       <div class="flex-1 min-w-0">
-                        <p class="font-medium text-sm truncate">{speaker.name}</p>
+                        <p class="font-medium text-sm whitespace-normal">{speaker.name}</p>
                         <p class="text-xs text-(--color-text-secondary) truncate">
                           {speaker.role ? speaker.role[locale] : speaker.company}
                         </p>
@@ -582,30 +603,34 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
               {hasTwoSpeakers ? (locale === "en" ? "SPEAKERS" : "ŘEČNÍCI") : (locale === "en" ? "SPEAKER" : "ŘEČNÍK")}
             </p>
             <div class={`grid ${hasTwoSpeakers ? 'grid-cols-2' : 'grid-cols-1'} gap-4`}>
-              {speakerNames.map((name, idx) => (
-                <div class="flex items-center gap-3">
-                  <div class={`w-12 h-12 rounded-full ${idx === 0 ? 'bg-(--color-surface)' : 'bg-primary/20'} border border-(--color-border) flex items-center justify-center ${idx === 0 ? 'text-(--color-text-secondary)' : 'text-primary'} font-bold text-sm shrink-0 overflow-hidden`}>
-                    {speaker.photos?.[idx] || (idx === 0 && speaker.photo && speaker.photo !== "/images/speakers/placeholder.svg") ? (
-                      <img 
-                        src={speaker.photos?.[idx] || speaker.photo} 
-                        alt={name.trim()} 
-                        width="48" 
-                        height="48" 
-                        loading="lazy" 
-                        class="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <span>{name.trim().split(' ').map(n => n[0]).join('')}</span>
-                    )}
+              {speakerNames.map((name, idx) => {
+                const photoPath = speaker.photos?.[idx] || speaker.photo;
+                const img = getSpeakerImage(photoPath);
+                
+                return (
+                  <div class="flex items-center gap-3">
+                    <div class={`w-12 h-12 rounded-full ${idx === 0 ? 'bg-(--color-surface)' : 'bg-primary/20'} border border-(--color-border) flex items-center justify-center ${idx === 0 ? 'text-(--color-text-secondary)' : 'text-primary'} font-bold text-sm shrink-0 overflow-hidden`}>
+                      {img ? (
+                        <Image 
+                          src={img} 
+                          alt={name.trim()} 
+                          width={48} 
+                          height={48} 
+                          class="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <span>{name.trim().split(' ').map(n => n[0]).join('')}</span>
+                      )}
+                    </div>
+                    <div>
+                      <p class="font-medium text-sm">{name.trim()}</p>
+                      <p class="text-xs text-(--color-text-secondary)">
+                        {speaker.role ? speaker.role[locale] : speaker.company}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p class="font-medium text-sm">{name.trim()}</p>
-                    <p class="text-xs text-(--color-text-secondary)">
-                      {speaker.role ? speaker.role[locale] : speaker.company}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
