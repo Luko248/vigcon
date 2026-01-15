@@ -4,17 +4,17 @@
     "": {
       "name": "vig-it-conference",
       "dependencies": {
-        "@astrojs/check": "^0.9.0",
-        "@fancyapps/ui": "^5.0.0",
-        "astro": "^5.0.0",
-        "date-fns": "^4.0.0",
+        "@astrojs/check": "^0.9.4",
+        "@fancyapps/ui": "^6.1.7",
+        "astro": "^5.16.0",
+        "date-fns": "^4.1.0",
       },
       "devDependencies": {
-        "@tailwindcss/cli": "^4.1.18",
-        "@tailwindcss/typography": "^0.5.0",
-        "@tailwindcss/vite": "^4.1.18",
-        "tailwindcss": "^4.0.0",
-        "typescript": "^5.0.0",
+        "@tailwindcss/cli": "^4.1.8",
+        "@tailwindcss/typography": "^0.5.16",
+        "@tailwindcss/vite": "^4.1.8",
+        "tailwindcss": "^4.1.8",
+        "typescript": "^5.7.2",
       },
     },
   },
@@ -113,7 +113,7 @@
 
     "@esbuild/win32-x64": ["@esbuild/win32-x64@0.25.12", "", { "os": "win32", "cpu": "x64" }, "sha512-alJC0uCZpTFrSL0CCDjcgleBXPnCrEAhTBILpeAp7M/OFgoqtAetfBzX0xM00MUsVVPpVjlPuMbREqnZCXaTnA=="],
 
-    "@fancyapps/ui": ["@fancyapps/ui@5.0.36", "", {}, "sha512-GMygQzp1MBTFNTT6AzpbL6pXTD6bTxwjmmpI1fe8Ozmmiseu8/g82Sudl1YhcbZmS4bJgaBOF5THDFGpXQ1fDw=="],
+    "@fancyapps/ui": ["@fancyapps/ui@6.1.7", "", {}, "sha512-KHOvuy90JBFDgbNa2V1N9Jg7PE/lSQMXN9VbhR+WQSIxIEi4PV7kndeao7ezir5WeJ8OZRyDelNKJVLicXfBIg=="],
 
     "@img/colour": ["@img/colour@1.0.0", "", {}, "sha512-A5P/LfWGFSl6nsckYtjw9da+19jB8hkJ6ACTGcDfEJ0aE+l2n2El7dsVM7UVHZQ9s2lmYMWlrS21YLy2IR1LUw=="],
 

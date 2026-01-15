@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@fancyapps/ui": "^5.0.36",
+    "@fancyapps/ui": "^6.1.7",
     "astro": "^5.16.0",
     "date-fns": "^4.1.0"
   },
