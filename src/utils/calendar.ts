@@ -57,12 +57,12 @@ export function downloadICS(event: CalendarEvent): void {
 
 export function getConferenceEvent(): CalendarEvent {
   return {
-    title: "VIG IT Conference 2026",
+    title: "VIGCON 2026",
     description:
       "Join developers from Vienna Insurance Group showcasing AI innovations and cutting-edge technologies.",
     location: "Okružní 732/5, 638 00 Brno-sever-Lesná, Czech Republic",
-    startDate: "2026-05-28T17:00:00",
-    endDate: "2026-05-28T18:00:00",
+    startDate: "2026-05-28T09:00:00",
+    endDate: "2026-05-28T17:00:00",
     timezone: "Europe/Prague",
   };
 }
