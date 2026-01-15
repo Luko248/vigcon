@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import type { Locale, Talk, Speaker } from "@utils/types";
+import type { Locale, Talk, Speaker, Track } from "@utils/types";
 import TalkCard from "./TalkCard.astro";
 import TalkModal from "./TalkModal.astro";
 import scheduleData from "@data/schedule.json";
@@ -24,10 +24,11 @@ interface Props {
   locale: Locale;
 }
 
-const { locale } = Astro.props;
+const { locale } = Astro.props as Props;
 const t = locale === "en" ? en : cz;
 
-const { conference, tracks, isScheduled } = scheduleData;
+const { conference, isScheduled } = scheduleData;
+const tracks = scheduleData.tracks as Track[];
 const schedule = scheduleData.schedule as Talk[];
 const speakers = speakersData.speakers as Speaker[];
 
