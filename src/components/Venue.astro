@@ -41,16 +41,25 @@ const restTitle = titleWords.slice(1).join(" ");
       <div class="glass p-2 rounded-2xl animate-on-scroll lg:animate-slide-left h-full">
         <div class="rounded-xl overflow-hidden border border-(--color-border) h-[400px] lg:h-full relative map-container">
           <iframe
-            src={venue.mapEmbed}
+            id="venue-map"
+            data-src={venue.mapEmbed}
             width="100%"
             height="100%"
             style="border:0;"
             allowfullscreen=""
-            loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
             title={locale === "en" ? "Venue location map" : "Mapa místa konání"}
-            class="w-full h-full transition-all duration-300"
+            class="w-full h-full transition-all duration-300 opacity-0"
+            aria-hidden="true"
           ></iframe>
+          <div id="map-placeholder" class="absolute inset-0 flex items-center justify-center bg-(--color-surface)">
+            <div class="text-center">
+              <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <p class="text-sm text-(--color-text-secondary)">{locale === "en" ? "Loading map..." : "Načítání mapy..."}</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -151,3 +160,43 @@ const restTitle = titleWords.slice(1).join(" ");
     filter: invert(1) hue-rotate(180deg) brightness(0.8) contrast(1.2);
   }
 </style>
+
+<script>
+  const initMapLazyLoad = () => {
+    const mapIframe = document.getElementById("venue-map") as HTMLIFrameElement;
+    const placeholder = document.getElementById("map-placeholder");
+    
+    if (!mapIframe || !mapIframe.dataset.src) return;
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const iframe = entry.target as HTMLIFrameElement;
+            const src = iframe.dataset.src;
+            
+            if (src && !iframe.src) {
+              iframe.src = src;
+              iframe.onload = () => {
+                iframe.classList.remove("opacity-0");
+                iframe.classList.add("opacity-100");
+                iframe.removeAttribute("aria-hidden");
+                placeholder?.classList.add("hidden");
+              };
+            }
+            
+            observer.unobserve(iframe);
+          }
+        });
+      },
+      {
+        rootMargin: "200px",
+        threshold: 0
+      }
+    );
+    
+    observer.observe(mapIframe);
+  };
+  
+  document.addEventListener("astro:page-load", initMapLazyLoad);
+</script>
