@@ -82,6 +82,10 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  #main-content p {
+    font-family: var(--font-mono);
+  }
+
   /* Scroll Margin for Sections */
   section[id] {
     scroll-margin-top: var(--header-height);
