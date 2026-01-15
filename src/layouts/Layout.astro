@@ -20,6 +20,7 @@ const {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const htmlLang = locale === "cz" ? "cs" : "en";
 
+const absoluteImageUrl = new URL(image, Astro.site).toString();
 const schemaOrg = {
   "@context": "https://schema.org",
   "@type": "Event",
@@ -45,7 +46,7 @@ const schemaOrg = {
       longitude: 16.5731,
     },
   },
-  image: [`${Astro.site}${image}`],
+  image: [absoluteImageUrl],
   description: description,
   offers: {
     "@type": "Offer",
@@ -87,7 +88,7 @@ const schemaOrg = {
     <!-- Schema.org markup -->
     <meta itemprop="name" content={title} />
     <meta itemprop="description" content={description} />
-    <meta itemprop="image" content={new URL(image, Astro.site)} />
+    <meta itemprop="image" content={absoluteImageUrl} />
 
     <link
       rel="icon"
@@ -117,16 +118,16 @@ const schemaOrg = {
     />
 
     <!-- Alternate Language Links -->
-    <link rel="alternate" hreflang="en" href="https://wigcon.cz/" />
-    <link rel="alternate" hreflang="cs" href="https://wigcon.cz/cz" />
-    <link rel="alternate" hreflang="x-default" href="https://wigcon.cz/" />
+    <link rel="alternate" hreflang="en" href="https://vigcon.eu/" />
+    <link rel="alternate" hreflang="cs" href="https://vigcon.eu/cz" />
+    <link rel="alternate" hreflang="x-default" href="https://vigcon.eu/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta property="og:image" content={absoluteImageUrl} />
     <meta property="og:locale" content={locale === "cz" ? "cs_CZ" : "en_US"} />
     <meta
       property="og:locale:alternate"
@@ -138,7 +139,7 @@ const schemaOrg = {
     <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(image, Astro.site)} />
+    <meta property="twitter:image" content={absoluteImageUrl} />
 
     <!-- Schema.org Structured Data -->
     <script
