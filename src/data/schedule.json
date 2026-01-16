@@ -51,8 +51,8 @@
       "endTime": "10:00",
       "track": "track-a",
       "title": {
-        "en": "RPA (Robotic Process Automation)",
-        "cz": "RPA (Robotická automatizace procesů)"
+        "en": "RPA Today and Tomorrow: How Software Robots Support Work at VIG",
+        "cz": "RPA dnes a zítra: jak softwaroví roboti podporují práci ve VIG"
       },
       "speakerId": "grek-filip",
       "language": "CZ",
@@ -62,8 +62,8 @@
         "Process"
       ],
       "annotation": {
-        "en": "Introduction to RPA, technical aspects, implementation in KOOP and ČPP, global trends and AI integration.",
-        "cz": "Úvod do RPA, technické aspekty, implementace v KOOP a ČPP, globální trendy a integrace s AI."
+        "en": "How RPA works in practice at Kooperativa and ČPP, which processes we automate, and how AI/LLMs will shape the future role of software robots.",
+        "cz": "Jak RPA funguje v praxi v Kooperativě a ČPP, jaké procesy automatizujeme a jak AI/LLM ovlivní budoucí roli softwarových robotů."
       }
     },
     {
@@ -180,8 +180,8 @@
         "Windsurf"
       ],
       "annotation": {
-        "en": "How modern AI workflows enable one-shot delivery of business requirements. We cover AI building blocks (sub-agents, skills, slash commands, MCP servers) and a real frontend example.",
-        "cz": "Jak moderní AI workflow umožňuje one-shot dodání business požadavků. Projdeme AI stavební bloky (subagenti, skilly, slash commands, MCP servery) i reálný frontend příklad."
+        "en": "Modern AI workflows enable one-shot delivery of business requirements. We cover rules, guidelines, sub-agents, AI skills, slash commands, MCP servers, and a real frontend AI workflow example.",
+        "cz": "Moderní AI workflow umožňuje one-shot dodání business požadavků. Projdeme rules, guidelines, subagenty, AI skilly, slash commands, MCP servery i reálný frontend AI workflow příklad."
       }
     },
     {

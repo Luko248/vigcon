@@ -13,8 +13,8 @@
         "cz": "Software Developer"
       },
       "topic": {
-        "en": "RPA (Robotic Process Automation)",
-        "cz": "RPA (Robotická automatizace procesů)"
+        "en": "RPA Today and Tomorrow: How Software Robots Support Work at VIG",
+        "cz": "RPA dnes a zítra: jak softwaroví roboti podporují práci ve VIG"
       },
       "hashtags": [
         "RPA",
@@ -22,12 +22,12 @@
         "AI"
       ],
       "shortDesc": {
-        "en": "Discover how RPA automates insurance processes and integrates with AI to boost efficiency.",
-        "cz": "Zjistěte, jak RPA automatizuje pojišťovací procesy a integruje se s AI pro zvýšení efektivity."
+        "en": "How RPA helps at Kooperativa and ČPP, what we automate, and how AI will reshape software robots.",
+        "cz": "Jak RPA pomáhá v Kooperativě a ČPP, co automatizujeme a jak AI promění softwarové roboty."
       },
       "abstract": {
-        "en": "## Introduction to RPA\n- Definition, benefits, etc.\n\n## Technical aspects of RPA\n- Solution architecture\n- Integration with systems\n\n## RPA in KOOP and ČPP\n- Automated processes\n- Impacts\n- Practical example - specific process example, number of cases processed per year, time savings\n- Outlook and planned activities\n\n## Global trends and news\n- RPA market outlook (specifically in insurance if data available)\n- Extended intelligence (AI usage etc.), further integrations etc.\n\n## RPA and AI\n- Complementarity of RPA and AI\n- RPA in the context of AI agents",
-        "cz": "## Úvod do RPA\n- Definice, přínosy apod.\n\n## Technické aspekty RPA\n- Architektura řešení\n- Integrace se systémy\n\n## RPA v KOOP a ČPP\n- Automatizované procesy\n- Dopady\n- Příklad z praxe - konkrétní příklad procesu, počtu zpracovaných případů za rok, ušetření času\n- Výhled a plánované aktivity\n\n## Globální trendy a novinky\n- Výhled RPA trhu (pokud budou data, tak přímo v pojišťovnictví)\n- Rozšířená inteligence (užití AI apod.), další integrace apod.\n\n## RPA a AI\n- Komplementarita RPA a AI\n- RPA v kontextu AI agentů"
+        "en": "Robotic Process Automation (RPA) is now a well-established technology used across many industries, and it has taken root within VIG as well. Thanks to RPA, colleagues at Kooperativa and ČPP are freed from repetitive, tedious tasks that software robots can perform faster, more reliably, and virtually 24/7.\n\nIn this talk, we will explore how RPA works in practice, which types of processes we automate, how our approach may differ from that of other companies, what impact AI and large language models may have on the future of RPA, and how the role of software robots might evolve in an AI-driven world.",
+        "cz": "Robotická automatizace procesů (RPA) je dnes zavedená technologie napříč obory a své místo si našla i ve VIG. Díky RPA jsou kolegové v Kooperativě a ČPP zbaveni opakujících se, rutinních úkolů, které softwaroví roboti zvládnou rychleji, spolehlivěji a prakticky 24/7.\n\nV přednášce ukážeme, jak RPA funguje v praxi, jaké typy procesů automatizujeme, v čem se náš přístup může lišit od jiných firem, jaký vliv mohou mít AI a velké jazykové modely na budoucnost RPA a jak se může role softwarových robotů vyvíjet v AI‑driven světě."
       }
     },
     {
@@ -156,12 +156,12 @@
         "Windsurf"
       ],
       "shortDesc": {
-        "en": "From AI building blocks to a real frontend example: turning a business request into a working solution in one shot.",
-        "cz": "Od AI stavebních bloků po reálný frontend příklad: převod business zadání na funkční řešení jedním výstřelem."
+        "en": "AI building blocks and a real frontend AI workflow example for one-shot delivery.",
+        "cz": "AI stavební bloky a reálný frontend AI workflow příklad pro one-shot dodání."
       },
       "abstract": {
-        "en": "In this talk, we will explore how modern AI workflows can significantly speed up software development and enable a one-shot approach to delivering business requirements.\n\n## Building blocks\n- Sub-agents\n- AI skills\n- Slash commands\n- MCP servers\n\n## Hands-on workflow\nWe will demonstrate how these AI features are implemented in our frontend development workflow. Using a real-world example, we will show how a business request can be transformed into a working solution in a single shot—faster, more consistently, and with minimal manual effort.",
-        "cz": "V této přednášce si ukážeme, jak moderní AI workflow dokáže výrazně zrychlit vývoj a umožnit one-shot přístup k dodání business požadavků.\n\n## Stavební bloky\n- Subagenti\n- AI skilly\n- Slash commands\n- MCP servery\n\n## Praktická část\nUkážeme, jak jsou tyto AI funkcionality implementované v našem frontend development workflow. Na reálném příkladu předvedeme, jak lze business zadání přeměnit na funkční řešení „na jeden výstřel“ – rychle, konzistentně a s minimem manuální práce."
+        "en": "In this session, we will explore how modern AI workflows can significantly speed up software development and enable a one-shot approach to delivering business requirements.\n\n## Building blocks\n- Rules and guidelines\n- Sub-agents\n- AI skills\n- Slash commands\n- MCP servers\n\n## Hands-on workflow\nWe will demonstrate how these AI features are implemented in our frontend development AI workflow. Using a real-world example, we will show how a business request can be transformed into a working solution in a single shot—faster, more consistently, and with minimal manual effort.",
+        "cz": "V této přednášce si ukážeme, jak moderní AI workflow dokáže výrazně zrychlit vývoj a umožnit one-shot přístup k dodání business požadavků.\n\n## Stavební bloky\n- Rules a guidelines\n- Subagenti\n- AI skilly\n- Slash commands\n- MCP servery\n\n## Praktická část\nUkážeme, jak jsou tyto AI funkcionality implementované v našem frontend development AI workflow. Na reálném příkladu předvedeme, jak lze business zadání přeměnit na funkční řešení „na jeden výstřel“ – rychle, konzistentně a s minimem manuální práce."
       }
     },
     {
