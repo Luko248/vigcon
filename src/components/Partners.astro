@@ -76,14 +76,20 @@ const restTitle = titleWords.slice(1).join(" ");
                   ? `${partner.name} logo, conference partner`
                   : `Logo ${partner.name}, partner konference`
               }
-              class="max-w-full max-h-12 md:max-h-16 w-auto object-contain opacity-70 group-hover:opacity-100 transition-all duration-300 brightness-0 dark:brightness-100"
+              class="max-w-full max-h-12 md:max-h-16 w-auto object-contain opacity-70 group-hover:opacity-100 group-hover:blur-sm transition-all duration-300 brightness-0 dark:brightness-100"
               loading="lazy"
               decoding="async"
             />
 
             <!-- Show More Overlay -->
-            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-md">
-              <div class="px-4 py-2 rounded-full bg-(--color-surface)/80 border border-(--color-border) text-(--color-text) font-medium text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 flex items-center gap-2">
+            <div 
+              class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-(--color-surface)/30"
+              style="backdrop-filter: blur(40px) saturate(150%); -webkit-backdrop-filter: blur(40px) saturate(150%);"
+            >
+              <div 
+                class="px-4 py-2 rounded-full bg-(--color-surface)/60 border border-(--color-border) text-(--color-text) font-medium text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 flex items-center gap-2"
+                style="backdrop-filter: blur(40px) saturate(150%); -webkit-backdrop-filter: blur(40px) saturate(150%);"
+              >
                 <span>Show more</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>

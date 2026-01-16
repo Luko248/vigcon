@@ -161,19 +161,20 @@ const restTitle = titleWords.slice(1).join(" ");
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  ><circle cx="12" cy="12" r="10"></circle><path
-                    d="M2 12h20"
+                  ><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20"
                   ></path><path
                     d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"
                   ></path></svg
                 >
                 {t.registration.form.country}
+                <span class="text-primary">*</span>
               </span>
             </label>
             <input
               type="text"
               id="country"
               name="country"
+              aria-required="true"
               class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-600"
               placeholder="Czech Republic"
               required
@@ -236,16 +237,18 @@ const restTitle = titleWords.slice(1).join(" ");
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   ><rect x="2" y="7" width="20" height="14" rx="2"></rect><path
-                    d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"
-                  ></path><path d="M2 13h20"></path><path d="M10 17h4"></path></svg
+                    d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path><path
+                    d="M2 13h20"></path><path d="M10 17h4"></path></svg
                 >
                 {t.registration.form.jobTitle}
+                <span class="text-primary">*</span>
               </span>
             </label>
             <input
               type="text"
               id="job-title"
               name="job_title"
+              aria-required="true"
               class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-600"
               placeholder="Senior Analyst"
               required
@@ -349,7 +352,7 @@ const restTitle = titleWords.slice(1).join(" ");
                   type="radio"
                   name="role"
                   value="attendee"
-                  class="mt-1 w-5 h-5 accent-(--color-primary) cursor-pointer"
+                  class="mt-1 w-5 h-5 accent-primary cursor-pointer"
                   checked
                 />
                 <div>
@@ -371,7 +374,7 @@ const restTitle = titleWords.slice(1).join(" ");
                   type="radio"
                   name="role"
                   value="speaker"
-                  class="mt-1 w-5 h-5 accent-(--color-primary) cursor-pointer"
+                  class="mt-1 w-5 h-5 accent-primary cursor-pointer"
                 />
                 <div>
                   <span class="block font-medium text-(--color-text)"
@@ -468,10 +471,7 @@ const restTitle = titleWords.slice(1).join(" ");
         <input type="hidden" name="ml-submit" value="1" />
         <input type="hidden" name="anticsrf" value="true" />
       </form>
-      <iframe
-        name="ml-hidden-iframe"
-        title="MailerLite"
-        style="display: none;"
+      <iframe name="ml-hidden-iframe" title="MailerLite" style="display: none;"
       ></iframe>
     </div>
 
@@ -513,7 +513,7 @@ const restTitle = titleWords.slice(1).join(" ");
       </p>
       <button
         id="reset-registration"
-        class="text-sm text-(--color-primary) hover:underline"
+        class="text-sm text-primary hover:underline"
       >
         {
           locale === "en"
@@ -693,12 +693,8 @@ const restTitle = titleWords.slice(1).join(" ");
       const lastNameInput = form.querySelector(
         "#last-name"
       ) as HTMLInputElement;
-      const companyInput = form.querySelector(
-        "#company"
-      ) as HTMLInputElement;
-      const countryInput = form.querySelector(
-        "#country"
-      ) as HTMLInputElement;
+      const companyInput = form.querySelector("#company") as HTMLInputElement;
+      const countryInput = form.querySelector("#country") as HTMLInputElement;
       const jobTitleInput = form.querySelector(
         "#job-title"
       ) as HTMLInputElement;
@@ -790,9 +786,11 @@ const restTitle = titleWords.slice(1).join(" ");
       mlSubmitDone.value = false;
     });
 
-    (window as typeof window & {
-      ml_webform_success_35826004?: () => void;
-    }).ml_webform_success_35826004 = handleMailerLiteSuccess;
+    (
+      window as typeof window & {
+        ml_webform_success_35826004?: () => void;
+      }
+    ).ml_webform_success_35826004 = handleMailerLiteSuccess;
   </script>
 
   <!-- MailerLite Universal -->
@@ -808,16 +806,24 @@ const restTitle = titleWords.slice(1).join(" ");
       l.src = u;
       n = d.getElementsByTagName(e)[0];
       n.parentNode.insertBefore(l, n);
-    })(window, document, "script", "https://assets.mailerlite.com/js/universal.js", "ml");
+    })(
+      window,
+      document,
+      "script",
+      "https://assets.mailerlite.com/js/universal.js",
+      "ml"
+    );
     ml("account", "1647047");
   </script>
   <!-- End MailerLite Universal -->
 
-  <script is:inline
+  <script
+    is:inline
     src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024"
-    type="text/javascript"
-  ></script>
+    type="text/javascript"></script>
   <script is:inline>
-    fetch("https://assets.mailerlite.com/jsonp/1647047/forms/176737457186801090/takel");
+    fetch(
+      "https://assets.mailerlite.com/jsonp/1647047/forms/176737457186801090/takel"
+    );
   </script>
 </section>
