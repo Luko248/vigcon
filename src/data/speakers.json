@@ -122,19 +122,23 @@
         "Specs"
       ],
       "shortDesc": {
-        "en": "See how technical specifications drive AI-assisted backend development from concept to code.",
-        "cz": "Podívejte se, jak technické specifikace řídí vývoj backendu s pomocí AI od konceptu ke kódu."
+        "en": "From a single business sentence to full business and technical specs optimized for AI coding.",
+        "cz": "Od jediné business věty k úplné business i technické specifikaci optimalizované pro AI kódování."
       },
       "abstract": {
-        "en": "## Why Spec-Driven Development\n- Reduce ambiguity between product and engineering\n- Make backend generation repeatable and reviewable\n\n## The Spec Workflow\n- Define endpoints, DTOs, and validation rules up front\n- Capture edge cases and error responses early\n\n## Spring Boot Backend Generation\n- Translate spec into controllers, services, and repositories\n- Auto-generate OpenAPI docs and client contracts\n\n## AI Usage Guidelines\n- Keep the spec as the single source of truth\n- Use AI for boilerplate, not for business rules\n- Review generated code with linting and tests\n\n## Real-world Impact\n- Faster delivery with fewer regressions\n- Easier onboarding and cross-team alignment",
-        "cz": "## Proč Spec-Driven Development\n- Menší nejasnosti mezi produktem a engineeringem\n- Opakovatelná a kontrolovatelná tvorba backendu\n\n## Práce se specifikací\n- Definice endpointů, DTO a validačních pravidel\n- Zachycení edge casů a chybových stavů\n\n## Generování backendu ve Spring Boot\n- Překlad specifikace do controllerů, service a repository\n- Automatická OpenAPI dokumentace a klientské kontrakty\n\n## AI guidelines\n- Specifikace jako jediný zdroj pravdy\n- AI na boilerplate, ne na business pravidla\n- Kontrola generovaného kódu lintem a testy\n\n## Přínos v praxi\n- Rychlejší dodávka s méně regresí\n- Snazší onboarding a sladění týmů"
+        "en": "Starting with a single sentence from business, we expose the critical gaps that emerge: scope ambiguity, technical tradeoffs, and implementation uncertainty. By exploring two contrasting solutions — one minimalistic, one maximalistic — we demonstrate why a specification must go far beyond the initial ask.\n\nWe then walk through the process of extracting a coherent business specification from vague requirements, and the transformation into a technical specification optimized for AI-assisted coding. Finally, we cover essential guidelines and coding standards that keep AI-generated implementations maintainable, scalable, and aligned with the technical vision.",
+        "cz": "Začínáme jednou větou z businessu a odhalíme kritická místa: nejasný scope, technické kompromisy a nejistotu implementace. Porovnáme dvě protichůdná řešení — minimalistické a maximalistické — a ukážeme, proč specifikace musí jít výrazně dál než původní zadání.\n\nPoté projdeme procesem, jak z vágních požadavků získat ucelenou business specifikaci a jak ji převést do technické specifikace optimalizované pro AI‑asistované kódování. Nakonec probereme zásadní guidelines a coding standardy, které udrží AI‑generované implementace udržitelné, škálovatelné a v souladu s technickou vizí."
       }
     },
     {
       "id": "chylik-lukas",
-      "name": "Lukáš Chylík",
-      "initials": "LCH",
+      "name": "Lukáš Chylík & Vojtěch Gintner",
+      "initials": "LG",
       "photo": "/images/speakers/lukas-chylik.avif",
+      "photos": [
+        "/images/speakers/lukas-chylik.avif",
+        "/images/speakers/vojtech-gintner.avif"
+      ],
       "company": "AIS Servis s.r.o.",
       "country": "Czech Republic",
       "status": "confirmed",
@@ -143,22 +147,81 @@
         "cz": "Software Developer"
       },
       "topic": {
-        "en": "Figma Variables → Your Repo in One Click",
-        "cz": "Figma Variables → Do vášho repozitára na jeden klik"
+        "en": "One-shot delivery with AI",
+        "cz": "One-shot dodání s AI"
       },
       "hashtags": [
-        "Figma",
-        "DesignSystem",
-        "DesignTokens",
-        "OpenSource"
+        "AIWorkflow",
+        "AIAgents",
+        "Windsurf"
       ],
       "shortDesc": {
-        "en": "A free Figma plugin that exports Figma Variables directly to your repository in any format you choose.",
-        "cz": "Bezplatný Figma plugin, ktorý exportuje Figma Variables priamo do vášho repozitára vo formáte, ktorý si zvolíte."
+        "en": "From AI building blocks to a real frontend example: turning a business request into a working solution in one shot.",
+        "cz": "Od AI stavebních bloků po reálný frontend příklad: převod business zadání na funkční řešení jedním výstřelem."
       },
       "abstract": {
-        "en": "## What it does\n- Works with Figma Variables\n- Supports custom naming conventions\n- Integration with Figma Dev Mode\n- Push directly to GitHub (or other git solutions)\n- Ideal for design systems\n\n## Export formats\n- CSS Custom Properties\n- SCSS\n- CSS-in-JS\n- Any custom format\n\n## Availability\n- Free plugin on Figma Community\n- Open-source repo for custom modifications",
-        "cz": "## Čo vie\n- Pracuje s Figma Variables\n- Podporuje vlastné naming konvencie\n- Integrácia s Figma Dev Mode\n- Push priamo do GitHubu (alebo iného git riešenia)\n- Ideálne pre design systémy\n\n## Exportné formáty\n- CSS Custom Properties\n- SCSS\n- CSS-in-JS\n- Čokoľvek iné\n\n## Dostupnosť\n- Plugin je zadarmo na Figma Community\n- Open-source repo pre ľubovoľné úpravy"
+        "en": "In this talk, we will explore how modern AI workflows can significantly speed up software development and enable a one-shot approach to delivering business requirements.\n\n## Building blocks\n- Sub-agents\n- AI skills\n- Slash commands\n- MCP servers\n\n## Hands-on workflow\nWe will demonstrate how these AI features are implemented in our frontend development workflow. Using a real-world example, we will show how a business request can be transformed into a working solution in a single shot—faster, more consistently, and with minimal manual effort.",
+        "cz": "V této přednášce si ukážeme, jak moderní AI workflow dokáže výrazně zrychlit vývoj a umožnit one-shot přístup k dodání business požadavků.\n\n## Stavební bloky\n- Subagenti\n- AI skilly\n- Slash commands\n- MCP servery\n\n## Praktická část\nUkážeme, jak jsou tyto AI funkcionality implementované v našem frontend development workflow. Na reálném příkladu předvedeme, jak lze business zadání přeměnit na funkční řešení „na jeden výstřel“ – rychle, konzistentně a s minimem manuální práce."
+      }
+    },
+    {
+      "id": "jirout-petr",
+      "name": "Petr Jirout",
+      "initials": "PJ",
+      "photo": "/images/speakers/petr-jirout.avif",
+      "company": "AIS Servis s.r.o.",
+      "country": "Czech Republic",
+      "status": "confirmed",
+      "topic": {
+        "en": "AI rollout into AIS",
+        "cz": "Zavádění AI v AIS"
+      },
+      "hashtags": [
+        "AI",
+        "Adoption",
+        "Change"
+      ],
+      "shortDesc": {
+        "en": "Lessons from rolling AI out across a 300+ FTE software house.",
+        "cz": "Praktické lekce ze zavádění AI napříč 300+ FTE software housem."
+      },
+      "abstract": {
+        "en": "Rolling out AI in a 300+ FTE software house is not a tooling problem - it is an organizational transformation. We led the shift from isolated experiments to company-wide AI adoption, navigating skepticism, security concerns, developer productivity, and cultural change. This talk shares practical lessons from the front line: what actually worked, what failed quietly, and how leadership decisions, incentives, and guardrails determined the outcome.",
+        "cz": "Zavádění AI ve firmě s 300+ FTE není problém nástrojů - je to organizační transformace. Vedli jsme přechod od izolovaných experimentů k celofiremnímu využití AI, řešili skepsi, bezpečnostní obavy, produktivitu vývojářů i kulturní změnu. Přednáška sdílí praktické lekce z praxe: co skutečně fungovalo, co tiše selhalo a jak rozhodnutí vedení, motivace a mantinely určily výsledek."
+      }
+    },
+    {
+      "id": "rotrekl-sprna",
+      "name": "Lukáš Rotrekl & Marek Šprňa",
+      "initials": "LR",
+      "photo": "/images/speakers/lukas-rotrekl.avif",
+      "photos": [
+        "/images/speakers/lukas-rotrekl.avif",
+        "/images/speakers/marek-sprna.avif"
+      ],
+      "company": "AIS Servis s.r.o.",
+      "country": "Czech Republic",
+      "status": "confirmed",
+      "role": {
+        "en": "QA Engineer",
+        "cz": "QA Engineer"
+      },
+      "topic": {
+        "en": "Test Generation Using AI Tool (Junie and Testing Guidelines)",
+        "cz": "Generování testů pomocí AI nástroje (Junie a testovací guidelines)"
+      },
+      "hashtags": [
+        "Testing",
+        "AI",
+        "QA"
+      ],
+      "shortDesc": {
+        "en": "How Junie and testing guidelines automate test generation across stacks.",
+        "cz": "Jak Junie a testovací guidelines automatizují generování testů napříč stacky."
+      },
+      "abstract": {
+        "en": "## Introduction\n- Motivation and context for automated test generation\n- Benefits: speed, consistency, maintainability\n\n## Junie and Guidelines – Overview\n- What Junie is and how it works\n- How guidelines influence test generation\n\n## Project Example\n- Reference project and relevant structure\n- Key testing guidelines overview\n\n## Supported Test Types\n- API, DB, and Kafka test generation\n- Multi-technology test scenarios\n\n## Test Generation Process\n- Steps to generate tests with Junie\n- Inputs and review of generated tests\n\n## Example: Jira Xray to Automation Test Framework\n- Practical demonstration",
+        "cz": "## Úvod\n- Motivace a kontext automatizovaného generování testů\n- Přínosy: rychlost, konzistence, udržovatelnost\n\n## Junie a guidelines – přehled\n- Co je Junie a jak funguje\n- Jak guidelines ovlivňují generování testů\n\n## Příklad z projektu\n- Referenční projekt a relevantní struktura\n- Přehled klíčových testovacích guidelines\n\n## Podporované typy testů\n- Generování testů pro API, DB a Kafka\n- Multitechnologické testovací scénáře\n\n## Proces generování testů\n- Kroky generování testů s Junie\n- Vstupy a revize vygenerovaných testů\n\n## Příklad: Jira Xray do Automation Test Framework\n- Praktická ukázka"
       }
     }
   ]

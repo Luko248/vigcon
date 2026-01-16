@@ -106,7 +106,7 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
 >
   <div class="section-container">
     <!-- Section Header -->
-    <div class="text-center mb-12 overflow-hidden">
+    <div class="text-center mb-12">
       <h2
         id="schedule-title"
         class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 animate-on-scroll"
@@ -463,9 +463,6 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                     <p class="text-sm text-(--color-text-secondary) leading-relaxed line-clamp-3">
                       {speaker.shortDesc ? speaker.shortDesc[locale] : speaker.abstract[locale].split('\n')[0].replace(/^##\s+/, '').replace(/\*\*/g, '')}
                     </p>
-                    <p class="text-xs text-emerald-400/90 font-medium mt-2">
-                      {speaker.company}
-                    </p>
                   </div>
 
                   <!-- Speakers -->
@@ -611,9 +608,6 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                 .replace(/<\/h4>\s*<\/p>/g, '</h4>')
               } />
             </div>
-            <p class="text-xs text-emerald-400/90 font-medium mt-3">
-              {speaker.company}
-            </p>
           </div>
 
           <!-- Speakers (Column Layout) -->

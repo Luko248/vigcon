@@ -117,8 +117,8 @@
         "Architecture"
       ],
       "annotation": {
-        "en": "Migration from Camunda to ZenBPM, challenges in keeping platform apps universal, and operational flexibility.",
-        "cz": "Migrace z Camundy na ZenBPM, výzvy v univerzalitě platformních aplikací a provozní flexibilita."
+        "en": "Implementation experience across Neuron, Experta, and EOP; keeping platform apps universal while moving from Camunda-specific to platform-agnostic architecture. Why ZenBPM, operational constraints, and pricing realities behind the transition.",
+        "cz": "Zkušenosti z implementací (Neuron, Experta, EOP), udržení univerzálnosti platformních aplikací a přechod z Camundy na platformně agnostické řešení. Proč ZenBPM, provozní omezení a cenové tlaky za přechodem."
       }
     },
     {
@@ -138,8 +138,29 @@
         "Specs"
       ],
       "annotation": {
-        "en": "Motivation for tech specs, guidelines, spec creation and backend implementation driven by AI.",
-        "cz": "Motivace pro technické specifikace, guidelines, tvorba specifikací a backend implementace řízená AI."
+        "en": "From a single business sentence to full business and technical specs optimized for AI coding. We compare minimal vs. maximal solutions and define standards to keep AI-generated implementations maintainable and aligned.",
+        "cz": "Od jediné věty z businessu k úplné business i technické specifikaci optimalizované pro AI kódování. Porovnáme minimalistické vs. maximalistické řešení a nastavíme standardy pro udržitelné a sladěné AI implementace."
+      }
+    },
+    {
+      "id": "talk-jirout",
+      "startTime": "11:15",
+      "endTime": "12:00",
+      "track": "track-a",
+      "title": {
+        "en": "AI rollout into AIS",
+        "cz": "Zavádění AI v AIS"
+      },
+      "speakerId": "jirout-petr",
+      "language": "EN",
+      "hashtags": [
+        "AI",
+        "Adoption",
+        "Change"
+      ],
+      "annotation": {
+        "en": "Rolling out AI at scale is an organizational transformation. Lessons learned from shifting to company-wide AI adoption: what worked, what failed quietly, and which leadership guardrails mattered.",
+        "cz": "Zavádění AI ve velkém je organizační transformace. Lekce z přechodu na celofiremní AI: co fungovalo, co tiše selhalo a jaké mantinely vedení byly klíčové."
       }
     },
     {
@@ -148,20 +169,19 @@
       "endTime": "12:00",
       "track": "track-b",
       "title": {
-        "en": "Figma Variables → Your Repo in One Click",
-        "cz": "Figma Variables → Do vášho repozitára na jeden klik"
+        "en": "One-shot delivery with AI",
+        "cz": "One-shot dodání s AI"
       },
       "speakerId": "chylik-lukas",
-      "language": "CZ",
+      "language": "EN/SK",
       "hashtags": [
-        "Figma",
-        "DesignSystem",
-        "DesignTokens",
-        "OpenSource"
+        "AIWorkflow",
+        "AIAgents",
+        "Windsurf"
       ],
       "annotation": {
-        "en": "A free Figma plugin for exporting Figma Variables to your repository in CSS, SCSS, CSS-in-JS or custom formats.",
-        "cz": "Bezplatný Figma plugin na export Figma Variables do repozitára vo formáte CSS, SCSS, CSS-in-JS alebo vlastnom formáte."
+        "en": "How modern AI workflows enable one-shot delivery of business requirements. We cover AI building blocks (sub-agents, skills, slash commands, MCP servers) and a real frontend example.",
+        "cz": "Jak moderní AI workflow umožňuje one-shot dodání business požadavků. Projdeme AI stavební bloky (subagenti, skilly, slash commands, MCP servery) i reálný frontend příklad."
       }
     },
     {
@@ -173,6 +193,27 @@
       "title": {
         "en": "Lunch Break",
         "cz": "Obědová přestávka"
+      }
+    },
+    {
+      "id": "talk-rotrekl-sprna",
+      "startTime": "13:30",
+      "endTime": "14:15",
+      "track": "track-b",
+      "title": {
+        "en": "Test Generation Using AI Tool (Junie and Testing Guidelines)",
+        "cz": "Generování testů pomocí AI nástroje (Junie a testovací guidelines)"
+      },
+      "speakerId": "rotrekl-sprna",
+      "language": "EN",
+      "hashtags": [
+        "Testing",
+        "AI",
+        "QA"
+      ],
+      "annotation": {
+        "en": "How Junie and testing guidelines automate test generation across API, DB, and Kafka scenarios, with a practical Jira Xray → automation framework example.",
+        "cz": "Jak Junie a testovací guidelines automatizují generování testů pro API, DB a Kafka, včetně praktické ukázky Jira Xray → automatizační framework."
       }
     },
     {

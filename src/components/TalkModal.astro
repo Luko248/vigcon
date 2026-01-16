@@ -13,6 +13,7 @@ interface Props {
 
 const { talk, speaker, speakerImage, locale } = Astro.props;
 const t = locale === 'en' ? en : cz;
+const hasSpeakerPhoto = Boolean(speakerImage || speaker?.photo);
 ---
 
 <dialog
@@ -70,7 +71,7 @@ const t = locale === 'en' ? en : cz;
               height={80}
               class="w-full h-full object-cover"
             />
-          ) : (
+          ) : hasSpeakerPhoto ? (
             <>
               <img
                 src={speaker.photo}
@@ -85,6 +86,10 @@ const t = locale === 'en' ? en : cz;
                 {speaker.initials}
               </span>
             </>
+          ) : (
+            <span class="flex text-primary font-bold text-2xl items-center justify-center w-full h-full">
+              {speaker.initials}
+            </span>
           )}
         </div>
         <div>

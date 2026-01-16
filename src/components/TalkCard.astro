@@ -17,6 +17,7 @@ const t = locale === 'en' ? en : cz;
 
 const isBreak = talk.type === 'break';
 const isSpecial = talk.type === 'special';
+const hasSpeakerPhoto = Boolean(speakerImage || speaker?.photo);
 ---
 
 <article
@@ -76,7 +77,7 @@ const isSpecial = talk.type === 'special';
                 height={40}
                 class="w-full h-full object-cover"
               />
-            ) : (
+            ) : hasSpeakerPhoto ? (
               <>
                 <img
                   src={speaker.photo}
@@ -91,6 +92,10 @@ const isSpecial = talk.type === 'special';
                   {speaker.initials}
                 </span>
               </>
+            ) : (
+              <span class="flex text-(--color-primary) font-bold text-sm items-center justify-center w-full h-full">
+                {speaker.initials}
+              </span>
             )}
           </div>
           <div>
