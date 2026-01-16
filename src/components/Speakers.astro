@@ -62,8 +62,6 @@ const restTitle = titleWords.slice(1).join(" ");
                       </p>
                     )}
                     <p class="text-xs text-(--color-text-secondary)">
-                      {speaker.company}
-                      {speaker.country && <span class="mx-1">•</span>}
                       {speaker.country && <span>{speaker.country}</span>}
                     </p>
                   </div>
@@ -99,6 +97,9 @@ const restTitle = titleWords.slice(1).join(" ");
               <div class="text-xs text-(--color-text-secondary) leading-relaxed line-clamp-3 prose prose-sm prose-invert max-w-none">
                 <Fragment set:html={speaker.abstract[locale].split('\n')[0].replace(/^##\s+/, '').replace(/\*\*/g, '')} />
               </div>
+              <p class="text-xs text-emerald-400/90 font-medium mt-2">
+                {speaker.company}
+              </p>
             </div>
           </div>
         ))

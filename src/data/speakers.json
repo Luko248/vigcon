@@ -5,7 +5,7 @@
       "name": "Filip Grék",
       "initials": "FG",
       "photo": "/images/speakers/filip-grek.avif",
-      "company": "VIG",
+      "company": "AIS Servis s.r.o.",
       "country": "Czech Republic",
       "status": "confirmed",
       "role": {
@@ -39,7 +39,7 @@
         "/images/speakers/martin-cech.avif",
         "/images/speakers/jiri.chorous.avif"
       ],
-      "company": "VIG",
+      "company": "AIS Servis s.r.o.",
       "country": "Czech Republic",
       "status": "confirmed",
       "role": {
@@ -74,9 +74,13 @@
         "/images/speakers/dmytro.avif",
         "/images/speakers/pavel-kraus.avif"
       ],
-      "company": "VIG",
+      "company": "AIS Servis s.r.o.",
       "country": "Czech Republic",
       "status": "confirmed",
+      "role": {
+        "en": "Software Developer",
+        "cz": "Software Developer"
+      },
       "topic": {
         "en": "VIG BPM Platform: getting flexible",
         "cz": "VIG BPM Platform: getting flexible"
@@ -101,9 +105,13 @@
       "name": "Michal Vraný",
       "initials": "MV",
       "photo": "/images/speakers/michal-vrany.avif",
-      "company": "VIG",
+      "company": "AIS Servis s.r.o.",
       "country": "Czech Republic",
       "status": "confirmed",
+      "role": {
+        "en": "Software Developer",
+        "cz": "Software Developer"
+      },
       "topic": {
         "en": "AI Spec Driven Development",
         "cz": "AI Spec Driven Development"
@@ -118,8 +126,8 @@
         "cz": "Podívejte se, jak technické specifikace řídí vývoj backendu s pomocí AI od konceptu ke kódu."
       },
       "abstract": {
-        "en": "- motivation of tech spec\n- guidelines\n- spec creation\n- backend implementation",
-        "cz": "- motivation of tech spec\n- guidelines\n- spec creation\n- backend implementation"
+        "en": "## Why Spec-Driven Development\n- Reduce ambiguity between product and engineering\n- Make backend generation repeatable and reviewable\n\n## The Spec Workflow\n- Define endpoints, DTOs, and validation rules up front\n- Capture edge cases and error responses early\n\n## Spring Boot Backend Generation\n- Translate spec into controllers, services, and repositories\n- Auto-generate OpenAPI docs and client contracts\n\n## AI Usage Guidelines\n- Keep the spec as the single source of truth\n- Use AI for boilerplate, not for business rules\n- Review generated code with linting and tests\n\n## Real-world Impact\n- Faster delivery with fewer regressions\n- Easier onboarding and cross-team alignment",
+        "cz": "## Proč Spec-Driven Development\n- Menší nejasnosti mezi produktem a engineeringem\n- Opakovatelná a kontrolovatelná tvorba backendu\n\n## Práce se specifikací\n- Definice endpointů, DTO a validačních pravidel\n- Zachycení edge casů a chybových stavů\n\n## Generování backendu ve Spring Boot\n- Překlad specifikace do controllerů, service a repository\n- Automatická OpenAPI dokumentace a klientské kontrakty\n\n## AI guidelines\n- Specifikace jako jediný zdroj pravdy\n- AI na boilerplate, ne na business pravidla\n- Kontrola generovaného kódu lintem a testy\n\n## Přínos v praxi\n- Rychlejší dodávka s méně regresí\n- Snazší onboarding a sladění týmů"
       }
     },
     {
@@ -127,12 +135,12 @@
       "name": "Lukáš Chylík",
       "initials": "LCH",
       "photo": "/images/speakers/lukas-chylik.avif",
-      "company": "VIG",
+      "company": "AIS Servis s.r.o.",
       "country": "Czech Republic",
       "status": "confirmed",
       "role": {
-        "en": "UX Designer, Design System",
-        "cz": "UX Designer, Design System"
+        "en": "Software Developer",
+        "cz": "Software Developer"
       },
       "topic": {
         "en": "Figma Variables → Your Repo in One Click",

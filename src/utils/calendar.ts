@@ -8,12 +8,35 @@ export interface CalendarEvent {
 }
 
 export function generateICS(event: CalendarEvent): string {
-  const formatDate = (date: string) => {
-    return new Date(date)
+  const formatDateUtc = (date: Date) => {
+    return date
       .toISOString()
       .replace(/[-:]/g, "")
       .replace(/\.\d{3}/, "");
   };
+
+  const formatDateLocal = (date: string) => {
+    return date.replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+  };
+
+  const timezoneBlock = `BEGIN:VTIMEZONE
+TZID:Europe/Prague
+X-LIC-LOCATION:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE`;
 
   const escapeText = (text: string) => {
     return text
@@ -25,14 +48,15 @@ export function generateICS(event: CalendarEvent): string {
 
   const ics = `BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//VIG IT Conference//Event//EN
+PRODID:-//VIGCON//Event//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
+${timezoneBlock}
 BEGIN:VEVENT
 UID:${Date.now()}@wigcon.cz
-DTSTAMP:${formatDate(new Date().toISOString())}
-DTSTART;TZID=${event.timezone}:${formatDate(event.startDate)}
-DTEND;TZID=${event.timezone}:${formatDate(event.endDate)}
+DTSTAMP:${formatDateUtc(new Date())}
+DTSTART;TZID=${event.timezone}:${formatDateLocal(event.startDate)}
+DTEND;TZID=${event.timezone}:${formatDateLocal(event.endDate)}
 SUMMARY:${escapeText(event.title)}
 DESCRIPTION:${escapeText(event.description)}
 LOCATION:${escapeText(event.location)}

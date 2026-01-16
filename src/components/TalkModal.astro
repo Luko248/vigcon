@@ -65,7 +65,7 @@ const t = locale === 'en' ? en : cz;
           {speakerImage ? (
             <Image
               src={speakerImage}
-              alt={`${speaker.name}${speaker.role ? `, ${speaker.role[locale]}` : ""} at ${speaker.company}`}
+              alt={`${speaker.name}${speaker.role ? `, ${speaker.role[locale]}` : ""}`}
               width={80}
               height={80}
               class="w-full h-full object-cover"
@@ -74,7 +74,7 @@ const t = locale === 'en' ? en : cz;
             <>
               <img
                 src={speaker.photo}
-                alt={`${speaker.name}${speaker.role ? `, ${speaker.role[locale]}` : ""} at ${speaker.company}`}
+                alt={`${speaker.name}${speaker.role ? `, ${speaker.role[locale]}` : ""}`}
                 width="80"
                 height="80"
                 class="w-full h-full object-cover"
@@ -95,11 +95,11 @@ const t = locale === 'en' ? en : cz;
                 {speaker.role[locale]}
               </p>
             )}
-            <p class="text-(--color-text-secondary)">
-              {speaker.company}
-              {speaker.country && <span class="mx-1">•</span>}
-              {speaker.country && <span>{speaker.country}</span>}
-            </p>
+            {speaker.country && (
+              <p class="text-(--color-text-secondary)">
+                {speaker.country}
+              </p>
+            )}
           </div>
 
           <!-- Social Links -->
@@ -146,6 +146,14 @@ const t = locale === 'en' ? en : cz;
               )}
             </nav>
           )}
+        </div>
+        <div class="mt-3">
+          <p class="text-xs uppercase tracking-wider text-(--color-text-secondary) font-semibold">
+            {locale === "en" ? "Company" : "Společnost"}
+          </p>
+          <p class="text-xs text-emerald-400/90 font-medium mt-1">
+            {speaker.company}
+          </p>
         </div>
       </div>
     )}

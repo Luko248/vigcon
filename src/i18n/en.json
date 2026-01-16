@@ -44,7 +44,9 @@
     "openSlot": "Open Slot",
     "abstract": "ABSTRACT",
     "register": "Have an interesting topic? Register as a speaker!",
-    "registerLink": "Register as a speaker"
+    "registerLink": "Register as a speaker",
+    "speakerLabelSingle": "SPEAKER",
+    "speakerLabelPlural": "SPEAKERS"
   },
   "registration": {
     "title": "Registration",
