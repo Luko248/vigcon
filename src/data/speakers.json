@@ -172,6 +172,10 @@
       "company": "AIS Servis s.r.o.",
       "country": "Czech Republic",
       "status": "confirmed",
+      "role": {
+        "en": "CTO",
+        "cz": "CTO"
+      },
       "topic": {
         "en": "AI rollout into AIS",
         "cz": "Zavádění AI v AIS"
