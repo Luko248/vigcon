@@ -50,10 +50,12 @@
     "title": "Registrace",
     "subtitle": "Zaregistrujte se jako účastník nebo přihlaste své téma jako řečník. Kapacita je omezena na 50 účastníků.",
     "form": {
-      "fullName": "Jméno a příjmení",
+      "firstName": "Jméno",
+      "lastName": "Příjmení",
       "company": "Společnost",
+      "jobTitle": "Pracovní pozice",
+      "country": "Země",
       "email": "Email",
-      "phone": "Telefon",
       "participationType": "Typ účasti",
       "types": {
         "onsite": "Osobně (Onsite)",

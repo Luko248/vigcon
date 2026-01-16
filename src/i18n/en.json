@@ -50,10 +50,12 @@
     "title": "Registration",
     "subtitle": "Register as an attendee or submit your topic as a speaker. Capacity is limited to 50 participants.",
     "form": {
-      "fullName": "Full Name",
+      "firstName": "First Name",
+      "lastName": "Last Name",
       "company": "Company",
+      "jobTitle": "Job Title",
+      "country": "Country",
       "email": "Email",
-      "phone": "Phone",
       "participationType": "Participation Type",
       "types": {
         "onsite": "In-person (Onsite)",

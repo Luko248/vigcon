@@ -41,18 +41,11 @@ const restTitle = titleWords.slice(1).join(" ");
       class="max-w-2xl mx-auto glass rounded-3xl p-8 sm:p-10 animate-scale-up"
     >
       <form class="space-y-4" id="registration-form">
-        <input
-          type="hidden"
-          name="access_key"
-          value="7708308f-ff2a-4e33-aa1e-674885fa6a2a"
-        />
-        <input type="hidden" name="subject" value="VIGCON 2026 Registration" />
-        <input type="hidden" name="from_name" value="VIGCON 2026 Website" />
         <div class="grid sm:grid-cols-2 gap-4">
-          <!-- Full Name -->
+          <!-- First Name -->
           <div class="grid gap-2">
             <label
-              for="name"
+              for="first-name"
               class="text-sm font-medium text-(--color-text-secondary)"
             >
               <span class="flex items-center gap-2">
@@ -69,16 +62,120 @@ const restTitle = titleWords.slice(1).join(" ");
                   ><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
                   ></path><circle cx="12" cy="7" r="4"></circle></svg
                 >
-                {t.registration.form.fullName}
+                {t.registration.form.firstName}
                 <span class="text-primary">*</span>
               </span>
             </label>
             <input
               type="text"
-              id="name"
-              name="name"
+              id="first-name"
+              name="first_name"
               class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-600"
-              placeholder="John Smith"
+              placeholder="John"
+              required
+            />
+          </div>
+
+          <!-- Last Name -->
+          <div class="grid gap-2">
+            <label
+              for="last-name"
+              class="text-sm font-medium text-(--color-text-secondary)"
+            >
+              <span class="flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+                  ></path><circle cx="12" cy="7" r="4"></circle></svg
+                >
+                {t.registration.form.lastName}
+                <span class="text-primary">*</span>
+              </span>
+            </label>
+            <input
+              type="text"
+              id="last-name"
+              name="last_name"
+              class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-600"
+              placeholder="Smith"
+              required
+            />
+          </div>
+
+          <!-- Email -->
+          <div class="grid gap-2">
+            <label
+              for="email"
+              class="text-sm font-medium text-(--color-text-secondary)"
+            >
+              <span class="flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><rect width="20" height="16" x="2" y="4" rx="2"></rect><path
+                    d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg
+                >
+                {t.registration.form.email}
+                <span class="text-primary">*</span>
+              </span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-600"
+              placeholder="john.smith@company.com"
+              required
+            />
+          </div>
+
+          <!-- Country -->
+          <div class="grid gap-2">
+            <label
+              for="country"
+              class="text-sm font-medium text-(--color-text-secondary)"
+            >
+              <span class="flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><circle cx="12" cy="12" r="10"></circle><path
+                    d="M2 12h20"
+                  ></path><path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"
+                  ></path></svg
+                >
+                {t.registration.form.country}
+              </span>
+            </label>
+            <input
+              type="text"
+              id="country"
+              name="country"
+              class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-600"
+              placeholder="Czech Republic"
               required
             />
           </div>
@@ -121,10 +218,10 @@ const restTitle = titleWords.slice(1).join(" ");
             />
           </div>
 
-          <!-- Email -->
+          <!-- Job Title -->
           <div class="grid gap-2">
             <label
-              for="email"
+              for="job-title"
               class="text-sm font-medium text-(--color-text-secondary)"
             >
               <span class="flex items-center gap-2">
@@ -138,53 +235,20 @@ const restTitle = titleWords.slice(1).join(" ");
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  ><rect width="20" height="16" x="2" y="4" rx="2"></rect><path
-                    d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg
+                  ><rect x="2" y="7" width="20" height="14" rx="2"></rect><path
+                    d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"
+                  ></path><path d="M2 13h20"></path><path d="M10 17h4"></path></svg
                 >
-                {t.registration.form.email}
-                <span class="text-primary">*</span>
+                {t.registration.form.jobTitle}
               </span>
             </label>
             <input
-              type="email"
-              id="email"
-              name="email"
+              type="text"
+              id="job-title"
+              name="job_title"
               class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-600"
-              placeholder="john.smith@company.com"
+              placeholder="Senior Analyst"
               required
-            />
-          </div>
-
-          <!-- Phone -->
-          <div class="grid gap-2">
-            <label
-              for="phone"
-              class="text-sm font-medium text-(--color-text-secondary)"
-            >
-              <span class="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  ><path
-                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-                  ></path></svg
-                >
-                {t.registration.form.phone}
-              </span>
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              class="w-full px-4 py-3 rounded-xl bg-(--color-bg) border border-(--color-border) focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-gray-600"
-              placeholder="+420 123 456 789"
             />
           </div>
         </div>
@@ -383,6 +447,32 @@ const restTitle = titleWords.slice(1).join(" ");
           {t.registration.form.consent}
         </p>
       </form>
+      <form
+        id="ml-hidden-form"
+        class="ml-block-form"
+        action="https://assets.mailerlite.com/jsonp/1647047/forms/176737457186801090/subscribe"
+        method="post"
+        target="ml-hidden-iframe"
+        style="display: none;"
+      >
+        <input type="hidden" name="fields[email]" />
+        <input type="hidden" name="fields[name]" />
+        <input type="hidden" name="fields[last_name]" />
+        <input type="hidden" name="fields[country]" />
+        <input type="hidden" name="fields[company]" />
+        <input type="hidden" name="fields[job_title]" />
+        <input type="hidden" name="fields[professional_role]" />
+        <input type="hidden" name="fields[participation_type]" />
+        <input type="hidden" name="fields[registration_type]" />
+        <input type="hidden" name="fields[speaker_session]" />
+        <input type="hidden" name="ml-submit" value="1" />
+        <input type="hidden" name="anticsrf" value="true" />
+      </form>
+      <iframe
+        name="ml-hidden-iframe"
+        title="MailerLite"
+        style="display: none;"
+      ></iframe>
     </div>
 
     <!-- Already Registered State -->
@@ -489,6 +579,7 @@ const restTitle = titleWords.slice(1).join(" ");
     const form = document.getElementById(
       "registration-form"
     ) as HTMLFormElement;
+    const mlForm = document.getElementById("ml-hidden-form") as HTMLFormElement;
     const container = document.getElementById("registration-container");
     const alreadyRegistered = document.getElementById("already-registered");
     const resetButton = document.getElementById("reset-registration");
@@ -506,6 +597,7 @@ const restTitle = titleWords.slice(1).join(" ");
     const onsiteInput = document.querySelector(
       'input[name="type"][value="onsite"]'
     ) as HTMLInputElement;
+    const mlSubmitDone = { value: false };
 
     // Check Local Storage on load
     document.addEventListener("astro:page-load", () => {
@@ -578,8 +670,96 @@ const restTitle = titleWords.slice(1).join(" ");
       }, 5000);
     }
 
-    // Handle form submission via Web3Forms
-    form?.addEventListener("submit", async (e) => {
+    function handleMailerLiteSuccess() {
+      if (mlSubmitDone.value) {
+        return;
+      }
+      mlSubmitDone.value = true;
+      localStorage.setItem("vigcon_registered", "true");
+      container?.classList.add("hidden");
+      alreadyRegistered?.classList.remove("hidden");
+      showToast();
+    }
+
+    function submitToMailerLite() {
+      if (!mlForm) {
+        return;
+      }
+
+      const emailInput = form.querySelector("#email") as HTMLInputElement;
+      const firstNameInput = form.querySelector(
+        "#first-name"
+      ) as HTMLInputElement;
+      const lastNameInput = form.querySelector(
+        "#last-name"
+      ) as HTMLInputElement;
+      const companyInput = form.querySelector(
+        "#company"
+      ) as HTMLInputElement;
+      const countryInput = form.querySelector(
+        "#country"
+      ) as HTMLInputElement;
+      const jobTitleInput = form.querySelector(
+        "#job-title"
+      ) as HTMLInputElement;
+      const roleInput = form.querySelector(
+        'input[name="role"]:checked'
+      ) as HTMLInputElement | null;
+      const participationInput = form.querySelector(
+        'input[name="type"]:checked'
+      ) as HTMLInputElement | null;
+
+      const mlEmail = mlForm.querySelector(
+        'input[name="fields[email]"]'
+      ) as HTMLInputElement;
+      const mlName = mlForm.querySelector(
+        'input[name="fields[name]"]'
+      ) as HTMLInputElement;
+      const mlLastName = mlForm.querySelector(
+        'input[name="fields[last_name]"]'
+      ) as HTMLInputElement;
+      const mlCountry = mlForm.querySelector(
+        'input[name="fields[country]"]'
+      ) as HTMLInputElement;
+      const mlCompany = mlForm.querySelector(
+        'input[name="fields[company]"]'
+      ) as HTMLInputElement;
+      const mlJobTitle = mlForm.querySelector(
+        'input[name="fields[job_title]"]'
+      ) as HTMLInputElement;
+      const mlProfessionalRole = mlForm.querySelector(
+        'input[name="fields[professional_role]"]'
+      ) as HTMLInputElement;
+      const mlParticipationType = mlForm.querySelector(
+        'input[name="fields[participation_type]"]'
+      ) as HTMLInputElement;
+      const mlRegistrationType = mlForm.querySelector(
+        'input[name="fields[registration_type]"]'
+      ) as HTMLInputElement;
+      const mlSpeakerSession = mlForm.querySelector(
+        'input[name="fields[speaker_session]"]'
+      ) as HTMLInputElement;
+
+      mlEmail.value = emailInput?.value || "";
+      mlName.value = firstNameInput?.value || "";
+      mlLastName.value = lastNameInput?.value || "";
+      mlCountry.value = countryInput?.value || "";
+      mlCompany.value = companyInput?.value || "";
+      mlJobTitle.value = jobTitleInput?.value || "";
+      mlProfessionalRole.value = jobTitleInput?.value || "";
+      mlParticipationType.value =
+        participationInput?.value === "online"
+          ? "Online"
+          : "In-person (Onsite)";
+      mlRegistrationType.value =
+        roleInput?.value === "speaker" ? "Speaker" : "Attendee";
+      mlSpeakerSession.value = sessionTextarea?.value || "";
+
+      mlForm.submit();
+    }
+
+    // Handle form submission via MailerLite
+    form?.addEventListener("submit", (e) => {
       e.preventDefault();
 
       const submitButton = form.querySelector(
@@ -589,33 +769,9 @@ const restTitle = titleWords.slice(1).join(" ");
       submitButton.disabled = true;
       submitButton.innerHTML = '<span class="animate-pulse">Sending...</span>';
 
-      const formData = new FormData(form);
-      const object = Object.fromEntries(formData);
-      const json = JSON.stringify(object);
-
       try {
-        const response = await fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: json,
-        });
-
-        const result = await response.json();
-
-        if (response.status === 200) {
-          localStorage.setItem("vigcon_registered", "true");
-          container?.classList.add("hidden");
-          alreadyRegistered?.classList.remove("hidden");
-          showToast();
-        } else {
-          console.error("Form submission error:", result.message);
-          submitButton.disabled = false;
-          submitButton.innerHTML = originalText;
-          alert(result.message || "Something went wrong. Please try again.");
-        }
+        submitToMailerLite();
+        handleMailerLiteSuccess();
       } catch (error) {
         console.error("Form submission error:", error);
         submitButton.disabled = false;
@@ -631,6 +787,37 @@ const restTitle = titleWords.slice(1).join(" ");
       alreadyRegistered?.classList.add("hidden");
       form?.reset();
       updateSpeakerFields();
+      mlSubmitDone.value = false;
     });
+
+    (window as typeof window & {
+      ml_webform_success_35826004?: () => void;
+    }).ml_webform_success_35826004 = handleMailerLiteSuccess;
+  </script>
+
+  <!-- MailerLite Universal -->
+  <script>
+    (function (w, d, e, u, f, l, n) {
+      w[f] =
+        w[f] ||
+        function () {
+          (w[f].q = w[f].q || []).push(arguments);
+        };
+      l = d.createElement(e);
+      l.async = 1;
+      l.src = u;
+      n = d.getElementsByTagName(e)[0];
+      n.parentNode.insertBefore(l, n);
+    })(window, document, "script", "https://assets.mailerlite.com/js/universal.js", "ml");
+    ml("account", "1647047");
+  </script>
+  <!-- End MailerLite Universal -->
+
+  <script
+    src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024"
+    type="text/javascript"
+  ></script>
+  <script>
+    fetch("https://assets.mailerlite.com/jsonp/1647047/forms/176737457186801090/takel");
   </script>
 </section>
