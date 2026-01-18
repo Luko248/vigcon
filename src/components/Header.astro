@@ -217,49 +217,67 @@ const navItems = [
 <script>
   import { downloadICS, getConferenceEvent } from "@utils/calendar";
 
-  // Mobile menu toggle
-  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
+  function initHeader() {
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
 
-  function toggleMenu() {
-    const isExpanded = mobileMenuBtn?.getAttribute("aria-expanded") === "true";
-    mobileMenuBtn?.setAttribute("aria-expanded", String(!isExpanded));
+    if (!mobileMenuBtn || !mobileMenu) return;
 
-    if (!isExpanded) {
-      // Open
-      mobileMenu?.classList.remove("invisible", "opacity-0", "-translate-y-2");
-      mobileMenu?.classList.add("visible", "opacity-100", "translate-y-0");
-      document.body.style.overflow = "hidden";
-    } else {
-      // Close
-      mobileMenu?.classList.remove("visible", "opacity-100", "translate-y-0");
-      mobileMenu?.classList.add("invisible", "opacity-0", "-translate-y-2");
-      document.body.style.overflow = "";
+    // Remove existing listeners to avoid duplicates if any (though mostly we get new elements)
+    // Actually better to just define the function and attach.
+
+    function toggleMenu() {
+      const isExpanded =
+        mobileMenuBtn?.getAttribute("aria-expanded") === "true";
+      mobileMenuBtn?.setAttribute("aria-expanded", String(!isExpanded));
+
+      if (!isExpanded) {
+        // Open
+        mobileMenu?.classList.remove(
+          "invisible",
+          "opacity-0",
+          "-translate-y-2",
+        );
+        mobileMenu?.classList.add("visible", "opacity-100", "translate-y-0");
+        document.body.style.overflow = "hidden";
+      } else {
+        // Close
+        mobileMenu?.classList.remove("visible", "opacity-100", "translate-y-0");
+        mobileMenu?.classList.add("invisible", "opacity-0", "-translate-y-2");
+        document.body.style.overflow = "";
+      }
     }
+
+    // Clean up previous listener if it exists (good practice but element replacement handles it usually)
+    mobileMenuBtn.removeEventListener("click", toggleMenu);
+    mobileMenuBtn.addEventListener("click", toggleMenu);
+
+    // Close mobile menu when clicking a link
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenuBtn?.setAttribute("aria-expanded", "false");
+        mobileMenu?.classList.remove("visible", "opacity-100", "translate-y-0");
+        mobileMenu?.classList.add("invisible", "opacity-0", "-translate-y-2");
+        document.body.style.overflow = "";
+      });
+    });
+
+    // Calendar download
+    const addToCalendarBtn = document.getElementById("add-to-calendar-btn");
+    const mobileAddToCalendarBtn = document.getElementById(
+      "mobile-add-to-calendar-btn",
+    );
+
+    const handleCalendarDownload = () => {
+      downloadICS(getConferenceEvent());
+    };
+
+    addToCalendarBtn?.addEventListener("click", handleCalendarDownload);
+    mobileAddToCalendarBtn?.addEventListener("click", handleCalendarDownload);
   }
 
-  mobileMenuBtn?.addEventListener("click", toggleMenu);
-
-  // Close mobile menu when clicking a link
-  mobileMenu?.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      mobileMenuBtn?.setAttribute("aria-expanded", "false");
-      mobileMenu?.classList.remove("visible", "opacity-100", "translate-y-0");
-      mobileMenu?.classList.add("invisible", "opacity-0", "-translate-y-2");
-      document.body.style.overflow = "";
-    });
-  });
-
-  // Calendar download
-  const addToCalendarBtn = document.getElementById("add-to-calendar-btn");
-  const mobileAddToCalendarBtn = document.getElementById(
-    "mobile-add-to-calendar-btn"
-  );
-
-  const handleCalendarDownload = () => {
-    downloadICS(getConferenceEvent());
-  };
-
-  addToCalendarBtn?.addEventListener("click", handleCalendarDownload);
-  mobileAddToCalendarBtn?.addEventListener("click", handleCalendarDownload);
+  // Run on initial load and after View Transition navigation
+  document.addEventListener("astro:page-load", initHeader);
+  initHeader();
 </script>

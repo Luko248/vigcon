@@ -575,222 +575,221 @@ const restTitle = titleWords.slice(1).join(" ");
   </style>
 
   <script>
-    // Elements
-    const form = document.getElementById(
-      "registration-form"
-    ) as HTMLFormElement;
-    const mlForm = document.getElementById("ml-hidden-form") as HTMLFormElement;
-    const container = document.getElementById("registration-container");
-    const alreadyRegistered = document.getElementById("already-registered");
-    const resetButton = document.getElementById("reset-registration");
-    const toast = document.getElementById("toast");
+    const initRegistration = (): void => {
+      const form = document.getElementById(
+        "registration-form",
+      ) as HTMLFormElement;
+      const mlForm = document.getElementById(
+        "ml-hidden-form",
+      ) as HTMLFormElement;
+      const container = document.getElementById("registration-container");
+      const alreadyRegistered = document.getElementById("already-registered");
+      const resetButton = document.getElementById("reset-registration");
+      const toast = document.getElementById("toast");
 
-    const roleInputs = document.querySelectorAll('input[name="role"]');
-    const speakerFields = document.getElementById("speaker-fields");
-    const sessionTextarea = document.getElementById(
-      "session-description"
-    ) as HTMLTextAreaElement;
+      const roleInputs = document.querySelectorAll('input[name="role"]');
+      const speakerFields = document.getElementById("speaker-fields");
+      const sessionTextarea = document.getElementById(
+        "session-description",
+      ) as HTMLTextAreaElement;
 
-    const onlineInput = document.querySelector(
-      'input[name="type"][value="online"]'
-    ) as HTMLInputElement;
-    const onsiteInput = document.querySelector(
-      'input[name="type"][value="onsite"]'
-    ) as HTMLInputElement;
-    const mlSubmitDone = { value: false };
+      const onlineInput = document.querySelector(
+        'input[name="type"][value="online"]',
+      ) as HTMLInputElement;
+      const onsiteInput = document.querySelector(
+        'input[name="type"][value="onsite"]',
+      ) as HTMLInputElement;
 
-    // Check Local Storage on load
-    document.addEventListener("astro:page-load", () => {
+      if (!form) return;
+
+      let mlSubmitDone = false;
+
       const isRegistered = localStorage.getItem("vigcon_registered");
       if (isRegistered === "true") {
         container?.classList.add("hidden");
         alreadyRegistered?.classList.remove("hidden");
       }
 
-      // Initialize fields state based on current selection
+      const updateSpeakerFields = (): void => {
+        const selectedRole = document.querySelector(
+          'input[name="role"]:checked',
+        ) as HTMLInputElement;
+
+        const onlineCard = onlineInput?.closest(".radio-card") as HTMLElement;
+        const onlineLabel = onlineInput?.closest("label") as HTMLElement;
+
+        if (selectedRole && selectedRole.value === "speaker") {
+          speakerFields?.classList.remove("hidden");
+          speakerFields?.classList.add("grid", "gap-2");
+          if (sessionTextarea) sessionTextarea.required = true;
+
+          if (onlineInput) {
+            onlineInput.disabled = true;
+            if (onlineCard) {
+              onlineCard.classList.add("opacity-50", "cursor-not-allowed");
+              onlineCard.classList.remove("hover:bg-(--color-bg)/80");
+            }
+            if (onlineLabel) {
+              onlineLabel.classList.remove("cursor-pointer");
+              onlineLabel.classList.add("cursor-not-allowed");
+            }
+
+            if (onlineInput.checked && onsiteInput) {
+              onsiteInput.checked = true;
+            }
+          }
+        } else {
+          speakerFields?.classList.add("hidden");
+          speakerFields?.classList.remove("grid", "gap-2");
+          if (sessionTextarea) sessionTextarea.required = false;
+
+          if (onlineInput) {
+            onlineInput.disabled = false;
+            if (onlineCard) {
+              onlineCard.classList.remove("opacity-50", "cursor-not-allowed");
+              onlineCard.classList.add("hover:bg-(--color-bg)/80");
+            }
+            if (onlineLabel) {
+              onlineLabel.classList.add("cursor-pointer");
+              onlineLabel.classList.remove("cursor-not-allowed");
+            }
+          }
+        }
+      };
+
       updateSpeakerFields();
-    });
 
-    // Handle conditional speaker fields
-    function updateSpeakerFields() {
-      const selectedRole = document.querySelector(
-        'input[name="role"]:checked'
-      ) as HTMLInputElement;
+      roleInputs.forEach((input) => {
+        input.addEventListener("change", updateSpeakerFields);
+      });
 
-      const onlineCard = onlineInput.closest(".radio-card") as HTMLElement;
-      const onlineLabel = onlineInput.closest("label") as HTMLElement;
+      const showToast = (): void => {
+        toast?.classList.remove("translate-y-24", "opacity-0");
+        setTimeout(() => {
+          toast?.classList.add("translate-y-24", "opacity-0");
+        }, 5000);
+      };
 
-      if (selectedRole && selectedRole.value === "speaker") {
-        speakerFields?.classList.remove("hidden");
-        speakerFields?.classList.add("grid", "gap-2");
-        sessionTextarea.required = true;
+      const handleMailerLiteSuccess = (): void => {
+        if (mlSubmitDone) return;
+        mlSubmitDone = true;
+        localStorage.setItem("vigcon_registered", "true");
+        container?.classList.add("hidden");
+        alreadyRegistered?.classList.remove("hidden");
+        showToast();
+      };
 
-        // Disable Online option
-        onlineInput.disabled = true;
-        if (onlineCard) {
-          onlineCard.classList.add("opacity-50", "cursor-not-allowed");
-          onlineCard.classList.remove("hover:bg-(--color-bg)/80");
+      const submitToMailerLite = (): void => {
+        if (!mlForm) return;
+
+        const emailInput = form.querySelector("#email") as HTMLInputElement;
+        const firstNameInput = form.querySelector(
+          "#first-name",
+        ) as HTMLInputElement;
+        const lastNameInput = form.querySelector(
+          "#last-name",
+        ) as HTMLInputElement;
+        const companyInput = form.querySelector("#company") as HTMLInputElement;
+        const countryInput = form.querySelector("#country") as HTMLInputElement;
+        const jobTitleInput = form.querySelector(
+          "#job-title",
+        ) as HTMLInputElement;
+        const roleInput = form.querySelector(
+          'input[name="role"]:checked',
+        ) as HTMLInputElement | null;
+        const participationInput = form.querySelector(
+          'input[name="type"]:checked',
+        ) as HTMLInputElement | null;
+
+        const mlEmail = mlForm.querySelector(
+          'input[name="fields[email]"]',
+        ) as HTMLInputElement;
+        const mlName = mlForm.querySelector(
+          'input[name="fields[name]"]',
+        ) as HTMLInputElement;
+        const mlLastName = mlForm.querySelector(
+          'input[name="fields[last_name]"]',
+        ) as HTMLInputElement;
+        const mlCountry = mlForm.querySelector(
+          'input[name="fields[country]"]',
+        ) as HTMLInputElement;
+        const mlCompany = mlForm.querySelector(
+          'input[name="fields[company]"]',
+        ) as HTMLInputElement;
+        const mlJobTitle = mlForm.querySelector(
+          'input[name="fields[job_title]"]',
+        ) as HTMLInputElement;
+        const mlProfessionalRole = mlForm.querySelector(
+          'input[name="fields[professional_role]"]',
+        ) as HTMLInputElement;
+        const mlParticipationType = mlForm.querySelector(
+          'input[name="fields[participation_type]"]',
+        ) as HTMLInputElement;
+        const mlRegistrationType = mlForm.querySelector(
+          'input[name="fields[registration_type]"]',
+        ) as HTMLInputElement;
+        const mlSpeakerSession = mlForm.querySelector(
+          'input[name="fields[speaker_session]"]',
+        ) as HTMLInputElement;
+
+        mlEmail.value = emailInput?.value || "";
+        mlName.value = firstNameInput?.value || "";
+        mlLastName.value = lastNameInput?.value || "";
+        mlCountry.value = countryInput?.value || "";
+        mlCompany.value = companyInput?.value || "";
+        mlJobTitle.value = jobTitleInput?.value || "";
+        mlProfessionalRole.value = jobTitleInput?.value || "";
+        mlParticipationType.value =
+          participationInput?.value === "online"
+            ? "Online"
+            : "In-person (Onsite)";
+        mlRegistrationType.value =
+          roleInput?.value === "speaker" ? "Speaker" : "Attendee";
+        mlSpeakerSession.value = sessionTextarea?.value || "";
+
+        mlForm.submit();
+      };
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const submitButton = form.querySelector(
+          'button[type="submit"]',
+        ) as HTMLButtonElement;
+        const originalText = submitButton.innerHTML;
+        submitButton.disabled = true;
+        submitButton.innerHTML =
+          '<span class="animate-pulse">Sending...</span>';
+
+        try {
+          submitToMailerLite();
+          handleMailerLiteSuccess();
+        } catch (error) {
+          console.error("Form submission error:", error);
+          submitButton.disabled = false;
+          submitButton.innerHTML = originalText;
+          alert("Network error. Please check your connection and try again.");
         }
-        if (onlineLabel) {
-          onlineLabel.classList.remove("cursor-pointer");
-          onlineLabel.classList.add("cursor-not-allowed");
+      });
+
+      resetButton?.addEventListener("click", () => {
+        localStorage.removeItem("vigcon_registered");
+        container?.classList.remove("hidden");
+        alreadyRegistered?.classList.add("hidden");
+        form.reset();
+        updateSpeakerFields();
+        mlSubmitDone = false;
+      });
+
+      (
+        window as typeof window & {
+          ml_webform_success_35826004?: () => void;
         }
+      ).ml_webform_success_35826004 = handleMailerLiteSuccess;
+    };
 
-        // Force Onsite if Online was selected
-        if (onlineInput.checked) {
-          onsiteInput.checked = true;
-        }
-      } else {
-        speakerFields?.classList.add("hidden");
-        speakerFields?.classList.remove("grid", "gap-2");
-        sessionTextarea.required = false;
-
-        // Enable Online option
-        onlineInput.disabled = false;
-        if (onlineCard) {
-          onlineCard.classList.remove("opacity-50", "cursor-not-allowed");
-          onlineCard.classList.add("hover:bg-(--color-bg)/80");
-        }
-        if (onlineLabel) {
-          onlineLabel.classList.add("cursor-pointer");
-          onlineLabel.classList.remove("cursor-not-allowed");
-        }
-      }
-    }
-
-    roleInputs.forEach((input) => {
-      input.addEventListener("change", updateSpeakerFields);
-    });
-
-    // Show Toast
-    function showToast() {
-      toast?.classList.remove("translate-y-24", "opacity-0");
-      setTimeout(() => {
-        toast?.classList.add("translate-y-24", "opacity-0");
-      }, 5000);
-    }
-
-    function handleMailerLiteSuccess() {
-      if (mlSubmitDone.value) {
-        return;
-      }
-      mlSubmitDone.value = true;
-      localStorage.setItem("vigcon_registered", "true");
-      container?.classList.add("hidden");
-      alreadyRegistered?.classList.remove("hidden");
-      showToast();
-    }
-
-    function submitToMailerLite() {
-      if (!mlForm) {
-        return;
-      }
-
-      const emailInput = form.querySelector("#email") as HTMLInputElement;
-      const firstNameInput = form.querySelector(
-        "#first-name"
-      ) as HTMLInputElement;
-      const lastNameInput = form.querySelector(
-        "#last-name"
-      ) as HTMLInputElement;
-      const companyInput = form.querySelector("#company") as HTMLInputElement;
-      const countryInput = form.querySelector("#country") as HTMLInputElement;
-      const jobTitleInput = form.querySelector(
-        "#job-title"
-      ) as HTMLInputElement;
-      const roleInput = form.querySelector(
-        'input[name="role"]:checked'
-      ) as HTMLInputElement | null;
-      const participationInput = form.querySelector(
-        'input[name="type"]:checked'
-      ) as HTMLInputElement | null;
-
-      const mlEmail = mlForm.querySelector(
-        'input[name="fields[email]"]'
-      ) as HTMLInputElement;
-      const mlName = mlForm.querySelector(
-        'input[name="fields[name]"]'
-      ) as HTMLInputElement;
-      const mlLastName = mlForm.querySelector(
-        'input[name="fields[last_name]"]'
-      ) as HTMLInputElement;
-      const mlCountry = mlForm.querySelector(
-        'input[name="fields[country]"]'
-      ) as HTMLInputElement;
-      const mlCompany = mlForm.querySelector(
-        'input[name="fields[company]"]'
-      ) as HTMLInputElement;
-      const mlJobTitle = mlForm.querySelector(
-        'input[name="fields[job_title]"]'
-      ) as HTMLInputElement;
-      const mlProfessionalRole = mlForm.querySelector(
-        'input[name="fields[professional_role]"]'
-      ) as HTMLInputElement;
-      const mlParticipationType = mlForm.querySelector(
-        'input[name="fields[participation_type]"]'
-      ) as HTMLInputElement;
-      const mlRegistrationType = mlForm.querySelector(
-        'input[name="fields[registration_type]"]'
-      ) as HTMLInputElement;
-      const mlSpeakerSession = mlForm.querySelector(
-        'input[name="fields[speaker_session]"]'
-      ) as HTMLInputElement;
-
-      mlEmail.value = emailInput?.value || "";
-      mlName.value = firstNameInput?.value || "";
-      mlLastName.value = lastNameInput?.value || "";
-      mlCountry.value = countryInput?.value || "";
-      mlCompany.value = companyInput?.value || "";
-      mlJobTitle.value = jobTitleInput?.value || "";
-      mlProfessionalRole.value = jobTitleInput?.value || "";
-      mlParticipationType.value =
-        participationInput?.value === "online"
-          ? "Online"
-          : "In-person (Onsite)";
-      mlRegistrationType.value =
-        roleInput?.value === "speaker" ? "Speaker" : "Attendee";
-      mlSpeakerSession.value = sessionTextarea?.value || "";
-
-      mlForm.submit();
-    }
-
-    // Handle form submission via MailerLite
-    form?.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const submitButton = form.querySelector(
-        'button[type="submit"]'
-      ) as HTMLButtonElement;
-      const originalText = submitButton.innerHTML;
-      submitButton.disabled = true;
-      submitButton.innerHTML = '<span class="animate-pulse">Sending...</span>';
-
-      try {
-        submitToMailerLite();
-        handleMailerLiteSuccess();
-      } catch (error) {
-        console.error("Form submission error:", error);
-        submitButton.disabled = false;
-        submitButton.innerHTML = originalText;
-        alert("Network error. Please check your connection and try again.");
-      }
-    });
-
-    // Reset registration (for testing or multiple registrations)
-    resetButton?.addEventListener("click", () => {
-      localStorage.removeItem("vigcon_registered");
-      container?.classList.remove("hidden");
-      alreadyRegistered?.classList.add("hidden");
-      form?.reset();
-      updateSpeakerFields();
-      mlSubmitDone.value = false;
-    });
-
-    (
-      window as typeof window & {
-        ml_webform_success_35826004?: () => void;
-      }
-    ).ml_webform_success_35826004 = handleMailerLiteSuccess;
+    document.addEventListener("astro:page-load", initRegistration);
+    initRegistration();
   </script>
 
   <!-- MailerLite Universal -->
@@ -811,7 +810,7 @@ const restTitle = titleWords.slice(1).join(" ");
       document,
       "script",
       "https://assets.mailerlite.com/js/universal.js",
-      "ml"
+      "ml",
     );
     ml("account", "1647047");
   </script>
@@ -823,7 +822,7 @@ const restTitle = titleWords.slice(1).join(" ");
     type="text/javascript"></script>
   <script is:inline>
     fetch(
-      "https://assets.mailerlite.com/jsonp/1647047/forms/176737457186801090/takel"
+      "https://assets.mailerlite.com/jsonp/1647047/forms/176737457186801090/takel",
     );
   </script>
 </section>

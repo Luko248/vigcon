@@ -102,21 +102,24 @@ const restTitle = titleWords.slice(1).join(" ");
 </style>
 
 <script>
-  // Exclusive accordion behavior
-  // This polyfills the 'name' attribute behavior for older browsers or ensures it works consistently
-  const details = document.querySelectorAll("details[name='faq-accordion']");
+  const initFAQ = (): void => {
+    const details = document.querySelectorAll("details[name='faq-accordion']");
 
-  details.forEach((targetDetail) => {
-    targetDetail.addEventListener("toggle", () => {
-      const detail = targetDetail as HTMLDetailsElement;
-      if (detail.open) {
-        details.forEach((d) => {
-          const otherDetail = d as HTMLDetailsElement;
-          if (otherDetail !== detail && otherDetail.open) {
-            otherDetail.open = false;
-          }
-        });
-      }
+    details.forEach((targetDetail) => {
+      targetDetail.addEventListener("toggle", () => {
+        const detail = targetDetail as HTMLDetailsElement;
+        if (detail.open) {
+          details.forEach((d) => {
+            const otherDetail = d as HTMLDetailsElement;
+            if (otherDetail !== detail && otherDetail.open) {
+              otherDetail.open = false;
+            }
+          });
+        }
+      });
     });
-  });
+  };
+
+  document.addEventListener("astro:page-load", initFAQ);
+  initFAQ();
 </script>

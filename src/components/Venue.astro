@@ -198,5 +198,7 @@ const restTitle = titleWords.slice(1).join(" ");
     observer.observe(mapIframe);
   };
   
+  // Initialize on page load and after navigation
   document.addEventListener("astro:page-load", initMapLazyLoad);
+  initMapLazyLoad();
 </script>

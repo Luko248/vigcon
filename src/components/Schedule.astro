@@ -761,99 +761,113 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
 <script>
   import { isConferenceDay } from "@utils/time";
 
-  // Modal handling
-  const dialogs = document.querySelectorAll("dialog");
-  const modalTriggers = document.querySelectorAll("[data-modal-trigger]");
-  const closeButtons = document.querySelectorAll("[data-close-modal]");
+  function initSchedule() {
+    // Modal handling
+    const dialogs = document.querySelectorAll("dialog");
+    const modalTriggers = document.querySelectorAll("[data-modal-trigger]");
+    const closeButtons = document.querySelectorAll("[data-close-modal]");
 
-  // Open modal
-  modalTriggers.forEach((trigger) => {
-    trigger.addEventListener("click", () => {
-      const talkId = trigger.getAttribute("data-modal-trigger");
-      const dialog = document.getElementById(
-        `dialog-${talkId}`
-      ) as HTMLDialogElement;
-      if (dialog) {
-        dialog.showModal();
-        document.body.style.overflow = "hidden";
-      }
+    // Open modal
+    modalTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const talkId = trigger.getAttribute("data-modal-trigger");
+        const dialog = document.getElementById(
+          `dialog-${talkId}`
+        ) as HTMLDialogElement;
+        if (dialog) {
+          dialog.showModal();
+          document.body.style.overflow = "hidden";
+        }
+      });
     });
-  });
 
-  // Close modal via button
-  closeButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const dialog = button.closest("dialog") as HTMLDialogElement;
-      if (dialog) {
-        dialog.close();
+    // Close modal via button
+    closeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const dialog = button.closest("dialog") as HTMLDialogElement;
+        if (dialog) {
+          dialog.close();
+          document.body.style.overflow = "";
+        }
+      });
+    });
+
+    // Close modal when clicking backdrop
+    dialogs.forEach((dialog) => {
+      dialog.addEventListener("click", (e) => {
+        if (e.target === dialog) {
+          (dialog as HTMLDialogElement).close();
+          document.body.style.overflow = "";
+        }
+      });
+
+      // Handle Escape key
+      dialog.addEventListener("close", () => {
         document.body.style.overflow = "";
-      }
-    });
-  });
-
-  // Close modal when clicking backdrop
-  dialogs.forEach((dialog) => {
-    dialog.addEventListener("click", (e) => {
-      if (e.target === dialog) {
-        (dialog as HTMLDialogElement).close();
-        document.body.style.overflow = "";
-      }
+      });
     });
 
-    // Handle Escape key
-    dialog.addEventListener("close", () => {
-      document.body.style.overflow = "";
-    });
-  });
+    // Current time indicator
+    const conferenceDate = "2026-05-28";
+    const TIMELINE_START = "08:30";
+    const TIMELINE_END = "18:00";
 
-  // Current time indicator
-  const conferenceDate = "2026-05-28";
-  const TIMELINE_START = "08:30";
-  const TIMELINE_END = "18:00";
-
-  function parseTime(time: string): number {
-    const [hours, minutes] = time.split(":").map(Number);
-    return hours * 60 + minutes;
-  }
-
-  function updateTimeIndicator() {
-    const indicator = document.getElementById("current-time-indicator");
-    if (!indicator) return;
-
-    if (!isConferenceDay(conferenceDate)) {
-      indicator.classList.add("hidden");
-      return;
+    function parseTime(time: string): number {
+      const [hours, minutes] = time.split(":").map(Number);
+      return hours * 60 + minutes;
     }
 
-    const now = new Date();
-    const currentMinutes = now.getHours() * 60 + now.getMinutes();
-    const startMinutes = parseTime(TIMELINE_START);
-    const endMinutes = parseTime(TIMELINE_END);
-    const totalMinutes = endMinutes - startMinutes;
+    function updateTimeIndicator() {
+      const indicator = document.getElementById("current-time-indicator");
+      if (!indicator) return;
 
-    if (currentMinutes < startMinutes || currentMinutes > endMinutes) {
-      indicator.classList.add("hidden");
-      return;
-    }
+      if (!isConferenceDay(conferenceDate)) {
+        indicator.classList.add("hidden");
+        return;
+      }
 
-    const position = ((currentMinutes - startMinutes) / totalMinutes) * 100;
-    indicator.classList.remove("hidden");
-    indicator.style.top = `${position}%`;
-  }
+      const now = new Date();
+      const currentMinutes = now.getHours() * 60 + now.getMinutes();
+      const startMinutes = parseTime(TIMELINE_START);
+      const endMinutes = parseTime(TIMELINE_END);
+      const totalMinutes = endMinutes - startMinutes;
 
-  // Update every minute
-  updateTimeIndicator();
-  setInterval(updateTimeIndicator, 60000);
+      if (currentMinutes < startMinutes || currentMinutes > endMinutes) {
+        indicator.classList.add("hidden");
+        return;
+      }
 
-  // For demo purposes: show indicator at a fixed position
-  // Remove this in production
-  const demoMode = true;
-  if (demoMode) {
-    const indicator = document.getElementById("current-time-indicator");
-    if (indicator) {
+      const position = ((currentMinutes - startMinutes) / totalMinutes) * 100;
       indicator.classList.remove("hidden");
-      // Position at 11:00 (approximately 25% through the day for visual demo)
-      indicator.style.top = "26%";
+      indicator.style.top = `${position}%`;
+    }
+
+    // Update every minute
+    updateTimeIndicator();
+    // Clear existing interval if any (not easily possible without storing it, but page-load usually means new context if not careful)
+    // Ideally we store interval ID on window or element to clear it.
+    // However, in Astro View Transitions, scripts re-run.
+    // Let's rely on component cleanup or just set it.
+    const intervalId = setInterval(updateTimeIndicator, 60000);
+    
+    // Cleanup interval on page unload (astro:before-swap)
+    document.addEventListener("astro:before-swap", () => {
+      clearInterval(intervalId);
+    }, { once: true });
+
+    // For demo purposes: show indicator at a fixed position
+    // Remove this in production
+    const demoMode = true;
+    if (demoMode) {
+      const indicator = document.getElementById("current-time-indicator");
+      if (indicator) {
+        indicator.classList.remove("hidden");
+        // Position at 11:00 (approximately 25% through the day for visual demo)
+        indicator.style.top = "26%";
+      }
     }
   }
+
+  document.addEventListener("astro:page-load", initSchedule);
+  initSchedule();
 </script>
