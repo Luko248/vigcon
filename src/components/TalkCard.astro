@@ -107,7 +107,13 @@ const hasSpeakerPhoto = Boolean(speakerImage || speaker?.photo);
         </div>
         <div class="mb-4">
           <p class="text-xs text-emerald-400/90 font-medium">
-            {speaker.company}
+            {talk.company || speaker?.company}
+            {(talk.country || speaker?.country) && (
+              <>
+                <span class="mx-0.5 text-(--color-text-secondary) opacity-70">•</span>
+                {talk.country || speaker?.country}
+              </>
+            )}
           </p>
         </div>
       )}

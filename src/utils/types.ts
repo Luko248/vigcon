@@ -16,6 +16,8 @@ export interface Talk {
     en: string;
     cz: string;
   };
+  company?: string;
+  country?: string;
   type?: "break" | "special";
 }
 
@@ -25,7 +27,7 @@ export interface Speaker {
   initials: string;
   photo: string;
   photos?: string[];
-  company: string;
+  company?: string;
   status: "confirmed" | "open";
   topic: {
     en: string;

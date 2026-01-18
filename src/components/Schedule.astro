@@ -286,6 +286,17 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                               </span>
                             </div>
                           )}
+                          {(talk.company || speaker?.company) && (
+                            <p class="text-[0.65rem] text-emerald-400/90 font-medium mt-1 truncate">
+                              {talk.company || speaker?.company}
+                              {(talk.country || speaker?.country) && (
+                                <>
+                                  <span class="mx-0.5 text-(--color-text-secondary) opacity-70">•</span>
+                                  {talk.country || speaker?.country}
+                                </>
+                              )}
+                            </p>
+                          )}
                         </button>
                       </div>
                     );
@@ -387,6 +398,17 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                               </span>
                             </div>
                           )}
+                          {(talk.company || speaker?.company) && (
+                            <p class="text-[0.65rem] text-emerald-400/90 font-medium mt-1 truncate">
+                              {talk.company || speaker?.company}
+                              {(talk.country || speaker?.country) && (
+                                <>
+                                  <span class="mx-0.5 text-(--color-text-secondary) opacity-70">•</span>
+                                  {talk.country || speaker?.country}
+                                </>
+                              )}
+                            </p>
+                          )}
                         </button>
                       </div>
                     );
@@ -433,6 +455,9 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
               const photo2 = speaker.photos?.[1];
               const img1 = getSpeakerImage(photo1);
               const img2 = getSpeakerImage(photo2);
+              const talk = schedule.find((t) => t.speakerId === speaker.id);
+              const company = talk?.company || speaker.company;
+              const country = talk?.country || speaker.country;
               
               return (
                 <button
@@ -510,7 +535,13 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                     </div>
                     <div class="mt-3">
                       <p class="text-xs text-emerald-400/90 font-medium">
-                        {speaker.company}
+                        {company}
+                        {country && (
+                          <>
+                            <span class="mx-0.5 text-(--color-text-secondary) opacity-70">•</span>
+                            {country}
+                          </>
+                        )}
                       </p>
                     </div>
                   </div>
@@ -549,6 +580,9 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
   !isScheduled && speakers.map((speaker) => {
     const speakerNames = speaker.name.split(" & ");
     const hasTwoSpeakers = speakerNames.length === 2;
+    const talk = schedule.find((t) => t.speakerId === speaker.id);
+    const company = talk?.company || speaker.company;
+    const country = talk?.country || speaker.country;
     
     return (
       <dialog
@@ -652,7 +686,13 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
                 {locale === "en" ? "Company" : "Společnost"}
               </p>
               <p class="text-xs text-emerald-400/90 font-medium mt-1">
-                {speaker.company}
+                {company}
+                {country && (
+                  <>
+                    <span class="mx-0.5 text-(--color-text-secondary) opacity-70">•</span>
+                    {country}
+                  </>
+                )}
               </p>
             </div>
           </div>

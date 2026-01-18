@@ -5,8 +5,6 @@
       "name": "Filip Grék",
       "initials": "FG",
       "photo": "/images/speakers/filip-grek.avif",
-      "company": "AIS Servis s.r.o.",
-      "country": "Czech Republic",
       "status": "confirmed",
       "role": {
         "en": "Software Developer",
@@ -39,8 +37,6 @@
         "/images/speakers/martin-cech.avif",
         "/images/speakers/jiri.chorous.avif"
       ],
-      "company": "AIS Servis s.r.o.",
-      "country": "Czech Republic",
       "status": "confirmed",
       "role": {
         "en": "UX Designer, Design System",
@@ -74,8 +70,6 @@
         "/images/speakers/dmytro.avif",
         "/images/speakers/pavel-kraus.avif"
       ],
-      "company": "AIS Servis s.r.o.",
-      "country": "Czech Republic",
       "status": "confirmed",
       "role": {
         "en": "Software Developer",
@@ -105,8 +99,6 @@
       "name": "Michal Vraný",
       "initials": "MV",
       "photo": "/images/speakers/michal-vrany.avif",
-      "company": "AIS Servis s.r.o.",
-      "country": "Czech Republic",
       "status": "confirmed",
       "role": {
         "en": "Software Developer",
@@ -139,8 +131,6 @@
         "/images/speakers/lukas-chylik.avif",
         "/images/speakers/vojtech-gintner.avif"
       ],
-      "company": "AIS Servis s.r.o.",
-      "country": "Czech Republic",
       "status": "confirmed",
       "role": {
         "en": "Software Developer",
@@ -169,8 +159,6 @@
       "name": "Petr Jirout",
       "initials": "PJ",
       "photo": "/images/speakers/petr-jirout.avif",
-      "company": "AIS Servis s.r.o.",
-      "country": "Czech Republic",
       "status": "confirmed",
       "role": {
         "en": "CTO",
@@ -203,8 +191,6 @@
         "/images/speakers/lukas-rotrekl.avif",
         "/images/speakers/marek-sprna.avif"
       ],
-      "company": "AIS Servis s.r.o.",
-      "country": "Czech Republic",
       "status": "confirmed",
       "role": {
         "en": "QA Engineer",

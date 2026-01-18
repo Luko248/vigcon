@@ -3,6 +3,8 @@ import type { Locale } from "@utils/types";
 import en from "@i18n/en.json";
 import cz from "@i18n/cz.json";
 import speakersData from "@data/speakers.json";
+import scheduleData from "@data/schedule.json";
+import type { Talk, Speaker } from "@utils/types";
 
 interface Props {
   locale: Locale;
@@ -11,7 +13,8 @@ interface Props {
 const { locale } = Astro.props;
 const t = locale === "en" ? en : cz;
 
-const speakers = speakersData.speakers;
+const speakers = speakersData.speakers as Speaker[];
+const schedule = scheduleData.schedule as Talk[];
 
 const titleWords = t.speakers.title.split(" ");
 const firstWord = titleWords[0];
@@ -38,7 +41,12 @@ const restTitle = titleWords.slice(1).join(" ");
     <!-- Speakers Grid -->
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
       {
-        speakers.map((speaker, index) => (
+        speakers.map((speaker, index) => {
+          const talk = schedule.find((t) => t.speakerId === speaker.id);
+          const company = talk?.company || speaker.company;
+          const country = talk?.country || speaker.country;
+          
+          return (
           <div
             class="glass rounded-2xl p-6 hover:border-primary/50 transition-colors animate-scale-up group h-full flex flex-col"
             style={`animation-delay: ${index * 100}ms`}
@@ -62,7 +70,7 @@ const restTitle = titleWords.slice(1).join(" ");
                       </p>
                     )}
                     <p class="text-xs text-(--color-text-secondary)">
-                      {speaker.country && <span>{speaker.country}</span>}
+                      {country && <span>{country}</span>}
                     </p>
                   </div>
                 </div>
@@ -98,11 +106,12 @@ const restTitle = titleWords.slice(1).join(" ");
                 <Fragment set:html={speaker.abstract[locale].split('\n')[0].replace(/^##\s+/, '').replace(/\*\*/g, '')} />
               </div>
               <p class="text-xs text-emerald-400/90 font-medium mt-2">
-                {speaker.company}
+                {company}
               </p>
             </div>
           </div>
-        ))
+        );
+        })
       }
     </div>
 
