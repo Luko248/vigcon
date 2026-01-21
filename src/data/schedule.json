@@ -1,8 +1,8 @@
 {
   "conference": {
     "date": "2026-05-28",
-    "startTime": "09:00",
-    "endTime": "18:00",
+    "startTime": "08:00",
+    "endTime": "17:00",
     "timezone": "Europe/Prague"
   },
   "isScheduled": false,
@@ -25,8 +25,8 @@
   "schedule": [
     {
       "id": "registration",
-      "startTime": "08:30",
-      "endTime": "09:00",
+      "startTime": "08:00",
+      "endTime": "08:30",
       "track": "both",
       "type": "special",
       "title": {
@@ -36,8 +36,8 @@
     },
     {
       "id": "opening",
-      "startTime": "09:00",
-      "endTime": "09:15",
+      "startTime": "08:30",
+      "endTime": "08:45",
       "track": "both",
       "type": "special",
       "title": {
@@ -47,8 +47,8 @@
     },
     {
       "id": "talk-grek",
-      "startTime": "09:15",
-      "endTime": "10:00",
+      "startTime": "08:45",
+      "endTime": "09:30",
       "track": "track-a",
       "title": {
         "en": "RPA Today and Tomorrow: How Software Robots Support Work at VIG",
@@ -70,8 +70,8 @@
     },
     {
       "id": "talk-cech",
-      "startTime": "09:15",
-      "endTime": "10:00",
+      "startTime": "08:45",
+      "endTime": "09:30",
       "track": "track-b",
       "title": {
         "en": "AI prototyping using VIGo design system",
@@ -94,8 +94,8 @@
     },
     {
       "id": "break-1",
-      "startTime": "10:00",
-      "endTime": "10:30",
+      "startTime": "09:30",
+      "endTime": "10:00",
       "track": "both",
       "type": "break",
       "title": {
@@ -105,8 +105,8 @@
     },
     {
       "id": "talk-gundartsev",
-      "startTime": "10:30",
-      "endTime": "11:15",
+      "startTime": "10:00",
+      "endTime": "10:45",
       "track": "track-a",
       "title": {
         "en": "VIG BPM Platform: getting flexible",
@@ -129,8 +129,8 @@
     },
     {
       "id": "talk-vrany",
-      "startTime": "10:30",
-      "endTime": "11:15",
+      "startTime": "10:00",
+      "endTime": "10:45",
       "track": "track-b",
       "title": {
         "en": "AI Spec Driven Development",
@@ -152,8 +152,8 @@
     },
     {
       "id": "talk-jirout",
-      "startTime": "11:15",
-      "endTime": "12:00",
+      "startTime": "10:45",
+      "endTime": "11:30",
       "track": "track-a",
       "title": {
         "en": "AI rollout into AIS",
@@ -175,8 +175,8 @@
     },
     {
       "id": "talk-chylik",
-      "startTime": "11:15",
-      "endTime": "12:00",
+      "startTime": "10:45",
+      "endTime": "11:30",
       "track": "track-b",
       "title": {
         "en": "One-shot delivery with AI",
@@ -197,9 +197,31 @@
       }
     },
     {
+      "id": "break-2",
+      "startTime": "11:30",
+      "endTime": "12:00",
+      "track": "both",
+      "type": "break",
+      "title": {
+        "en": "Coffee Break",
+        "cz": "Přestávka na kávu"
+      }
+    },
+    {
+      "id": "ai-clinic",
+      "startTime": "12:00",
+      "endTime": "12:45",
+      "track": "track-a",
+      "type": "special",
+      "title": {
+        "en": "AI Clinic & Office Hours",
+        "cz": "AI klinika a konzultace"
+      }
+    },
+    {
       "id": "lunch",
-      "startTime": "12:15",
-      "endTime": "13:30",
+      "startTime": "12:45",
+      "endTime": "13:45",
       "track": "both",
       "type": "break",
       "title": {
@@ -209,8 +231,8 @@
     },
     {
       "id": "talk-rotrekl-sprna",
-      "startTime": "13:30",
-      "endTime": "14:15",
+      "startTime": "12:00",
+      "endTime": "12:45",
       "track": "track-b",
       "title": {
         "en": "Test Generation Using AI Tool (Junie and Testing Guidelines)",
@@ -231,9 +253,78 @@
       }
     },
     {
+      "id": "talk-bucek-gundartsev",
+      "startTime": "13:45",
+      "endTime": "14:30",
+      "track": "track-a",
+      "title": {
+        "en": "Transforming Daily Planning Through Intelligent Scheduling and Routing",
+        "cz": "Transforming Daily Planning Through Intelligent Scheduling and Routing"
+      },
+      "speakerId": "bucek-gundartsev",
+      "company": "AIS",
+      "country": "CZ",
+      "language": "EN",
+      "hashtags": [
+        "Optimization",
+        "DataScience",
+        "Scheduling"
+      ],
+      "annotation": {
+        "en": "Replacing manual scheduling with a data-driven optimization system for field technicians.",
+        "cz": "Nahrazení manuálního plánování datově řízeným optimalizačním systémem pro terénní techniky."
+      }
+    },
+    {
+      "id": "talk-auf-stercl",
+      "startTime": "13:45",
+      "endTime": "14:30",
+      "track": "track-b",
+      "title": {
+        "en": "From Central Control to Team Ownership: Our Journey to a Kafka Operator",
+        "cz": "Od centrální kontroly k týmovému vlastnictví: Naše cesta ke Kafka Operátorovi"
+      },
+      "speakerId": "auf-stercl",
+      "company": "AIS",
+      "country": "CZ",
+      "language": "CZ",
+      "hashtags": [
+        "Kafka",
+        "Kubernetes",
+        "DevOps",
+        "Architecture"
+      ],
+      "annotation": {
+        "en": "Our journey from a centralized deployment model to a decentralized, Kubernetes-native approach powered by a custom Kafka Operator.",
+        "cz": "Naše cesta od centralizovaného modelu nasazení k decentralizovanému, Kubernetes-native přístupu poháněnému vlastním Kafka Operátorem."
+      }
+    },
+    {
+      "id": "break-3",
+      "startTime": "14:30",
+      "endTime": "15:00",
+      "track": "both",
+      "type": "break",
+      "title": {
+        "en": "Afternoon Coffee Break",
+        "cz": "Odpolední kávová přestávka"
+      }
+    },
+    {
+      "id": "expo",
+      "startTime": "15:00",
+      "endTime": "16:30",
+      "track": "both",
+      "type": "special",
+      "title": {
+        "en": "Networking & Expo",
+        "cz": "Networking a expo zóna"
+      }
+    },
+    {
       "id": "closing",
-      "startTime": "17:30",
-      "endTime": "18:00",
+      "startTime": "16:30",
+      "endTime": "17:00",
       "track": "both",
       "type": "special",
       "title": {

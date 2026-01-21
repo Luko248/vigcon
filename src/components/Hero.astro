@@ -105,8 +105,16 @@ const conferenceDate = "2026-05-28T09:00:00+02:00";
         style="animation-delay: 200ms"
       >
         <span
-          class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg bg-(--color-surface) border border-(--color-border) text-primary font-mono text-[clamp(0.7rem,1.8svh,1rem)]"
+          class="inline-flex items-center gap-3 px-5 py-2.5 sm:px-8 sm:py-3 rounded-full bg-black/60 border-2 border-primary-400 text-white font-mono font-bold text-[clamp(0.875rem,2svh,1.25rem)] shadow-[0_0_30px_color-mix(in_oklch,var(--color-primary-400),transparent_50%)] backdrop-blur-xl hover:shadow-[0_0_50px_color-mix(in_oklch,var(--color-primary-400),transparent_30%)] hover:bg-black/70 hover:scale-105 transition-all duration-300 cursor-default tracking-wide"
         >
+          <span class="relative flex h-3 w-3">
+            <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"
+            ></span>
+            <span
+              class="relative inline-flex rounded-full h-3 w-3 bg-primary-400"
+            ></span>
+          </span>
           {t.hero.theme}
         </span>
       </div>

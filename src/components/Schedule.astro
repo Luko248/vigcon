@@ -37,8 +37,8 @@ const firstWord = titleWords[0];
 const restTitle = titleWords.slice(1).join(" ");
 
 // Timeline configuration
-const TIMELINE_START = "08:30";
-const TIMELINE_END = "18:00";
+const TIMELINE_START = "08:00";
+const TIMELINE_END = "17:00";
 const SLOT_MINUTES = 15;
 
 const parseTime = (time: string): number => {
@@ -809,8 +809,8 @@ const timelineHeight = totalSlots * PIXELS_PER_SLOT;
 
     // Current time indicator
     const conferenceDate = "2026-05-28";
-    const TIMELINE_START = "08:30";
-    const TIMELINE_END = "18:00";
+    const TIMELINE_START = "08:00";
+    const TIMELINE_END = "17:00";
 
     function parseTime(time: string): number {
       const [hours, minutes] = time.split(":").map(Number);

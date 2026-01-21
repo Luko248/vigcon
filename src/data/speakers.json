@@ -213,6 +213,71 @@
         "en": "## Introduction\n- Motivation and context for automated test generation\n- Benefits: speed, consistency, maintainability\n\n## Junie and Guidelines – Overview\n- What Junie is and how it works\n- How guidelines influence test generation\n\n## Project Example\n- Reference project and relevant structure\n- Key testing guidelines overview\n\n## Supported Test Types\n- API, DB, and Kafka test generation\n- Multi-technology test scenarios\n\n## Test Generation Process\n- Steps to generate tests with Junie\n- Inputs and review of generated tests\n\n## Example: Jira Xray to Automation Test Framework\n- Practical demonstration",
         "cz": "## Úvod\n- Motivace a kontext automatizovaného generování testů\n- Přínosy: rychlost, konzistence, udržovatelnost\n\n## Junie a guidelines – přehled\n- Co je Junie a jak funguje\n- Jak guidelines ovlivňují generování testů\n\n## Příklad z projektu\n- Referenční projekt a relevantní struktura\n- Přehled klíčových testovacích guidelines\n\n## Podporované typy testů\n- Generování testů pro API, DB a Kafka\n- Multitechnologické testovací scénáře\n\n## Proces generování testů\n- Kroky generování testů s Junie\n- Vstupy a revize vygenerovaných testů\n\n## Příklad: Jira Xray do Automation Test Framework\n- Praktická ukázka"
       }
+    },
+    {
+      "id": "bucek-gundartsev",
+      "name": "Michal Buček & Dmytro Gundartsev",
+      "initials": "MB",
+      "photo": "/images/speakers/michal-bucek.avif",
+      "photos": [
+        "/images/speakers/michal-bucek.avif",
+        "/images/speakers/dmytro.avif"
+      ],
+      "status": "confirmed",
+      "role": {
+        "en": "Data Scientist, Software Architect",
+        "cz": "Data Scientist, Software Architect"
+      },
+      "topic": {
+        "en": "Transforming Daily Planning Through Intelligent Scheduling and Routing",
+        "cz": "Transforming Daily Planning Through Intelligent Scheduling and Routing"
+      },
+      "hashtags": [
+        "Optimization",
+        "DataScience",
+        "Scheduling"
+      ],
+      "shortDesc": {
+        "en": "Replacing manual scheduling with a data-driven optimization system for field technicians.",
+        "cz": "Nahrazení manuálního plánování datově řízeným optimalizačním systémem pro terénní techniky."
+      },
+      "abstract": {
+        "en": "Efficient scheduling and routing of field technicians is essential for delivering timely vehicle inspections, both before new insurance contracts and after claims. Today, this planning is completely manual, time‑consuming, and often results in suboptimal routes and unnecessary travel.\n\nThe *Rozdělovač* project aims to replace this manual effort with a data‑driven optimization system capable of automatically generating daily plans for handling hundreds of inspection tasks. In this talk, we will guide you through the PoC phase of the project, including the development of testing tools and the complete data‑science workflow — from data cleaning all the way to solving a Workforce Scheduling and Routing Problem using an optimization engine.\n\nOur results show significant reductions in total travel distance, demonstrating strong potential for operational efficiency gains, and more importantly, enabling a completely new way of working.",
+        "cz": "Efektivní plánování a směrování terénních techniků je nezbytné pro včasné prohlídky vozidel. Dnes je toto plánování zcela manuální a časově náročné.\n\nProjekt *Rozdělovač* si klade za cíl nahradit toto manuální úsilí datově řízeným optimalizačním systémem. Provedeme vás fází PoC, vývojem testovacích nástrojů a kompletním data-science workflow — od čištění dat až po řešení problému Workforce Scheduling and Routing pomocí optimalizačního enginu.\n\nNaše výsledky ukazují významné snížení celkové cestovní vzdálenosti a potenciál pro provozní efektivitu."
+      }
+    },
+    {
+      "id": "auf-stercl",
+      "name": "Karel Auf & Jan Štercl",
+      "initials": "KA",
+      "photo": "/images/speakers/karel-auf.avif",
+      "photos": [
+        "/images/speakers/karel-auf.avif",
+        "/images/speakers/jan-stercl.avif"
+      ],
+      "status": "confirmed",
+      "role": {
+        "en": "Software Architect",
+        "cz": "Software Architect"
+      },
+      "topic": {
+        "en": "From Central Control to Team Ownership: Our Journey to a Kafka Operator",
+        "cz": "Od centrální kontroly k týmovému vlastnictví: Naše cesta ke Kafka Operátorovi"
+      },
+      "hashtags": [
+        "Kafka",
+        "Kubernetes",
+        "DevOps",
+        "Architecture"
+      ],
+      "shortDesc": {
+        "en": "Our journey from a centralized deployment model to a decentralized, Kubernetes-native approach powered by a custom Kafka Operator.",
+        "cz": "Naše cesta od centralizovaného modelu nasazení k decentralizovanému, Kubernetes-native přístupu poháněnému vlastním Kafka Operátorem."
+      },
+      "abstract": {
+        "en": "Kafka scales well, until the way you manage it doesn’t.\n\nFor a long time, our Kafka ecosystem was managed centrally. Topics, users, ACLs, and schemas were provisioned through Python scripts executed in CI/CD pipelines. This approach gave us consistency and control, but as adoption grew, its limitations became clear: slow onboarding, operational friction, increasing coupling between teams, and a deployment model that did not scale with the organization.\n\nIn this talk, We will share our journey from this centralized deployment model to a decentralized, Kubernetes-native approach powered by a custom Kafka Operator.\n\nWe will focus on:\n- Which problems the operator solved immediately and which ones it did not\n- New challenges we had to address along the way, including security, validation, guardrails, multi-tenancy, and governance\n- How responsibilities shifted between platform teams and application teams\n- What surprised us during the transition, both positively and negatively",
+        "cz": "Kafka škáluje dobře, dokud způsob její správy nepřestane stačit.\n\nDlouhou dobu byl náš ekosystém Kafka spravován centrálně. V této přednášce budeme sdílet naši cestu od tohoto centralizovaného modelu nasazení k decentralizovanému, Kubernetes-native přístupu poháněnému vlastním Kafka Operátorem.\n\nZaměříme se na:\n- Jaké problémy operátor okamžitě vyřešil\n- Nové výzvy (bezpečnost, validace, governance)\n- Jak se posunuly zodpovědnosti mezi týmy\n- Co nás během přechodu překvapilo"
+      }
     }
   ]
 }
