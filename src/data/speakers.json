@@ -215,18 +215,18 @@
       }
     },
     {
-      "id": "bucek-gundartsev",
-      "name": "Michal Buček & Dmytro Gundartsev",
-      "initials": "MB",
-      "photo": "/images/speakers/michal-bucek.avif",
+      "id": "stercl-gundartsev",
+      "name": "Jan Štercl & Dmytro Gundartsev",
+      "initials": "JŠ",
+      "photo": "/images/speakers/jan-stercl.avif",
       "photos": [
-        "/images/speakers/michal-bucek.avif",
+        "/images/speakers/jan-stercl.avif",
         "/images/speakers/dmytro.avif"
       ],
       "status": "confirmed",
       "role": {
-        "en": "Data Scientist, Software Architect",
-        "cz": "Data Scientist, Software Architect"
+        "en": "Data Scientist | Software Architect",
+        "cz": "Data Scientist | Software Architect"
       },
       "topic": {
         "en": "Transforming Daily Planning Through Intelligent Scheduling and Routing",
@@ -247,13 +247,13 @@
       }
     },
     {
-      "id": "auf-stercl",
-      "name": "Karel Auf & Jan Štercl",
+      "id": "auf-bucek",
+      "name": "Karel Auf & Michal Buček",
       "initials": "KA",
       "photo": "/images/speakers/karel-auf.avif",
       "photos": [
         "/images/speakers/karel-auf.avif",
-        "/images/speakers/jan-stercl.avif"
+        "/images/speakers/michal-bucek.avif"
       ],
       "status": "confirmed",
       "role": {

@@ -1,0 +1,141 @@
+---
+import { Image } from "astro:assets";
+import type { Locale, Talk, Speaker } from "@utils/types";
+
+interface Props {
+  speaker: Speaker;
+  talk?: Talk;
+  locale: Locale;
+  delay?: number;
+  speakerImagePrimary?: ImageMetadata;
+  speakerImageSecondary?: ImageMetadata;
+  company?: string;
+  country?: string;
+  viewDetailsLabel: string;
+}
+
+const {
+  speaker,
+  talk,
+  locale,
+  delay = 0,
+  speakerImagePrimary,
+  speakerImageSecondary,
+  company,
+  country,
+  viewDetailsLabel
+} = Astro.props;
+
+const speakerNames = speaker.name.split(" & ");
+const hasTwoSpeakers = speakerNames.length === 2;
+---
+
+<button
+  type="button"
+  class="speaker-card glass rounded-2xl p-6 hover:border-primary/50 transition-colors animate-scale-up group h-full flex flex-col text-left cursor-pointer"
+  style={`animation-delay: ${delay}ms`}
+  data-modal-trigger={talk?.id}
+  aria-label={talk ? `${viewDetailsLabel}: ${talk.title[locale]}` : speaker.topic[locale]}
+>
+  <!-- Session Title -->
+  <h3 class="font-bold text-lg leading-tight mb-3 group-hover:text-primary transition-colors">
+    {talk ? talk.title[locale] : speaker.topic[locale]}
+  </h3>
+
+  <!-- Hashtags -->
+  {speaker.hashtags && speaker.hashtags.length > 0 && (
+    <div class="flex flex-wrap gap-2 mb-4">
+      {speaker.hashtags.map((tag: string) => (
+        <span class="px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[10px] font-medium font-mono">
+          #{tag}
+        </span>
+      ))}
+    </div>
+  )}
+
+  <!-- Short Description -->
+  <div class="mb-4 grow">
+    <p class="text-sm text-(--color-text-secondary) leading-relaxed line-clamp-3">
+      {speaker.shortDesc
+        ? speaker.shortDesc[locale]
+        : speaker.abstract[locale]
+            .split("\n")[0]
+            .replace(/^##\s+/, "")
+            .replace(/\*\*/g, "")}
+    </p>
+  </div>
+
+  <!-- Speakers -->
+  <div class="pt-4 border-t border-(--color-border)/50 mt-auto">
+    <div class="flex items-center gap-3">
+      <!-- Speaker Photos -->
+      <div class={`relative ${hasTwoSpeakers ? "w-14" : "w-10"} h-10 shrink-0`}>
+        <div class="w-10 h-10 rounded-full bg-(--color-surface) border-2 border-(--color-bg) flex items-center justify-center text-(--color-text-secondary) font-bold text-xs overflow-hidden absolute left-0 top-0 z-10">
+          {speakerImagePrimary ? (
+            <Image
+              src={speakerImagePrimary}
+              alt={speakerNames[0]}
+              width={40}
+              height={40}
+              class="w-full h-full object-cover"
+            />
+          ) : (
+            <span>{speaker.initials.charAt(0)}{speaker.initials.charAt(1) || ""}</span>
+          )}
+        </div>
+        {hasTwoSpeakers && (
+          <div class="w-10 h-10 rounded-full bg-primary/20 border-2 border-(--color-bg) flex items-center justify-center text-primary font-bold text-xs overflow-hidden absolute left-4 top-0">
+            {speakerImageSecondary ? (
+              <Image
+                src={speakerImageSecondary}
+                alt={speakerNames[1]}
+                width={40}
+                height={40}
+                class="w-full h-full object-cover"
+              />
+            ) : (
+              <span>{speakerNames[1].split(" ").map((n) => n[0]).join("")}</span>
+            )}
+          </div>
+        )}
+      </div>
+      
+      <!-- Speaker Info -->
+      <div class="flex-1 min-w-0">
+        <p class="font-medium text-sm whitespace-normal">{speaker.name}</p>
+        <p class="text-xs text-(--color-text-secondary) truncate">
+          {speaker.role ? speaker.role[locale] : ""}
+        </p>
+      </div>
+    </div>
+    <div class="mt-3">
+      <p class="text-xs text-emerald-400/90 font-medium">
+        {company}
+        {country && (
+          <>
+            <span class="mx-0.5 text-(--color-text-secondary) opacity-70">•</span>
+            {country}
+          </>
+        )}
+      </p>
+    </div>
+  </div>
+</button>
+
+<style>
+  .speaker-card {
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .speaker-card:hover {
+    scale: 1.02;
+    box-shadow: 0 0.5rem 1.5rem -0.25rem oklch(0 0 0 / 0.15);
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

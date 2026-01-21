@@ -1,0 +1,85 @@
+---
+import type { Locale, Talk, Speaker } from "@utils/types";
+import SpeakerInline from "./SpeakerInline.astro";
+
+interface Props {
+  talk: Talk;
+  speaker?: Speaker;
+  speakerImages?: Array<ImageMetadata | undefined>;
+  locale: Locale;
+  viewDetailsLabel: string;
+  company?: string;
+  country?: string;
+}
+
+const {
+  talk,
+  speaker,
+  speakerImages = [],
+  locale,
+  viewDetailsLabel,
+  company,
+  country
+} = Astro.props;
+---
+
+<button
+  type="button"
+  class="timeline-talk-card h-full w-full text-left"
+  data-modal-trigger={talk.id}
+  aria-label={`${viewDetailsLabel}: ${talk.title[locale]}`}
+>
+  <h4 class="text-base sm:text-lg leading-snug font-semibold text-(--color-text) line-clamp-3">
+    {talk.title[locale]}
+  </h4>
+  <div class="mt-1 text-xs font-mono uppercase tracking-wider text-(--color-text-secondary)">
+    <time datetime={`2026-05-28T${talk.startTime}`}>
+      {talk.startTime}
+    </time>
+    {" - "}
+    <time datetime={`2026-05-28T${talk.endTime}`}>
+      {talk.endTime}
+    </time>
+  </div>
+  {speaker && (
+    <div class="mt-3">
+      <SpeakerInline
+        speaker={speaker}
+        speakerImages={speakerImages}
+        locale={locale}
+        company={company}
+        country={country}
+        variant="tile"
+      />
+    </div>
+  )}
+</button>
+
+<style>
+  .timeline-talk-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(0.75rem);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    border: 0.0625rem solid var(--glass-border);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .timeline-talk-card:hover {
+    scale: 1.02;
+    box-shadow: 0 0.5rem 1.5rem -0.25rem oklch(0 0 0 / 0.15);
+    border-color: var(--color-primary);
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

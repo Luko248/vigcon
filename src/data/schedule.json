@@ -253,7 +253,7 @@
       }
     },
     {
-      "id": "talk-bucek-gundartsev",
+      "id": "talk-stercl-gundartsev",
       "startTime": "13:45",
       "endTime": "14:30",
       "track": "track-a",
@@ -261,7 +261,7 @@
         "en": "Transforming Daily Planning Through Intelligent Scheduling and Routing",
         "cz": "Transforming Daily Planning Through Intelligent Scheduling and Routing"
       },
-      "speakerId": "bucek-gundartsev",
+      "speakerId": "stercl-gundartsev",
       "company": "AIS",
       "country": "CZ",
       "language": "EN",
@@ -276,7 +276,7 @@
       }
     },
     {
-      "id": "talk-auf-stercl",
+      "id": "talk-auf-bucek",
       "startTime": "13:45",
       "endTime": "14:30",
       "track": "track-b",
@@ -284,7 +284,7 @@
         "en": "From Central Control to Team Ownership: Our Journey to a Kafka Operator",
         "cz": "Od centrální kontroly k týmovému vlastnictví: Naše cesta ke Kafka Operátorovi"
       },
-      "speakerId": "auf-stercl",
+      "speakerId": "auf-bucek",
       "company": "AIS",
       "country": "CZ",
       "language": "CZ",

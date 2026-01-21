@@ -1,0 +1,139 @@
+---
+import { Image } from "astro:assets";
+import type { Locale, Speaker } from "@utils/types";
+
+interface Props {
+  speaker: Speaker;
+  speakerImages?: Array<ImageMetadata | undefined>;
+  locale: Locale;
+  company?: string;
+  country?: string;
+  variant?: "tile" | "card" | "detail";
+}
+
+const {
+  speaker,
+  speakerImages = [],
+  locale,
+  company,
+  country,
+  variant = "tile"
+} = Astro.props;
+
+const speakerNames = speaker.name.split(" & ");
+const hasTwoSpeakers = speakerNames.length === 2;
+const isDetail = variant === "detail";
+const isCard = variant === "card";
+const nameClass = isCard ? "text-base" : "text-sm";
+const companyClass = isCard ? "text-sm" : "text-xs";
+const avatarClass = isCard ? "w-11 h-11" : "w-7 h-7";
+const avatarWrapperClass = hasTwoSpeakers
+  ? isCard
+    ? "w-16 h-11"
+    : "w-10 h-7"
+  : isCard
+    ? "w-11 h-11"
+    : "w-7 h-7";
+const avatarOffsetClass = isCard ? "left-5" : "left-4";
+const initialsFor = (name: string) => name.trim().split(" ").map((n) => n[0]).join("");
+const roleParts = speaker.role ? speaker.role[locale].split("|").map((part) => part.trim()) : [];
+---
+
+{isDetail ? (
+  <div>
+    <div class={`grid ${hasTwoSpeakers ? "grid-cols-2" : "grid-cols-1"} gap-4`}>
+      {speakerNames.map((name, idx) => (
+        <div class="flex items-center gap-3">
+          <div class={`w-12 h-12 rounded-full ${idx === 0 ? "bg-(--color-surface)" : "bg-primary/20"} border border-(--color-border) flex items-center justify-center ${idx === 0 ? "text-(--color-text-secondary)" : "text-primary"} font-bold text-sm shrink-0 overflow-hidden`}>
+            {speakerImages[idx] ? (
+              <Image
+                src={speakerImages[idx]}
+                alt={name.trim()}
+                width={48}
+                height={48}
+                class="w-full h-full object-cover"
+              />
+            ) : (
+              <span>{initialsFor(name)}</span>
+            )}
+          </div>
+          <div>
+            <p class="font-medium text-sm">{name.trim()}</p>
+            <p class="text-xs text-(--color-text-secondary)">
+              {roleParts.length > 0 ? roleParts[idx] || roleParts[0] : ""}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+    {(company || country) && (
+      <div class="mt-4">
+        <p class="text-xs uppercase tracking-wider text-(--color-text-secondary) font-semibold">
+          {locale === "en" ? "Company" : "Společnost"}
+        </p>
+        <p class="text-xs text-emerald-400/90 font-medium mt-1">
+          {company}
+          {country && (
+            <>
+              <span class="mx-0.5 text-(--color-text-secondary) opacity-70">•</span>
+              {country}
+            </>
+          )}
+        </p>
+      </div>
+    )}
+  </div>
+) : (
+  <div>
+    <div class="flex items-center gap-2">
+      <div class={`relative ${avatarWrapperClass} shrink-0`}>
+        <div class={`${avatarClass} rounded-full bg-linear-to-br from-primary/30 to-primary/10 flex items-center justify-center overflow-hidden absolute left-0 top-0`}>
+          {speakerImages[0] ? (
+            <Image
+              src={speakerImages[0]}
+              alt=""
+              width={isCard ? 44 : 28}
+              height={isCard ? 44 : 28}
+              class="w-full h-full object-cover"
+            />
+          ) : (
+            <span class="flex text-primary font-bold text-[0.5rem] items-center justify-center w-full h-full">
+              {initialsFor(speakerNames[0])}
+            </span>
+          )}
+        </div>
+        {hasTwoSpeakers && (
+          <div class={`${avatarClass} rounded-full bg-primary/20 border border-(--color-bg) flex items-center justify-center text-primary font-bold text-[0.5rem] overflow-hidden absolute ${avatarOffsetClass} top-0`}>
+            {speakerImages[1] ? (
+              <Image
+                src={speakerImages[1]}
+                alt=""
+                width={isCard ? 44 : 28}
+                height={isCard ? 44 : 28}
+                class="w-full h-full object-cover"
+              />
+            ) : (
+              <span class="flex items-center justify-center w-full h-full">
+                {initialsFor(speakerNames[1])}
+              </span>
+            )}
+          </div>
+        )}
+      </div>
+      <span class={`${nameClass} text-(--color-text-secondary) truncate`}>
+        {speaker.name}
+      </span>
+    </div>
+    {(company || country) && (
+      <p class={`${companyClass} text-emerald-400/90 font-medium mt-2 truncate`}>
+        {company}
+        {country && (
+          <>
+            <span class="mx-0.5 text-(--color-text-secondary) opacity-70">•</span>
+            {country}
+          </>
+        )}
+      </p>
+    )}
+  </div>
+)}
