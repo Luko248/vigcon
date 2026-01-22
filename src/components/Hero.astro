@@ -513,6 +513,13 @@ const conferenceDate = "2026-05-28T09:00:00+02:00";
     };
   }
 
+  // Run on initial load and after View Transition navigation
   document.addEventListener("astro:page-load", initCanvasAnimation);
-  initCanvasAnimation();
+
+  // Also run immediately if DOM is already loaded
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCanvasAnimation);
+  } else {
+    initCanvasAnimation();
+  }
 </script>

@@ -126,7 +126,7 @@ const timelineWidthMobile = totalSlots * PIXELS_PER_SLOT_MOBILE;
           </p>
         ) : (
           <p class="text-lg text-(--color-text-secondary) max-w-2xl mx-auto animate-on-scroll-delayed">
-            {t.schedule.subtitle}
+            {t.schedule.subtitle}<br />{t.schedule.subtitle2}<a href="#registration" class="text-primary hover:underline">{t.schedule.subtitleLink}</a>
           </p>
         )
       }
@@ -343,9 +343,10 @@ const timelineWidthMobile = totalSlots * PIXELS_PER_SLOT_MOBILE;
             <!-- Current Time Indicator -->
             <div
               id="current-time-indicator-mobile"
-              class="absolute top-8 bottom-0 border-l-2 border-primary z-50 pointer-events-none hidden"
+              class="absolute top-0 bottom-0 w-[0.125rem] pointer-events-none hidden"
+              style="z-index: 100; background: oklch(0.55 0.22 29); box-shadow: 0 0 0.5rem oklch(0.55 0.22 29 / 0.5);"
             >
-              <div class="absolute -top-1 -left-[5px] w-2.5 h-2.5 rounded-full bg-primary shadow-sm"></div>
+              <div class="absolute top-2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full" style="background: oklch(0.55 0.22 29); box-shadow: 0 0 0.5rem oklch(0.55 0.22 29 / 0.8);"></div>
             </div>
 
             <!-- Time Header -->
@@ -658,6 +659,13 @@ const timelineWidthMobile = totalSlots * PIXELS_PER_SLOT_MOBILE;
 
   }
 
+  // Run on initial load and after View Transition navigation
   document.addEventListener("astro:page-load", initSchedule);
-  initSchedule();
+
+  // Also run immediately if DOM is already loaded
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initSchedule);
+  } else {
+    initSchedule();
+  }
 </script>

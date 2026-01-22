@@ -15,8 +15,9 @@ const t = locale === "en" ? en : cz;
 const navItems = [
   { href: "#about", label: t.nav.about },
   { href: "#schedule", label: t.nav.schedule },
-  { href: "#faq", label: t.nav.faq },
   { href: "#registration", label: t.nav.register },
+  { href: "#faq", label: t.nav.faq },
+  { href: "#contact", label: t.nav.contact },
 ];
 ---
 
@@ -217,6 +218,10 @@ const navItems = [
 <script>
   import { downloadICS, getConferenceEvent } from "@utils/calendar";
 
+  let toggleMenu: (() => void) | null = null;
+  let handleCalendarDownload: (() => void) | null = null;
+  let linkClickHandlers: Map<Element, () => void> = new Map();
+
   function initHeader() {
     // Mobile menu toggle
     const mobileMenuBtn = document.getElementById("mobile-menu-btn");
@@ -224,10 +229,12 @@ const navItems = [
 
     if (!mobileMenuBtn || !mobileMenu) return;
 
-    // Remove existing listeners to avoid duplicates if any (though mostly we get new elements)
-    // Actually better to just define the function and attach.
+    // Remove old event listener if it exists
+    if (toggleMenu) {
+      mobileMenuBtn.removeEventListener("click", toggleMenu);
+    }
 
-    function toggleMenu() {
+    toggleMenu = () => {
       const isExpanded =
         mobileMenuBtn?.getAttribute("aria-expanded") === "true";
       mobileMenuBtn?.setAttribute("aria-expanded", String(!isExpanded));
@@ -247,20 +254,26 @@ const navItems = [
         mobileMenu?.classList.add("invisible", "opacity-0", "-translate-y-2");
         document.body.style.overflow = "";
       }
-    }
+    };
 
-    // Clean up previous listener if it exists (good practice but element replacement handles it usually)
-    mobileMenuBtn.removeEventListener("click", toggleMenu);
     mobileMenuBtn.addEventListener("click", toggleMenu);
 
     // Close mobile menu when clicking a link
+    // Remove old link handlers
+    linkClickHandlers.forEach((handler, link) => {
+      link.removeEventListener("click", handler);
+    });
+    linkClickHandlers.clear();
+
     mobileMenu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
+      const handler = () => {
         mobileMenuBtn?.setAttribute("aria-expanded", "false");
         mobileMenu?.classList.remove("visible", "opacity-100", "translate-y-0");
         mobileMenu?.classList.add("invisible", "opacity-0", "-translate-y-2");
         document.body.style.overflow = "";
-      });
+      };
+      linkClickHandlers.set(link, handler);
+      link.addEventListener("click", handler);
     });
 
     // Calendar download
@@ -269,7 +282,13 @@ const navItems = [
       "mobile-add-to-calendar-btn",
     );
 
-    const handleCalendarDownload = () => {
+    // Remove old calendar handler if it exists
+    if (handleCalendarDownload) {
+      addToCalendarBtn?.removeEventListener("click", handleCalendarDownload);
+      mobileAddToCalendarBtn?.removeEventListener("click", handleCalendarDownload);
+    }
+
+    handleCalendarDownload = () => {
       downloadICS(getConferenceEvent());
     };
 
@@ -279,5 +298,11 @@ const navItems = [
 
   // Run on initial load and after View Transition navigation
   document.addEventListener("astro:page-load", initHeader);
-  initHeader();
+
+  // Also run immediately if DOM is already loaded
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initHeader);
+  } else {
+    initHeader();
+  }
 </script>

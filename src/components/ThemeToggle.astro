@@ -73,6 +73,8 @@ const t = locale === "en" ? en : cz;
       : "light";
   }
 
+  let handleClick: (() => void) | null = null;
+
   function initThemeToggle(): void {
     const themeToggle = document.getElementById("theme-toggle");
     const sunIcon = document.getElementById("sun-icon");
@@ -105,7 +107,12 @@ const t = locale === "en" ? en : cz;
 
     updateUI(getTheme());
 
-    const handleClick = (): void => {
+    // Remove old event listener if it exists
+    if (handleClick) {
+      themeToggle.removeEventListener("click", handleClick);
+    }
+
+    handleClick = (): void => {
       const current = getTheme();
       const next = current === "dark" ? "light" : "dark";
       localStorage.setItem("theme", next);
@@ -115,8 +122,15 @@ const t = locale === "en" ? en : cz;
     themeToggle.addEventListener("click", handleClick);
   }
 
+  // Run on initial load and after View Transition navigation
   document.addEventListener("astro:page-load", initThemeToggle);
-  initThemeToggle();
+
+  // Also run immediately if DOM is already loaded
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initThemeToggle);
+  } else {
+    initThemeToggle();
+  }
 
   window
     .matchMedia("(prefers-color-scheme: dark)")

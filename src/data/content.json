@@ -2,7 +2,7 @@
   "about": {
     "en": {
       "title": "About the Conference",
-      "description": "VIGCON2026 is an internal technology conference focused on sharing knowledge and experiences in modern technologies and AI solution deployment.",
+      "description": "VIG is one of the most successful insurance groups in Europe, and VIGCON is the place where we connect, exchange ideas, and work together to position VIG as a forward‑thinking leader in IT and technology too. Created by experts for experts, VIGCON offers sessions built around real‑world experience and practical insights delivered by hands‑on professionals, from software developers and DevOps engineers to IT architects.",
       "cards": [
         {
           "title": "AI in Practice",
@@ -85,8 +85,8 @@
           "cz": "Je účast na konferenci zdarma?"
         },
         "answer": {
-          "en": "Yes, the conference is free for all VIG group employees. Registration is required to secure your spot as capacity is limited to 50 attendees.",
-          "cz": "Ano, konference je pro všechny zaměstnance skupiny VIG zdarma. Registrace je nutná pro zajištění místa, kapacita je omezena na 50 účastníků."
+          "en": "Yes, the conference is free for all VIG group employees. Registration is required to secure your spot as capacity is limited to 50 attendees. However, participants are responsible for covering their own travel and accommodation costs.",
+          "cz": "Ano, konference je pro všechny zaměstnance skupiny VIG zdarma. Registrace je nutná pro zajištění místa, kapacita je omezena na 50 účastníků. Účastníci si však hradí vlastní cestovní a ubytovací náklady."
         }
       },
       {
@@ -97,8 +97,8 @@
           "cz": "Mohu se zúčastnit online?"
         },
         "answer": {
-          "en": "Yes, you can choose to attend either in-person (onsite) or online. However, please note that the networking session (16:50 - 18:00) is available only for onsite attendees.",
-          "cz": "Ano, můžete si vybrat mezi osobní (onsite) a online účastí. Upozorňujeme však, že networking (16:50 - 18:00) je k dispozici pouze pro osobní účastníky."
+          "en": "Yes, you can choose to attend either in-person (onsite) or online. However, please note that the networking session is available only for onsite attendees.",
+          "cz": "Ano, můžete si vybrat mezi osobní (onsite) a online účastí. Upozorňujeme však, že networking je k dispozici pouze pro osobní účastníky."
         }
       },
       {
@@ -145,8 +145,8 @@
           "cz": "Bude zajištěn oběd?"
         },
         "answer": {
-          "en": "Yes, lunch is included for all onsite attendees during the lunch break (12:50 - 13:30). Coffee and refreshments will also be available during all breaks.",
-          "cz": "Ano, oběd je zahrnut pro všechny osobní účastníky během pauzy na oběd (12:50 - 13:30). Káva a občerstvení budou k dispozici během všech přestávek."
+          "en": "Yes, lunch is included for all onsite attendees during the lunch break. Coffee and refreshments will also be available during all breaks.",
+          "cz": "Ano, oběd je zahrnut pro všechny osobní účastníky během pauzy na oběd. Káva a občerstvení budou k dispozici během všech přestávek."
         }
       },
       {
@@ -159,6 +159,18 @@
         "answer": {
           "en": "Yes, parking is available at the AIS Servis building. The venue is also accessible by public transport.",
           "cz": "Ano, parkování je k dispozici u budovy AIS Servis. Místo je také dostupné veřejnou dopravou."
+        }
+      },
+      {
+        "id": "parking-reservation",
+        "type": "venue",
+        "question": {
+          "en": "How do I reserve a parking space?",
+          "cz": "Jak si zarezervuji parkovací místo?"
+        },
+        "answer": {
+          "en": "To reserve a parking space, please contact Eliška Drábková and provide your license plate number.",
+          "cz": "Pro rezervaci parkovacího místa prosím kontaktujte Elišku Drábkovou a sdělte jí vaši registrační značku."
         }
       },
       {

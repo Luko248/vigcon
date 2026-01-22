@@ -3,6 +3,7 @@
     "about": "About",
     "schedule": "Schedule",
     "faq": "FAQ",
+    "contact": "Contact",
     "venue": "Venue",
     "register": "Register"
   },
@@ -27,6 +28,62 @@
     "seconds": "Seconds",
     "until": "until conference"
   },
+  "about": {
+    "description": {
+      "paragraph1": {
+        "parts": [
+          {
+            "text": "VIG",
+            "bold": true
+          },
+          {
+            "text": " is one of the most successful insurance groups in ",
+            "bold": false
+          },
+          {
+            "text": "Europe",
+            "bold": true
+          },
+          {
+            "text": ", and ",
+            "bold": false
+          },
+          {
+            "text": "VIGCON",
+            "bold": true
+          },
+          {
+            "text": " is the place where we connect, exchange ideas, and work together to position VIG as a forward‑thinking leader in IT and technology too.",
+            "bold": false
+          }
+        ]
+      },
+      "paragraph2": {
+        "parts": [
+          {
+            "text": "Created by ",
+            "bold": false
+          },
+          {
+            "text": "experts for experts",
+            "bold": true
+          },
+          {
+            "text": ", VIGCON offers sessions built around ",
+            "bold": false
+          },
+          {
+            "text": "real‑world experience",
+            "bold": true
+          },
+          {
+            "text": " and practical insights delivered by hands‑on professionals, from software developers and DevOps engineers to IT architects.",
+            "bold": false
+          }
+        ]
+      }
+    }
+  },
   "speakers": {
     "title": "Speakers",
     "subtitle": "Presenters from VIG group experts. We're collecting more topics - register as a speaker!",
@@ -38,7 +95,9 @@
   },
   "schedule": {
     "title": "Schedule",
-    "subtitle": "Presenters from VIG group experts. We're collecting more topics - register as a speaker!",
+    "subtitle": "Sessions from VIG experts.",
+    "subtitle2": "We are collecting more topics – ",
+    "subtitleLink": "register as a speaker!",
     "viewDetails": "View details",
     "confirmed": "Confirmed",
     "openSlot": "Open Slot",
@@ -106,6 +165,12 @@
     "title": "Frequently Asked Questions",
     "subtitle": "Everything you need to know about the conference"
   },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Have questions? Let's stay in touch!",
+    "role": "Community Manager",
+    "description": "For any questions about VIGCON2026, registration, or speakers, feel free to reach out."
+  },
   "partners": {
     "title": "Our Partners",
     "subtitle": "Thank you to our partners who make VIG IT Conference possible"
@@ -113,7 +178,7 @@
   "footer": {
     "contact": "Contact",
     "copyright": "© 2026 VIGCON. All rights reserved.",
-    "organizedBy": "Organized by Vienna Insurance Group"
+    "organizedBy": "PROUDLY MADE IN VIG"
   },
   "accessibility": {
     "skipToContent": "Skip to main content",

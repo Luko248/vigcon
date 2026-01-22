@@ -120,6 +120,13 @@ const restTitle = titleWords.slice(1).join(" ");
     });
   };
 
+  // Run on initial load and after View Transition navigation
   document.addEventListener("astro:page-load", initFAQ);
-  initFAQ();
+
+  // Also run immediately if DOM is already loaded
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initFAQ);
+  } else {
+    initFAQ();
+  }
 </script>

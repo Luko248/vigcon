@@ -42,13 +42,29 @@ const t = locale === "en" ? en : cz;
       <!-- Contact -->
       <div class="animate-on-scroll" style="animation-delay: 100ms">
         <h3 class="text-lg font-semibold mb-4">{t.footer.contact}</h3>
+        <p class="text-(--color-text) font-medium mb-2">Eliška Drábková</p>
         <a
           href="mailto:eliska.drabkova@ais-servis.cz"
-          class="text-(--color-text-secondary) hover:text-primary transition-colors"
+          class="text-(--color-text-secondary) hover:text-primary transition-colors inline-flex items-center gap-2"
           aria-label={locale === "en"
             ? "Email us at eliska.drabkova@ais-servis.cz"
             : "Napište nám na eliska.drabkova@ais-servis.cz"}
         >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+          </svg>
           eliska.drabkova@ais-servis.cz
         </a>
       </div>

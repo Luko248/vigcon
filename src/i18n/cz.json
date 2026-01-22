@@ -3,6 +3,7 @@
     "about": "O konferenci",
     "schedule": "Program",
     "faq": "FAQ",
+    "contact": "Kontakt",
     "venue": "Místo",
     "register": "Registrace"
   },
@@ -27,6 +28,62 @@
     "seconds": "Sekundy",
     "until": "do konference"
   },
+  "about": {
+    "description": {
+      "paragraph1": {
+        "parts": [
+          {
+            "text": "VIG",
+            "bold": true
+          },
+          {
+            "text": " je jednou z nejúspěšnějších pojišťovacích skupin v ",
+            "bold": false
+          },
+          {
+            "text": "Evropě",
+            "bold": true
+          },
+          {
+            "text": " a ",
+            "bold": false
+          },
+          {
+            "text": "VIGCON",
+            "bold": true
+          },
+          {
+            "text": " je místem, kde se propojujeme, vyměňujeme si nápady a společně pracujeme na tom, abychom VIG posunuli jako progresivního lídra v IT a technologiích.",
+            "bold": false
+          }
+        ]
+      },
+      "paragraph2": {
+        "parts": [
+          {
+            "text": "Vytvořeno ",
+            "bold": false
+          },
+          {
+            "text": "experty pro experty",
+            "bold": true
+          },
+          {
+            "text": ", VIGCON nabízí přednášky postavené na ",
+            "bold": false
+          },
+          {
+            "text": "skutečných zkušenostech",
+            "bold": true
+          },
+          {
+            "text": " a praktických poznatcích předávaných zkušenými profesionály, od softwarových vývojářů a DevOps inženýrů po IT architekty.",
+            "bold": false
+          }
+        ]
+      }
+    }
+  },
   "speakers": {
     "title": "Řečníci",
     "subtitle": "Přednášející z řad expertů skupiny VIG. Sbíráme další témata - registrujte se jako řečník!",
@@ -38,7 +95,9 @@
   },
   "schedule": {
     "title": "Program",
-    "subtitle": "Přednášející z řad expertů skupiny VIG. Sbíráme další témata - registrujte se jako řečník!",
+    "subtitle": "Přednášky od expertů ze skupiny VIG.",
+    "subtitle2": "Sbíráme další témata – ",
+    "subtitleLink": "registrujte se jako řečník!",
     "viewDetails": "Zobrazit detaily",
     "confirmed": "Potvrzeno",
     "openSlot": "Volný slot",
@@ -106,6 +165,12 @@
     "title": "Často kladené otázky",
     "subtitle": "Vše, co potřebujete vědět o konferenci"
   },
+  "contact": {
+    "title": "Kontakt",
+    "subtitle": "Máte dotazy? Zůstaňme v kontaktu!",
+    "role": "Community Manažerka",
+    "description": "V případě jakýchkoliv dotazů ohledně VIGCON2026, registrace nebo řečníků se neváhejte ozvat."
+  },
   "partners": {
     "title": "Naši partneři",
     "subtitle": "Děkujeme našim partnerům, kteří umožňují konání VIG IT Conference"
@@ -113,7 +178,7 @@
   "footer": {
     "contact": "Kontakt",
     "copyright": "© 2026 VIGCON. Všechna práva vyhrazena.",
-    "organizedBy": "Pořádá Vienna Insurance Group"
+    "organizedBy": "PROUDLY MADE IN VIG"
   },
   "accessibility": {
     "skipToContent": "Přeskočit na hlavní obsah",

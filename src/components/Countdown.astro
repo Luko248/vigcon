@@ -127,6 +127,13 @@ const t = locale === "en" ? en : cz;
     intervalId = setInterval(updateCountdown, 1000);
   };
 
+  // Run on initial load and after View Transition navigation
   document.addEventListener("astro:page-load", initCountdown);
-  initCountdown();
+
+  // Also run immediately if DOM is already loaded
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCountdown);
+  } else {
+    initCountdown();
+  }
 </script>

@@ -788,7 +788,15 @@ const restTitle = titleWords.slice(1).join(" ");
       ).ml_webform_success_35826004 = handleMailerLiteSuccess;
     };
 
-    document.addEventListener("astro:page-load", initRegistration);
+    // Run on initial load and after View Transition navigation
+  document.addEventListener("astro:page-load", initRegistration);
+
+  // Also run immediately if DOM is already loaded
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initRegistration);
+  } else {
+    initRegistration();
+  }
     initRegistration();
   </script>
 

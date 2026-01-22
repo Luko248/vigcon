@@ -199,6 +199,13 @@ const restTitle = titleWords.slice(1).join(" ");
   };
   
   // Initialize on page load and after navigation
+  // Run on initial load and after View Transition navigation
   document.addEventListener("astro:page-load", initMapLazyLoad);
-  initMapLazyLoad();
+
+  // Also run immediately if DOM is already loaded
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMapLazyLoad);
+  } else {
+    initMapLazyLoad();
+  }
 </script>

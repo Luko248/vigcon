@@ -1,6 +1,8 @@
 ---
 import type { Locale } from "@utils/types";
 import content from "@data/content.json";
+import en from "@i18n/en.json";
+import cz from "@i18n/cz.json";
 
 interface Props {
   locale: Locale;
@@ -8,6 +10,7 @@ interface Props {
 
 const { locale } = Astro.props;
 const aboutContent = content.about[locale];
+const t = locale === "en" ? en : cz;
 
 const titleWords = aboutContent.title.split(" ");
 const firstWord = titleWords[0];
@@ -27,11 +30,30 @@ const restTitle = titleWords.slice(1).join(" ");
       </h2>
 
       <!-- Description -->
-      <p
-        class="text-lg text-(--color-text-secondary) max-w-3xl mx-auto mb-16 animate-on-scroll-delayed"
-      >
-        {aboutContent.description}
-      </p>
+      <div class="text-lg text-(--color-text-secondary) max-w-3xl mx-auto mb-16 animate-on-scroll-delayed space-y-4">
+        <p>
+          {
+            t.about.description.paragraph1.parts.map((part: any) =>
+              part.bold ? (
+                <strong class="font-bold text-(--color-text)">{part.text}</strong>
+              ) : (
+                part.text
+              )
+            )
+          }
+        </p>
+        <p>
+          {
+            t.about.description.paragraph2.parts.map((part: any) =>
+              part.bold ? (
+                <strong class="font-bold text-(--color-text)">{part.text}</strong>
+              ) : (
+                part.text
+              )
+            )
+          }
+        </p>
+      </div>
 
       <!-- Cards Grid -->
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
