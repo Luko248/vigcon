@@ -707,13 +707,20 @@ const restTitle = titleWords.slice(1).join(" ");
       form.addEventListener("submit", (e) => {
         e.preventDefault();
 
+        // Disable button immediately to prevent double-clicks
+        if (submitButton) {
+          if (submitButton.disabled) return; // Already submitting
+          submitButton.disabled = true;
+        }
+
         if (submitting) return;
         submitting = true;
 
         const originalText = submitButton?.innerHTML ?? "";
-        submitButton.disabled = true;
-        submitButton.innerHTML =
-          '<span class="animate-pulse">Sending...</span>';
+        if (submitButton) {
+          submitButton.innerHTML =
+            '<span class="animate-pulse">Sending...</span>';
+        }
 
         const firstNameInput = form.querySelector(
           "#first-name",
