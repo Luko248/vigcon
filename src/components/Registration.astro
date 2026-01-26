@@ -40,7 +40,19 @@ const restTitle = titleWords.slice(1).join(" ");
       id="registration-container"
       class="max-w-2xl mx-auto glass rounded-3xl p-8 sm:p-10 animate-scale-up"
     >
-      <form class="space-y-4" id="registration-form">
+      <form
+        class="space-y-4"
+        id="registration-form"
+        action="https://api.web3forms.com/submit"
+        method="POST"
+      >
+        <input
+          type="hidden"
+          name="access_key"
+          value="775b4c21-3a40-4721-a0cd-65e8f6118205"
+        />
+        <input type="hidden" name="name" id="full-name" />
+        <input type="hidden" name="message" id="registration-message" />
         <div class="grid sm:grid-cols-2 gap-4">
           <!-- First Name -->
           <div class="grid gap-2">
@@ -450,29 +462,6 @@ const restTitle = titleWords.slice(1).join(" ");
           {t.registration.form.consent}
         </p>
       </form>
-      <form
-        id="ml-hidden-form"
-        class="ml-block-form"
-        action="https://assets.mailerlite.com/jsonp/1647047/forms/176737457186801090/subscribe"
-        method="post"
-        target="ml-hidden-iframe"
-        style="display: none;"
-      >
-        <input type="hidden" name="fields[email]" />
-        <input type="hidden" name="fields[name]" />
-        <input type="hidden" name="fields[last_name]" />
-        <input type="hidden" name="fields[country]" />
-        <input type="hidden" name="fields[company]" />
-        <input type="hidden" name="fields[job_title]" />
-        <input type="hidden" name="fields[professional_role]" />
-        <input type="hidden" name="fields[participation_type]" />
-        <input type="hidden" name="fields[registration_type]" />
-        <input type="hidden" name="fields[speaker_session]" />
-        <input type="hidden" name="ml-submit" value="1" />
-        <input type="hidden" name="anticsrf" value="true" />
-      </form>
-      <iframe name="ml-hidden-iframe" title="MailerLite" style="display: none;"
-      ></iframe>
     </div>
 
     <!-- Already Registered State -->
@@ -575,17 +564,23 @@ const restTitle = titleWords.slice(1).join(" ");
   </style>
 
   <script>
+    let registrationInitialized = false;
+
     const initRegistration = (): void => {
+      if (registrationInitialized) return;
+      registrationInitialized = true;
+
       const form = document.getElementById(
         "registration-form",
-      ) as HTMLFormElement;
-      const mlForm = document.getElementById(
-        "ml-hidden-form",
       ) as HTMLFormElement;
       const container = document.getElementById("registration-container");
       const alreadyRegistered = document.getElementById("already-registered");
       const resetButton = document.getElementById("reset-registration");
       const toast = document.getElementById("toast");
+      const submitButton = form?.querySelector(
+        'button[type="submit"]',
+      ) as HTMLButtonElement | null;
+      const submitButtonText = submitButton?.innerHTML ?? "";
 
       const roleInputs = document.querySelectorAll('input[name="role"]');
       const speakerFields = document.getElementById("speaker-fields");
@@ -601,8 +596,6 @@ const restTitle = titleWords.slice(1).join(" ");
       ) as HTMLInputElement;
 
       if (!form) return;
-
-      let mlSubmitDone = false;
 
       const isRegistered = localStorage.getItem("vigcon_registered");
       if (isRegistered === "true") {
@@ -670,106 +663,104 @@ const restTitle = titleWords.slice(1).join(" ");
         }, 5000);
       };
 
-      const handleMailerLiteSuccess = (): void => {
-        if (mlSubmitDone) return;
-        mlSubmitDone = true;
+      const handleSubmitSuccess = (): void => {
         localStorage.setItem("vigcon_registered", "true");
         container?.classList.add("hidden");
         alreadyRegistered?.classList.remove("hidden");
         showToast();
       };
 
-      const submitToMailerLite = (): void => {
-        if (!mlForm) return;
-
-        const emailInput = form.querySelector("#email") as HTMLInputElement;
-        const firstNameInput = form.querySelector(
-          "#first-name",
-        ) as HTMLInputElement;
-        const lastNameInput = form.querySelector(
-          "#last-name",
-        ) as HTMLInputElement;
-        const companyInput = form.querySelector("#company") as HTMLInputElement;
-        const countryInput = form.querySelector("#country") as HTMLInputElement;
-        const jobTitleInput = form.querySelector(
-          "#job-title",
-        ) as HTMLInputElement;
+      const buildMessage = (): string => {
         const roleInput = form.querySelector(
           'input[name="role"]:checked',
         ) as HTMLInputElement | null;
         const participationInput = form.querySelector(
           'input[name="type"]:checked',
         ) as HTMLInputElement | null;
+        const jobTitleInput = form.querySelector(
+          "#job-title",
+        ) as HTMLInputElement | null;
+        const companyInput = form.querySelector(
+          "#company",
+        ) as HTMLInputElement | null;
+        const countryInput = form.querySelector(
+          "#country",
+        ) as HTMLInputElement | null;
 
-        const mlEmail = mlForm.querySelector(
-          'input[name="fields[email]"]',
-        ) as HTMLInputElement;
-        const mlName = mlForm.querySelector(
-          'input[name="fields[name]"]',
-        ) as HTMLInputElement;
-        const mlLastName = mlForm.querySelector(
-          'input[name="fields[last_name]"]',
-        ) as HTMLInputElement;
-        const mlCountry = mlForm.querySelector(
-          'input[name="fields[country]"]',
-        ) as HTMLInputElement;
-        const mlCompany = mlForm.querySelector(
-          'input[name="fields[company]"]',
-        ) as HTMLInputElement;
-        const mlJobTitle = mlForm.querySelector(
-          'input[name="fields[job_title]"]',
-        ) as HTMLInputElement;
-        const mlProfessionalRole = mlForm.querySelector(
-          'input[name="fields[professional_role]"]',
-        ) as HTMLInputElement;
-        const mlParticipationType = mlForm.querySelector(
-          'input[name="fields[participation_type]"]',
-        ) as HTMLInputElement;
-        const mlRegistrationType = mlForm.querySelector(
-          'input[name="fields[registration_type]"]',
-        ) as HTMLInputElement;
-        const mlSpeakerSession = mlForm.querySelector(
-          'input[name="fields[speaker_session]"]',
-        ) as HTMLInputElement;
+        const parts = [
+          `Role: ${roleInput?.value ?? "N/A"}`,
+          `Participation: ${participationInput?.value ?? "N/A"}`,
+          `Job Title: ${jobTitleInput?.value ?? "N/A"}`,
+          `Company: ${companyInput?.value ?? "N/A"}`,
+          `Country: ${countryInput?.value ?? "N/A"}`,
+        ];
 
-        mlEmail.value = emailInput?.value || "";
-        mlName.value = firstNameInput?.value || "";
-        mlLastName.value = lastNameInput?.value || "";
-        mlCountry.value = countryInput?.value || "";
-        mlCompany.value = companyInput?.value || "";
-        mlJobTitle.value = jobTitleInput?.value || "";
-        mlProfessionalRole.value = jobTitleInput?.value || "";
-        mlParticipationType.value =
-          participationInput?.value === "online"
-            ? "Online"
-            : "In-person (Onsite)";
-        mlRegistrationType.value =
-          roleInput?.value === "speaker" ? "Speaker" : "Attendee";
-        mlSpeakerSession.value = sessionTextarea?.value || "";
+        if (roleInput?.value === "speaker" && sessionTextarea?.value) {
+          parts.push(`Session: ${sessionTextarea.value}`);
+        }
 
-        mlForm.submit();
+        return parts.join("\n");
       };
+
+      let submitting = false;
 
       form.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        const submitButton = form.querySelector(
-          'button[type="submit"]',
-        ) as HTMLButtonElement;
-        const originalText = submitButton.innerHTML;
+        if (submitting) return;
+        submitting = true;
+
+        const originalText = submitButton?.innerHTML ?? "";
         submitButton.disabled = true;
         submitButton.innerHTML =
           '<span class="animate-pulse">Sending...</span>';
 
-        try {
-          submitToMailerLite();
-          handleMailerLiteSuccess();
-        } catch (error) {
-          console.error("Form submission error:", error);
-          submitButton.disabled = false;
-          submitButton.innerHTML = originalText;
-          alert("Network error. Please check your connection and try again.");
-        }
+        const firstNameInput = form.querySelector(
+          "#first-name",
+        ) as HTMLInputElement | null;
+        const lastNameInput = form.querySelector(
+          "#last-name",
+        ) as HTMLInputElement | null;
+        const fullNameInput = form.querySelector(
+          "#full-name",
+        ) as HTMLInputElement | null;
+        const messageInput = form.querySelector(
+          "#registration-message",
+        ) as HTMLInputElement | null;
+
+        const fullName = `${firstNameInput?.value ?? ""} ${
+          lastNameInput?.value ?? ""
+        }`.trim();
+
+        if (fullNameInput) fullNameInput.value = fullName;
+        if (messageInput) messageInput.value = buildMessage();
+
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data?.success) {
+              handleSubmitSuccess();
+              return;
+            }
+            throw new Error(data?.message || "Submission failed");
+          })
+          .catch((error) => {
+            console.error("Form submission error:", error);
+            submitting = false;
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.innerHTML = originalText || submitButtonText;
+            }
+            alert("Network error. Please check your connection and try again.");
+          });
       });
 
       resetButton?.addEventListener("click", () => {
@@ -778,59 +769,22 @@ const restTitle = titleWords.slice(1).join(" ");
         alreadyRegistered?.classList.add("hidden");
         form.reset();
         updateSpeakerFields();
-        mlSubmitDone = false;
-      });
-
-      (
-        window as typeof window & {
-          ml_webform_success_35826004?: () => void;
+        submitting = false;
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.innerHTML = submitButtonText;
         }
-      ).ml_webform_success_35826004 = handleMailerLiteSuccess;
+      });
     };
 
     // Run on initial load and after View Transition navigation
-  document.addEventListener("astro:page-load", initRegistration);
+    document.addEventListener("astro:page-load", initRegistration);
 
-  // Also run immediately if DOM is already loaded
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initRegistration);
-  } else {
-    initRegistration();
-  }
-    initRegistration();
-  </script>
-
-  <!-- MailerLite Universal -->
-  <script is:inline>
-    (function (w, d, e, u, f, l, n) {
-      w[f] =
-        w[f] ||
-        function () {
-          (w[f].q = w[f].q || []).push(arguments);
-        };
-      l = d.createElement(e);
-      l.async = 1;
-      l.src = u;
-      n = d.getElementsByTagName(e)[0];
-      n.parentNode.insertBefore(l, n);
-    })(
-      window,
-      document,
-      "script",
-      "https://assets.mailerlite.com/js/universal.js",
-      "ml",
-    );
-    ml("account", "1647047");
-  </script>
-  <!-- End MailerLite Universal -->
-
-  <script
-    is:inline
-    src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024"
-    type="text/javascript"></script>
-  <script is:inline>
-    fetch(
-      "https://assets.mailerlite.com/jsonp/1647047/forms/176737457186801090/takel",
-    );
+    // Also run immediately if DOM is already loaded
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initRegistration);
+    } else {
+      initRegistration();
+    }
   </script>
 </section>
