@@ -54,7 +54,9 @@ const conferenceDate = "2026-05-28T09:00:00+02:00";
     data-visible="false"></canvas>
 
   <!-- Content -->
-  <div class="relative z-20 section-container text-center">
+  <div
+    class="relative z-20 section-container text-center translate-y-[calc(var(--header-height)/2)]"
+  >
     <div
       class="glass rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-12 max-w-3xl mx-auto"
     >
@@ -104,9 +106,7 @@ const conferenceDate = "2026-05-28T09:00:00+02:00";
         class="mb-6 sm:mb-10 animate-fade-in-up"
         style="animation-delay: 200ms"
       >
-        <span
-          class="inline-flex items-center gap-3 px-5 py-2.5 sm:px-8 sm:py-3 rounded-full bg-black/60 border-2 border-primary-400 text-white font-mono font-bold text-[clamp(0.875rem,2svh,1.25rem)] shadow-[0_0_30px_color-mix(in_oklch,var(--color-primary-400),transparent_50%)] backdrop-blur-xl hover:shadow-[0_0_50px_color-mix(in_oklch,var(--color-primary-400),transparent_30%)] hover:bg-black/70 hover:scale-105 transition-all duration-300 cursor-default tracking-wide"
-        >
+        <div class="theme-pill">
           <span class="relative flex h-3 w-3">
             <span
               class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"
@@ -116,7 +116,7 @@ const conferenceDate = "2026-05-28T09:00:00+02:00";
             ></span>
           </span>
           {t.hero.theme}
-        </span>
+        </div>
       </div>
 
       <!-- Countdown -->
@@ -216,6 +216,93 @@ const conferenceDate = "2026-05-28T09:00:00+02:00";
     </div>
   </div>
 </section>
+
+<style>
+  @property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: true;
+  }
+
+  .theme-pill {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.5rem;
+    background: rgba(0, 0, 0, 0.3); /* Lower opacity for visible backdrop filter */
+    color: white;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: clamp(0.875rem, 2svh, 1.25rem);
+    backdrop-filter: blur(12px);
+    cursor: default;
+    letter-spacing: 0.025em;
+    z-index: 10;
+    animation: rotate 4s linear infinite;
+    
+    --offset: 2px;
+  }
+
+  @media (min-width: 640px) {
+    .theme-pill {
+      padding: 0.75rem 2rem;
+    }
+  }
+
+  @keyframes rotate {
+    to {
+      --angle: 1turn;
+    }
+  }
+
+  .theme-pill::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: calc(0.5rem + 2px);
+    padding: 2px;
+    
+    background: conic-gradient(
+      from var(--angle),
+      var(--color-primary-dark),
+      var(--color-primary),
+      var(--color-primary-light),
+      var(--color-primary-dark)
+    );
+    
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .theme-pill::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: calc(0.5rem + 2px);
+    z-index: -2;
+    background: conic-gradient(
+      from var(--angle),
+      var(--color-primary-dark),
+      var(--color-primary),
+      var(--color-primary-light),
+      var(--color-primary-dark)
+    );
+    filter: blur(10px);
+    opacity: 0.5;
+  }
+</style>
 
 <script>
   function initCanvasAnimation() {
