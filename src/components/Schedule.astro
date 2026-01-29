@@ -3,6 +3,7 @@ import type { Locale, Talk, Speaker, Track } from "@utils/types";
 import SessionTile from "./schedule/SessionTile.astro";
 import SessionDetail from "./schedule/SessionDetail.astro";
 import SpeakerCard from "./schedule/SpeakerCard.astro";
+import HeartCheckbox from "./schedule/HeartCheckbox.astro";
 import scheduleData from "@data/schedule.json";
 import speakersData from "@data/speakers.json";
 import en from "@i18n/en.json";
@@ -133,6 +134,16 @@ const timelineWidthMobile = totalSlots * PIXELS_PER_SLOT_MOBILE;
 
     {isScheduled ? (
       <>
+        <!-- Favourites Filter -->
+        <div class="flex justify-center mb-6">
+          <label class="flex items-center gap-2 cursor-pointer px-3 py-2 rounded-lg hover:bg-(--color-surface) transition-colors">
+            <HeartCheckbox sessionId="filter" locale={locale} variant="filter" />
+            <span class="text-sm font-medium text-(--color-text)">
+              {t.schedule.showFavourites}
+            </span>
+          </label>
+        </div>
+
         <!-- Desktop Timeline View -->
         <div class="hidden lg:block">
           <!-- Track Headers -->
@@ -543,125 +554,341 @@ const timelineWidthMobile = totalSlots * PIXELS_PER_SLOT_MOBILE;
 </style>
 
 <script>
-  function initSchedule() {
-    // Modal handling
-    const dialogs = document.querySelectorAll("dialog");
-    const modalTriggers = document.querySelectorAll("[data-modal-trigger]");
-    const closeButtons = document.querySelectorAll("[data-close-modal]");
+  const FAVOURITES_KEY = "vigcon-favourites";
+  const FILTER_STATE_KEY = "vigcon-filter-active";
+  const CONFERENCE_DATE = "2026-05-28";
+  const TIMELINE_START = "08:00";
+  const TIMELINE_END = "17:00";
 
-    // Open modal
-    modalTriggers.forEach((trigger) => {
-      trigger.addEventListener("click", () => {
-        const talkId = trigger.getAttribute("data-modal-trigger");
-        const dialog = document.getElementById(
-          `dialog-${talkId}`
-        ) as HTMLDialogElement;
-        if (dialog) {
-          dialog.showModal();
-          document.body.style.overflow = "hidden";
-        }
-      });
-    });
-
-    // Close modal via button
-    closeButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const dialog = button.closest("dialog") as HTMLDialogElement;
-        if (dialog) {
-          dialog.close();
-          document.body.style.overflow = "";
-        }
-      });
-    });
-
-    // Close modal when clicking backdrop
-    dialogs.forEach((dialog) => {
-      dialog.addEventListener("click", (e) => {
-        if (e.target === dialog) {
-          (dialog as HTMLDialogElement).close();
-          document.body.style.overflow = "";
-        }
-      });
-
-      // Handle Escape key
-      dialog.addEventListener("close", () => {
-        document.body.style.overflow = "";
-      });
-    });
-
-    // Current time indicator
-    const conferenceDate = "2026-05-28";
-    const TIMELINE_START = "08:00";
-    const TIMELINE_END = "17:00";
-
-    function parseTime(time: string): number {
-      const [hours, minutes] = time.split(":").map(Number);
-      return hours * 60 + minutes;
+  /** @returns Favourites object from localStorage */
+  function getFavourites(): Record<string, boolean> {
+    try {
+      const stored = localStorage.getItem(FAVOURITES_KEY);
+      return stored ? JSON.parse(stored) : {};
+    } catch {
+      return {};
     }
-
-    function updateTimeIndicator() {
-      const indicator = document.getElementById("current-time-indicator");
-      const mobileIndicator = document.getElementById("current-time-indicator-mobile");
-
-      if (!indicator && !mobileIndicator) return;
-
-      const today = new Date();
-      const eventDate = new Date(`${conferenceDate}T00:00:00`);
-      const todayStart = new Date(
-        today.getFullYear(),
-        today.getMonth(),
-        today.getDate()
-      );
-
-      if (todayStart.getTime() > eventDate.getTime()) {
-        if (indicator) indicator.classList.add("hidden");
-        if (mobileIndicator) mobileIndicator.classList.add("hidden");
-        return;
-      }
-
-      const currentMinutes = today.getHours() * 60 + today.getMinutes();
-      const startMinutes = parseTime(TIMELINE_START);
-      const endMinutes = parseTime(TIMELINE_END);
-      const totalMinutes = endMinutes - startMinutes;
-
-      if (currentMinutes < startMinutes || currentMinutes > endMinutes) {
-        if (indicator) indicator.classList.add("hidden");
-        if (mobileIndicator) mobileIndicator.classList.add("hidden");
-        return;
-      }
-
-      const position = ((currentMinutes - startMinutes) / totalMinutes) * 100;
-      
-      if (indicator) {
-        indicator.classList.remove("hidden");
-        indicator.style.top = `${position}%`;
-      }
-
-      if (mobileIndicator) {
-        mobileIndicator.classList.remove("hidden");
-        mobileIndicator.style.left = `${position}%`;
-      }
-    }
-
-    // Update every minute
-    updateTimeIndicator();
-    // Clear existing interval if any (not easily possible without storing it, but page-load usually means new context if not careful)
-    // Ideally we store interval ID on window or element to clear it.
-    // However, in Astro View Transitions, scripts re-run.
-    // Let's rely on component cleanup or just set it.
-    const intervalId = setInterval(updateTimeIndicator, 60000);
-    
-    // Cleanup interval on page unload (astro:before-swap)
-    document.addEventListener("astro:before-swap", () => {
-      clearInterval(intervalId);
-    }, { once: true });
-
   }
 
-  // Run on initial load and after View Transition navigation
+  /** @param favourites - Favourites object to save */
+  function saveFavourites(favourites: Record<string, boolean>): void {
+    try {
+      localStorage.setItem(FAVOURITES_KEY, JSON.stringify(favourites));
+    } catch (e) {
+      console.error("Failed to save favourites:", e);
+    }
+  }
+
+  /** @param sessionId - Session ID to check */
+  function isFavourite(sessionId: string): boolean {
+    const favourites = getFavourites();
+    return favourites[sessionId] === true;
+  }
+
+  /** @param sessionId - Session ID to update */
+  function setFavourite(sessionId: string, value: boolean): void {
+    const favourites = getFavourites();
+    value ? favourites[sessionId] = true : delete favourites[sessionId];
+    saveFavourites(favourites);
+  }
+
+  /** @returns Filter state from localStorage */
+  function getFilterState(): boolean {
+    try {
+      const stored = localStorage.getItem(FILTER_STATE_KEY);
+      return stored === "true";
+    } catch {
+      return false;
+    }
+  }
+
+  /** @param active - Filter active state */
+  function saveFilterState(active: boolean): void {
+    try {
+      localStorage.setItem(FILTER_STATE_KEY, active.toString());
+    } catch (e) {
+      console.error("Failed to save filter state:", e);
+    }
+  }
+
+  /** @returns Localized texts object */
+  function getLocalizedTexts() {
+    const locale = document.documentElement.lang || "en";
+    const texts = {
+      en: {
+        addToFavourites: "Add to favourites",
+        removeFromFavourites: "Remove from favourites",
+        showFavourites: "Show favourites",
+        hideFavourites: "Hide favourites"
+      },
+      cz: {
+        addToFavourites: "Přidat do oblíbených",
+        removeFromFavourites: "Odebrat z oblíbených",
+        showFavourites: "Zobrazit oblíbené",
+        hideFavourites: "Skrýt oblíbené"
+      }
+    };
+    return texts[locale as keyof typeof texts] || texts.en;
+  }
+
+  /** @param checkbox - Checkbox element to update title for */
+  function updateCheckboxTitle(checkbox: HTMLInputElement, t: ReturnType<typeof getLocalizedTexts>): void {
+    const container = checkbox.closest(".heart-checkbox-container");
+    if (!container) return;
+
+    const title = checkbox.checked ? t.removeFromFavourites : t.addToFavourites;
+    container.setAttribute("title", title);
+  }
+
+  /** @param checkbox - Checkbox element */
+  function handleCheckboxChange(
+    checkbox: HTMLInputElement,
+    sessionId: string,
+    t: ReturnType<typeof getLocalizedTexts>,
+    callbacks: { updateIndicators: () => void; applyFilter: () => void }
+  ): void {
+    setFavourite(sessionId, checkbox.checked);
+    updateCheckboxTitle(checkbox, t);
+    callbacks.updateIndicators();
+    callbacks.applyFilter();
+  }
+
+  /** @param checkbox - Checkbox element to initialize */
+  function initSessionCheckbox(
+    checkbox: HTMLInputElement,
+    t: ReturnType<typeof getLocalizedTexts>,
+    callbacks: { updateIndicators: () => void; applyFilter: () => void }
+  ): void {
+    const sessionId = checkbox.getAttribute("data-heart-checkbox");
+    if (!sessionId || sessionId === "filter") return;
+
+    checkbox.checked = isFavourite(sessionId);
+    updateCheckboxTitle(checkbox, t);
+    checkbox.addEventListener("change", () => handleCheckboxChange(checkbox, sessionId, t, callbacks));
+  }
+
+  /** @param element - Element with session ID */
+  function updateHeartIndicator(element: Element): void {
+    const sessionId = element.getAttribute("data-session-tile") || element.getAttribute("data-speaker-card");
+    if (!sessionId) return;
+
+    const heartIndicator = element.querySelector(".heart-indicator");
+    if (!heartIndicator) return;
+
+    isFavourite(sessionId)
+      ? heartIndicator.classList.remove("hidden")
+      : heartIndicator.classList.add("hidden");
+  }
+
+  /** Updates all heart indicators on tiles and cards */
+  function updateHeartIndicators(): void {
+    document.querySelectorAll("[data-session-tile]").forEach(updateHeartIndicator);
+    document.querySelectorAll("[data-speaker-card]").forEach(updateHeartIndicator);
+  }
+
+  /** @param element - Element to set opacity on */
+  function setElementOpacity(element: Element, sessionId: string | null, isFilterActive: boolean): void {
+    if (!sessionId) return;
+
+    const opacity = isFilterActive && !isFavourite(sessionId) ? "0.25" : "1";
+    (element as HTMLElement).style.opacity = opacity;
+  }
+
+  /** @param filterCheckbox - Filter checkbox element */
+  function updateFilterLabel(filterCheckbox: HTMLInputElement, t: ReturnType<typeof getLocalizedTexts>): void {
+    const heartContainer = filterCheckbox.closest(".heart-checkbox-container");
+    const outerLabel = heartContainer?.parentElement;
+    const textSpan = outerLabel?.querySelector("span.text-sm");
+    if (!outerLabel || !textSpan) return;
+
+    const labelText = filterCheckbox.checked ? t.hideFavourites : t.showFavourites;
+    outerLabel.setAttribute("title", labelText);
+    textSpan.textContent = labelText;
+  }
+
+  /** @param filterCheckbox - Filter checkbox element */
+  function applyFavouritesFilter(filterCheckbox: HTMLInputElement): void {
+    const isFilterActive = filterCheckbox.checked;
+
+    document.querySelectorAll("[data-session-tile]").forEach(tile => {
+      const sessionId = tile.getAttribute("data-session-tile");
+      setElementOpacity(tile, sessionId, isFilterActive);
+    });
+
+    document.querySelectorAll("[data-speaker-card]").forEach(card => {
+      const sessionId = card.getAttribute("data-speaker-card");
+      setElementOpacity(card, sessionId, isFilterActive);
+    });
+  }
+
+  /** @param filterCheckbox - Filter checkbox element */
+  function initFilterCheckbox(
+    filterCheckbox: HTMLInputElement,
+    t: ReturnType<typeof getLocalizedTexts>
+  ): void {
+    filterCheckbox.checked = getFilterState();
+    updateFilterLabel(filterCheckbox, t);
+
+    filterCheckbox.addEventListener("change", () => {
+      saveFilterState(filterCheckbox.checked);
+      updateFilterLabel(filterCheckbox, t);
+      applyFavouritesFilter(filterCheckbox);
+    });
+  }
+
+  /** Initializes all heart checkboxes */
+  function initHeartCheckboxes(
+    t: ReturnType<typeof getLocalizedTexts>,
+    filterCheckbox: HTMLInputElement | null
+  ): void {
+    const checkboxes = document.querySelectorAll("[data-heart-checkbox]") as NodeListOf<HTMLInputElement>;
+    const callbacks = {
+      updateIndicators: updateHeartIndicators,
+      applyFilter: () => filterCheckbox && applyFavouritesFilter(filterCheckbox)
+    };
+
+    checkboxes.forEach(checkbox => initSessionCheckbox(checkbox, t, callbacks));
+  }
+
+  /** @param dialog - Dialog element to open */
+  function openDialog(dialog: HTMLDialogElement, t: ReturnType<typeof getLocalizedTexts>, filterCheckbox: HTMLInputElement | null): void {
+    dialog.showModal();
+    document.body.style.overflow = "hidden";
+    initHeartCheckboxes(t, filterCheckbox);
+  }
+
+  /** @param dialog - Dialog element to close */
+  function closeDialog(dialog: HTMLDialogElement): void {
+    dialog.close();
+    document.body.style.overflow = "";
+  }
+
+  /** @param trigger - Modal trigger element */
+  function handleModalTrigger(trigger: Element, t: ReturnType<typeof getLocalizedTexts>, filterCheckbox: HTMLInputElement | null): void {
+    const talkId = trigger.getAttribute("data-modal-trigger");
+    if (!talkId) return;
+
+    const dialog = document.getElementById(`dialog-${talkId}`) as HTMLDialogElement;
+    if (dialog) openDialog(dialog, t, filterCheckbox);
+  }
+
+  /** @param button - Close button element */
+  function handleCloseButton(button: Element): void {
+    const dialog = button.closest("dialog") as HTMLDialogElement;
+    if (dialog) closeDialog(dialog);
+  }
+
+  /** @param dialog - Dialog element */
+  function handleDialogBackdrop(dialog: Element, e: Event): void {
+    if (e.target === dialog) closeDialog(dialog as HTMLDialogElement);
+  }
+
+  /** Initializes modal dialogs */
+  function initModalDialogs(t: ReturnType<typeof getLocalizedTexts>, filterCheckbox: HTMLInputElement | null): void {
+    document.querySelectorAll("[data-modal-trigger]").forEach(trigger => {
+      trigger.addEventListener("click", () => handleModalTrigger(trigger, t, filterCheckbox));
+    });
+
+    document.querySelectorAll("[data-close-modal]").forEach(button => {
+      button.addEventListener("click", () => handleCloseButton(button));
+    });
+
+    document.querySelectorAll("dialog").forEach(dialog => {
+      dialog.addEventListener("click", e => handleDialogBackdrop(dialog, e));
+      dialog.addEventListener("close", () => { document.body.style.overflow = ""; });
+    });
+  }
+
+  /** @param time - Time string in HH:MM format */
+  function parseTime(time: string): number {
+    const [hours, minutes] = time.split(":").map(Number);
+    return hours * 60 + minutes;
+  }
+
+  /** @param indicator - Indicator element */
+  function hideIndicator(indicator: HTMLElement): void {
+    indicator.classList.add("hidden");
+  }
+
+  /** @param indicator - Indicator element */
+  function showIndicator(indicator: HTMLElement, position: number, isDesktop: boolean): void {
+    indicator.classList.remove("hidden");
+    indicator.style[isDesktop ? "top" : "left"] = `${position}%`;
+  }
+
+  /** @returns true if event is past */
+  function isEventPast(): boolean {
+    const today = new Date();
+    const eventDate = new Date(`${CONFERENCE_DATE}T00:00:00`);
+    const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    return todayStart.getTime() > eventDate.getTime();
+  }
+
+  /** @returns true if current time is within timeline */
+  function isWithinTimeline(): boolean {
+    const now = new Date();
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+    const startMinutes = parseTime(TIMELINE_START);
+    const endMinutes = parseTime(TIMELINE_END);
+    return currentMinutes >= startMinutes && currentMinutes <= endMinutes;
+  }
+
+  /** @returns Position percentage for current time */
+  function calculateTimePosition(): number {
+    const now = new Date();
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+    const startMinutes = parseTime(TIMELINE_START);
+    const endMinutes = parseTime(TIMELINE_END);
+    const totalMinutes = endMinutes - startMinutes;
+    return ((currentMinutes - startMinutes) / totalMinutes) * 100;
+  }
+
+  /** Updates time indicator position */
+  function updateTimeIndicator(): void {
+    const indicator = document.getElementById("current-time-indicator");
+    const mobileIndicator = document.getElementById("current-time-indicator-mobile");
+    if (!indicator && !mobileIndicator) return;
+
+    if (isEventPast() || !isWithinTimeline()) {
+      if (indicator) hideIndicator(indicator);
+      if (mobileIndicator) hideIndicator(mobileIndicator);
+      return;
+    }
+
+    const position = calculateTimePosition();
+    if (indicator) showIndicator(indicator, position, true);
+    if (mobileIndicator) showIndicator(mobileIndicator, position, false);
+  }
+
+  /** Starts time indicator interval */
+  function startTimeIndicatorInterval(): void {
+    updateTimeIndicator();
+    const intervalId = setInterval(updateTimeIndicator, 60000);
+    document.addEventListener("astro:before-swap", () => clearInterval(intervalId), { once: true });
+  }
+
+  /** Main initialization function */
+  function initSchedule(): void {
+    const t = getLocalizedTexts();
+    const filterCheckbox = document.querySelector("[data-heart-checkbox='filter']") as HTMLInputElement | null;
+
+    if (filterCheckbox) {
+      initFilterCheckbox(filterCheckbox, t);
+    }
+
+    initHeartCheckboxes(t, filterCheckbox);
+    updateHeartIndicators();
+
+    if (filterCheckbox) {
+      applyFavouritesFilter(filterCheckbox);
+    }
+
+    initModalDialogs(t, filterCheckbox);
+    startTimeIndicatorInterval();
+  }
+
   document.addEventListener("astro:page-load", initSchedule);
 
-  // Also run immediately if DOM is already loaded
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initSchedule);
   } else {

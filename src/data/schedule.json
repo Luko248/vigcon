@@ -5,7 +5,7 @@
     "endTime": "17:00",
     "timezone": "Europe/Prague"
   },
-  "isScheduled": false,
+  "isScheduled": true,
   "tracks": [
     {
       "id": "track-a",
@@ -174,7 +174,7 @@
       }
     },
     {
-      "id": "talk-chylik",
+      "id": "talk-gintner",
       "startTime": "10:45",
       "endTime": "11:30",
       "track": "track-b",
@@ -182,7 +182,7 @@
         "en": "One-shot delivery with AI",
         "cz": "One-shot dodání s AI"
       },
-      "speakerId": "chylik-lukas",
+      "speakerId": "gintner-vojtech",
       "company": "AIS",
       "country": "CZ",
       "language": "EN/SK",

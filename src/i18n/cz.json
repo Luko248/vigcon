@@ -105,7 +105,11 @@
     "register": "Máte zajímavé téma? Registrujte se jako řečník!",
     "registerLink": "Registrovat se jako řečník",
     "speakerLabelSingle": "ŘEČNÍK",
-    "speakerLabelPlural": "ŘEČNÍCI"
+    "speakerLabelPlural": "ŘEČNÍCI",
+    "addToFavourites": "Přidat do oblíbených",
+    "removeFromFavourites": "Odebrat z oblíbených",
+    "showFavourites": "Zobrazit oblíbené",
+    "hideFavourites": "Skrýt oblíbené"
   },
   "registration": {
     "title": "Registrace",

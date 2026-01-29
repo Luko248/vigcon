@@ -123,14 +123,10 @@
       }
     },
     {
-      "id": "chylik-lukas",
-      "name": "Lukáš Chylík & Vojtěch Gintner",
+      "id": "gintner-vojtech",
+      "name": "Vojtěch Gintner",
       "initials": "LG",
-      "photo": "/images/speakers/lukas-chylik.avif",
-      "photos": [
-        "/images/speakers/lukas-chylik.avif",
-        "/images/speakers/vojtech-gintner.avif"
-      ],
+      "photo": "/images/speakers/vojtech-gintner.avif",
       "status": "confirmed",
       "role": {
         "en": "Software Developer",

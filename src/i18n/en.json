@@ -105,7 +105,11 @@
     "register": "Have an interesting topic? Register as a speaker!",
     "registerLink": "Register as a speaker",
     "speakerLabelSingle": "SPEAKER",
-    "speakerLabelPlural": "SPEAKERS"
+    "speakerLabelPlural": "SPEAKERS",
+    "addToFavourites": "Add to favourites",
+    "removeFromFavourites": "Remove from favourites",
+    "showFavourites": "Show favourites",
+    "hideFavourites": "Hide favourites"
   },
   "registration": {
     "title": "Registration",

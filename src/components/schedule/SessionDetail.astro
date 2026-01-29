@@ -3,6 +3,7 @@ import type { Locale, Talk, Speaker } from "@utils/types";
 import en from "@i18n/en.json";
 import cz from "@i18n/cz.json";
 import SpeakerInline from "./SpeakerInline.astro";
+import HeartCheckbox from "./HeartCheckbox.astro";
 
 interface Props {
   talk: Talk;
@@ -24,16 +25,19 @@ const country = talk.country || speaker?.country;
   aria-labelledby={`dialog-title-${talk.id}`}
 >
   <div class="glass rounded-2xl p-6 relative speaker-modal-content dark:bg-black/70 bg-white/70">
-    <button
-      type="button"
-      class="absolute top-4 right-4 p-2 rounded-lg hover:bg-(--color-surface) transition-colors"
-      data-close-modal
-      aria-label={locale === "en" ? "Close" : "Zavřít"}
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
-      </svg>
-    </button>
+    <div class="absolute top-4 right-4 flex items-center gap-2">
+      <HeartCheckbox sessionId={talk.id} locale={locale} variant="session" />
+      <button
+        type="button"
+        class="p-2 rounded-lg hover:bg-(--color-surface) transition-colors"
+        data-close-modal
+        aria-label={locale === "en" ? "Close" : "Zavřít"}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+        </svg>
+      </button>
+    </div>
 
     {isScheduled && (
       <div class="flex items-center gap-3 mb-2 text-xs font-mono uppercase tracking-wider text-(--color-text-secondary)">
