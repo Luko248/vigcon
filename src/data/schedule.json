@@ -208,14 +208,26 @@
       }
     },
     {
-      "id": "ai-clinic",
+      "id": "talk-zacek-juraj-microservice",
       "startTime": "12:00",
       "endTime": "12:45",
       "track": "track-a",
-      "type": "special",
       "title": {
-        "en": "AI Clinic & Office Hours",
-        "cz": "AI klinika a konzultace"
+        "en": "From Microservice to Modular Monolith (and Back Again)",
+        "cz": "Od mikroservisy k modulárnímu monolitu (a zpět)"
+      },
+      "speakerId": "zacek-juraj-microservice",
+      "company": "AIS",
+      "country": "CZ",
+      "language": "EN",
+      "hashtags": [
+        "Architecture",
+        "Microservices",
+        "ModularMonolith"
+      ],
+      "annotation": {
+        "en": "How we modularized a fast-growing microservice developed by three teams and prepared it for a future split without slowing delivery.",
+        "cz": "Jak jsme modularizovali rychle rostoucí mikroservisu vyvíjenou třemi týmy a připravili ji na budoucí rozdělení bez zpomalení delivery."
       }
     },
     {
@@ -300,14 +312,51 @@
       }
     },
     {
-      "id": "break-3",
+      "id": "talk-zacek-juraj-persistence",
       "startTime": "14:30",
       "endTime": "15:00",
-      "track": "both",
-      "type": "break",
+      "track": "track-a",
       "title": {
-        "en": "Afternoon Coffee Break",
-        "cz": "Odpolední kávová přestávka"
+        "en": "High-Performance Persistence for Insurance Contracts",
+        "cz": "Vysoce výkonná persistence pro pojistné smlouvy"
+      },
+      "speakerId": "zacek-juraj-persistence",
+      "company": "AIS",
+      "country": "CZ",
+      "language": "EN",
+      "hashtags": [
+        "Architecture",
+        "Persistence",
+        "Performance",
+        "Insurance"
+      ],
+      "annotation": {
+        "en": "How we redesigned data loading, caching, and batch persistence to improve read and write performance in a complex insurance contract model.",
+        "cz": "Jak jsme přepracovali načítání dat, caching a batch persistenci pro zlepšení výkonu čtení i zápisu ve složitém modelu pojistných smluv."
+      }
+    },
+    {
+      "id": "talk-talpa-martin",
+      "startTime": "14:30",
+      "endTime": "15:00",
+      "track": "track-b",
+      "title": {
+        "en": "Web Application Security in Practice",
+        "cz": "Bezpečnost webových aplikací v praxi"
+      },
+      "speakerId": "talpa-martin",
+      "company": "AIS",
+      "country": "CZ",
+      "language": "EN",
+      "hashtags": [
+        "Security",
+        "CSP",
+        "XSS",
+        "Web"
+      ],
+      "annotation": {
+        "en": "Practical CSP rollout in production to mitigate XSS and client-side abuse without harming user experience.",
+        "cz": "Praktické nasazení CSP v produkci pro omezení XSS a klientských útoků bez negativního dopadu na uživatelský zážitek."
       }
     },
     {

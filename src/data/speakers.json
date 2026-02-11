@@ -57,7 +57,7 @@
         "cz": "Zjistěte, jak AI nástroje Windsurf a Make urychlují prototypování UI s design systémem VIGo."
       },
       "abstract": {
-        "en": "## Benefits\n- Rapid prototypes with real components\n- Demonstration of complex business requirements\n- Reduction of manual work\n\n## Implementation\n- Online documentation ([vigo.vig.cz](http://vigo.vig.cz))\n- Guidelines for AI tools\n\n## Two tools\n**Windsurf:** Structured generation with React → basis for development\n**Make:** Creative variants for solution finding\n\n## Examples\nLife calculators (Windsurf) | Reports (Make)\n\n## Outlook\nFigma Connect → closed iteration between AI generation and Figma",
+        "en": "In this session, you will see **how a mature design system can be effectively used as a foundation for AI-driven prototyping.**\n\nWe will demonstrate how AI can generate realistic prototypes directly from requirements and analysis, enabling fast visual validation of solutions. How this approach helps uncover specification gaps early, reduces feedback loops after implementation, and accelerates the end-to-end delivery process. We will also show how complex data models and datasets can be quickly transformed into interactive prototype scenarios and multiple design variants.\n\nReal project examples will illustrate different AI prototyping approaches, including structured generation with real React components and frontend rules that can serve as a direct foundation for further development.",
         "cz": "## Přínosy\n- Rychlé prototypy s reálnými komponenty\n- Demonstrace složitých zadání businessu\n- Zkrácení manuální práce\n\n## Implementace\n- Online dokumentace ([vigo.vig.cz](http://vigo.vig.cz))\n- Guidelines pro AI nástroje\n\n## Dva nástroje\n**Windsurf:** Strukturované generování s React → základ pro vývoj\n**Make:** Kreativní varianty pro hledání řešení\n\n## Ukázky\nŽivotní kalkulačky (Windsurf) | Hlášenky (Make)\n\n## Výhled\nFigma Connect → uzavřená iterace mezi AI generováním a Figmou"
       }
     },
@@ -238,7 +238,7 @@
         "cz": "Nahrazení manuálního plánování datově řízeným optimalizačním systémem pro terénní techniky."
       },
       "abstract": {
-        "en": "Efficient scheduling and routing of field technicians is essential for delivering timely vehicle inspections, both before new insurance contracts and after claims. Today, this planning is completely manual, time‑consuming, and often results in suboptimal routes and unnecessary travel.\n\nThe *Rozdělovač* project aims to replace this manual effort with a data‑driven optimization system capable of automatically generating daily plans for handling hundreds of inspection tasks. In this talk, we will guide you through the PoC phase of the project, including the development of testing tools and the complete data‑science workflow — from data cleaning all the way to solving a Workforce Scheduling and Routing Problem using an optimization engine.\n\nOur results show significant reductions in total travel distance, demonstrating strong potential for operational efficiency gains, and more importantly, enabling a completely new way of working.",
+        "en": "Efficient scheduling and routing of field technicians is essential for delivering timely vehicle inspections, both before new insurance contracts and after claims. Today, this planning is completely manual, time‑consuming, and often results in suboptimal routes and unnecessary travel.\n\nThe *Rozdělovač* project aims to replace this manual effort with a data‑driven optimization system capable of automatically generating daily plans for handling hundreds of inspection tasks. In this talk, we will guide you through the PoC phase of the project, including the development of testing tools and the complete data-science workflow — from data cleaning all the way to solving a Workforce Scheduling and Routing Problem using an optimization engine.\n\nOur results show significant reductions in total travel distance, demonstrating strong potential for operational efficiency gains, and more importantly, enabling a completely new way of working.\n\n**Keywords:** Optimization, Data Science, Scheduling and Routing, Task Allocation, Cost Minimization",
         "cz": "Efektivní plánování a směrování terénních techniků je nezbytné pro včasné prohlídky vozidel. Dnes je toto plánování zcela manuální a časově náročné.\n\nProjekt *Rozdělovač* si klade za cíl nahradit toto manuální úsilí datově řízeným optimalizačním systémem. Provedeme vás fází PoC, vývojem testovacích nástrojů a kompletním data-science workflow — od čištění dat až po řešení problému Workforce Scheduling and Routing pomocí optimalizačního enginu.\n\nNaše výsledky ukazují významné snížení celkové cestovní vzdálenosti a potenciál pro provozní efektivitu."
       }
     },
@@ -273,6 +273,92 @@
       "abstract": {
         "en": "Kafka scales well, until the way you manage it doesn’t.\n\nFor a long time, our Kafka ecosystem was managed centrally. Topics, users, ACLs, and schemas were provisioned through Python scripts executed in CI/CD pipelines. This approach gave us consistency and control, but as adoption grew, its limitations became clear: slow onboarding, operational friction, increasing coupling between teams, and a deployment model that did not scale with the organization.\n\nIn this talk, We will share our journey from this centralized deployment model to a decentralized, Kubernetes-native approach powered by a custom Kafka Operator.\n\nWe will focus on:\n- Which problems the operator solved immediately and which ones it did not\n- New challenges we had to address along the way, including security, validation, guardrails, multi-tenancy, and governance\n- How responsibilities shifted between platform teams and application teams\n- What surprised us during the transition, both positively and negatively",
         "cz": "Kafka škáluje dobře, dokud způsob její správy nepřestane stačit.\n\nDlouhou dobu byl náš ekosystém Kafka spravován centrálně. V této přednášce budeme sdílet naši cestu od tohoto centralizovaného modelu nasazení k decentralizovanému, Kubernetes-native přístupu poháněnému vlastním Kafka Operátorem.\n\nZaměříme se na:\n- Jaké problémy operátor okamžitě vyřešil\n- Nové výzvy (bezpečnost, validace, governance)\n- Jak se posunuly zodpovědnosti mezi týmy\n- Co nás během přechodu překvapilo"
+      }
+    },
+    {
+      "id": "zacek-juraj-microservice",
+      "name": "Juraj Žáček",
+      "initials": "JŽ",
+      "photo": "/images/speakers/juraj-zacek.avif",
+      "status": "confirmed",
+      "role": {
+        "en": "Speaker",
+        "cz": "Přednášející"
+      },
+      "topic": {
+        "en": "From Microservice to Modular Monolith (and Back Again)",
+        "cz": "Od mikroservisy k modulárnímu monolitu (a zpět)"
+      },
+      "hashtags": [
+        "Architecture",
+        "Microservices",
+        "ModularMonolith"
+      ],
+      "shortDesc": {
+        "en": "How we modularized a fast-growing microservice developed by three teams and prepared it for a future split without slowing delivery.",
+        "cz": "Jak jsme modularizovali rychle rostoucí mikroservisu vyvíjenou třemi týmy a připravili ji na budoucí rozdělení bez zpomalení delivery."
+      },
+      "abstract": {
+        "en": "As a microservice grows, it can slowly start to feel like a monolith — bloated codebase, unclear boundaries, and teams stepping on each other’s toes. This talk explores how we tackled a fast-growing microservice developed in parallel by three teams, introduced strong modular boundaries, enabled effective collaboration, and laid foundations for a future split into independent microservices without stopping feature delivery.",
+        "cz": "Jak mikroservisa roste, začne se chovat jako monolit: nabobtnalý kód, nejasné hranice a kolize mezi týmy. Přednáška ukazuje, jak jsme u rychle rostoucí služby vyvíjené třemi týmy zavedli silné modulární hranice, zlepšili spolupráci a připravili základ pro budoucí rozdělení bez zastavení dodávky funkcí."
+      }
+    },
+    {
+      "id": "zacek-juraj-persistence",
+      "name": "Juraj Žáček",
+      "initials": "JŽ",
+      "photo": "/images/speakers/juraj-zacek.avif",
+      "status": "confirmed",
+      "role": {
+        "en": "Speaker",
+        "cz": "Přednášející"
+      },
+      "topic": {
+        "en": "High-Performance Persistence for Insurance Contracts",
+        "cz": "Vysoce výkonná persistence pro pojistné smlouvy"
+      },
+      "hashtags": [
+        "Architecture",
+        "Persistence",
+        "Performance",
+        "Insurance"
+      ],
+      "shortDesc": {
+        "en": "How we redesigned data loading, caching, and batch persistence to improve read and write performance in a complex insurance contract model.",
+        "cz": "Jak jsme přepracovali načítání dat, caching a batch persistenci pro zlepšení výkonu čtení i zápisu ve složitém modelu pojistných smluv."
+      },
+      "abstract": {
+        "en": "Managing insurance contracts means dealing with a complex data model — combining contract instances with rich product definitions while preserving strict referential integrity. We show how we redesigned data loading, leveraged caching, and introduced batch persistence to improve read/write performance while keeping the domain model consistent and robust.",
+        "cz": "Správa pojistných smluv pracuje se složitým datovým modelem, který kombinuje instance smluv s bohatými definicemi produktů při zachování referenční integrity. Ukážeme redesign načítání dat, využití cache a batch persistenci pro výrazné zlepšení výkonu čtení i zápisu při zachování konzistence domény."
+      }
+    },
+    {
+      "id": "talpa-martin",
+      "name": "Martin Talpa",
+      "initials": "MT",
+      "photo": "/images/speakers/martin-talpa.avif",
+      "status": "confirmed",
+      "role": {
+        "en": "Software Architect",
+        "cz": "Softwarový architekt"
+      },
+      "topic": {
+        "en": "Web Application Security in Practice",
+        "cz": "Bezpečnost webových aplikací v praxi"
+      },
+      "hashtags": [
+        "Security",
+        "CSP",
+        "XSS",
+        "Web"
+      ],
+      "shortDesc": {
+        "en": "Practical CSP rollout in production to mitigate XSS and client-side abuse without harming user experience.",
+        "cz": "Praktické nasazení CSP v produkci pro omezení XSS a klientských útoků bez negativního dopadu na uživatelský zážitek."
+      },
+      "abstract": {
+        "en": "Web Application Security in Practice\n\nThis presentation introduces Content Security Policy (CSP) as a practical security mechanism for protecting against XSS and other client-side attacks. We will show how CSP works, what real-world problems it addresses, and how to deploy it in a production application with more than 8,000 active users, without any noticeable impact on user experience. Don't just aim to satisfy an audit - configure CSP headers thoughtfully and actually protect your users.\n\n## Introduction\n- CSP as an additional layer of defense\n- Protection against XSS and execution of unauthorized JavaScript\n- Limiting data exfiltration and abuse of external resources\n\n## Overview of the most important CSP directives\n- Most commonly used directives (default-src, script-src, connect-src, ...)\n- Server-Side Rendering (SSR) vs React Front-End (SPA / CSR)\n- Nonces as a powerful tool for SSR\n- Error handling, report-sample\n\n## CSP in our practice\n- Delivery CSP rules to real application - KNZ/SUSP (8,000+ active users and 5,000+ contracts agreed daily)\n- Monitoring as a never-ending process - APM, Dynatrace\n- Using Report-Only mode",
+        "cz": "Přednáška představí Content Security Policy (CSP) jako praktický mechanismus ochrany proti XSS a dalším klientským útokům. Projdeme klíčové direktivy, rozdíly mezi SSR a SPA, využití nonce i způsob zavádění přes report-only režim a průběžný monitoring. Ukázky vycházejí z produkčního nasazení v aplikaci s více než 8 000 aktivními uživateli a 5 000+ uzavřenými smlouvami denně."
       }
     }
   ]

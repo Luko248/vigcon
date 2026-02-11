@@ -61,17 +61,6 @@ const country = talk.country || speaker?.country;
       </div>
     )}
 
-    {talk.annotation && (
-      <section class="mb-6">
-        <p class="text-xs uppercase tracking-wider text-(--color-text-secondary) font-bold mb-3">
-          {t.modal.talkAnnotation}
-        </p>
-        <p class="text-(--color-text) leading-relaxed">
-          {talk.annotation[locale]}
-        </p>
-      </section>
-    )}
-
     {speaker && speaker.abstract && (
       <section class="mb-6">
         <p class="text-xs uppercase tracking-wider text-(--color-text-secondary) font-bold mb-3">
