@@ -510,9 +510,21 @@
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
+    animation: none !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .animate-on-scroll,
+  .animate-on-scroll-delayed,
+  .animate-slide-left,
+  .animate-slide-right,
+  .animate-scale-up,
+  .animate-fade-in-up,
+  .animate-fade-in-down {
+    opacity: 1 !important;
+    translate: none !important;
+    scale: none !important;
+    transform: none !important;
   }
 }
 
