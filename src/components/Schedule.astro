@@ -33,6 +33,19 @@ const tracks = scheduleData.tracks as Track[];
 const schedule = scheduleData.schedule as Talk[];
 const speakers = speakersData.speakers as Speaker[];
 
+// Order speakers by their position in the schedule array (source of truth for display order)
+const scheduleOrder = schedule
+  .filter((item) => item.speakerId)
+  .map((item) => item.speakerId);
+const orderedSpeakers = [...speakers].sort((a, b) => {
+  const aIndex = scheduleOrder.indexOf(a.id);
+  const bIndex = scheduleOrder.indexOf(b.id);
+  // Speakers not in schedule go to the end
+  const aPos = aIndex === -1 ? Infinity : aIndex;
+  const bPos = bIndex === -1 ? Infinity : bIndex;
+  return aPos - bPos;
+});
+
 const titleWords = t.schedule.title.split(" ");
 const firstWord = titleWords[0];
 const restTitle = titleWords.slice(1).join(" ");
@@ -482,7 +495,7 @@ const timelineWidthMobile = totalSlots * PIXELS_PER_SLOT_MOBILE;
         <!-- Speakers Grid (Unscheduled View) -->
         <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {
-            speakers.map((speaker, index) => {
+            orderedSpeakers.map((speaker, index) => {
               const photo1 = speaker.photos?.[0] || speaker.photo;
               const photo2 = speaker.photos?.[1];
               const img1 = getSpeakerImage(photo1);

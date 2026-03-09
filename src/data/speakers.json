@@ -1,6 +1,188 @@
 {
   "speakers": [
     {
+      "id": "jirout-petr",
+      "name": "Petr Jirout",
+      "initials": "PJ",
+      "photo": "/images/speakers/petr-jirout.avif",
+      "status": "confirmed",
+      "role": {
+        "en": "CTO",
+        "cz": "CTO"
+      },
+      "topic": {
+        "en": "Fuckups, Resistance, and Hard Data: The Real Story of Forcing AI into Software Development",
+        "cz": "Průšvihy, odpor a tvrdá data: Skutečný příběh násilného zavádění AI do vývoje softwaru"
+      },
+      "hashtags": [
+        "AI",
+        "Adoption",
+        "Change"
+      ],
+      "shortDesc": {
+        "en": "An unfiltered post-mortem of enforcing AI across the entire SDLC — real metrics, massive resistance, and why AI became the minimum standard.",
+        "cz": "Nefiltrovaná post-mortem analýza vynuceného zavedení AI přes celé SDLC — reálné metriky, masivní odpor a proč se AI stalo minimálním standardem."
+      },
+      "abstract": {
+        "en": "This talk is an unfiltered post-mortem of a company-wide, enforced AI rollout across the entire SDLC — from analysts and developers to testers, DevOps, and L2 support.\n\nWe will show:\n- real before/after metrics,\n- role-specific performance and quality benchmarks that cannot be met without AI,\n- measured productivity gains of top performers in the hundreds of percent,\n- how role-specific AI toolchains, skill-based agents, and AI guidelines were built,\n- and why our 2026 goal is a company-wide 50% productivity increase, not just \"feeling better about AI\".\n\nWe won't avoid the uncomfortable parts:\n- massive developer resistance,\n- frustration and the collapse of the myth of \"seniority without changing habits\",\n- broken metrics, bad calls, and internal fuckups.\n\nNo slides about \"the future of AI\".\nHard data. Real processes. Measurable impact.\n\nIf you want to see what the world looks like when AI is no longer an advantage but the minimum standard, this talk is for you.",
+        "cz": "Tato přednáška je nefiltrovaná post-mortem analýza celofiremního, vynuceného zavedení AI přes celé SDLC — od analytiků a vývojářů po testery, DevOps a L2 support.\n\nUkážeme:\n- reálné metriky před a po,\n- role-specific výkonnostní a kvalitativní benchmarky, které bez AI nelze splnit,\n- naměřené nárůsty produktivity top performerů v řádu stovek procent,\n- jak jsme vybudovali role-specific AI toolchainy, skill-based agenty a AI guidelines,\n- a proč je náš cíl pro rok 2026 celofiremní 50% nárůst produktivity, ne jen „lepší pocit z AI“.\n\nNevyhneme se nepříjemným částem:\n- masivní odpor vývojářů,\n- frustrace a pád mýtu „seniority bez změny návyků“,\n- rozbité metriky, špatná rozhodnutí a interní průšvihy.\n\nŽádné slajdy o „budoucnosti AI“.\nTvrdá data. Reálné procesy. Měřitelný dopad.\n\nPokud chcete vidět, jak vypadá svět, kde AI už není výhoda, ale minimální standard, tato přednáška je pro vás."
+      }
+    },
+    {
+      "id": "gintner-vojtech",
+      "name": "Vojtěch Gintner",
+      "initials": "LG",
+      "photo": "/images/speakers/vojtech-gintner.avif",
+      "status": "confirmed",
+      "role": {
+        "en": "Software Developer",
+        "cz": "Software Developer"
+      },
+      "topic": {
+        "en": "One-Shot Delivery with AI Skills Agents",
+        "cz": "One-shot dodání pomocí AI Skills agentů"
+      },
+      "hashtags": [
+        "AIWorkflow",
+        "AIAgents",
+        "Windsurf"
+      ],
+      "shortDesc": {
+        "en": "AI building blocks and a real frontend AI workflow example for one-shot delivery of business requirements.",
+        "cz": "AI stavební bloky a reálný frontend AI workflow příklad pro one-shot dodání business požadavků."
+      },
+      "abstract": {
+        "en": "In this session, we will explore how modern AI workflows can significantly speed up software development and enable a \"one-shot\" approach to delivering business requirements.\n\nIn the **first half**, we will introduce key AI concepts and building blocks used in today's AI-driven solutions, such as **rules, guidelines, sub-agents, AI skills, slash commands,** and **MCP servers**.\n\nIn the **second half**, we will shift to a hands-on perspective and demonstrate how these AI features are implemented **in our frontend development AI workflow**. Using a real-world example, we will show how a business request can be transformed into a working solution in a single shot — faster, more consistently, and with minimal manual effort.\n\n**Hashtags:** #AIWorkflow #AIAgents #Windsurf",
+        "cz": "V této přednášce si ukážeme, jak moderní AI workflow dokáže výrazně zrychlit vývoj a umožnit „one-shot“ přístup k dodání business požadavků.\n\nV **první polovině** představíme klíčové AI koncepty a stavební bloky: **rules, guidelines, subagenty, AI skilly, slash commands** a **MCP servery**.\n\nVe **druhé polovině** přejdeme k praktické ukázce a předvedeme, jak jsou tyto AI funkcionality implementované **v našem frontend development AI workflow**. Na reálném příkladu ukážeme, jak lze business zadání přeměnit na funkční řešení „na jeden výstřel“ — rychle, konzistentně a s minimem manuální práce.\n\n**Hashtagy:** #AIWorkflow #AIAgents #Windsurf"
+      }
+    },
+    {
+      "id": "vrany-michal",
+      "name": "Michal Vraný",
+      "initials": "MV",
+      "photo": "/images/speakers/michal-vrany.avif",
+      "status": "confirmed",
+      "role": {
+        "en": "Software Developer",
+        "cz": "Software Developer"
+      },
+      "topic": {
+        "en": "AI Spec-Driven Development: Why Better Specifications Now Matter More Than Better Coding",
+        "cz": "AI Spec-Driven Development: Proč lepší specifikace teď znamenají víc než lepší kód"
+      },
+      "hashtags": [
+        "AI",
+        "Development",
+        "Specs"
+      ],
+      "shortDesc": {
+        "en": "How AI changes delivery when specs become the engine of development — from business intent to implementation-ready structure.",
+        "cz": "Jak AI mění dodávku, když se specifikace stanou motorem vývoje — od business záměru k implementation-ready struktuře."
+      },
+      "abstract": {
+        "en": "This talk shows how AI changes software delivery when specifications stop being static documents and become the real engine of development.\n\nStarting from a single business sentence, we demonstrate how AI can expand intent into a business specification, compare solution variants, produce an AI-optimized technical specification, and prepare the exact context needed for high-quality AI-assisted implementation.\n\nWe will show:\n- how AI helps remove ambiguity before coding starts,\n- how contrasting solution options make architectural trade-offs explicit,\n- how technical specifications can be structured specifically for AI-driven delivery,\n- and why guidelines and standards are essential if AI is expected to produce scalable, maintainable enterprise code.\n\nThe result is not just faster coding.\nIt is faster understanding, better decisions, higher-quality specifications, and a delivery model where AI becomes predictable instead of improvisational.\n\nNo generic prompt engineering.\nNo \"AI will solve everything\" slogans.\nA practical model for turning business intent into implementation-ready structure at much higher speed and quality.",
+        "cz": "Tato přednáška ukazuje, jak AI mění dodávku softwaru, když specifikace přestanou být statické dokumenty a stanou se skutečným motorem vývoje.\n\nVycházíme z jedné business věty a ukazujeme, jak AI dokáže rozvinout záměr do business specifikace, porovnat varianty řešení, vytvořit AI-optimalizovanou technickou specifikaci a připravit přesný kontext potřebný pro kvalitní AI-asistovanou implementaci.\n\nUkážeme:\n- jak AI pomáhá odstranit nejednoznačnost ještě před začátkem kódování,\n- jak kontrastní varianty řešení zviditelňují architektonické kompromisy,\n- jak lze technické specifikace strukturovat specificky pro AI-driven dodávku,\n- a proč jsou guidelines a standardy nezbytné, pokud má AI produkovat škálovatelný, udržitelný enterprise kód.\n\nVýsledkem není jen rychlejší kódování.\nJe to rychlejší porozumění, lepší rozhodnutí, kvalitnější specifikace a delivery model, kde se AI stává předvídatelným místo improvizačním.\n\nŽádný generický prompt engineering.\nŽádná hesla „AI vyřeší všechno“.\nPraktický model pro přeměnu business záměru na implementation-ready strukturu při výrazně vyšší rychlosti a kvalitě."
+      }
+    },
+    {
+      "id": "gundartsev-dmytro",
+      "name": "Dmytro Gundartsev & Pavel Kraus",
+      "initials": "DG",
+      "photo": "/images/speakers/dmytro.avif",
+      "photos": [
+        "/images/speakers/dmytro.avif",
+        "/images/speakers/pavel-kraus.avif"
+      ],
+      "status": "confirmed",
+      "role": {
+        "en": "Software Developer",
+        "cz": "Software Developer"
+      },
+      "topic": {
+        "en": "ZenBPM: Replacing Camunda with a Better Enterprise BPM Model",
+        "cz": "ZenBPM: Nahrazení Camundy lepším enterprise BPM modelem"
+      },
+      "hashtags": [
+        "BPM",
+        "Camunda",
+        "ZenBPM",
+        "Architecture"
+      ],
+      "shortDesc": {
+        "en": "A case study of replacing Camunda with ZenBPM — from platform lock-in to adapter-based flexibility and financial control.",
+        "cz": "Případová studie nahrazení Camundy ZenBPM — od platformního lock-in k flexibilitě adaptérů a finanční kontrole."
+      },
+      "abstract": {
+        "en": "What does it take to replace Camunda in a real enterprise environment?\n\nThis talk is a case study of why and how we built ZenBPM — now an approved strategic direction for workflow orchestration across our platform landscape.\n\nIn projects like Neuron, Experta, and EOP, one thing became clear: platform applications cannot stay truly universal while remaining tightly bound to one BPM product, its pricing model, and its operational constraints.\n\nWe will show how we changed that:\n- from Camunda-specific implementation to platform-agnostic architecture,\n- from workflow lock-in to adapter-based flexibility,\n- from fragmented UI patterns to a more universal model based on micro frontends, shared search, and unified task visibility.\n\nZenBPM is our answer to Camunda 8 pricing, operational complexity, and the need for a BPM foundation that gives architects more freedom and management more financial control.\n\nNo theory.\nNo generic BPM talk.\nA real replacement story — with architectural impact, platform consequences, and business relevance.",
+        "cz": "Co je potřeba k nahrazení Camundy v reálném enterprise prostředí?\n\nTato přednáška je případová studie toho, proč a jak jsme vybudovali ZenBPM — nyní schválený strategický směr pro orchestraci workflow napříč naším platformním landscape.\n\nV projektech jako Neuron, Experta a EOP se ukázalo jedno: platformní aplikace nemohou zůstat skutečně univerzální, pokud jsou pevně svázané s jedním BPM produktem, jeho cenovým modelem a provozními omezeními.\n\nUkážeme, jak jsme to změnili:\n- od Camunda-specific implementace k platformně agnostické architektuře,\n- od workflow lock-in k flexibilitě založené na adaptérech,\n- od fragmentovaných UI vzorů k univerzálnějšímu modelu založenému na micro frontendech, sdíleném vyhledávání a jednotné viditelnosti úkolů.\n\nZenBPM je naše odpověď na cenotvorbu Camunda 8, provozní komplexitu a potřebu BPM základu, který dává architektům více svobody a managementu více finanční kontroly.\n\nŽádná teorie.\nŽádná generická BPM přednáška.\nSkutečný příběh nahrazení — s architektonickým dopadem, platformními důsledky a business relevancí."
+      }
+    },
+    {
+      "id": "rotrekl-sprna",
+      "name": "Lukáš Rotrekl & Marek Šprňa",
+      "initials": "LR",
+      "photo": "/images/speakers/lukas-rotrekl.avif",
+      "photos": [
+        "/images/speakers/lukas-rotrekl.avif",
+        "/images/speakers/marek-sprna.avif"
+      ],
+      "status": "confirmed",
+      "role": {
+        "en": "QA Engineer",
+        "cz": "QA Engineer"
+      },
+      "topic": {
+        "en": "If Your Test Automation Is Still Built Mainly by Hand, You Already Have a Scaling Problem",
+        "cz": "Pokud vaši testovací automatizaci stále stavíte převážně ručně, už máte problém se škálováním"
+      },
+      "hashtags": [
+        "Testing",
+        "AI",
+        "QA"
+      ],
+      "shortDesc": {
+        "en": "How guided AI test generation with Junie reduces effort, improves consistency, and makes test automation scale beyond manual creation.",
+        "cz": "Jak řízené AI generování testů s Junie snižuje úsilí, zlepšuje konzistenci a škáluje testovací automatizaci nad rámec manuální tvorby."
+      },
+      "abstract": {
+        "en": "Manual test creation does not scale well enough for modern delivery. This talk shows how AI changes that.\n\nUsing Junie and a defined set of testing guidelines, we demonstrate how test generation can move from slow, repetitive manual work to a faster, more structured, and far more scalable model for enterprise automation.\n\nWe will show:\n- how AI generates tests from implementation context and structured inputs,\n- why strong testing guidelines are the difference between useful automation and AI-generated noise,\n- how API, database, and Kafka test scenarios can be produced in a consistent way across technologies,\n- and how AI helps convert test intent into executable automation with much less effort.\n\nThis is not about generating more tests for the sake of volume.\nIt is about generating better tests faster — in a way that is controlled, reviewable, and aligned with real engineering standards.\n\nThe talk also includes a practical example of transforming Jira Xray test cases into an automation test framework, showing how AI can help close one of the most persistent gaps in enterprise testing: the distance between documented test scenarios and real executable tests.\n\nNo hype about \"AI replacing testers\".\nNo fantasy about one-click quality.\nA real case of how guided AI test generation can reduce effort, improve consistency, and make test automation scale better than manual creation ever could.",
+        "cz": "Manuální tvorba testů se pro moderní dodávku škáluje nedostatečně. Tato přednáška ukazuje, jak to AI mění.\n\nPomocí Junie a definované sady testovacích guidelines ukazujeme, jak se generování testů může posunout od pomalé, opakující se manuální práce k rychlejšímu, strukturovanějšímu a mnohem škálovatelnějšímu modelu enterprise automatizace.\n\nUkážeme:\n- jak AI generuje testy z implementačního kontextu a strukturovaných vstupů,\n- proč silné testovací guidelines jsou rozdíl mezi užitečnou automatizací a AI-generovaným šumem,\n- jak lze API, databázové a Kafka testovací scénáře produkovat konzistentně napříč technologiemi,\n- a jak AI pomáhá převést testovací záměr na spustitelnou automatizaci s mnohem menším úsilím.\n\nNejde o generování více testů jen kvůli objemu.\nJde o generování lepších testů rychleji — způsobem, který je kontrolovaný, revidovatelný a v souladu se skutečnými inženýrskými standardy.\n\nPřednáška obsahuje také praktický příklad transformace Jira Xray test cases do automatizačního test frameworku, ukazující, jak AI může pomoci překlenout jednu z nejpřetrvávajících mezer v enterprise testování: vzdálenost mezi dokumentovanými testovacími scénáři a reálnými spustitelnými testy.\n\nŽádný hype o „AI nahrazující testery“.\nŽádné fantazie o kvalitě na jedno kliknutí.\nReálný případ, jak řízené AI generování testů může snížit úsilí, zlepšit konzistenci a škálovat testovací automatizaci lépe, než kdy dokázala manuální tvorba."
+      }
+    },
+    {
+      "id": "cech-martin",
+      "name": "Martin Čech & Jiří Chorouš",
+      "initials": "MČ",
+      "photo": "/images/speakers/martin-cech.avif",
+      "photos": [
+        "/images/speakers/martin-cech.avif",
+        "/images/speakers/jiri.chorous.avif"
+      ],
+      "status": "confirmed",
+      "role": {
+        "en": "UX Designer, Design System",
+        "cz": "UX Designer, Design System"
+      },
+      "topic": {
+        "en": "AI Prototyping with the VIGo Design System",
+        "cz": "AI prototypování s design systémem VIGo"
+      },
+      "hashtags": [
+        "UX",
+        "DesignSystem",
+        "AI",
+        "Prototyping"
+      ],
+      "shortDesc": {
+        "en": "How a mature design system serves as a foundation for AI-driven prototyping with real React components.",
+        "cz": "Jak vyspělý design systém slouží jako základ pro AI prototypování s reálnými React komponentami."
+      },
+      "abstract": {
+        "en": "In this session, you will see **how a mature design system can be effectively used as a foundation for AI-driven prototyping.**\n\nWe will demonstrate how AI can generate realistic prototypes directly from requirements and analysis, enabling fast visual validation of solutions. How this approach helps uncover specification gaps early, reduces feedback loops after implementation, and accelerates the end-to-end delivery process. We will also show how complex data models and datasets can be quickly transformed into interactive prototype scenarios and multiple design variants.\n\nReal project examples will illustrate different AI prototyping approaches, including structured generation with real React components and frontend rules that can serve as a direct foundation for further development.",
+        "cz": "V této přednášce uvidíte, **jak lze vyspělý design systém efektivně využít jako základ pro AI prototypování.**\n\nUkážeme, jak AI dokáže generovat realistické prototypy přímo z požadavků a analýzy, což umožňuje rychlou vizuální validaci řešení. Jak tento přístup pomáhá včas odhalit mezery ve specifikacích, zkracuje zpětnovazební smyčky po implementaci a urychluje celý delivery proces. Předvedeme také, jak lze složité datové modely a datasety rychle převést na interaktivní prototypové scénáře a více designových variant.\n\nReálné projektové příklady ilustrují různé přístupy k AI prototypování, včetně strukturovaného generování s reálnými React komponentami a frontend pravidly, které mohou sloužit jako přímý základ pro další vývoj."
+      }
+    },
+    {
       "id": "grek-filip",
       "name": "Filip Grék",
       "initials": "FG",
@@ -26,188 +208,6 @@
       "abstract": {
         "en": "Robotic Process Automation (RPA) is now a well-established technology used across many industries, and it has taken root within VIG as well. Thanks to RPA, colleagues at Kooperativa and ČPP are freed from repetitive, tedious tasks that software robots can perform faster, more reliably, and virtually 24/7.\n\nIn this talk, we will explore how RPA works in practice, which types of processes we automate, how our approach may differ from that of other companies, what impact AI and large language models may have on the future of RPA, and how the role of software robots might evolve in an AI-driven world.",
         "cz": "Robotická automatizace procesů (RPA) je dnes zavedená technologie napříč obory a své místo si našla i ve VIG. Díky RPA jsou kolegové v Kooperativě a ČPP zbaveni opakujících se, rutinních úkolů, které softwaroví roboti zvládnou rychleji, spolehlivěji a prakticky 24/7.\n\nV přednášce ukážeme, jak RPA funguje v praxi, jaké typy procesů automatizujeme, v čem se náš přístup může lišit od jiných firem, jaký vliv mohou mít AI a velké jazykové modely na budoucnost RPA a jak se může role softwarových robotů vyvíjet v AI‑driven světě."
-      }
-    },
-    {
-      "id": "cech-martin",
-      "name": "Martin Čech & Jiří Chorouš",
-      "initials": "MČ",
-      "photo": "/images/speakers/martin-cech.avif",
-      "photos": [
-        "/images/speakers/martin-cech.avif",
-        "/images/speakers/jiri.chorous.avif"
-      ],
-      "status": "confirmed",
-      "role": {
-        "en": "UX Designer, Design System",
-        "cz": "UX Designer, Design System"
-      },
-      "topic": {
-        "en": "AI prototyping using VIGo design system",
-        "cz": "AI prototyping za využití design systemu VIGo"
-      },
-      "hashtags": [
-        "UX",
-        "DesignSystem",
-        "AI",
-        "Prototyping"
-      ],
-      "shortDesc": {
-        "en": "Learn how AI tools like Windsurf and Make accelerate UI prototyping with VIGo design system.",
-        "cz": "Zjistěte, jak AI nástroje Windsurf a Make urychlují prototypování UI s design systémem VIGo."
-      },
-      "abstract": {
-        "en": "In this session, you will see **how a mature design system can be effectively used as a foundation for AI-driven prototyping.**\n\nWe will demonstrate how AI can generate realistic prototypes directly from requirements and analysis, enabling fast visual validation of solutions. How this approach helps uncover specification gaps early, reduces feedback loops after implementation, and accelerates the end-to-end delivery process. We will also show how complex data models and datasets can be quickly transformed into interactive prototype scenarios and multiple design variants.\n\nReal project examples will illustrate different AI prototyping approaches, including structured generation with real React components and frontend rules that can serve as a direct foundation for further development.",
-        "cz": "## Přínosy\n- Rychlé prototypy s reálnými komponenty\n- Demonstrace složitých zadání businessu\n- Zkrácení manuální práce\n\n## Implementace\n- Online dokumentace ([vigo.vig.cz](http://vigo.vig.cz))\n- Guidelines pro AI nástroje\n\n## Dva nástroje\n**Windsurf:** Strukturované generování s React → základ pro vývoj\n**Make:** Kreativní varianty pro hledání řešení\n\n## Ukázky\nŽivotní kalkulačky (Windsurf) | Hlášenky (Make)\n\n## Výhled\nFigma Connect → uzavřená iterace mezi AI generováním a Figmou"
-      }
-    },
-    {
-      "id": "gundartsev-dmytro",
-      "name": "Dmytro Gundartsev & Pavel Kraus",
-      "initials": "DG",
-      "photo": "/images/speakers/dmytro.avif",
-      "photos": [
-        "/images/speakers/dmytro.avif",
-        "/images/speakers/pavel-kraus.avif"
-      ],
-      "status": "confirmed",
-      "role": {
-        "en": "Software Developer",
-        "cz": "Software Developer"
-      },
-      "topic": {
-        "en": "VIG BPM Platform: getting flexible",
-        "cz": "VIG BPM Platform: getting flexible"
-      },
-      "hashtags": [
-        "BPM",
-        "Camunda",
-        "ZenBPM",
-        "Architecture"
-      ],
-      "shortDesc": {
-        "en": "Explore our journey from Camunda to ZenBPM and building a flexible, universal BPM platform.",
-        "cz": "Prozkoumejte naši cestu od Camundy k ZenBPM a budování flexibilní, univerzální BPM platformy."
-      },
-      "abstract": {
-        "en": "Implementation experience (Neuron, Experta, EOP)\n\nChallenge to keep our platform apps universal\n- screenshots, why microFE, universality of search and display\n\nTransition from Camunda specific to platform agnostic\n- adapters\n\nZenBPM as reaction to operation complexity and pricing of Camunda 8\n- financial flexibility\n- special operations requirements (DC3- without business data), transparency, backup/restore\n- Zeebe shortcomings\n\n/content depends on OPS/DevOps part and ZenBPM approval at IK\n\n/OPS topic: Camunda Enterprise experience ? (transition from K8s to VMs, EntraID)",
-        "cz": "Implementation experience (Neuron, Experta, EOP)\n\nChallenge to keep our platform apps universal\n- screenshoty, proč microFE, univerzalita vyhledávání a zobrazování\n\nTransition from Camunda specific to platform agnostic\n- adaptéry\n\nZenBPM as reaction to operation complexity and pricing of Camunda 8\n- finanční flexibilita\n- speciální požadavky operations (DC3- without business data), transparency, backup/restore\n- nedostatky Zeebe\n\n/obsah přednášky závisí na OPS/DevOps části a na schválení neschválení ZenBPM na IK\n\n/OPS topic: Camunda Enterprise experience ? (transition from K8s to VMs, EntraID)"
-      }
-    },
-    {
-      "id": "vrany-michal",
-      "name": "Michal Vraný",
-      "initials": "MV",
-      "photo": "/images/speakers/michal-vrany.avif",
-      "status": "confirmed",
-      "role": {
-        "en": "Software Developer",
-        "cz": "Software Developer"
-      },
-      "topic": {
-        "en": "AI Spec Driven Development",
-        "cz": "AI Spec Driven Development"
-      },
-      "hashtags": [
-        "AI",
-        "Development",
-        "Specs"
-      ],
-      "shortDesc": {
-        "en": "From a single business sentence to full business and technical specs optimized for AI coding.",
-        "cz": "Od jediné business věty k úplné business i technické specifikaci optimalizované pro AI kódování."
-      },
-      "abstract": {
-        "en": "Starting with a single sentence from business, we expose the critical gaps that emerge: scope ambiguity, technical tradeoffs, and implementation uncertainty. By exploring two contrasting solutions — one minimalistic, one maximalistic — we demonstrate why a specification must go far beyond the initial ask.\n\nWe then walk through the process of extracting a coherent business specification from vague requirements, and the transformation into a technical specification optimized for AI-assisted coding. Finally, we cover essential guidelines and coding standards that keep AI-generated implementations maintainable, scalable, and aligned with the technical vision.",
-        "cz": "Začínáme jednou větou z businessu a odhalíme kritická místa: nejasný scope, technické kompromisy a nejistotu implementace. Porovnáme dvě protichůdná řešení — minimalistické a maximalistické — a ukážeme, proč specifikace musí jít výrazně dál než původní zadání.\n\nPoté projdeme procesem, jak z vágních požadavků získat ucelenou business specifikaci a jak ji převést do technické specifikace optimalizované pro AI‑asistované kódování. Nakonec probereme zásadní guidelines a coding standardy, které udrží AI‑generované implementace udržitelné, škálovatelné a v souladu s technickou vizí."
-      }
-    },
-    {
-      "id": "gintner-vojtech",
-      "name": "Vojtěch Gintner",
-      "initials": "LG",
-      "photo": "/images/speakers/vojtech-gintner.avif",
-      "status": "confirmed",
-      "role": {
-        "en": "Software Developer",
-        "cz": "Software Developer"
-      },
-      "topic": {
-        "en": "One-shot delivery with AI",
-        "cz": "One-shot dodání s AI"
-      },
-      "hashtags": [
-        "AIWorkflow",
-        "AIAgents",
-        "Windsurf"
-      ],
-      "shortDesc": {
-        "en": "AI building blocks and a real frontend AI workflow example for one-shot delivery.",
-        "cz": "AI stavební bloky a reálný frontend AI workflow příklad pro one-shot dodání."
-      },
-      "abstract": {
-        "en": "In this session, we will explore how modern AI workflows can significantly speed up software development and enable a one-shot approach to delivering business requirements.\n\n## Building blocks\n- Rules and guidelines\n- Sub-agents\n- AI skills\n- Slash commands\n- MCP servers\n\n## Hands-on workflow\nWe will demonstrate how these AI features are implemented in our frontend development AI workflow. Using a real-world example, we will show how a business request can be transformed into a working solution in a single shot—faster, more consistently, and with minimal manual effort.",
-        "cz": "V této přednášce si ukážeme, jak moderní AI workflow dokáže výrazně zrychlit vývoj a umožnit one-shot přístup k dodání business požadavků.\n\n## Stavební bloky\n- Rules a guidelines\n- Subagenti\n- AI skilly\n- Slash commands\n- MCP servery\n\n## Praktická část\nUkážeme, jak jsou tyto AI funkcionality implementované v našem frontend development AI workflow. Na reálném příkladu předvedeme, jak lze business zadání přeměnit na funkční řešení „na jeden výstřel“ – rychle, konzistentně a s minimem manuální práce."
-      }
-    },
-    {
-      "id": "jirout-petr",
-      "name": "Petr Jirout",
-      "initials": "PJ",
-      "photo": "/images/speakers/petr-jirout.avif",
-      "status": "confirmed",
-      "role": {
-        "en": "CTO",
-        "cz": "CTO"
-      },
-      "topic": {
-        "en": "AI rollout into AIS",
-        "cz": "Zavádění AI v AIS"
-      },
-      "hashtags": [
-        "AI",
-        "Adoption",
-        "Change"
-      ],
-      "shortDesc": {
-        "en": "Lessons from rolling AI out across a 300+ FTE software house.",
-        "cz": "Praktické lekce ze zavádění AI napříč 300+ FTE software housem."
-      },
-      "abstract": {
-        "en": "Rolling out AI in a 300+ FTE software house is not a tooling problem - it is an organizational transformation. We led the shift from isolated experiments to company-wide AI adoption, navigating skepticism, security concerns, developer productivity, and cultural change. This talk shares practical lessons from the front line: what actually worked, what failed quietly, and how leadership decisions, incentives, and guardrails determined the outcome.",
-        "cz": "Zavádění AI ve firmě s 300+ FTE není problém nástrojů - je to organizační transformace. Vedli jsme přechod od izolovaných experimentů k celofiremnímu využití AI, řešili skepsi, bezpečnostní obavy, produktivitu vývojářů i kulturní změnu. Přednáška sdílí praktické lekce z praxe: co skutečně fungovalo, co tiše selhalo a jak rozhodnutí vedení, motivace a mantinely určily výsledek."
-      }
-    },
-    {
-      "id": "rotrekl-sprna",
-      "name": "Lukáš Rotrekl & Marek Šprňa",
-      "initials": "LR",
-      "photo": "/images/speakers/lukas-rotrekl.avif",
-      "photos": [
-        "/images/speakers/lukas-rotrekl.avif",
-        "/images/speakers/marek-sprna.avif"
-      ],
-      "status": "confirmed",
-      "role": {
-        "en": "QA Engineer",
-        "cz": "QA Engineer"
-      },
-      "topic": {
-        "en": "Test Generation Using AI Tool (Junie and Testing Guidelines)",
-        "cz": "Generování testů pomocí AI nástroje (Junie a testovací guidelines)"
-      },
-      "hashtags": [
-        "Testing",
-        "AI",
-        "QA"
-      ],
-      "shortDesc": {
-        "en": "How Junie and testing guidelines automate test generation across stacks.",
-        "cz": "Jak Junie a testovací guidelines automatizují generování testů napříč stacky."
-      },
-      "abstract": {
-        "en": "## Introduction\n- Motivation and context for automated test generation\n- Benefits: speed, consistency, maintainability\n\n## Junie and Guidelines – Overview\n- What Junie is and how it works\n- How guidelines influence test generation\n\n## Project Example\n- Reference project and relevant structure\n- Key testing guidelines overview\n\n## Supported Test Types\n- API, DB, and Kafka test generation\n- Multi-technology test scenarios\n\n## Test Generation Process\n- Steps to generate tests with Junie\n- Inputs and review of generated tests\n\n## Example: Jira Xray to Automation Test Framework\n- Practical demonstration",
-        "cz": "## Úvod\n- Motivace a kontext automatizovaného generování testů\n- Přínosy: rychlost, konzistence, udržovatelnost\n\n## Junie a guidelines – přehled\n- Co je Junie a jak funguje\n- Jak guidelines ovlivňují generování testů\n\n## Příklad z projektu\n- Referenční projekt a relevantní struktura\n- Přehled klíčových testovacích guidelines\n\n## Podporované typy testů\n- Generování testů pro API, DB a Kafka\n- Multitechnologické testovací scénáře\n\n## Proces generování testů\n- Kroky generování testů s Junie\n- Vstupy a revize vygenerovaných testů\n\n## Příklad: Jira Xray do Automation Test Framework\n- Praktická ukázka"
       }
     },
     {
@@ -271,7 +271,7 @@
         "cz": "Naše cesta od centralizovaného modelu nasazení k decentralizovanému, Kubernetes-native přístupu poháněnému vlastním Kafka Operátorem."
       },
       "abstract": {
-        "en": "Kafka scales well, until the way you manage it doesn’t.\n\nFor a long time, our Kafka ecosystem was managed centrally. Topics, users, ACLs, and schemas were provisioned through Python scripts executed in CI/CD pipelines. This approach gave us consistency and control, but as adoption grew, its limitations became clear: slow onboarding, operational friction, increasing coupling between teams, and a deployment model that did not scale with the organization.\n\nIn this talk, We will share our journey from this centralized deployment model to a decentralized, Kubernetes-native approach powered by a custom Kafka Operator.\n\nWe will focus on:\n- Which problems the operator solved immediately and which ones it did not\n- New challenges we had to address along the way, including security, validation, guardrails, multi-tenancy, and governance\n- How responsibilities shifted between platform teams and application teams\n- What surprised us during the transition, both positively and negatively",
+        "en": "Kafka scales well, until the way you manage it doesn't.\n\nFor a long time, our Kafka ecosystem was managed centrally. Topics, users, ACLs, and schemas were provisioned through Python scripts executed in CI/CD pipelines. This approach gave us consistency and control, but as adoption grew, its limitations became clear: slow onboarding, operational friction, increasing coupling between teams, and a deployment model that did not scale with the organization.\n\nIn this talk, We will share our journey from this centralized deployment model to a decentralized, Kubernetes-native approach powered by a custom Kafka Operator.\n\nWe will focus on:\n- Which problems the operator solved immediately and which ones it did not\n- New challenges we had to address along the way, including security, validation, guardrails, multi-tenancy, and governance\n- How responsibilities shifted between platform teams and application teams\n- What surprised us during the transition, both positively and negatively",
         "cz": "Kafka škáluje dobře, dokud způsob její správy nepřestane stačit.\n\nDlouhou dobu byl náš ekosystém Kafka spravován centrálně. V této přednášce budeme sdílet naši cestu od tohoto centralizovaného modelu nasazení k decentralizovanému, Kubernetes-native přístupu poháněnému vlastním Kafka Operátorem.\n\nZaměříme se na:\n- Jaké problémy operátor okamžitě vyřešil\n- Nové výzvy (bezpečnost, validace, governance)\n- Jak se posunuly zodpovědnosti mezi týmy\n- Co nás během přechodu překvapilo"
       }
     },
@@ -299,7 +299,7 @@
         "cz": "Jak jsme modularizovali rychle rostoucí mikroservisu vyvíjenou třemi týmy a připravili ji na budoucí rozdělení bez zpomalení delivery."
       },
       "abstract": {
-        "en": "As a microservice grows, it can slowly start to feel like a monolith — bloated codebase, unclear boundaries, and teams stepping on each other’s toes. This talk explores how we tackled a fast-growing microservice developed in parallel by three teams, introduced strong modular boundaries, enabled effective collaboration, and laid foundations for a future split into independent microservices without stopping feature delivery.",
+        "en": "As a microservice grows, it can slowly start to feel like a monolith — bloated codebase, unclear boundaries, and teams stepping on each other's toes. This talk explores how we tackled a fast-growing microservice developed in parallel by three teams, introduced strong modular boundaries, enabled effective collaboration, and laid foundations for a future split into independent microservices without stopping feature delivery.",
         "cz": "Jak mikroservisa roste, začne se chovat jako monolit: nabobtnalý kód, nejasné hranice a kolize mezi týmy. Přednáška ukazuje, jak jsme u rychle rostoucí služby vyvíjené třemi týmy zavedli silné modulární hranice, zlepšili spolupráci a připravili základ pro budoucí rozdělení bez zastavení dodávky funkcí."
       }
     },
