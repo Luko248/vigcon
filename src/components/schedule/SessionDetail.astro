@@ -24,90 +24,127 @@ const country = talk.country || speaker?.country;
   class="speaker-modal dark:backdrop:bg-black/80 bg-transparent p-4 max-w-2xl w-full"
   aria-labelledby={`dialog-title-${talk.id}`}
 >
-  <div class="glass rounded-2xl p-6 relative speaker-modal-content dark:bg-black/70 bg-white/70">
+  <div
+    class="glass rounded-2xl p-6 relative speaker-modal-content dark:bg-black/70 bg-white/70"
+  >
     <div class="absolute top-4 right-4 flex items-center gap-2">
       <HeartCheckbox sessionId={talk.id} locale={locale} variant="session" />
       <button
         type="button"
-        class="p-2 rounded-lg hover:bg-(--color-surface) transition-colors"
+        class="p-2 rounded-lg hover:bg-(--color-surface) transition-colors cursor-pointer"
         data-close-modal
         aria-label={locale === "en" ? "Close" : "Zavřít"}
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="pointer-events-none"
+        >
+          <path d="M18 6 6 18"></path><path d="m6 6 12 12"></path>
         </svg>
       </button>
     </div>
 
-    {isScheduled && (
-      <div class="flex items-center gap-3 mb-2 text-xs font-mono uppercase tracking-wider text-(--color-text-secondary)">
-        <time datetime={`2026-05-28T${talk.startTime}`}>
-          {talk.startTime} - {talk.endTime}
-        </time>
-      </div>
-    )}
+    {
+      isScheduled && (
+        <div class="flex items-center gap-3 mb-2 text-xs font-mono uppercase tracking-wider text-(--color-text-secondary)">
+          <time datetime={`2026-05-28T${talk.startTime}`}>
+            {talk.startTime} - {talk.endTime}
+          </time>
+        </div>
+      )
+    }
 
-    <h3 id={`dialog-title-${talk.id}`} class="font-bold text-xl mb-3 pr-10">
+    <h3 id={`dialog-title-${talk.id}`} class="font-bold text-xl mb-3 pr-15">
       {talk.title[locale]}
     </h3>
 
-    {talk.hashtags && talk.hashtags.length > 0 && (
-      <div class="flex flex-wrap gap-2 mb-6">
-        {talk.hashtags.map((tag: string) => (
-          <span class="px-2 py-0.5 rounded-md bg-primary/10 text-primary text-xs font-medium font-mono">
-            #{tag}
-          </span>
-        ))}
-      </div>
-    )}
-
-    {speaker && speaker.abstract && (
-      <section class="mb-6">
-        <p class="text-xs uppercase tracking-wider text-(--color-text-secondary) font-bold mb-3">
-          {t.schedule.abstract}
-        </p>
-        <div class="prose prose-sm prose-invert max-w-none text-(--color-text-secondary) leading-snug speaker-abstract">
-          <Fragment set:html={speaker.abstract[locale]
-            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener" class="text-primary hover:underline">$1</a>')
-            .replace(/\*\*([^*]+)\*\*/g, '<strong class="text-(--color-text)">$1</strong>')
-            .replace(/^## (.+)$/gm, '</p><h4 class="font-bold text-(--color-text) mt-3 mb-1">$1</h4><p>')
-            .replace(/^- (.+)$/gm, '<li class="flex items-start gap-2 pl-2"><span class="text-primary text-xs">●</span><span>$1</span></li>')
-            .replace(/(?:<li[^>]*>.*?<\/li>\s*)+/gs, '<ul class="m-0 flex flex-col gap-1.5 pl-0 list-none">$&</ul>')
-            .replace(/<\/li>\s*\n\s*(<li[^>]*>)/g, '</li>$1')
-            .replace(/\n\n/g, '</p><p class="mt-2">')
-            .replace(/\n/g, '<br/>')
-            .replace(/<\/li><br\/?>\s*(<li[^>]*>)/g, '</li>$1')
-            .replace(/^/, '<p>')
-            .replace(/$/, '</p>')
-            .replace(/<p>\s*<br\/?>\s*<ul/g, '<ul')
-            .replace(/<\/ul>\s*<\/p>/g, '</ul>')
-            .replace(/<p class="mt-2">\s*<\/p>/g, '')
-            .replace(/<p>\s*(<br\/?>)?\s*<\/p>/g, '')
-            .replace(/<p><\/p>/g, '')
-            .replace(/<p>\s*<h4/g, '<h4')
-            .replace(/<\/h4>\s*<\/p>/g, '</h4>')
-          } />
+    {
+      talk.hashtags && talk.hashtags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mb-6">
+          {talk.hashtags.map((tag: string) => (
+            <span class="px-2 py-0.5 rounded-md bg-primary/10 text-primary text-xs font-medium font-mono">
+              #{tag}
+            </span>
+          ))}
         </div>
-      </section>
-    )}
+      )
+    }
 
-    {speaker && (
-      <section class="pt-6 border-t border-(--color-border)/50">
-        <p class="text-xs uppercase tracking-wider text-(--color-text-secondary) font-bold mb-4">
-          {(speaker.name.includes(" & "))
-            ? t.schedule.speakerLabelPlural
-            : t.schedule.speakerLabelSingle}
-        </p>
-        <SpeakerInline
-          speaker={speaker}
-          speakerImages={speakerImages}
-          locale={locale}
-          company={company}
-          country={country}
-          variant="detail"
-        />
-      </section>
-    )}
+    {
+      speaker && speaker.abstract && (
+        <section class="mb-6">
+          <p class="text-xs uppercase tracking-wider text-(--color-text-secondary) font-bold mb-3">
+            {t.schedule.abstract}
+          </p>
+          <div class="prose prose-sm prose-invert max-w-none text-(--color-text-secondary) leading-snug speaker-abstract">
+            <Fragment
+              set:html={speaker.abstract[locale]
+                .replace(
+                  /\[([^\]]+)\]\(([^)]+)\)/g,
+                  '<a href="$2" target="_blank" rel="noopener" class="text-primary hover:underline">$1</a>',
+                )
+                .replace(
+                  /\*\*([^*]+)\*\*/g,
+                  '<strong class="text-(--color-text)">$1</strong>',
+                )
+                .replace(
+                  /^## (.+)$/gm,
+                  '</p><h4 class="font-bold text-(--color-text) mt-3 mb-1">$1</h4><p>',
+                )
+                .replace(
+                  /^- (.+)$/gm,
+                  '<li class="flex items-start gap-2 pl-2"><span class="text-primary text-xs">●</span><span>$1</span></li>',
+                )
+                .replace(
+                  /(?:<li[^>]*>.*?<\/li>\s*)+/gs,
+                  '<ul class="m-0 flex flex-col gap-1.5 pl-0 list-none">$&</ul>',
+                )
+                .replace(/<\/li>\s*\n\s*(<li[^>]*>)/g, "</li>$1")
+                .replace(/\n\n/g, '</p><p class="mt-2">')
+                .replace(/\n/g, "<br/>")
+                .replace(/<\/li><br\/?>\s*(<li[^>]*>)/g, "</li>$1")
+                .replace(/^/, "<p>")
+                .replace(/$/, "</p>")
+                .replace(/<p>\s*<br\/?>\s*<ul/g, "<ul")
+                .replace(/<\/ul>\s*<\/p>/g, "</ul>")
+                .replace(/<p class="mt-2">\s*<\/p>/g, "")
+                .replace(/<p>\s*(<br\/?>)?\s*<\/p>/g, "")
+                .replace(/<p><\/p>/g, "")
+                .replace(/<p>\s*<h4/g, "<h4")
+                .replace(/<\/h4>\s*<\/p>/g, "</h4>")}
+            />
+          </div>
+        </section>
+      )
+    }
+
+    {
+      speaker && (
+        <section class="pt-6 border-t border-(--color-border)/50">
+          <p class="text-xs uppercase tracking-wider text-(--color-text-secondary) font-bold mb-4">
+            {speaker.name.includes(" & ")
+              ? t.schedule.speakerLabelPlural
+              : t.schedule.speakerLabelSingle}
+          </p>
+          <SpeakerInline
+            speaker={speaker}
+            speakerImages={speakerImages}
+            locale={locale}
+            company={company}
+            country={country}
+            variant="detail"
+          />
+        </section>
+      )
+    }
   </div>
 </dialog>
 
