@@ -2,10 +2,10 @@
   "conference": {
     "date": "2026-05-28",
     "startTime": "08:30",
-    "endTime": "15:30",
+    "endTime": "15:15",
     "timezone": "Europe/Prague"
   },
-  "isScheduled": false,
+  "isScheduled": true,
   "tracks": [
     {
       "id": "track-a",

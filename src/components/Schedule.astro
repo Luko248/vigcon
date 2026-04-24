@@ -54,9 +54,10 @@ const titleWords = t.schedule.title.split(" ");
 const firstWord = titleWords[0];
 const restTitle = titleWords.slice(1).join(" ");
 
-// Timeline configuration
-const TIMELINE_START = "08:00";
-const TIMELINE_END = "17:00";
+// Timeline configuration — derived from conference start/end so the timeline
+// tightly matches the actual schedule and does not render empty slots.
+const TIMELINE_START = conference.startTime;
+const TIMELINE_END = conference.endTime;
 const SLOT_MINUTES = 15;
 
 const parseTime = (time: string): number => {
@@ -111,8 +112,8 @@ const trackBTalks = getTrackTalks("track-b");
 const detailedTalks = schedule.filter((item) => item.speakerId);
 
 // Calculate the pixel height for the timeline (for scrollable container)
-const PIXELS_PER_SLOT = 80;
-const PIXELS_PER_SLOT_MOBILE = 120;
+const PIXELS_PER_SLOT = 96;
+const PIXELS_PER_SLOT_MOBILE = 136;
 const timelineHeight = totalSlots * PIXELS_PER_SLOT;
 const timelineWidthMobile = totalSlots * PIXELS_PER_SLOT_MOBILE;
 ---
@@ -543,6 +544,17 @@ const timelineWidthMobile = totalSlots * PIXELS_PER_SLOT_MOBILE;
         </div>
       </>
     )}
+
+    <!-- Schedule Notes -->
+    <aside
+      class="mt-12 max-w-3xl mx-auto text-center space-y-2 text-sm text-(--color-text-secondary) animate-on-scroll"
+      aria-label={locale === "en" ? "Schedule notes" : "Poznámky k programu"}
+    >
+      <p>{t.schedule.notes.experts}</p>
+      <p>{t.schedule.notes.dinner}</p>
+      <p>{t.schedule.notes.online}</p>
+      <p class="italic">{t.schedule.notes.finalizing}</p>
+    </aside>
   </div>
 </section>
 
@@ -582,8 +594,8 @@ const timelineWidthMobile = totalSlots * PIXELS_PER_SLOT_MOBILE;
   const FAVOURITES_KEY = "vigcon-favourites";
   const FILTER_STATE_KEY = "vigcon-filter-active";
   const CONFERENCE_DATE = "2026-05-28";
-  const TIMELINE_START = "08:00";
-  const TIMELINE_END = "17:00";
+  const TIMELINE_START = "08:30";
+  const TIMELINE_END = "15:15";
 
   /** @returns Favourites object from localStorage */
   function getFavourites(): Record<string, boolean> {
@@ -849,6 +861,17 @@ const timelineWidthMobile = totalSlots * PIXELS_PER_SLOT_MOBILE;
     return todayStart.getTime() > eventDate.getTime();
   }
 
+  /** @returns true if today is the conference day (local time) */
+  function isEventToday(): boolean {
+    const today = new Date();
+    const eventDate = new Date(`${CONFERENCE_DATE}T00:00:00`);
+    return (
+      today.getFullYear() === eventDate.getFullYear() &&
+      today.getMonth() === eventDate.getMonth() &&
+      today.getDate() === eventDate.getDate()
+    );
+  }
+
   /** @returns true if current time is within timeline */
   function isWithinTimeline(): boolean {
     const now = new Date();
@@ -874,7 +897,7 @@ const timelineWidthMobile = totalSlots * PIXELS_PER_SLOT_MOBILE;
     const mobileIndicator = document.getElementById("current-time-indicator-mobile");
     if (!indicator && !mobileIndicator) return;
 
-    if (isEventPast() || !isWithinTimeline()) {
+    if (!isEventToday() || isEventPast() || !isWithinTimeline()) {
       if (indicator) hideIndicator(indicator);
       if (mobileIndicator) hideIndicator(mobileIndicator);
       return;

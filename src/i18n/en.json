@@ -109,7 +109,13 @@
     "addToFavourites": "Add to favourites",
     "removeFromFavourites": "Remove from favourites",
     "showFavourites": "Show favourites",
-    "hideFavourites": "Hide favourites"
+    "hideFavourites": "Hide favourites",
+    "notes": {
+      "experts": "All sessions led by AIS Servis experts.",
+      "dinner": "The sessions will be followed by a buffet dinner and networking.",
+      "online": "Online participants: Access link will be provided via email prior to the conference.",
+      "finalizing": "We are currently finalizing the full schedule; please note that the number and order of sessions may change."
+    }
   },
   "registration": {
     "title": "Registration",

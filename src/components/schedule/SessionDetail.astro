@@ -25,7 +25,7 @@ const country = talk.country || speaker?.country;
   aria-labelledby={`dialog-title-${talk.id}`}
 >
   <div
-    class="glass rounded-2xl p-6 relative speaker-modal-content dark:bg-black/70 bg-white/70"
+    class="glass rounded-2xl p-6 relative speaker-modal-content dark:bg-(--color-bg) bg-(--color-bg)"
   >
     <div class="absolute top-4 right-4 flex items-center gap-2">
       <HeartCheckbox sessionId={talk.id} locale={locale} variant="session" />

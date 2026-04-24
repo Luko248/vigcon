@@ -109,7 +109,13 @@
     "addToFavourites": "Přidat do oblíbených",
     "removeFromFavourites": "Odebrat z oblíbených",
     "showFavourites": "Zobrazit oblíbené",
-    "hideFavourites": "Skrýt oblíbené"
+    "hideFavourites": "Skrýt oblíbené",
+    "notes": {
+      "experts": "Všechny přednášky vedou experti z AIS Servis.",
+      "dinner": "Po přednáškách bude následovat rautová večeře a networking.",
+      "online": "Online účastníci: Odkaz pro připojení bude zaslán e-mailem před konferencí.",
+      "finalizing": "Program právě finalizujeme; počet a pořadí přednášek se mohou změnit."
+    }
   },
   "registration": {
     "title": "Registrace",
