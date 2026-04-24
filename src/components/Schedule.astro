@@ -32,6 +32,10 @@ const { conference, isScheduled } = scheduleData;
 const tracks = scheduleData.tracks as Track[];
 const schedule = scheduleData.schedule as Talk[];
 const speakers = speakersData.speakers as Speaker[];
+const isSingleTrack = tracks.length === 1;
+const desktopGridCols = isSingleTrack
+  ? "grid-cols-[5rem_1fr]"
+  : "grid-cols-[5rem_1fr_1fr]";
 
 // Order speakers by their position in the schedule array (source of truth for display order)
 const scheduleOrder = schedule
@@ -160,29 +164,31 @@ const timelineWidthMobile = totalSlots * PIXELS_PER_SLOT_MOBILE;
         <!-- Desktop Timeline View -->
         <div class="hidden lg:block">
           <!-- Track Headers -->
-          <div
-            class="track-header-sticky grid grid-cols-[5rem_1fr_1fr] gap-4 mb-4 sticky top-(--header-height) z-40 bg-(--color-surface) py-4 transition-all duration-300"
-          >
-            <div class="flex items-center justify-center">
-              <span
-                class="text-sm font-semibold font-mono text-(--color-text-secondary) uppercase tracking-wider"
-              >
-                {locale === "en" ? "Time" : "Čas"}
-              </span>
-            </div>
-            {
-              tracks.map((track, index) => (
-                <div
-                  class="track-header-card rounded-xl p-4 text-center animate-scale-up bg-(--color-bg) border border-(--color-border) transition-all duration-300 origin-top"
-                  style={`animation-delay: ${index * 100}ms`}
+          {!isSingleTrack && (
+            <div
+              class={`track-header-sticky grid ${desktopGridCols} gap-4 mb-4 sticky top-(--header-height) z-40 bg-(--color-surface) py-4 transition-all duration-300`}
+            >
+              <div class="flex items-center justify-center">
+                <span
+                  class="text-sm font-semibold font-mono text-(--color-text-secondary) uppercase tracking-wider"
                 >
-                  <h3 class="font-bold text-(--color-text) transition-colors duration-300">
-                    {track.name[locale]}
-                  </h3>
-                </div>
-              ))
-            }
-          </div>
+                  {locale === "en" ? "Time" : "Čas"}
+                </span>
+              </div>
+              {
+                tracks.map((track, index) => (
+                  <div
+                    class="track-header-card rounded-xl p-4 text-center animate-scale-up bg-(--color-bg) border border-(--color-border) transition-all duration-300 origin-top"
+                    style={`animation-delay: ${index * 100}ms`}
+                  >
+                    <h3 class="font-bold text-(--color-text) transition-colors duration-300">
+                      {track.name[locale]}
+                    </h3>
+                  </div>
+                ))
+              }
+            </div>
+          )}
 
           <!-- Timeline Container -->
           <div
@@ -198,7 +204,7 @@ const timelineWidthMobile = totalSlots * PIXELS_PER_SLOT_MOBILE;
             </div>
 
             <!-- Time Grid -->
-            <div class="absolute inset-0 grid grid-cols-[5rem_1fr_1fr] gap-4">
+            <div class={`absolute inset-0 grid ${desktopGridCols} gap-4`}>
               <!-- Time Labels Column -->
               <div class="relative">
                 {
@@ -288,6 +294,7 @@ const timelineWidthMobile = totalSlots * PIXELS_PER_SLOT_MOBILE;
               </div>
 
               <!-- Track B Column -->
+              {!isSingleTrack && (
               <div class="relative border-l border-(--color-border)">
                 {
                   timeLabels.map((time, index) => {
@@ -356,6 +363,7 @@ const timelineWidthMobile = totalSlots * PIXELS_PER_SLOT_MOBILE;
                   })
                 }
               </div>
+              )}
             </div>
           </div>
         </div>
@@ -374,7 +382,9 @@ const timelineWidthMobile = totalSlots * PIXELS_PER_SLOT_MOBILE;
 
             <!-- Time Header -->
             <div class="sticky top-0 z-30 flex h-8 bg-(--color-surface) border-b border-(--color-border)">
-              <div class="sticky left-0 z-40 flex-none w-12 bg-(--color-surface) border-r border-(--color-border)"></div>
+              {!isSingleTrack && (
+                <div class="sticky left-0 z-40 flex-none w-12 bg-(--color-surface) border-r border-(--color-border)"></div>
+              )}
               <div class="relative flex-1">
                 {
                   timeLabels.map((time, index) => {
@@ -402,14 +412,16 @@ const timelineWidthMobile = totalSlots * PIXELS_PER_SLOT_MOBILE;
                 return (
                   <div class={`flex h-64 border-b border-(--color-border) ${trackIndex === tracks.length - 1 ? "border-b-0" : ""}`}>
                     {/* Track Header */}
-                    <div class="sticky left-0 z-20 flex-none w-12 flex items-center justify-center bg-(--color-surface) border-r border-(--color-border)">
-                      <h3
-                        class="text-sm font-bold text-(--color-text) uppercase tracking-wider whitespace-nowrap"
-                        style="writing-mode: vertical-rl; transform: rotate(180deg); padding-block: 1rem;"
-                      >
-                        {track.name[locale]}
-                      </h3>
-                    </div>
+                    {!isSingleTrack && (
+                      <div class="sticky left-0 z-20 flex-none w-12 flex items-center justify-center bg-(--color-surface) border-r border-(--color-border)">
+                        <h3
+                          class="text-sm font-bold text-(--color-text) uppercase tracking-wider whitespace-nowrap"
+                          style="writing-mode: vertical-rl; transform: rotate(180deg); padding-block: 1rem;"
+                        >
+                          {track.name[locale]}
+                        </h3>
+                      </div>
+                    )}
 
                     {/* Track Content */}
                     <div class="relative flex-1">

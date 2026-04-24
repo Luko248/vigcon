@@ -1,8 +1,8 @@
 {
   "conference": {
     "date": "2026-05-28",
-    "startTime": "08:00",
-    "endTime": "17:00",
+    "startTime": "08:30",
+    "endTime": "15:30",
     "timezone": "Europe/Prague"
   },
   "isScheduled": false,
@@ -10,207 +10,38 @@
     {
       "id": "track-a",
       "name": {
-        "en": "AI Track",
-        "cz": "AI Track"
-      }
-    },
-    {
-      "id": "track-b",
-      "name": {
-        "en": "Tech DeepDive",
-        "cz": "Tech DeepDive"
+        "en": "Program",
+        "cz": "Program"
       }
     }
   ],
   "schedule": [
     {
       "id": "registration",
-      "startTime": "08:00",
-      "endTime": "08:30",
+      "startTime": "08:30",
+      "endTime": "09:00",
       "track": "both",
       "type": "special",
       "title": {
-        "en": "Registration & Welcome Coffee",
-        "cz": "Registrace a uvítací káva"
+        "en": "Registration & Breakfast",
+        "cz": "Registrace a snídaně"
       }
     },
     {
       "id": "opening",
-      "startTime": "08:30",
-      "endTime": "08:45",
+      "startTime": "09:00",
+      "endTime": "09:30",
       "track": "both",
       "type": "special",
       "title": {
-        "en": "Opening Ceremony",
-        "cz": "Zahajovací ceremoniál"
-      }
-    },
-    {
-      "id": "talk-jirout",
-      "startTime": "08:45",
-      "endTime": "09:30",
-      "track": "track-a",
-      "title": {
-        "en": "Fuckups, Resistance, and Hard Data: The Real Story of Forcing AI into Software Development",
-        "cz": "Průšvihy, odpor a tvrdá data: Skutečný příběh násilného zavádění AI do vývoje softwaru"
-      },
-      "speakerId": "jirout-petr",
-      "company": "AIS",
-      "country": "CZ",
-      "language": "EN",
-      "hashtags": [
-        "AI",
-        "Adoption",
-        "Change"
-      ],
-      "annotation": {
-        "en": "An unfiltered post-mortem of a company-wide, enforced AI rollout across the entire SDLC. Real metrics, massive resistance, broken assumptions, and why AI became the minimum standard.",
-        "cz": "Nefiltrovaná post-mortem analýza celofiremního, vynuceného zavedení AI přes celé SDLC. Reálné metriky, masivní odpor, rozbité předpoklady a proč se AI stalo minimálním standardem."
-      }
-    },
-    {
-      "id": "talk-gintner",
-      "startTime": "08:45",
-      "endTime": "09:30",
-      "track": "track-b",
-      "title": {
-        "en": "One-Shot Delivery with AI Skills Agents",
-        "cz": "One-shot dodání pomocí AI Skills agentů"
-      },
-      "speakerId": "gintner-vojtech",
-      "company": "AIS",
-      "country": "CZ",
-      "language": "EN/SK",
-      "hashtags": [
-        "AIWorkflow",
-        "AIAgents",
-        "Windsurf"
-      ],
-      "annotation": {
-        "en": "Modern AI workflows enable one-shot delivery of business requirements. We cover rules, guidelines, sub-agents, AI skills, slash commands, MCP servers, and a real frontend AI workflow example.",
-        "cz": "Moderní AI workflow umožňuje one-shot dodání business požadavků. Projdeme rules, guidelines, subagenty, AI skilly, slash commands, MCP servery i reálný frontend AI workflow příklad."
-      }
-    },
-    {
-      "id": "break-1",
-      "startTime": "09:30",
-      "endTime": "10:00",
-      "track": "both",
-      "type": "break",
-      "title": {
-        "en": "Coffee Break & Networking",
-        "cz": "Přestávka na kávu a networking"
-      }
-    },
-    {
-      "id": "talk-gundartsev",
-      "startTime": "10:00",
-      "endTime": "10:45",
-      "track": "track-a",
-      "title": {
-        "en": "ZenBPM: Replacing Camunda with a Better Enterprise BPM Model",
-        "cz": "ZenBPM: Nahrazení Camundy lepším enterprise BPM modelem"
-      },
-      "speakerId": "gundartsev-dmytro",
-      "company": "AIS",
-      "country": "CZ",
-      "language": "EN",
-      "hashtags": [
-        "BPM",
-        "Camunda",
-        "ZenBPM",
-        "Architecture"
-      ],
-      "annotation": {
-        "en": "A case study of replacing Camunda with ZenBPM — from platform lock-in to adapter-based flexibility, micro frontends, and financial control.",
-        "cz": "Případová studie nahrazení Camundy ZenBPM — od platformního lock-in k flexibilitě adaptérů, micro frontendům a finanční kontrole."
-      }
-    },
-    {
-      "id": "talk-vrany",
-      "startTime": "10:00",
-      "endTime": "10:45",
-      "track": "track-b",
-      "title": {
-        "en": "AI Spec-Driven Development: Why Better Specifications Now Matter More Than Better Coding",
-        "cz": "AI Spec-Driven Development: Proč lepší specifikace teď znamenají víc než lepší kód"
-      },
-      "speakerId": "vrany-michal",
-      "company": "AIS",
-      "country": "CZ",
-      "language": "EN",
-      "hashtags": [
-        "AI",
-        "Development",
-        "Specs"
-      ],
-      "annotation": {
-        "en": "How AI changes delivery when specs become the engine — from business intent to implementation-ready structure, with practical guidelines for scalable enterprise code.",
-        "cz": "Jak AI mění dodávku, když se specifikace stanou motorem — od business záměru k implementation-ready struktuře s praktickými guidelines pro škálovatelný enterprise kód."
-      }
-    },
-    {
-      "id": "talk-rotrekl-sprna",
-      "startTime": "10:45",
-      "endTime": "11:30",
-      "track": "track-a",
-      "title": {
-        "en": "If Your Test Automation Is Still Built Mainly by Hand, You Already Have a Scaling Problem",
-        "cz": "Pokud vaši testovací automatizaci stále stavíte převážně ručně, už máte problém se škálováním"
-      },
-      "speakerId": "rotrekl-sprna",
-      "company": "AIS",
-      "country": "CZ",
-      "language": "EN",
-      "hashtags": [
-        "Testing",
-        "AI",
-        "QA"
-      ],
-      "annotation": {
-        "en": "How guided AI test generation with Junie reduces effort, improves consistency, and scales test automation beyond manual creation — including a Jira Xray to automation framework example.",
-        "cz": "Jak řízené AI generování testů s Junie snižuje úsilí, zlepšuje konzistenci a škáluje automatizaci testů nad rámec manuální tvorby — včetně ukázky Jira Xray do automatizačního frameworku."
-      }
-    },
-    {
-      "id": "talk-cech",
-      "startTime": "10:45",
-      "endTime": "11:30",
-      "track": "track-b",
-      "title": {
-        "en": "AI Prototyping with the VIGo Design System",
-        "cz": "AI prototypování s design systémem VIGo"
-      },
-      "speakerId": "cech-martin",
-      "company": "AIS",
-      "country": "CZ",
-      "language": "CZ",
-      "hashtags": [
-        "UX",
-        "DesignSystem",
-        "AI",
-        "Prototyping"
-      ],
-      "annotation": {
-        "en": "How a mature design system serves as a foundation for AI-driven prototyping, enabling fast visual validation, uncovering specification gaps, and generating realistic prototypes from requirements.",
-        "cz": "Jak vyspělý design systém slouží jako základ pro AI prototypování, umožňuje rychlou vizuální validaci, odhaluje mezery ve specifikacích a generuje realistické prototypy z požadavků."
-      }
-    },
-    {
-      "id": "break-2",
-      "startTime": "11:30",
-      "endTime": "12:00",
-      "track": "both",
-      "type": "break",
-      "title": {
-        "en": "Coffee Break",
-        "cz": "Přestávka na kávu"
+        "en": "Welcome by the Managing Director, housekeeping notes",
+        "cz": "Uvítání ředitelem, organizační informace"
       }
     },
     {
       "id": "talk-grek",
-      "startTime": "12:00",
-      "endTime": "12:45",
+      "startTime": "09:30",
+      "endTime": "10:05",
       "track": "track-a",
       "title": {
         "en": "RPA Today and Tomorrow: How Software Robots Support Work at VIG",
@@ -220,43 +51,84 @@
       "company": "AIS",
       "country": "CZ",
       "language": "CZ",
-      "hashtags": [
-        "RPA",
-        "Automation",
-        "Process"
-      ],
+      "hashtags": ["RPA", "Automation", "Process"],
       "annotation": {
         "en": "How RPA works in practice at Kooperativa and ČPP, which processes we automate, and how AI/LLMs will shape the future role of software robots.",
         "cz": "Jak RPA funguje v praxi v Kooperativě a ČPP, jaké procesy automatizujeme a jak AI/LLM ovlivní budoucí roli softwarových robotů."
       }
     },
     {
-      "id": "talk-zacek-juraj-microservice",
-      "startTime": "12:00",
-      "endTime": "12:45",
-      "track": "track-b",
+      "id": "talk-cech",
+      "startTime": "10:05",
+      "endTime": "10:45",
+      "track": "track-a",
       "title": {
-        "en": "From Microservice to Modular Monolith (and Back Again)",
-        "cz": "Od mikroservisy k modulárnímu monolitu (a zpět)"
+        "en": "AI Prototyping with the VIGo Design System",
+        "cz": "AI prototypování s design systémem VIGo"
       },
-      "speakerId": "zacek-juraj-microservice",
+      "speakerId": "cech-martin",
+      "company": "AIS",
+      "country": "CZ",
+      "language": "CZ",
+      "hashtags": ["UX", "DesignSystem", "AI", "Prototyping"],
+      "annotation": {
+        "en": "How a mature design system serves as a foundation for AI-driven prototyping, enabling fast visual validation, uncovering specification gaps, and generating realistic prototypes from requirements.",
+        "cz": "Jak vyspělý design systém slouží jako základ pro AI prototypování, umožňuje rychlou vizuální validaci, odhaluje mezery ve specifikacích a generuje realistické prototypy z požadavků."
+      }
+    },
+    {
+      "id": "break-1",
+      "startTime": "10:45",
+      "endTime": "11:00",
+      "track": "both",
+      "type": "break",
+      "title": {
+        "en": "Coffee Break",
+        "cz": "Přestávka na kávu"
+      }
+    },
+    {
+      "id": "talk-gundartsev",
+      "startTime": "11:00",
+      "endTime": "11:40",
+      "track": "track-a",
+      "title": {
+        "en": "ZenBPM: Replacing Camunda with a Better Enterprise BPM Model",
+        "cz": "ZenBPM: Nahrazení Camundy lepším enterprise BPM modelem"
+      },
+      "speakerId": "gundartsev-dmytro",
       "company": "AIS",
       "country": "CZ",
       "language": "EN",
-      "hashtags": [
-        "Architecture",
-        "Microservices",
-        "ModularMonolith"
-      ],
+      "hashtags": ["BPM", "Camunda", "ZenBPM", "Architecture"],
       "annotation": {
-        "en": "How we modularized a fast-growing microservice developed by three teams and prepared it for a future split without slowing delivery.",
-        "cz": "Jak jsme modularizovali rychle rostoucí mikroservisu vyvíjenou třemi týmy a připravili ji na budoucí rozdělení bez zpomalení delivery."
+        "en": "A case study of replacing Camunda with ZenBPM — from platform lock-in to adapter-based flexibility, micro frontends, and financial control.",
+        "cz": "Případová studie nahrazení Camundy ZenBPM — od platformního lock-in k flexibilitě adaptérů, micro frontendům a finanční kontrole."
+      }
+    },
+    {
+      "id": "talk-vrany",
+      "startTime": "11:40",
+      "endTime": "12:20",
+      "track": "track-a",
+      "title": {
+        "en": "AI Spec-Driven Development: Why Better Specifications Now Matter More Than Better Coding",
+        "cz": "AI Spec-Driven Development: Proč lepší specifikace teď znamenají víc než lepší kód"
+      },
+      "speakerId": "vrany-michal",
+      "company": "AIS",
+      "country": "CZ",
+      "language": "EN",
+      "hashtags": ["AI", "Development", "Specs"],
+      "annotation": {
+        "en": "How AI changes delivery when specs become the engine — from business intent to implementation-ready structure, with practical guidelines for scalable enterprise code.",
+        "cz": "Jak AI mění dodávku, když se specifikace stanou motorem — od business záměru k implementation-ready struktuře s praktickými guidelines pro škálovatelný enterprise kód."
       }
     },
     {
       "id": "lunch",
-      "startTime": "12:45",
-      "endTime": "13:45",
+      "startTime": "12:30",
+      "endTime": "13:30",
       "track": "both",
       "type": "break",
       "title": {
@@ -265,120 +137,60 @@
       }
     },
     {
-      "id": "talk-stercl-gundartsev",
-      "startTime": "13:45",
-      "endTime": "14:30",
+      "id": "talk-jirout",
+      "startTime": "13:30",
+      "endTime": "14:10",
       "track": "track-a",
       "title": {
-        "en": "Transforming Daily Planning Through Intelligent Scheduling and Routing",
-        "cz": "Transforming Daily Planning Through Intelligent Scheduling and Routing"
+        "en": "Fuckups, Resistance, and Hard Data: The Real Story of Forcing AI into Software Development",
+        "cz": "Průšvihy, odpor a tvrdá data: Skutečný příběh násilného zavádění AI do vývoje softwaru"
       },
-      "speakerId": "stercl-gundartsev",
+      "speakerId": "jirout-petr",
       "company": "AIS",
       "country": "CZ",
       "language": "EN",
-      "hashtags": [
-        "Optimization",
-        "DataScience",
-        "Scheduling"
-      ],
+      "hashtags": ["AI", "Adoption", "Change"],
       "annotation": {
-        "en": "Replacing manual scheduling with a data-driven optimization system for field technicians.",
-        "cz": "Nahrazení manuálního plánování datově řízeným optimalizačním systémem pro terénní techniky."
+        "en": "An unfiltered post-mortem of a company-wide, enforced AI rollout across the entire SDLC. Real metrics, massive resistance, broken assumptions, and why AI became the minimum standard.",
+        "cz": "Nefiltrovaná post-mortem analýza celofiremního, vynuceného zavedení AI přes celé SDLC. Reálné metriky, masivní odpor, rozbité předpoklady a proč se AI stalo minimálním standardem."
       }
     },
     {
-      "id": "talk-auf-bucek",
-      "startTime": "13:45",
-      "endTime": "14:30",
-      "track": "track-b",
-      "title": {
-        "en": "From Central Control to Team Ownership: Our Journey to a Kafka Operator",
-        "cz": "Od centrální kontroly k týmovému vlastnictví: Naše cesta ke Kafka Operátorovi"
-      },
-      "speakerId": "auf-bucek",
-      "company": "AIS",
-      "country": "CZ",
-      "language": "CZ",
-      "hashtags": [
-        "Kafka",
-        "Kubernetes",
-        "DevOps",
-        "Architecture"
-      ],
-      "annotation": {
-        "en": "Our journey from a centralized deployment model to a decentralized, Kubernetes-native approach powered by a custom Kafka Operator.",
-        "cz": "Naše cesta od centralizovaného modelu nasazení k decentralizovanému, Kubernetes-native přístupu poháněnému vlastním Kafka Operátorem."
-      }
-    },
-    {
-      "id": "talk-zacek-juraj-persistence",
-      "startTime": "14:30",
-      "endTime": "15:00",
+      "id": "talk-gintner",
+      "startTime": "14:10",
+      "endTime": "14:50",
       "track": "track-a",
       "title": {
-        "en": "High-Performance Persistence for Insurance Contracts",
-        "cz": "Vysoce výkonná persistence pro pojistné smlouvy"
+        "en": "One-Shot Delivery with AI Skills Agents",
+        "cz": "One-shot dodání pomocí AI Skills agentů"
       },
-      "speakerId": "zacek-juraj-persistence",
+      "speakerId": "gintner-vojtech",
+      "company": "AIS",
+      "country": "CZ",
+      "language": "EN/SK",
+      "hashtags": ["AIWorkflow", "AIAgents", "Windsurf"],
+      "annotation": {
+        "en": "Modern AI workflows enable one-shot delivery of business requirements. We cover rules, guidelines, sub-agents, AI skills, slash commands, MCP servers, and a real frontend AI workflow example.",
+        "cz": "Moderní AI workflow umožňuje one-shot dodání business požadavků. Projdeme rules, guidelines, subagenty, AI skilly, slash commands, MCP servery i reálný frontend AI workflow příklad."
+      }
+    },
+    {
+      "id": "talk-rotrekl-sprna",
+      "startTime": "14:50",
+      "endTime": "15:15",
+      "track": "track-a",
+      "title": {
+        "en": "If Your Test Automation Is Still Built Mainly by Hand, You Already Have a Scaling Problem",
+        "cz": "Pokud vaši testovací automatizaci stále stavíte převážně ručně, už máte problém se škálováním"
+      },
+      "speakerId": "rotrekl-sprna",
       "company": "AIS",
       "country": "CZ",
       "language": "EN",
-      "hashtags": [
-        "Architecture",
-        "Persistence",
-        "Performance",
-        "Insurance"
-      ],
+      "hashtags": ["Testing", "AI", "QA"],
       "annotation": {
-        "en": "How we redesigned data loading, caching, and batch persistence to improve read and write performance in a complex insurance contract model.",
-        "cz": "Jak jsme přepracovali načítání dat, caching a batch persistenci pro zlepšení výkonu čtení i zápisu ve složitém modelu pojistných smluv."
-      }
-    },
-    {
-      "id": "talk-talpa-martin",
-      "startTime": "14:30",
-      "endTime": "15:00",
-      "track": "track-b",
-      "title": {
-        "en": "Web Application Security in Practice",
-        "cz": "Bezpečnost webových aplikací v praxi"
-      },
-      "speakerId": "talpa-martin",
-      "company": "AIS",
-      "country": "CZ",
-      "language": "EN",
-      "hashtags": [
-        "Security",
-        "CSP",
-        "XSS",
-        "Web"
-      ],
-      "annotation": {
-        "en": "Practical CSP rollout in production to mitigate XSS and client-side abuse without harming user experience.",
-        "cz": "Praktické nasazení CSP v produkci pro omezení XSS a klientských útoků bez negativního dopadu na uživatelský zážitek."
-      }
-    },
-    {
-      "id": "expo",
-      "startTime": "15:00",
-      "endTime": "16:30",
-      "track": "both",
-      "type": "special",
-      "title": {
-        "en": "Networking & Expo",
-        "cz": "Networking a expo zóna"
-      }
-    },
-    {
-      "id": "closing",
-      "startTime": "16:30",
-      "endTime": "17:00",
-      "track": "both",
-      "type": "special",
-      "title": {
-        "en": "Closing Ceremony & Networking",
-        "cz": "Závěrečný ceremoniál a networking"
+        "en": "How guided AI test generation with Junie reduces effort, improves consistency, and scales test automation beyond manual creation — including a Jira Xray to automation framework example.",
+        "cz": "Jak řízené AI generování testů s Junie snižuje úsilí, zlepšuje konzistenci a škáluje automatizaci testů nad rámec manuální tvorby — včetně ukázky Jira Xray do automatizačního frameworku."
       }
     }
   ]
