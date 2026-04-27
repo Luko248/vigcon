@@ -2,6 +2,7 @@
 import type { Locale } from "@utils/types";
 import en from "@i18n/en.json";
 import cz from "@i18n/cz.json";
+import { isRegistrationVisible } from "@utils/registration";
 
 interface Props {
   locale: Locale;
@@ -9,6 +10,7 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = locale === "en" ? en : cz;
+const showRegistration = isRegistrationVisible();
 ---
 
 <footer
@@ -101,31 +103,35 @@ const t = locale === "en" ? en : cz;
                 {locale === "en" ? "Schedule" : "Program"}
               </a>
             </li>
-            <li>
-              <a
-                href="#registration"
-                class="text-(--color-text-secondary) hover:text-(--color-primary) transition-colors inline-flex items-center gap-2"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="9" cy="7" r="4"></circle>
-                  <line x1="19" x2="19" y1="8" y2="14"></line>
-                  <line x1="22" x2="16" y1="11" y2="11"></line>
-                </svg>
-                {locale === "en" ? "Register" : "Registrace"}
-              </a>
-            </li>
+            {
+              showRegistration && (
+                <li>
+                  <a
+                    href="#registration"
+                    class="text-(--color-text-secondary) hover:text-(--color-primary) transition-colors inline-flex items-center gap-2"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                      <circle cx="9" cy="7" r="4" />
+                      <line x1="19" x2="19" y1="8" y2="14" />
+                      <line x1="22" x2="16" y1="11" y2="11" />
+                    </svg>
+                    {locale === "en" ? "Register" : "Registrace"}
+                  </a>
+                </li>
+              )
+            }
             <li>
               <a
                 href="#venue"

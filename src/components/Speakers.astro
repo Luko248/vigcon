@@ -5,6 +5,7 @@ import cz from "@i18n/cz.json";
 import speakersData from "@data/speakers.json";
 import scheduleData from "@data/schedule.json";
 import type { Talk, Speaker } from "@utils/types";
+import { isRegistrationVisible } from "@utils/registration";
 
 interface Props {
   locale: Locale;
@@ -12,6 +13,7 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = locale === "en" ? en : cz;
+const showRegistration = isRegistrationVisible();
 
 const speakers = speakersData.speakers as Speaker[];
 const schedule = scheduleData.schedule as Talk[];
@@ -115,13 +117,14 @@ const restTitle = titleWords.slice(1).join(" ");
       }
     </div>
 
-    <!-- Call to Action -->
-    <div class="text-center mt-12 animate-on-scroll">
-      <p class="text-(--color-text-secondary) mb-4">{t.speakers.register}</p>
-      <a href="#registration" class="text-primary font-semibold hover:underline inline-flex items-center gap-1">
-        {t.speakers.registerLink}
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </a>
-    </div>
+    {showRegistration && (
+      <div class="text-center mt-12 animate-on-scroll">
+        <p class="text-(--color-text-secondary) mb-4">{t.speakers.register}</p>
+        <a href="#registration" class="text-primary font-semibold hover:underline inline-flex items-center gap-1">
+          {t.speakers.registerLink}
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    )}
   </div>
 </section>

@@ -5,6 +5,7 @@ import type { Locale } from "@utils/types";
 import Countdown from "./Countdown.astro";
 import en from "@i18n/en.json";
 import cz from "@i18n/cz.json";
+import { isRegistrationVisible } from "@utils/registration";
 
 interface Props {
   locale: Locale;
@@ -12,6 +13,7 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = locale === "en" ? en : cz;
+const showRegistration = isRegistrationVisible();
 
 const conferenceDate = "2026-05-28T09:00:00+02:00";
 ---
@@ -200,12 +202,16 @@ const conferenceDate = "2026-05-28T09:00:00+02:00";
         class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center animate-fade-in-up"
         style="animation-delay: 600ms"
       >
-        <a
-          href="#registration"
-          class="btn-primary text-[clamp(0.875rem,2svh,1.125rem)] px-6 py-2.5 sm:px-8 sm:py-3 w-full sm:w-auto"
-        >
-          {t.cta.register}
-        </a>
+        {
+          showRegistration && (
+            <a
+              href="#registration"
+              class="btn-primary text-[clamp(0.875rem,2svh,1.125rem)] px-6 py-2.5 sm:px-8 sm:py-3 w-full sm:w-auto"
+            >
+              {t.cta.register}
+            </a>
+          )
+        }
         <a
           href="#schedule"
           class="btn-secondary text-[clamp(0.875rem,2svh,1.125rem)] px-6 py-2.5 sm:px-8 sm:py-3 w-full sm:w-auto"
@@ -231,7 +237,12 @@ const conferenceDate = "2026-05-28T09:00:00+02:00";
     gap: 0.75rem;
     padding: 0.625rem 1.25rem;
     border-radius: 0.5rem;
-    background: rgba(0, 0, 0, 0.3); /* Lower opacity for visible backdrop filter */
+    background: rgba(
+      0,
+      0,
+      0,
+      0.3
+    ); /* Lower opacity for visible backdrop filter */
     color: white;
     font-family: var(--font-mono);
     font-weight: 700;
@@ -241,7 +252,7 @@ const conferenceDate = "2026-05-28T09:00:00+02:00";
     letter-spacing: 0.025em;
     z-index: 10;
     animation: rotate 4s linear infinite;
-    
+
     --offset: 2px;
   }
 
@@ -263,7 +274,7 @@ const conferenceDate = "2026-05-28T09:00:00+02:00";
     inset: -2px;
     border-radius: calc(0.5rem + 2px);
     padding: 2px;
-    
+
     background: conic-gradient(
       from var(--angle),
       var(--color-primary-dark),
@@ -271,17 +282,17 @@ const conferenceDate = "2026-05-28T09:00:00+02:00";
       var(--color-primary-light),
       var(--color-primary-dark)
     );
-    
+
     -webkit-mask:
       linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
     mask:
       linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
-    
+
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-    
+
     pointer-events: none;
     z-index: -1;
   }

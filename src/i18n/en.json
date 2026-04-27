@@ -120,6 +120,10 @@
   "registration": {
     "title": "Registration",
     "subtitle": "Register as an attendee or submit your topic as a speaker. Capacity is limited to 50 participants.",
+    "closed": {
+      "title": "Registration Closed",
+      "message": "Thank you for your interest in VIGCON 2026. Registration closed at the conference start time, and we appreciate everyone who joined us."
+    },
     "form": {
       "firstName": "First Name",
       "lastName": "Last Name",

@@ -120,6 +120,10 @@
   "registration": {
     "title": "Registrace",
     "subtitle": "Zaregistrujte se jako účastník nebo přihlaste své téma jako řečník. Kapacita je omezena na 50 účastníků.",
+    "closed": {
+      "title": "Registrace uzavřena",
+      "message": "Děkujeme za váš zájem o VIGCON 2026. Registrace byla uzavřena v čase zahájení konference a vážíme si všech, kteří se připojili."
+    },
     "form": {
       "firstName": "Jméno",
       "lastName": "Příjmení",

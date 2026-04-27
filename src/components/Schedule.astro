@@ -8,6 +8,7 @@ import scheduleData from "@data/schedule.json";
 import speakersData from "@data/speakers.json";
 import en from "@i18n/en.json";
 import cz from "@i18n/cz.json";
+import { isRegistrationVisible } from "@utils/registration";
 
 const speakerImages = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/images/speakers/*.{jpeg,jpg,png,gif,avif,svg}",
@@ -27,6 +28,7 @@ interface Props {
 
 const { locale } = Astro.props as Props;
 const t = locale === "en" ? en : cz;
+const showRegistration = isRegistrationVisible();
 
 const { conference, isScheduled } = scheduleData;
 const tracks = scheduleData.tracks as Track[];
@@ -144,7 +146,15 @@ const timelineWidthMobile = totalSlots * PIXELS_PER_SLOT_MOBILE;
           </p>
         ) : (
           <p class="text-lg text-(--color-text-secondary) max-w-2xl mx-auto animate-on-scroll-delayed">
-            {t.schedule.subtitle}<br />{t.schedule.subtitle2}<a href="#registration" class="text-primary hover:underline">{t.schedule.subtitleLink}</a>
+            {t.schedule.subtitle}
+            {showRegistration && (
+              <>
+                <br />{t.schedule.subtitle2}
+                <a href="#registration" class="text-primary hover:underline">
+                  {t.schedule.subtitleLink}
+                </a>
+              </>
+            )}
           </p>
         )
       }
@@ -534,14 +544,15 @@ const timelineWidthMobile = totalSlots * PIXELS_PER_SLOT_MOBILE;
           }
         </div>
 
-        <!-- Call to Action -->
-        <div class="text-center mt-12 animate-on-scroll">
-          <p class="text-(--color-text-secondary) mb-4">{t.schedule.register}</p>
-          <a href="#registration" class="text-primary font-semibold hover:underline inline-flex items-center gap-1">
-            {t.schedule.registerLink}
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-        </div>
+        {showRegistration && (
+          <div class="text-center mt-12 animate-on-scroll">
+            <p class="text-(--color-text-secondary) mb-4">{t.schedule.register}</p>
+            <a href="#registration" class="text-primary font-semibold hover:underline inline-flex items-center gap-1">
+              {t.schedule.registerLink}
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        )}
       </>
     )}
 
