@@ -34,7 +34,7 @@ const schedule = scheduleData.schedule as Talk[];
 const speakers = speakersData.speakers as Speaker[];
 const isSingleTrack = tracks.length === 1;
 const desktopGridCols = isSingleTrack
-  ? "grid-cols-[5rem_1fr]"
+  ? "grid-cols-[3.5rem_1fr] sm:grid-cols-[5rem_1fr]"
   : "grid-cols-[5rem_1fr_1fr]";
 
 // Order speakers by their position in the schedule array (source of truth for display order)
@@ -162,8 +162,8 @@ const timelineWidthMobile = totalSlots * PIXELS_PER_SLOT_MOBILE;
           </label>
         </div>
 
-        <!-- Desktop Timeline View -->
-        <div class="hidden lg:block">
+        <!-- Desktop Timeline View (also used on mobile when single track) -->
+        <div class={isSingleTrack ? "block" : "hidden lg:block"}>
           <!-- Track Headers -->
           {!isSingleTrack && (
             <div
@@ -369,8 +369,8 @@ const timelineWidthMobile = totalSlots * PIXELS_PER_SLOT_MOBILE;
           </div>
         </div>
 
-        <!-- Mobile View (Horizontal Timeline) -->
-        <div class="lg:hidden overflow-x-auto overflow-y-hidden bg-(--color-surface) scrollbar-hide touch-pan-x">
+        <!-- Mobile View (Horizontal Timeline) — only used when multiple tracks -->
+        <div class={isSingleTrack ? "hidden" : "lg:hidden overflow-x-auto overflow-y-hidden bg-(--color-surface) scrollbar-hide touch-pan-x"}>
           <div class="relative" style={`width: ${timelineWidthMobile}px; min-width: 100%;`}>
             <!-- Current Time Indicator -->
             <div
