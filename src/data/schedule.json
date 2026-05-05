@@ -89,22 +89,22 @@
       }
     },
     {
-      "id": "talk-gundartsev",
+      "id": "talk-stercl-gundartsev",
       "startTime": "11:00",
       "endTime": "11:40",
       "track": "track-a",
       "title": {
-        "en": "ZenBPM: Replacing Camunda with a Better Enterprise BPM Model",
-        "cz": "ZenBPM: Nahrazení Camundy lepším enterprise BPM modelem"
+        "en": "Transforming Daily Planning Through Intelligent Scheduling and Routing",
+        "cz": "Transformace každodenního plánování pomocí inteligentního rozvrhování a routingu"
       },
-      "speakerId": "gundartsev-dmytro",
+      "speakerId": "stercl-gundartsev",
       "company": "AIS",
       "country": "CZ",
       "language": "EN",
-      "hashtags": ["BPM", "Camunda", "ZenBPM", "Architecture"],
+      "hashtags": ["Optimization", "DataScience", "Scheduling", "Routing"],
       "annotation": {
-        "en": "A case study of replacing Camunda with ZenBPM — from platform lock-in to adapter-based flexibility, micro frontends, and financial control.",
-        "cz": "Případová studie nahrazení Camundy ZenBPM — od platformního lock-in k flexibilitě adaptérů, micro frontendům a finanční kontrole."
+        "en": "How the Rozdělovač project replaces manual field technician planning with data-driven optimization for scheduling, routing, task allocation, and travel cost minimization.",
+        "cz": "Jak projekt Rozdělovač nahrazuje ruční plánování terénních techniků datově řízenou optimalizací rozvrhování, routingu, alokace úkolů a minimalizace cestovních nákladů."
       }
     },
     {

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "confluence-integration": {
+      "source": "luko248/atlassian-skills",
+      "sourceType": "github",
+      "skillPath": "skills/confluence-integration/SKILL.md",
+      "computedHash": "26ffb02a68dc67d4399ec777a67629e5a80b69094cfd8c55d5767f73afd3337c"
+    }
+  }
+}
