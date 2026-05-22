@@ -14,7 +14,11 @@
         "en": "Fuckups, Resistance, and Hard Data: The Real Story of Forcing AI into Software Development",
         "cz": "Průšvihy, odpor a tvrdá data: Skutečný příběh násilného zavádění AI do vývoje softwaru"
       },
-      "hashtags": ["AI", "Adoption", "Change"],
+      "hashtags": [
+        "AI",
+        "Adoption",
+        "Change"
+      ],
       "shortDesc": {
         "en": "An unfiltered post-mortem of enforcing AI across the entire SDLC — real metrics, massive resistance, and why AI became the minimum standard.",
         "cz": "Nefiltrovaná post-mortem analýza vynuceného zavedení AI přes celé SDLC — reálné metriky, masivní odpor a proč se AI stalo minimálním standardem."
@@ -38,7 +42,11 @@
         "en": "One-Shot Delivery with AI Skills Agents",
         "cz": "One-shot dodání pomocí AI Skills agentů"
       },
-      "hashtags": ["AIWorkflow", "AIAgents", "Windsurf"],
+      "hashtags": [
+        "AIWorkflow",
+        "AIAgents",
+        "Windsurf"
+      ],
       "shortDesc": {
         "en": "AI building blocks and a real frontend AI workflow example for one-shot delivery of business requirements.",
         "cz": "AI stavební bloky a reálný frontend AI workflow příklad pro one-shot dodání business požadavků."
@@ -62,7 +70,11 @@
         "en": "AI Spec-Driven Development: Why Better Specifications Now Matter More Than Better Coding",
         "cz": "AI Spec-Driven Development: Proč lepší specifikace teď znamenají víc než lepší kód"
       },
-      "hashtags": ["AI", "Development", "Specs"],
+      "hashtags": [
+        "AI",
+        "Development",
+        "Specs"
+      ],
       "shortDesc": {
         "en": "How AI changes delivery when specs become the engine of development — from business intent to implementation-ready structure.",
         "cz": "Jak AI mění dodávku, když se specifikace stanou motorem vývoje — od business záměru k implementation-ready struktuře."
@@ -83,14 +95,19 @@
       ],
       "status": "confirmed",
       "role": {
-        "en": "Data Scientist, Software Architect",
-        "cz": "Data Scientist, Software Architect"
+        "en": "Data Scientist | Software Architect",
+        "cz": "Data Scientist | Software Architect"
       },
       "topic": {
         "en": "Transforming Daily Planning Through Intelligent Scheduling and Routing",
         "cz": "Transformace každodenního plánování pomocí inteligentního rozvrhování a routingu"
       },
-      "hashtags": ["Optimization", "DataScience", "Scheduling", "Routing"],
+      "hashtags": [
+        "Optimization",
+        "DataScience",
+        "Scheduling",
+        "Routing"
+      ],
       "shortDesc": {
         "en": "How data-driven optimization can generate daily plans for field technicians, reduce travel distance, and reshape manual scheduling.",
         "cz": "Jak datově řízená optimalizace dokáže vytvářet denní plány pro terénní techniky, zkrátit cestování a změnit ruční plánování."
@@ -118,7 +135,11 @@
         "en": "If Your Test Automation Is Still Built Mainly by Hand, You Already Have a Scaling Problem",
         "cz": "Pokud vaši testovací automatizaci stále stavíte převážně ručně, už máte problém se škálováním"
       },
-      "hashtags": ["Testing", "AI", "QA"],
+      "hashtags": [
+        "Testing",
+        "AI",
+        "QA"
+      ],
       "shortDesc": {
         "en": "How guided AI test generation with Junie reduces effort, improves consistency, and makes test automation scale beyond manual creation.",
         "cz": "Jak řízené AI generování testů s Junie snižuje úsilí, zlepšuje konzistenci a škáluje testovací automatizaci nad rámec manuální tvorby."
@@ -139,14 +160,19 @@
       ],
       "status": "confirmed",
       "role": {
-        "en": "Design Lead, UX Designer",
-        "cz": "Design Lead, UX Designer"
+        "en": "Design Lead | UX Designer",
+        "cz": "Design Lead | UX Designer"
       },
       "topic": {
         "en": "AI Prototyping with the VIGo Design System",
         "cz": "AI prototypování s design systémem VIGo"
       },
-      "hashtags": ["UX", "DesignSystem", "AI", "Prototyping"],
+      "hashtags": [
+        "UX",
+        "DesignSystem",
+        "AI",
+        "Prototyping"
+      ],
       "shortDesc": {
         "en": "How a mature design system serves as a foundation for AI-driven prototyping with real React components.",
         "cz": "Jak vyspělý design systém slouží jako základ pro AI prototypování s reálnými React komponentami."
@@ -170,7 +196,11 @@
         "en": "RPA Today and Tomorrow: How Software Robots Support Work at VIG",
         "cz": "RPA dnes a zítra: jak softwaroví roboti podporují práci ve VIG"
       },
-      "hashtags": ["RPA", "Automation", "AI"],
+      "hashtags": [
+        "RPA",
+        "Automation",
+        "AI"
+      ],
       "shortDesc": {
         "en": "How RPA helps at Kooperativa and ČPP, what we automate, and how AI will reshape software robots.",
         "cz": "Jak RPA pomáhá v Kooperativě a ČPP, co automatizujeme a jak AI promění softwarové roboty."
